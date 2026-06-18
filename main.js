@@ -1,4 +1,4 @@
-// ── Clock ─────────────────────────────────────────────────────────────────────
+// ── Clock ───────────────────────────────────────────────────────────────────
 function updateClock() {
   const t = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Shanghai' }));
   const pad = n => String(n).padStart(2, '0');
@@ -20,12 +20,12 @@ document.querySelectorAll('.lang-btn').forEach(btn => {
   });
 });
 
-// ── Time ambient theming ─────────────────────────────────────────────────────
+// ── Time ambient ───────────────────────────────────────────────────────────────
 const ambientThemes = [
-  { hours: [23, 6],  bg: '#EDEAF5', tint: 'rgba(10, 18, 50, 1)',   opacity: 0.55 }, // night  → deep indigo veil
-  { hours: [6,  10], bg: '#FBF8EE', tint: 'rgba(200, 140, 20, 1)', opacity: 0.28 }, // morning → golden wash
-  { hours: [10, 17], bg: '#F5F2ED', tint: 'transparent',            opacity: 0    }, // day    → clean
-  { hours: [17, 23], bg: '#F0EEF5', tint: 'rgba(40, 20, 80, 1)',   opacity: 0.25 }, // evening → dusk purple
+  { hours: [23, 6],  bg: '#EEEAF5', tint: 'rgba(10, 5, 30, 1)',    opacity: 0.55 }, // night
+  { hours: [6, 10],  bg: '#F8F5EE', tint: 'rgba(180, 120, 20, 1)', opacity: 0.25 }, // morning
+  { hours: [10, 17], bg: '#F8F5F8', tint: 'transparent',            opacity: 0    }, // day
+  { hours: [17, 23], bg: '#F5F0F8', tint: 'rgba(20, 5, 50, 1)',    opacity: 0.3  }, // evening
 ];
 
 function getAmbient() {
@@ -35,7 +35,6 @@ function getAmbient() {
   if (h >= 10 && h < 17) return ambientThemes[2];
   return ambientThemes[3];
 }
-
 function applyAmbient() {
   const t = getAmbient();
   const overlay = document.getElementById('timeOverlay');
@@ -43,14 +42,12 @@ function applyAmbient() {
   document.documentElement.style.setProperty('--color-bg', t.bg);
   document.body.style.backgroundColor = t.bg;
   overlay.style.backgroundColor = t.tint;
-  requestAnimationFrame(() => requestAnimationFrame(() => {
-    overlay.style.opacity = t.opacity;
-  }));
+  requestAnimationFrame(() => requestAnimationFrame(() => { overlay.style.opacity = t.opacity; }));
 }
 applyAmbient();
 setInterval(applyAmbient, 300000);
 
-// ── A: Card tilt ──────────────────────────────────────────────────────────────
+// ── A: Card tilt ─────────────────────────────────────────────────────────────
 document.querySelectorAll('.card-project, .card-resume').forEach(card => {
   card.classList.add('has-tilt');
   card.addEventListener('mousemove', e => {
@@ -58,7 +55,7 @@ document.querySelectorAll('.card-project, .card-resume').forEach(card => {
     const x = (e.clientX - r.left) / r.width - 0.5;
     const y = (e.clientY - r.top) / r.height - 0.5;
     card.style.transform = `perspective(800px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg) scale(1.02)`;
-    card.style.boxShadow = '0 20px 48px rgba(0,0,0,0.12)';
+    card.style.boxShadow = '0 20px 48px rgba(26,10,26,0.14)';
     card.style.transition = 'transform 0.08s ease, box-shadow 0.08s ease';
   });
   card.addEventListener('mouseleave', () => {
@@ -68,7 +65,7 @@ document.querySelectorAll('.card-project, .card-resume').forEach(card => {
   });
 });
 
-// ── B: Magnetic connect button ────────────────────────────────────────────────
+// ── B: Magnetic connect button ───────────────────────────────────────────────
 const btn = document.querySelector('.hero-connect');
 if (btn) {
   btn.addEventListener('mousemove', e => {
@@ -82,7 +79,7 @@ if (btn) {
   });
 }
 
-// ── C: Text scramble ──────────────────────────────────────────────────────────
+// ── C: Text scramble on name → subtitle fades in after ────────────────────────────
 class TextScramble {
   constructor(el) {
     this.el = el;
@@ -110,10 +107,17 @@ class TextScramble {
 }
 
 const cnEl = document.querySelector('.name-cn');
+const subtitleEl = document.querySelector('.hero-subtitle');
+
 if (cnEl) {
   const name = cnEl.textContent;
   cnEl.innerHTML = name.split('').map(() => '<span style="opacity:0">_</span>').join('');
-  setTimeout(() => new TextScramble(cnEl).setText(name), 500);
+  setTimeout(() => {
+    new TextScramble(cnEl).setText(name).then(() => {
+      // subtitle slides in right after name finishes
+      if (subtitleEl) subtitleEl.classList.add('revealed');
+    });
+  }, 500);
 }
 
 // ── D: Hero card clickable ────────────────────────────────────────────────────
@@ -125,7 +129,7 @@ if (heroCard) {
   });
 }
 
-// ── E: Spotlight ──────────────────────────────────────────────────────────────
+// ── E: Spotlight ─────────────────────────────────────────────────────────────
 const hero = document.querySelector('.card-hero');
 if (hero) {
   hero.addEventListener('mousemove', e => {
@@ -135,20 +139,16 @@ if (hero) {
   });
 }
 
-// ── Custom cursor + Parallax (shared RAF loop) ─────────────────────────────────
+// ── Custom cursor + Parallax ───────────────────────────────────────────────────
 const dot  = document.getElementById('cursorDot');
 const ring = document.getElementById('cursorRing');
 const middleEl = document.querySelector('.bento-middle');
 const rightEl  = document.querySelector('.bento-right');
-
 const hasHover = window.matchMedia('(hover: hover)').matches;
 
-let mx = -100, my = -100;
-let rx = -100,  ry = -100;
-let pmx = 0, pmy = 0;
-let plx = 0,  ply = 0;
+let mx = -100, my = -100, rx = -100, ry = -100;
+let pmx = 0, pmy = 0, plx = 0, ply = 0;
 
-// Use CSS class (not inline opacity) to show/hide cursor — avoids the disappear bug
 document.addEventListener('mousemove', e => {
   mx = e.clientX; my = e.clientY;
   pmx = (e.clientX / window.innerWidth  - 0.5) * 2;
@@ -163,17 +163,12 @@ document.addEventListener('mouseleave', () => {
 });
 
 function mainLoop() {
-  // Cursor ring lerps behind the dot
   if (ring) {
-    rx += (mx - rx) * 0.12;
-    ry += (my - ry) * 0.12;
-    ring.style.left = rx + 'px';
-    ring.style.top  = ry + 'px';
+    rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
   }
-  // Parallax depth shift
   if (hasHover) {
-    plx += (pmx - plx) * 0.07;
-    ply += (pmy - ply) * 0.07;
+    plx += (pmx - plx) * 0.07; ply += (pmy - ply) * 0.07;
     if (middleEl) middleEl.style.transform = `translate(${plx * 8}px, ${ply * 5}px)`;
     if (rightEl)  rightEl.style.transform  = `translate(${plx * 14}px, ${ply * 8}px)`;
   }
@@ -181,19 +176,14 @@ function mainLoop() {
 }
 mainLoop();
 
-// Cursor state: card
 document.querySelectorAll('.card-project, .card-resume, .card-photo').forEach(el => {
   el.addEventListener('mouseenter', () => document.body.classList.add('cursor-on-card'));
   el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-on-card'));
 });
-
-// Cursor state: hero
 if (hero) {
   hero.addEventListener('mouseenter', () => document.body.classList.add('cursor-on-hero'));
   hero.addEventListener('mouseleave', () => document.body.classList.remove('cursor-on-hero'));
 }
-
-// Cursor state: links
 document.querySelectorAll('a, .lang-btn').forEach(el => {
   el.addEventListener('mouseenter', () => document.body.classList.add('cursor-on-link'));
   el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-on-link'));
