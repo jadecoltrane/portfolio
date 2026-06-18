@@ -20,12 +20,12 @@ document.querySelectorAll('.lang-btn').forEach(btn => {
   });
 });
 
-// ── Time ambient theming ──────────────────────────────────────────────────────
+// ── Time ambient theming ─────────────────────────────────────────────────────
 const ambientThemes = [
-  { hours: [23, 6],  bg: '#EDEAF5', tint: 'rgba(18, 32, 72, 1)',   opacity: 0.52 }, // night
-  { hours: [6, 10],  bg: '#FBF8EE', tint: 'rgba(210, 148, 30, 1)', opacity: 0.32 }, // morning
-  { hours: [10, 17], bg: '#FAF7F3', tint: 'transparent',            opacity: 0    }, // day
-  { hours: [17, 23], bg: '#F6F0EE', tint: 'rgba(70, 12, 22, 1)',   opacity: 0.28 }, // evening
+  { hours: [23, 6],  bg: '#EDEAF5', tint: 'rgba(10, 18, 50, 1)',   opacity: 0.55 }, // night  → deep indigo veil
+  { hours: [6,  10], bg: '#FBF8EE', tint: 'rgba(200, 140, 20, 1)', opacity: 0.28 }, // morning → golden wash
+  { hours: [10, 17], bg: '#F5F2ED', tint: 'transparent',            opacity: 0    }, // day    → clean
+  { hours: [17, 23], bg: '#F0EEF5', tint: 'rgba(40, 20, 80, 1)',   opacity: 0.25 }, // evening → dusk purple
 ];
 
 function getAmbient() {
@@ -47,7 +47,6 @@ function applyAmbient() {
     overlay.style.opacity = t.opacity;
   }));
 }
-
 applyAmbient();
 setInterval(applyAmbient, 300000);
 
@@ -136,7 +135,7 @@ if (hero) {
   });
 }
 
-// ── Custom cursor + Parallax (shared RAF) ────────────────────────────────────
+// ── Custom cursor + Parallax (shared RAF loop) ─────────────────────────────────
 const dot  = document.getElementById('cursorDot');
 const ring = document.getElementById('cursorRing');
 const middleEl = document.querySelector('.bento-middle');
@@ -145,38 +144,33 @@ const rightEl  = document.querySelector('.bento-right');
 const hasHover = window.matchMedia('(hover: hover)').matches;
 
 let mx = -100, my = -100;
-let rx = -100, ry = -100;
+let rx = -100,  ry = -100;
 let pmx = 0, pmy = 0;
 let plx = 0,  ply = 0;
-let cursorVisible = false;
 
+// Use CSS class (not inline opacity) to show/hide cursor — avoids the disappear bug
 document.addEventListener('mousemove', e => {
   mx = e.clientX; my = e.clientY;
   pmx = (e.clientX / window.innerWidth  - 0.5) * 2;
   pmy = (e.clientY / window.innerHeight - 0.5) * 2;
-  if (!cursorVisible) {
-    cursorVisible = true;
-    if (dot)  { dot.style.opacity  = '1'; }
-    if (ring) { ring.style.opacity = '0.45'; }
-  }
+  document.body.classList.add('cursor-active');
   if (dot) { dot.style.left = mx + 'px'; dot.style.top = my + 'px'; }
 });
 
 document.addEventListener('mouseleave', () => {
+  document.body.classList.remove('cursor-active');
   pmx = 0; pmy = 0;
-  if (dot)  dot.style.opacity  = '0';
-  if (ring) ring.style.opacity = '0';
 });
 
 function mainLoop() {
-  // Cursor ring lerp
-  if (ring && cursorVisible) {
+  // Cursor ring lerps behind the dot
+  if (ring) {
     rx += (mx - rx) * 0.12;
     ry += (my - ry) * 0.12;
     ring.style.left = rx + 'px';
     ring.style.top  = ry + 'px';
   }
-  // Parallax lerp (desktop only)
+  // Parallax depth shift
   if (hasHover) {
     plx += (pmx - plx) * 0.07;
     ply += (pmy - ply) * 0.07;
@@ -187,17 +181,19 @@ function mainLoop() {
 }
 mainLoop();
 
-// Cursor states
+// Cursor state: card
 document.querySelectorAll('.card-project, .card-resume, .card-photo').forEach(el => {
   el.addEventListener('mouseenter', () => document.body.classList.add('cursor-on-card'));
   el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-on-card'));
 });
 
+// Cursor state: hero
 if (hero) {
   hero.addEventListener('mouseenter', () => document.body.classList.add('cursor-on-hero'));
   hero.addEventListener('mouseleave', () => document.body.classList.remove('cursor-on-hero'));
 }
 
+// Cursor state: links
 document.querySelectorAll('a, .lang-btn').forEach(el => {
   el.addEventListener('mouseenter', () => document.body.classList.add('cursor-on-link'));
   el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-on-link'));
