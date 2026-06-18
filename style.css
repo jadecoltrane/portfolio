@@ -3,17 +3,18 @@
 
 /* ===== CSS Variables ===== */
 :root {
-  --color-bg: #FAF7F5;
-  --color-hero-start: #C4A5A5;
-  --color-hero-mid: #9B7FA8;
-  --color-hero-end: #C4A8BC;
-  --color-card-1: #F5EEF0;
-  --color-card-2: #EDE8F2;
-  --color-card-3: #F2EDE8;
-  --color-card-4: #EEF0F5;
-  --color-text-dark: #2D2D2D;
-  --color-text-mid: #6B6B6B;
-  --color-accent: #B08FA0;
+  --color-bg: #FAF7F3;
+  --color-hero-start: #B83820;
+  --color-hero-mid: #D45C38;
+  --color-hero-end: #E8784A;
+  --color-card-1: #FFFCF8;
+  --color-card-2: #F5EDE0;
+  --color-card-3: #F0E5D0;
+  --color-card-4: #E8DCC8;
+  --color-card-amber: #D4882A;
+  --color-text-dark: #1A1210;
+  --color-text-mid: #7A6450;
+  --color-accent: #C44830;
   --color-white: #FFFFFF;
   --font-serif: 'Playfair Display', Georgia, serif;
   --font-sans: 'Inter', system-ui, sans-serif;
@@ -84,7 +85,6 @@ img { max-width: 100%; display: block; }
   box-shadow: 0 12px 40px rgba(0,0,0,0.10);
 }
 
-/* Tilt cards handle their own hover transform via JS */
 .has-tilt:hover {
   transform: none;
   box-shadow: none;
@@ -104,7 +104,6 @@ img { max-width: 100%; display: block; }
   padding: 32px;
 }
 
-/* E: Cursor spotlight overlay */
 .card-hero::after {
   content: '';
   position: absolute;
@@ -154,7 +153,6 @@ img { max-width: 100%; display: block; }
   letter-spacing: 0.03em;
 }
 
-/* D: Breathing pulse dot */
 .hero-status {
   display: flex;
   align-items: center;
@@ -179,7 +177,6 @@ img { max-width: 100%; display: block; }
   50%       { opacity: 0.45; box-shadow: 0 0 0 5px rgba(255,255,255,0); }
 }
 
-/* B: Magnetic button — let JS control transform, CSS handles colors */
 .hero-connect {
   display: inline-block;
   margin-top: 28px;
@@ -211,7 +208,7 @@ img { max-width: 100%; display: block; }
   position: absolute;
   inset: 0;
   border-radius: var(--radius-card);
-  opacity: 0.15;
+  opacity: 0.12;
 }
 
 .card-tag {
@@ -253,7 +250,7 @@ img { max-width: 100%; display: block; }
 /* ===== Photo card ===== */
 .card-photo {
   flex: 1.6;
-  background: var(--color-card-1);
+  background: var(--color-card-2);
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -282,11 +279,11 @@ img { max-width: 100%; display: block; }
 .photo-placeholder {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, #D4A5B5 0%, #C4A8BC 50%, #9B7FA8 100%);
+  background: linear-gradient(135deg, #D4A870 0%, #C08858 50%, #A86840 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(255,255,255,0.7);
+  color: rgba(255,255,255,0.75);
   font-size: 13px;
   text-align: center;
   line-height: 1.6;
@@ -300,10 +297,10 @@ img { max-width: 100%; display: block; }
   display: block;
 }
 
-/* ===== Resume card ===== */
+/* ===== Resume card (amber gold) ===== */
 .card-resume {
   flex: 1;
-  background: var(--color-card-2);
+  background: var(--color-card-amber);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -315,7 +312,7 @@ img { max-width: 100%; display: block; }
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--color-accent);
+  color: rgba(26,18,16,0.55);
 }
 
 .resume-mini-name {
@@ -328,7 +325,7 @@ img { max-width: 100%; display: block; }
 
 .resume-mini-role {
   font-size: 11px;
-  color: var(--color-text-mid);
+  color: rgba(26,18,16,0.6);
   margin-top: 2px;
   line-height: 1.4;
 }
@@ -342,7 +339,7 @@ img { max-width: 100%; display: block; }
 
 .resume-mini-item {
   font-size: 11px;
-  color: var(--color-text-mid);
+  color: rgba(26,18,16,0.6);
   padding-left: 12px;
   position: relative;
 }
@@ -351,13 +348,13 @@ img { max-width: 100%; display: block; }
   content: '·';
   position: absolute;
   left: 0;
-  color: var(--color-accent);
+  color: var(--color-text-dark);
 }
 
 .resume-mini-cta {
   font-size: 12px;
   font-weight: 500;
-  color: var(--color-accent);
+  color: var(--color-text-dark);
   margin-top: auto;
   transition: letter-spacing var(--transition);
 }
@@ -404,7 +401,7 @@ img { max-width: 100%; display: block; }
 }
 
 .tag {
-  background: var(--color-card-2);
+  background: var(--color-card-3);
   color: var(--color-accent);
   font-size: 11px;
   font-weight: 500;
@@ -458,7 +455,7 @@ img { max-width: 100%; display: block; }
 .case-image-placeholder {
   width: 100%;
   height: 280px;
-  background: var(--color-card-1);
+  background: var(--color-card-2);
   border-radius: 14px;
   margin: 24px 0;
   display: flex;
@@ -498,7 +495,7 @@ img { max-width: 100%; display: block; }
   color: var(--color-accent);
   margin-bottom: 20px;
   padding-bottom: 8px;
-  border-bottom: 1px solid var(--color-card-1);
+  border-bottom: 1px solid var(--color-card-2);
 }
 
 .resume-item { margin-bottom: 24px; }
@@ -518,7 +515,7 @@ img { max-width: 100%; display: block; }
 .skills-grid { display: flex; flex-wrap: wrap; gap: 8px; }
 
 .skill-tag {
-  background: var(--color-card-2);
+  background: var(--color-card-3);
   color: var(--color-text-dark);
   font-size: 12px;
   padding: 5px 14px;
@@ -562,7 +559,7 @@ img { max-width: 100%; display: block; }
   font-size: 14px;
   font-weight: 500;
   transition: transform var(--transition), box-shadow var(--transition);
-  background: var(--color-card-2);
+  background: var(--color-card-3);
   color: var(--color-text-dark);
 }
 
