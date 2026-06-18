@@ -1,18 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Inter:wght@300;400;500&display=swap');
 
 :root {
-  --color-bg: #F8F5F8;
-  --color-hero-start: #2A1A30;
-  --color-hero-mid: #4A2850;
-  --color-hero-end: #6A3868;
-  --color-card-1: #FDFBFD;
-  --color-card-2: #F5EFF5;
-  --color-card-3: #EDE5EE;
-  --color-card-4: #E3D9E5;
-  --color-card-dark: #1A1018;
-  --color-text-dark: #1A0E1A;
-  --color-text-mid: #7A5870;
-  --color-accent: #9A4878;
+  --color-bg: #F4F8F5;
+  --color-hero-start: #083A38;
+  --color-hero-mid: #0A5E58;
+  --color-hero-end: #0E8278;
+  --color-card-1: #FBFDFB;
+  --color-card-2: #EDF5F0;
+  --color-card-3: #E0EEE8;
+  --color-card-4: #D4E8DC;
+  --color-card-peach: #FFE2C8;
+  --color-text-dark: #0A1A18;
+  --color-text-mid: #4A7068;
+  --color-accent: #D05A30;
   --color-white: #FFFFFF;
   --font-serif: 'Playfair Display', Georgia, serif;
   --font-sans: 'Inter', system-ui, sans-serif;
@@ -37,28 +37,15 @@ img { max-width: 100%; display: block; }
 
 /* ===== Custom cursor ===== */
 .cursor-dot {
-  position: fixed;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--color-text-dark);
-  pointer-events: none;
-  z-index: 10000;
-  transform: translate(-50%, -50%);
-  left: -100px; top: -100px;
-  opacity: 0;
+  position: fixed; width: 7px; height: 7px; border-radius: 50%;
+  background: var(--color-text-dark); pointer-events: none; z-index: 10000;
+  transform: translate(-50%, -50%); left: -100px; top: -100px; opacity: 0;
   transition: width 0.2s ease, height 0.2s ease, background 0.2s ease, opacity 0.2s ease;
 }
 .cursor-ring {
-  position: fixed;
-  width: 34px; height: 34px;
-  border-radius: 50%;
-  border: 1.5px solid var(--color-text-dark);
-  pointer-events: none;
-  z-index: 9999;
-  transform: translate(-50%, -50%);
-  left: -100px; top: -100px;
-  opacity: 0;
+  position: fixed; width: 34px; height: 34px; border-radius: 50%;
+  border: 1.5px solid var(--color-text-dark); pointer-events: none; z-index: 9999;
+  transform: translate(-50%, -50%); left: -100px; top: -100px; opacity: 0;
   transition: width 0.25s ease, height 0.25s ease, border-color 0.25s ease, opacity 0.25s ease;
 }
 body.cursor-active .cursor-dot  { opacity: 1; }
@@ -72,8 +59,8 @@ body.cursor-active.cursor-on-link .cursor-dot  { width: 10px; height: 10px; back
 .lang-toggle {
   position: fixed; top: 20px; right: 28px; z-index: 100;
   display: flex; align-items: center; gap: 4px;
-  background: rgba(255,255,255,0.72); backdrop-filter: blur(8px);
-  border: 1px solid rgba(0,0,0,0.08); border-radius: 100px; padding: 5px 12px;
+  background: rgba(255,255,255,0.75); backdrop-filter: blur(8px);
+  border: 1px solid rgba(0,0,0,0.07); border-radius: 100px; padding: 5px 12px;
 }
 .lang-btn { background: none; border: none; font-family: var(--font-sans); font-size: 12px; color: var(--color-text-mid); padding: 2px 4px; border-radius: 4px; }
 .lang-btn.active { color: var(--color-text-dark); font-weight: 500; }
@@ -84,10 +71,8 @@ body.cursor-active.cursor-on-link .cursor-dot  { width: 10px; height: 10px; back
 
 /* ===== Bento Grid ===== */
 .bento {
-  display: grid;
-  grid-template-columns: 1.6fr 1.2fr 1fr;
-  gap: var(--gap);
-  width: 100%; max-width: 1400px; margin: 0 auto;
+  display: grid; grid-template-columns: 1.6fr 1.2fr 1fr;
+  gap: var(--gap); width: 100%; max-width: 1400px; margin: 0 auto;
   height: calc(100vh - 40px); min-height: 600px;
 }
 .bento-middle { display: flex; flex-direction: column; gap: var(--gap); will-change: transform; }
@@ -101,7 +86,7 @@ body.cursor-active.cursor-on-link .cursor-dot  { width: 10px; height: 10px; back
   opacity: 0; transform: translateY(20px);
   animation: fadeUp 0.5s ease forwards;
 }
-.card:hover { transform: scale(1.025); box-shadow: 0 12px 40px rgba(26,10,26,0.10); }
+.card:hover { transform: scale(1.025); box-shadow: 0 12px 40px rgba(8,58,56,0.10); }
 .has-tilt:hover { transform: none; box-shadow: none; }
 
 /* ===== Time overlay ===== */
@@ -117,14 +102,13 @@ body.cursor-active.cursor-on-link .cursor-dot  { width: 10px; height: 10px; back
   background: linear-gradient(135deg, var(--color-hero-start), var(--color-hero-mid), var(--color-hero-end));
   background-size: 300% 300%;
   animation: gradientFlow 15s ease infinite, fadeUp 0.5s ease 0.05s forwards;
-  color: var(--color-white);
-  display: flex; flex-direction: column; justify-content: space-between;
-  padding: 32px;
+  color: var(--color-white); display: flex; flex-direction: column;
+  justify-content: space-between; padding: 32px;
 }
 .card-hero > *:not(.time-overlay) { position: relative; z-index: 1; }
 .card-hero::after {
   content: ''; position: absolute; inset: 0; border-radius: var(--radius-card);
-  background: radial-gradient(380px circle at var(--mx) var(--my), rgba(255,255,255,0.07), transparent 65%);
+  background: radial-gradient(380px circle at var(--mx) var(--my), rgba(255,255,255,0.08), transparent 65%);
   pointer-events: none; opacity: 0; transition: opacity 0.4s ease; z-index: 2;
 }
 .card-hero:hover::after { opacity: 1; }
@@ -138,19 +122,11 @@ body.cursor-active.cursor-on-link .cursor-dot  { width: 10px; height: 10px; back
 
 .hero-time { font-size: 13px; font-weight: 300; opacity: 0.65; letter-spacing: 0.02em; }
 .hero-location { font-size: 12px; opacity: 0.5; margin-top: 2px; }
+.hero-name { font-family: var(--font-serif); font-size: clamp(2.2rem, 3.2vw, 3.8rem); font-weight: 700; line-height: 1.1; margin-top: auto; }
 
-.hero-name {
-  font-family: var(--font-serif);
-  font-size: clamp(2.2rem, 3.2vw, 3.8rem);
-  font-weight: 700; line-height: 1.1; margin-top: auto;
-}
-
-/* subtitle starts hidden — JS reveals after scramble */
 .hero-subtitle {
-  font-size: 13px; font-weight: 300; letter-spacing: 0.04em;
-  margin-top: 6px;
-  opacity: 0;
-  transform: translateY(6px);
+  font-size: 13px; font-weight: 300; letter-spacing: 0.04em; margin-top: 6px;
+  opacity: 0; transform: translateY(6px);
   transition: opacity 0.7s ease, transform 0.7s ease;
 }
 .hero-subtitle.revealed { opacity: 0.52; transform: translateY(0); }
@@ -176,7 +152,7 @@ body.cursor-active.cursor-on-link .cursor-dot  { width: 10px; height: 10px; back
   will-change: transform; transition: background var(--transition), border-color var(--transition);
   position: relative; z-index: 3;
 }
-.hero-connect:hover { background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.75); }
+.hero-connect:hover { background: rgba(255,255,255,0.18); border-color: rgba(255,255,255,0.8); }
 
 /* ===== Project cards ===== */
 .card-project { flex: 1; background: var(--color-card-1); display: flex; flex-direction: column; justify-content: flex-end; }
@@ -194,22 +170,26 @@ body.cursor-active.cursor-on-link .cursor-dot  { width: 10px; height: 10px; back
 .photo-frame { flex: 1; border-radius: 12px; overflow: hidden; min-height: 0; position: relative; }
 .photo-placeholder {
   position: absolute; inset: 0;
-  background: linear-gradient(135deg, #3A2040 0%, #5A3060 50%, #7A4080 100%);
+  background: linear-gradient(135deg, #0A5E58 0%, #0E8278 50%, #14A898 100%);
   display: flex; align-items: center; justify-content: center;
-  color: rgba(255,255,255,0.45); font-size: 13px; text-align: center; line-height: 1.6; letter-spacing: 0.04em;
+  color: rgba(255,255,255,0.5); font-size: 13px; text-align: center; line-height: 1.6; letter-spacing: 0.04em;
 }
 .photo-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-/* ===== Resume card ===== */
-.card-resume { flex: 1; background: var(--color-card-dark); display: flex; flex-direction: column; justify-content: space-between; gap: 4px; }
-.resume-mini-label { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.28); }
-.resume-mini-name { font-family: var(--font-serif); font-size: clamp(1rem, 1.6vw, 1.4rem); font-weight: 700; color: var(--color-white); margin-top: 4px; }
-.resume-mini-role { font-size: 11px; color: rgba(255,255,255,0.42); margin-top: 2px; line-height: 1.4; }
+/* ===== Resume card (warm peach) ===== */
+.card-resume {
+  flex: 1;
+  background: var(--color-card-peach);
+  display: flex; flex-direction: column; justify-content: space-between; gap: 4px;
+}
+.resume-mini-label { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(10,26,24,0.4); }
+.resume-mini-name { font-family: var(--font-serif); font-size: clamp(1rem, 1.6vw, 1.4rem); font-weight: 700; color: var(--color-text-dark); margin-top: 4px; }
+.resume-mini-role { font-size: 11px; color: rgba(10,26,24,0.55); margin-top: 2px; line-height: 1.4; }
 .resume-mini-items { display: flex; flex-direction: column; gap: 4px; margin-top: 8px; }
-.resume-mini-item { font-size: 11px; color: rgba(255,255,255,0.38); padding-left: 12px; position: relative; }
-.resume-mini-item::before { content: '·'; position: absolute; left: 0; color: rgba(255,255,255,0.45); }
-.resume-mini-cta { font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.55); margin-top: auto; transition: color var(--transition), letter-spacing var(--transition); }
-.card-resume:hover .resume-mini-cta { color: var(--color-white); letter-spacing: 0.04em; }
+.resume-mini-item { font-size: 11px; color: rgba(10,26,24,0.5); padding-left: 12px; position: relative; }
+.resume-mini-item::before { content: '·'; position: absolute; left: 0; color: var(--color-text-dark); }
+.resume-mini-cta { font-size: 12px; font-weight: 500; color: var(--color-accent); margin-top: auto; transition: letter-spacing var(--transition); }
+.card-resume:hover .resume-mini-cta { letter-spacing: 0.04em; }
 
 /* ===== Animations ===== */
 @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
@@ -254,7 +234,6 @@ body.cursor-active.cursor-on-link .cursor-dot  { width: 10px; height: 10px; back
 .contact-link { display: inline-flex; align-items: center; gap: 10px; padding: 14px 32px; border-radius: 100px; font-size: 14px; font-weight: 500; transition: transform var(--transition), box-shadow var(--transition); background: var(--color-card-3); color: var(--color-text-dark); }
 .contact-link:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
 
-/* ===== Responsive ===== */
 @media (max-width: 960px) {
   .bento { grid-template-columns: 1fr 1fr; height: auto; }
   .card-hero { grid-column: 1 / -1; min-height: 320px; }
