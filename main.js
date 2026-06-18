@@ -8,6 +8,19 @@ function updateClock() {
 setInterval(updateClock, 1000);
 updateClock();
 
+// ── Language toggle ───────────────────────────────────────────────────────
+const langBtns = document.querySelectorAll('.lang-btn');
+langBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const lang = btn.dataset.l;
+    document.body.dataset.lang = lang;
+    langBtns.forEach(b => b.classList.toggle('active', b.dataset.l === lang));
+    document.querySelectorAll('[data-zh]').forEach(el => {
+      el.innerHTML = el.dataset[lang] || el.innerHTML;
+    });
+  });
+});
+
 // ── A: Card tilt ──────────────────────────────────────────────────────────
 document.querySelectorAll('.card-project, .card-resume').forEach(card => {
   card.classList.add('has-tilt');
@@ -85,6 +98,15 @@ if (cnEl) {
   const name = cnEl.textContent;
   cnEl.innerHTML = name.split('').map(() => '<span style="opacity:0">_</span>').join('');
   setTimeout(() => new TextScramble(cnEl).setText(name), 500);
+}
+
+// ── D: Hero card clickable (entire card → resume) ─────────────────────────
+const heroCard = document.getElementById('heroCard');
+if (heroCard) {
+  heroCard.addEventListener('click', e => {
+    if (e.target.closest('.hero-connect')) return;
+    window.location.href = 'resume.html';
+  });
 }
 
 // ── E: Cursor spotlight on hero card ──────────────────────────────────────
