@@ -3,17 +3,17 @@
 
 /* ===== CSS Variables ===== */
 :root {
-  --color-bg: #FAF7F5;
-  --color-hero-start: #C4A5A5;
-  --color-hero-mid: #9B7FA8;
-  --color-hero-end: #C4A8BC;
-  --color-card-1: #F5EEF0;
-  --color-card-2: #EDE8F2;
-  --color-card-3: #F2EDE8;
-  --color-card-4: #EEF0F5;
-  --color-text-dark: #2D2D2D;
-  --color-text-mid: #6B6B6B;
-  --color-accent: #B08FA0;
+  --color-bg: #FAF7F3;
+  --color-hero-start: #B83820;
+  --color-hero-mid: #D45C38;
+  --color-hero-end: #E8784A;
+  --color-card-1: #FFFCF8;
+  --color-card-2: #F5EDE0;
+  --color-card-3: #F0E5D0;
+  --color-card-amber: #D4882A;
+  --color-text-dark: #1A1210;
+  --color-text-mid: #7A6450;
+  --color-accent: #C44830;
   --color-white: #FFFFFF;
   --font-serif: 'Playfair Display', Georgia, serif;
   --font-sans: 'Inter', system-ui, sans-serif;
@@ -37,36 +37,41 @@ img { max-width: 100%; display: block; }
 /* ===== Page wrapper ===== */
 .page {
   min-height: 100vh;
-  padding: 24px;
+  padding: 20px;
   display: flex;
   align-items: stretch;
 }
 
-/* ===== Bento Grid ===== */
+/* ===== Bento Grid: 3 columns ===== */
 .bento {
   display: grid;
-  grid-template-columns: 38fr 62fr;
+  grid-template-columns: 1.6fr 1.2fr 1fr;
   gap: var(--gap);
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
+  height: calc(100vh - 40px);
+  min-height: 600px;
 }
 
-.bento-left {
+/* Middle: 3 stacked project cards */
+.bento-middle {
   display: flex;
   flex-direction: column;
+  gap: var(--gap);
 }
 
+/* Right: photo + resume stacked */
 .bento-right {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: column;
   gap: var(--gap);
 }
 
 /* ===== Card base ===== */
 .card {
   border-radius: var(--radius-card);
-  padding: 28px;
+  padding: 24px;
   cursor: pointer;
   transition: transform var(--transition), box-shadow var(--transition);
   overflow: hidden;
@@ -81,17 +86,16 @@ img { max-width: 100%; display: block; }
   box-shadow: 0 12px 40px rgba(0,0,0,0.10);
 }
 
-/* ===== Hero card ===== */
+/* ===== Hero card (left, full height) ===== */
 .card-hero {
-  flex: 1;
-  background: linear-gradient(135deg, var(--color-hero-start), var(--color-hero-mid), var(--color-hero-end));
+  background: linear-gradient(145deg, var(--color-hero-start) 0%, var(--color-hero-mid) 55%, var(--color-hero-end) 100%);
   background-size: 300% 300%;
-  animation: gradientFlow 15s ease infinite;
+  animation: gradientFlow 15s ease infinite, fadeUp 0.5s ease 0.05s forwards;
   color: var(--color-white);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 520px;
+  padding: 32px;
 }
 
 @keyframes gradientFlow {
@@ -100,10 +104,7 @@ img { max-width: 100%; display: block; }
   100% { background-position: 0% 50%; }
 }
 
-.card-hero:hover {
-  transform: none;
-  box-shadow: none;
-}
+.card-hero:hover { transform: none; box-shadow: none; }
 
 .hero-time {
   font-size: 13px;
@@ -120,7 +121,7 @@ img { max-width: 100%; display: block; }
 
 .hero-name {
   font-family: var(--font-serif);
-  font-size: clamp(2.4rem, 4vw, 3.8rem);
+  font-size: clamp(2.2rem, 3.2vw, 3.8rem);
   font-weight: 700;
   line-height: 1.1;
   margin-top: auto;
@@ -157,24 +158,20 @@ img { max-width: 100%; display: block; }
   border-color: var(--color-white);
 }
 
-/* ===== Project cards ===== */
+/* ===== Project cards (middle column, each flex: 1) ===== */
 .card-project {
+  flex: 1;
+  background: var(--color-card-1);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  min-height: 200px;
-}
-
-.card-project.large {
-  grid-column: 1 / -1;
-  min-height: 240px;
 }
 
 .card-cover {
   position: absolute;
   inset: 0;
   border-radius: var(--radius-card);
-  opacity: 0.15;
+  opacity: 0.12;
 }
 
 .card-tag {
@@ -189,52 +186,155 @@ img { max-width: 100%; display: block; }
 
 .card-title {
   font-family: var(--font-serif);
-  font-size: clamp(1.3rem, 2vw, 1.8rem);
+  font-size: clamp(1.1rem, 1.6vw, 1.5rem);
   font-weight: 700;
   line-height: 1.2;
   position: relative;
 }
 
 .card-desc {
-  font-size: 13px;
+  font-size: 12px;
   color: var(--color-text-mid);
-  margin-top: 6px;
+  margin-top: 5px;
   line-height: 1.5;
   position: relative;
 }
 
 .card-arrow {
-  margin-top: 14px;
-  font-size: 20px;
+  margin-top: 12px;
+  font-size: 18px;
   color: var(--color-accent);
   position: relative;
   transition: transform var(--transition);
 }
 
-.card:hover .card-arrow {
-  transform: translateX(5px);
+.card:hover .card-arrow { transform: translateX(5px); }
+
+/* ===== Photo card (right top) ===== */
+.card-photo {
+  flex: 1.6;
+  background: var(--color-card-2);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow: hidden;
 }
 
-/* ===== Small cards ===== */
-.card-small {
-  min-height: 140px;
+.card-photo:hover { transform: none; box-shadow: none; cursor: default; }
+
+.photo-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  flex-shrink: 0;
+}
+
+.photo-frame {
+  flex: 1;
+  border-radius: 12px;
+  overflow: hidden;
+  min-height: 0;
+  position: relative;
+}
+
+.photo-placeholder {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(150deg, #D4A870 0%, #C08858 50%, #A86840 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.75);
+  font-size: 13px;
+  text-align: center;
+  line-height: 1.6;
+  letter-spacing: 0.04em;
+}
+
+.photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ===== Resume card (right bottom, amber) ===== */
+.card-resume {
+  flex: 1;
+  background: var(--color-card-amber);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  gap: 4px;
 }
+
+.resume-mini-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(26,18,16,0.55);
+}
+
+.resume-mini-name {
+  font-family: var(--font-serif);
+  font-size: clamp(1rem, 1.6vw, 1.4rem);
+  font-weight: 700;
+  color: var(--color-text-dark);
+  margin-top: 4px;
+}
+
+.resume-mini-role {
+  font-size: 11px;
+  color: rgba(26,18,16,0.65);
+  margin-top: 2px;
+  line-height: 1.4;
+}
+
+.resume-mini-items {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 8px;
+}
+
+.resume-mini-item {
+  font-size: 11px;
+  color: rgba(26,18,16,0.65);
+  padding-left: 12px;
+  position: relative;
+}
+
+.resume-mini-item::before {
+  content: '·';
+  position: absolute;
+  left: 0;
+  color: var(--color-text-dark);
+}
+
+.resume-mini-cta {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-text-dark);
+  margin-top: auto;
+  transition: letter-spacing var(--transition);
+}
+
+.card-resume:hover .resume-mini-cta { letter-spacing: 0.04em; }
 
 /* ===== Animations ===== */
 @keyframes fadeUp {
   to { opacity: 1; transform: translateY(0); }
 }
 
-.card:nth-child(1) { animation-delay: 0.05s; }
-.card:nth-child(2) { animation-delay: 0.12s; }
-.card:nth-child(3) { animation-delay: 0.18s; }
-.card:nth-child(4) { animation-delay: 0.24s; }
-.card:nth-child(5) { animation-delay: 0.30s; }
-.card:nth-child(6) { animation-delay: 0.36s; }
-.card:nth-child(7) { animation-delay: 0.42s; }
+.card-hero                      { animation-delay: 0.05s; }
+.bento-middle .card:nth-child(1){ animation-delay: 0.12s; }
+.bento-middle .card:nth-child(2){ animation-delay: 0.18s; }
+.bento-middle .card:nth-child(3){ animation-delay: 0.24s; }
+.bento-right  .card:nth-child(1){ animation-delay: 0.30s; }
+.bento-right  .card:nth-child(2){ animation-delay: 0.36s; }
 
 /* ===== Case study page ===== */
 .case-page {
@@ -265,7 +365,7 @@ img { max-width: 100%; display: block; }
 }
 
 .tag {
-  background: var(--color-card-2);
+  background: var(--color-card-3);
   color: var(--color-accent);
   font-size: 11px;
   font-weight: 500;
@@ -319,7 +419,7 @@ img { max-width: 100%; display: block; }
 .case-image-placeholder {
   width: 100%;
   height: 280px;
-  background: var(--color-card-1);
+  background: var(--color-card-2);
   border-radius: 14px;
   margin: 24px 0;
   display: flex;
@@ -359,7 +459,7 @@ img { max-width: 100%; display: block; }
   color: var(--color-accent);
   margin-bottom: 20px;
   padding-bottom: 8px;
-  border-bottom: 1px solid var(--color-card-1);
+  border-bottom: 1px solid var(--color-card-2);
 }
 
 .resume-item { margin-bottom: 24px; }
@@ -379,7 +479,7 @@ img { max-width: 100%; display: block; }
 .skills-grid { display: flex; flex-wrap: wrap; gap: 8px; }
 
 .skill-tag {
-  background: var(--color-card-2);
+  background: var(--color-card-3);
   color: var(--color-text-dark);
   font-size: 12px;
   padding: 5px 14px;
@@ -423,7 +523,7 @@ img { max-width: 100%; display: block; }
   font-size: 14px;
   font-weight: 500;
   transition: transform var(--transition), box-shadow var(--transition);
-  background: var(--color-card-2);
+  background: var(--color-card-3);
   color: var(--color-text-dark);
 }
 
@@ -433,15 +533,22 @@ img { max-width: 100%; display: block; }
 }
 
 /* ===== Responsive ===== */
-@media (max-width: 900px) {
-  .bento { grid-template-columns: 1fr; }
-  .card-hero { min-height: 320px; }
-  .bento-right { grid-template-columns: 1fr 1fr; }
+@media (max-width: 960px) {
+  .bento {
+    grid-template-columns: 1fr 1fr;
+    height: auto;
+  }
+  .card-hero    { grid-column: 1 / -1; min-height: 320px; }
+  .bento-middle { grid-column: 1; }
+  .bento-right  { grid-column: 2; }
 }
 
 @media (max-width: 600px) {
   :root { --gap: 10px; }
   .page { padding: 12px; }
-  .bento-right { grid-template-columns: 1fr; }
-  .card-project.large { grid-column: 1; }
+  .bento { grid-template-columns: 1fr; height: auto; }
+  .card-hero    { grid-column: 1; min-height: 300px; }
+  .bento-middle { grid-column: 1; }
+  .bento-right  { grid-column: 1; }
+  .card-photo   { min-height: 200px; }
 }
