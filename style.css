@@ -11,7 +11,7 @@
   --color-card-2: #F5EDE0;
   --color-card-3: #F0E5D0;
   --color-card-4: #E8DCC8;
-  --color-card-amber: #D4882A;
+  --color-card-dark: #1E1A16;
   --color-text-dark: #1A1210;
   --color-text-mid: #7A6450;
   --color-accent: #C44830;
@@ -34,6 +34,46 @@ body {
 }
 a { text-decoration: none; color: inherit; }
 img { max-width: 100%; display: block; }
+
+/* ===== Language toggle ===== */
+.lang-toggle {
+  position: fixed;
+  top: 20px;
+  right: 28px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 100px;
+  padding: 5px 12px;
+  font-size: 12px;
+}
+
+.lang-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  color: var(--color-text-mid);
+  padding: 2px 4px;
+  border-radius: 4px;
+  transition: color 0.2s ease;
+}
+
+.lang-btn.active {
+  color: var(--color-text-dark);
+  font-weight: 500;
+}
+
+.lang-sep {
+  color: var(--color-text-mid);
+  opacity: 0.4;
+  font-size: 10px;
+}
 
 /* ===== Page wrapper ===== */
 .page {
@@ -102,6 +142,7 @@ img { max-width: 100%; display: block; }
   flex-direction: column;
   justify-content: space-between;
   padding: 32px;
+  cursor: pointer;
 }
 
 .card-hero::after {
@@ -145,12 +186,28 @@ img { max-width: 100%; display: block; }
   margin-top: auto;
 }
 
+.hero-subtitle {
+  font-size: 13px;
+  font-weight: 300;
+  opacity: 0.65;
+  margin-top: 6px;
+  letter-spacing: 0.04em;
+}
+
 .hero-title {
   font-size: 14px;
   font-weight: 300;
   opacity: 0.9;
-  margin-top: 8px;
+  margin-top: 6px;
   letter-spacing: 0.03em;
+}
+
+.hero-bio {
+  font-size: 13px;
+  font-style: italic;
+  opacity: 0.8;
+  margin-top: 8px;
+  line-height: 1.5;
 }
 
 .hero-status {
@@ -159,7 +216,7 @@ img { max-width: 100%; display: block; }
   gap: 8px;
   font-size: 12px;
   opacity: 0.85;
-  margin-top: 6px;
+  margin-top: 8px;
 }
 
 .hero-status::before {
@@ -179,7 +236,7 @@ img { max-width: 100%; display: block; }
 
 .hero-connect {
   display: inline-block;
-  margin-top: 28px;
+  margin-top: 20px;
   padding: 10px 28px;
   border: 1.5px solid rgba(255,255,255,0.7);
   border-radius: 100px;
@@ -188,6 +245,8 @@ img { max-width: 100%; display: block; }
   align-self: flex-start;
   will-change: transform;
   transition: background var(--transition), border-color var(--transition);
+  position: relative;
+  z-index: 2;
 }
 
 .hero-connect:hover {
@@ -297,10 +356,10 @@ img { max-width: 100%; display: block; }
   display: block;
 }
 
-/* ===== Resume card (amber gold) ===== */
+/* ===== Resume card (dark) ===== */
 .card-resume {
   flex: 1;
-  background: var(--color-card-amber);
+  background: var(--color-card-dark);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -312,20 +371,20 @@ img { max-width: 100%; display: block; }
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(26,18,16,0.55);
+  color: rgba(255,255,255,0.35);
 }
 
 .resume-mini-name {
   font-family: var(--font-serif);
   font-size: clamp(1rem, 1.6vw, 1.4rem);
   font-weight: 700;
-  color: var(--color-text-dark);
+  color: var(--color-white);
   margin-top: 4px;
 }
 
 .resume-mini-role {
   font-size: 11px;
-  color: rgba(26,18,16,0.6);
+  color: rgba(255,255,255,0.5);
   margin-top: 2px;
   line-height: 1.4;
 }
@@ -339,7 +398,7 @@ img { max-width: 100%; display: block; }
 
 .resume-mini-item {
   font-size: 11px;
-  color: rgba(26,18,16,0.6);
+  color: rgba(255,255,255,0.45);
   padding-left: 12px;
   position: relative;
 }
@@ -348,18 +407,21 @@ img { max-width: 100%; display: block; }
   content: '·';
   position: absolute;
   left: 0;
-  color: var(--color-text-dark);
+  color: rgba(255,255,255,0.6);
 }
 
 .resume-mini-cta {
   font-size: 12px;
   font-weight: 500;
-  color: var(--color-text-dark);
+  color: rgba(255,255,255,0.75);
   margin-top: auto;
-  transition: letter-spacing var(--transition);
+  transition: color var(--transition), letter-spacing var(--transition);
 }
 
-.card-resume:hover .resume-mini-cta { letter-spacing: 0.04em; }
+.card-resume:hover .resume-mini-cta {
+  color: var(--color-white);
+  letter-spacing: 0.04em;
+}
 
 /* ===== Page load animations ===== */
 @keyframes fadeUp {
@@ -582,6 +644,7 @@ img { max-width: 100%; display: block; }
 @media (max-width: 600px) {
   :root { --gap: 10px; }
   .page { padding: 12px; }
+  .lang-toggle { top: 12px; right: 16px; }
   .bento { grid-template-columns: 1fr; height: auto; }
   .card-hero    { grid-column: 1; min-height: 300px; }
   .bento-middle { grid-column: 1; }
