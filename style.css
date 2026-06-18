@@ -84,8 +84,16 @@ img { max-width: 100%; display: block; }
   box-shadow: 0 12px 40px rgba(0,0,0,0.10);
 }
 
+/* Tilt cards handle their own hover transform via JS */
+.has-tilt:hover {
+  transform: none;
+  box-shadow: none;
+}
+
 /* ===== Hero card ===== */
 .card-hero {
+  --mx: 50%;
+  --my: 50%;
   background: linear-gradient(135deg, var(--color-hero-start), var(--color-hero-mid), var(--color-hero-end));
   background-size: 300% 300%;
   animation: gradientFlow 15s ease infinite, fadeUp 0.5s ease 0.05s forwards;
@@ -95,6 +103,19 @@ img { max-width: 100%; display: block; }
   justify-content: space-between;
   padding: 32px;
 }
+
+/* E: Cursor spotlight overlay */
+.card-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-card);
+  background: radial-gradient(380px circle at var(--mx) var(--my), rgba(255,255,255,0.08), transparent 65%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.card-hero:hover::after { opacity: 1; }
 
 @keyframes gradientFlow {
   0%   { background-position: 0% 50%; }
@@ -133,12 +154,32 @@ img { max-width: 100%; display: block; }
   letter-spacing: 0.03em;
 }
 
+/* D: Breathing pulse dot */
 .hero-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font-size: 12px;
-  opacity: 0.75;
+  opacity: 0.85;
   margin-top: 6px;
 }
 
+.hero-status::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.95);
+  flex-shrink: 0;
+  animation: breathe 2.4s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255,255,255,0.5); }
+  50%       { opacity: 0.45; box-shadow: 0 0 0 5px rgba(255,255,255,0); }
+}
+
+/* B: Magnetic button — let JS control transform, CSS handles colors */
 .hero-connect {
   display: inline-block;
   margin-top: 28px;
@@ -147,8 +188,9 @@ img { max-width: 100%; display: block; }
   border-radius: 100px;
   font-size: 13px;
   color: var(--color-white);
-  transition: background var(--transition), border-color var(--transition);
   align-self: flex-start;
+  will-change: transform;
+  transition: background var(--transition), border-color var(--transition);
 }
 
 .hero-connect:hover {
@@ -322,7 +364,7 @@ img { max-width: 100%; display: block; }
 
 .card-resume:hover .resume-mini-cta { letter-spacing: 0.04em; }
 
-/* ===== Animations ===== */
+/* ===== Page load animations ===== */
 @keyframes fadeUp {
   to { opacity: 1; transform: translateY(0); }
 }
