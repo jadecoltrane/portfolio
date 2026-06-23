@@ -61,8 +61,8 @@ function applyAmbient() {
 applyAmbient();
 setInterval(applyAmbient, 300000);
 
-// ── Hero WebGL organic flow ──────────────────────────────────────────────────
-function initHeroEffect() {
+// ── Hero: flower particle scatter ─────────────────────────────────────────────
+function initHeroParticles() {
   const hero = document.querySelector('.card-hero');
   if (!hero) return;
 
@@ -75,122 +75,167 @@ function initHeroEffect() {
 
   hero.classList.add('webgl-active');
 
+  let W = 0, H = 0;
   function resize() {
-    const dpr = Math.min(window.devicePixelRatio, 2);
-    canvas.width  = hero.offsetWidth  * dpr;
-    canvas.height = hero.offsetHeight * dpr;
-    gl.viewport(0, 0, canvas.width, canvas.height);
+    const dpr = Math.min(devicePixelRatio, 2);
+    W = canvas.width  = hero.offsetWidth  * dpr;
+    H = canvas.height = hero.offsetHeight * dpr;
+    gl.viewport(0, 0, W, H);
   }
   resize();
   new ResizeObserver(resize).observe(hero);
 
-  const vert = `
-    attribute vec2 a_pos;
-    void main() { gl_Position = vec4(a_pos, 0.0, 1.0); }
-  `;
+  // Mouse in framebuffer coordinates
+  let mouseX = -99999, mouseY = -99999;
+  hero.addEventListener('mousemove', e => {
+    const r = hero.getBoundingClientRect();
+    const dpr = Math.min(devicePixelRatio, 2);
+    mouseX = (e.clientX - r.left) * dpr;
+    mouseY = (e.clientY - r.top)  * dpr;
+  });
+  hero.addEventListener('mouseleave', () => { mouseX = -99999; mouseY = -99999; });
 
-  const frag = `
-    precision highp float;
-    uniform float u_time;
-    uniform vec2  u_res;
+  const img = new Image();
+  img.onload = () => {
+    // ── Sample pixels, skip cream background ─────────────────────────────────
+    const offC = document.createElement('canvas');
+    offC.width = img.width; offC.height = img.height;
+    offC.getContext('2d').drawImage(img, 0, 0);
+    const px = offC.getContext('2d').getImageData(0, 0, img.width, img.height).data;
 
-    vec2 hash(vec2 p) {
-      p = vec2(dot(p, vec2(127.1, 311.7)), dot(p, vec2(269.5, 183.3)));
-      return -1.0 + 2.0 * fract(sin(p) * 43758.5453);
-    }
+    const STEP = 3;
+    const hx = [], hy = [], cr = [], cg = [], cb = [];
 
-    float gnoise(vec2 p) {
-      vec2 i = floor(p), f = fract(p);
-      vec2 u = f * f * (3.0 - 2.0 * f);
-      return mix(
-        mix(dot(hash(i),             f),
-            dot(hash(i + vec2(1,0)), f - vec2(1,0)), u.x),
-        mix(dot(hash(i + vec2(0,1)), f - vec2(0,1)),
-            dot(hash(i + vec2(1,1)), f - vec2(1,1)), u.x),
-        u.y);
-    }
+    for (let iy = 0; iy < img.height; iy += STEP) {
+      for (let ix = 0; ix < img.width; ix += STEP) {
+        const p = (iy * img.width + ix) * 4;
+        const r = px[p], g = px[p+1], b = px[p+2];
+        const brightness = (r + g + b) / (3 * 255);
+        const max = Math.max(r, g, b), min = Math.min(r, g, b);
+        const sat = max > 0 ? (max - min) / max : 0;
+        // Skip nearly-white cream background
+        if (brightness > 0.87 && sat < 0.12) continue;
 
-    mat2 rot2(float a) { float c=cos(a),s=sin(a); return mat2(c,-s,s,c); }
-
-    float fbm(vec2 p) {
-      float v = 0.0, a = 0.5;
-      mat2 r = rot2(0.5);
-      for (int i = 0; i < 6; i++) {
-        v += a * gnoise(p);
-        p  = r * p * 2.1 + vec2(3.1, 7.4);
-        a *= 0.48;
+        // Home position in clip space, image fills card
+        hx.push((ix / (img.width  - 1)) * 2 - 1);
+        hy.push(1 - (iy / (img.height - 1)) * 2);
+        cr.push(r / 255); cg.push(g / 255); cb.push(b / 255);
       }
-      return v;
     }
 
-    void main() {
-      vec2 uv = gl_FragCoord.xy / u_res;
-      uv.y = 1.0 - uv.y;
+    const N = hx.length;
+    const posArr = new Float32Array(N * 2);
+    const velArr = new Float32Array(N * 2);  // vx, vy interleaved
+    const colArr = new Float32Array(N * 3);
 
-      float t = u_time * 0.12;
-
-      vec2 q = vec2(fbm(uv * 2.8 + vec2(0.0,  0.0) + t * 0.3),
-                    fbm(uv * 2.8 + vec2(5.2,  1.3) + t * 0.25));
-
-      vec2 r = vec2(fbm(uv * 2.4 + 3.5 * q + vec2(1.7 + t * 0.15, 9.2)),
-                    fbm(uv * 2.4 + 3.5 * q + vec2(8.3 + t * 0.12,  2.8)));
-
-      float f = fbm(uv * 1.8 + 3.0 * r + t * 0.08);
-      f = f * 0.5 + 0.5;
-
-      vec3 c0 = vec3(0.022, 0.180, 0.172);
-      vec3 c1 = vec3(0.039, 0.369, 0.345);
-      vec3 c2 = vec3(0.055, 0.510, 0.471);
-      vec3 c3 = vec3(0.098, 0.686, 0.627);
-
-      float lq = clamp(length(q) * 0.7, 0.0, 1.0);
-      float lr = clamp(length(r) * 0.6, 0.0, 1.0);
-
-      vec3 col = mix(c0, c1, f * f);
-      col = mix(col, c2, lq);
-      col = mix(col, c3, lr * lr * 0.6);
-
-      float bloom = smoothstep(0.5, 0.0, length(uv - vec2(0.5, 0.25)));
-      col += vec3(0.04, 0.12, 0.10) * bloom * 0.6;
-
-      float vig = uv.x * (1.0-uv.x) * uv.y * (1.0-uv.y);
-      col *= 0.7 + 0.5 * pow(vig * 16.0, 0.18);
-
-      gl_FragColor = vec4(col, 1.0);
+    for (let i = 0; i < N; i++) {
+      posArr[i*2] = hx[i]; posArr[i*2+1] = hy[i];
+      colArr[i*3] = cr[i]; colArr[i*3+1] = cg[i]; colArr[i*3+2] = cb[i];
     }
-  `;
 
-  function compileShader(type, src) {
-    const s = gl.createShader(type);
-    gl.shaderSource(s, src); gl.compileShader(s);
-    return s;
-  }
-  const prog = gl.createProgram();
-  gl.attachShader(prog, compileShader(gl.VERTEX_SHADER, vert));
-  gl.attachShader(prog, compileShader(gl.FRAGMENT_SHADER, frag));
-  gl.linkProgram(prog);
-  gl.useProgram(prog);
+    // ── WebGL setup ───────────────────────────────────────────────────────────
+    function compileShader(type, src) {
+      const s = gl.createShader(type);
+      gl.shaderSource(s, src); gl.compileShader(s); return s;
+    }
 
-  const buf = gl.createBuffer();
-  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
-  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
-  const aPos = gl.getAttribLocation(prog, 'a_pos');
-  gl.enableVertexAttribArray(aPos);
-  gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
+    const vert = `
+      attribute vec2 a_pos;
+      attribute vec3 a_col;
+      varying vec3 v_col;
+      void main() {
+        gl_Position  = vec4(a_pos, 0.0, 1.0);
+        gl_PointSize = 3.5;
+        v_col = a_col;
+      }
+    `;
+    const frag = `
+      precision mediump float;
+      varying vec3 v_col;
+      void main() {
+        float d = length(gl_PointCoord - 0.5);
+        if (d > 0.5) discard;
+        float a = 1.0 - smoothstep(0.3, 0.5, d);
+        gl_FragColor = vec4(v_col, a * 0.92);
+      }
+    `;
 
-  const uTime = gl.getUniformLocation(prog, 'u_time');
-  const uRes  = gl.getUniformLocation(prog, 'u_res');
+    const prog = gl.createProgram();
+    gl.attachShader(prog, compileShader(gl.VERTEX_SHADER, vert));
+    gl.attachShader(prog, compileShader(gl.FRAGMENT_SHADER, frag));
+    gl.linkProgram(prog); gl.useProgram(prog);
 
-  const t0 = performance.now();
-  function render() {
-    gl.uniform1f(uTime, (performance.now() - t0) / 1000);
-    gl.uniform2f(uRes, canvas.width, canvas.height);
-    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-    requestAnimationFrame(render);
-  }
-  render();
+    const posBuf = gl.createBuffer();
+    const colBuf = gl.createBuffer();
+
+    // Upload static color data once
+    gl.bindBuffer(gl.ARRAY_BUFFER, colBuf);
+    gl.bufferData(gl.ARRAY_BUFFER, colArr, gl.STATIC_DRAW);
+
+    const aPos = gl.getAttribLocation(prog, 'a_pos');
+    const aCol = gl.getAttribLocation(prog, 'a_col');
+
+    gl.enable(gl.BLEND);
+    gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+
+    // ── Physics constants ──────────────────────────────────────────────────────
+    const RADIUS = 0.28;   // repulsion radius in clip space
+    const FORCE  = 0.025;  // repulsion strength
+    const SPRING = 0.055;  // return spring
+    const DAMP   = 0.87;   // velocity damping
+
+    // ── Render loop ───────────────────────────────────────────────────────────
+    function tick() {
+      // Convert mouse to clip space
+      const mxC = (mouseX / W) * 2 - 1;
+      const myC = 1 - (mouseY / H) * 2;
+
+      for (let i = 0; i < N; i++) {
+        let px = posArr[i*2],   py = posArr[i*2+1];
+        let vx = velArr[i*2],   vy = velArr[i*2+1];
+
+        const dx = px - mxC, dy = py - myC;
+        const dist2 = dx*dx + dy*dy;
+        const dist = Math.sqrt(dist2);
+
+        if (dist < RADIUS && dist > 0.0005) {
+          const f = (1 - dist / RADIUS) * FORCE / dist;
+          vx += dx * f;
+          vy += dy * f;
+        }
+
+        // Spring toward home
+        vx += (hx[i] - px) * SPRING;
+        vy += (hy[i] - py) * SPRING;
+        vx *= DAMP; vy *= DAMP;
+
+        posArr[i*2]   = px + vx;
+        posArr[i*2+1] = py + vy;
+        velArr[i*2]   = vx;
+        velArr[i*2+1] = vy;
+      }
+
+      // Render
+      gl.clearColor(0.031, 0.227, 0.220, 1.0);  // #083A38 dark teal
+      gl.clear(gl.COLOR_BUFFER_BIT);
+
+      gl.bindBuffer(gl.ARRAY_BUFFER, posBuf);
+      gl.bufferData(gl.ARRAY_BUFFER, posArr, gl.DYNAMIC_DRAW);
+      gl.enableVertexAttribArray(aPos);
+      gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
+
+      gl.bindBuffer(gl.ARRAY_BUFFER, colBuf);
+      gl.enableVertexAttribArray(aCol);
+      gl.vertexAttribPointer(aCol, 3, gl.FLOAT, false, 0, 0);
+
+      gl.drawArrays(gl.POINTS, 0, N);
+      requestAnimationFrame(tick);
+    }
+    tick();
+  };
+  img.src = 'flower.png';
 }
-initHeroEffect();
+initHeroParticles();
 
 // ── B: Magnetic connect button ───────────────────────────────────────────────
 const btn = document.querySelector('.hero-connect');
