@@ -75,8 +75,8 @@ body.cursor-active.cursor-on-link .cursor-dot  { width: 10px; height: 10px; back
   gap: var(--gap); width: 100%; max-width: 1400px; margin: 0 auto;
   height: calc(100vh - 40px); min-height: 600px;
 }
-.bento-middle { display: flex; flex-direction: column; gap: var(--gap); will-change: transform; }
-.bento-right  { display: flex; flex-direction: column; gap: var(--gap); will-change: transform; }
+.bento-middle { display: flex; flex-direction: column; gap: var(--gap); }
+.bento-right  { display: flex; flex-direction: column; gap: var(--gap); }
 
 /* ===== Card base ===== */
 .card {
@@ -103,6 +103,11 @@ body.cursor-active.cursor-on-link .cursor-dot  { width: 10px; height: 10px; back
   animation: gradientFlow 15s ease infinite, fadeUp 0.5s ease 0.05s forwards;
   color: var(--color-white); display: flex; flex-direction: column;
   justify-content: space-between; padding: 32px;
+}
+/* When WebGL canvas is active, stop the CSS gradient animation */
+.card-hero.webgl-active {
+  animation: fadeUp 0.5s ease 0.05s forwards;
+  background: var(--color-hero-start);
 }
 .card-hero > *:not(.time-overlay) { position: relative; z-index: 1; }
 .card-hero::after {
