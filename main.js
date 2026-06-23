@@ -34,32 +34,6 @@ document.querySelectorAll('.lang-btn').forEach(btn => {
   });
 });
 
-// ── Time ambient ───────────────────────────────────────────────────────────────
-const ambientThemes = [
-  { hours: [23, 6],  bg: '#EEEAF5', tint: 'rgba(10, 5, 30, 1)',    opacity: 0.55 },
-  { hours: [6, 10],  bg: '#F8F5EE', tint: 'rgba(180, 120, 20, 1)', opacity: 0.25 },
-  { hours: [10, 17], bg: '#F8F5F8', tint: 'transparent',            opacity: 0    },
-  { hours: [17, 23], bg: '#F5F0F8', tint: 'rgba(20, 5, 50, 1)',    opacity: 0.3  },
-];
-
-function getAmbient() {
-  const h = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Shanghai' })).getHours();
-  if (h >= 23 || h < 6)  return ambientThemes[0];
-  if (h >= 6  && h < 10) return ambientThemes[1];
-  if (h >= 10 && h < 17) return ambientThemes[2];
-  return ambientThemes[3];
-}
-function applyAmbient() {
-  const t = getAmbient();
-  const overlay = document.getElementById('timeOverlay');
-  if (!overlay) return;
-  document.documentElement.style.setProperty('--color-bg', t.bg);
-  document.body.style.backgroundColor = t.bg;
-  overlay.style.backgroundColor = t.tint;
-  requestAnimationFrame(() => requestAnimationFrame(() => { overlay.style.opacity = t.opacity; }));
-}
-applyAmbient();
-setInterval(applyAmbient, 300000);
 
 // ── Hero: blue flower background + glowing blob particle flow ─────────────────
 function initHeroParticles() {
