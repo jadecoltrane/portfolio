@@ -47,24 +47,6 @@ function applyAmbient() {
 applyAmbient();
 setInterval(applyAmbient, 300000);
 
-// ── A: Card tilt ─────────────────────────────────────────────────────────────
-document.querySelectorAll('.card-project, .card-resume').forEach(card => {
-  card.classList.add('has-tilt');
-  card.addEventListener('mousemove', e => {
-    const r = card.getBoundingClientRect();
-    const x = (e.clientX - r.left) / r.width - 0.5;
-    const y = (e.clientY - r.top) / r.height - 0.5;
-    card.style.transform = `perspective(800px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg) scale(1.02)`;
-    card.style.boxShadow = '0 20px 48px rgba(26,10,26,0.14)';
-    card.style.transition = 'transform 0.08s ease, box-shadow 0.08s ease';
-  });
-  card.addEventListener('mouseleave', () => {
-    card.style.transform = '';
-    card.style.boxShadow = '';
-    card.style.transition = 'transform 0.6s cubic-bezier(0.23,1,0.32,1), box-shadow 0.6s cubic-bezier(0.23,1,0.32,1)';
-  });
-});
-
 // ── B: Magnetic connect button ───────────────────────────────────────────────
 const btn = document.querySelector('.hero-connect');
 if (btn) {
