@@ -107,7 +107,6 @@ body.cursor-active.cursor-on-link .cursor-dot  { width: 10px; height: 10px; back
 /* When WebGL canvas is active, stop the CSS gradient animation */
 .card-hero.webgl-active {
   animation: fadeUp 0.5s ease 0.05s forwards;
-  background: var(--color-hero-start);
 }
 .card-hero > *:not(.time-overlay) { position: relative; z-index: 1; }
 .card-hero::after {
