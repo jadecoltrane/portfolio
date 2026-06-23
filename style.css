@@ -87,7 +87,6 @@ body.cursor-active.cursor-on-link .cursor-dot  { width: 10px; height: 10px; back
   animation: fadeUp 0.5s ease forwards;
 }
 .card:hover { transform: scale(1.025); box-shadow: 0 12px 40px rgba(8,58,56,0.10); }
-.has-tilt:hover { transform: none; box-shadow: none; }
 
 /* ===== Time overlay ===== */
 .time-overlay {
