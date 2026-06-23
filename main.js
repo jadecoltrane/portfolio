@@ -61,15 +61,14 @@ function applyAmbient() {
 applyAmbient();
 setInterval(applyAmbient, 300000);
 
-// ── Hero: flower image background + colored-pixel scatter on hover ─────────────
+// ── Hero: blue flower background + glowing blob particle flow ─────────────────
 function initHeroParticles() {
   const hero = document.querySelector('.card-hero');
   if (!hero) return;
 
-  // Flower as CSS background — original colors, no overlay
-  hero.style.backgroundImage = "url('flower.png')";
+  hero.style.backgroundImage = "url('hero-flower.jpg')";
   hero.style.backgroundSize = 'cover';
-  hero.style.backgroundPosition = 'center';
+  hero.style.backgroundPosition = 'center 30%';
   hero.style.backgroundRepeat = 'no-repeat';
 
   const canvas = document.createElement('canvas');
@@ -91,7 +90,6 @@ function initHeroParticles() {
   resize();
   new ResizeObserver(resize).observe(hero);
 
-  // Mouse in CSS pixels (matches cover-scaling math below)
   let mouseX = -99999, mouseY = -99999;
   hero.addEventListener('mousemove', e => {
     const r = hero.getBoundingClientRect();
@@ -107,13 +105,12 @@ function initHeroParticles() {
     offC.getContext('2d').drawImage(img, 0, 0);
     const px = offC.getContext('2d').getImageData(0, 0, img.width, img.height).data;
 
-    const STEP   = 3;
-    const cardW  = hero.offsetWidth;
-    const cardH  = hero.offsetHeight;
-    // Mirror CSS background-size:cover to get exact particle positions
+    const STEP  = 4;
+    const cardW = hero.offsetWidth;
+    const cardH = hero.offsetHeight;
     const s  = Math.max(cardW / img.width, cardH / img.height);
     const ox = (cardW - img.width  * s) / 2;
-    const oy = (cardH - img.height * s) / 2;
+    const oy = (cardH - img.height * s) * 0.30;  // mirrors background-position: center 30%
 
     const hx = [], hy = [], cr = [], cg = [], cb = [];
 
@@ -123,13 +120,12 @@ function initHeroParticles() {
         const r = px[p], g = px[p+1], b = px[p+2], a = px[p+3];
         if (a < 10) continue;
 
-        // Only keep pink/rose pixels (R significantly dominates G and B)
+        // Keep bright glow pixels: cream/white blobs and light flower texture
         const rf = r / 255, gf = g / 255, bf = b / 255;
         const brightness = (rf + gf + bf) / 3;
-        if (brightness > 0.92) continue;          // skip cream/white
-        if ((rf - gf) < 0.10 || (rf - bf) < 0.08) continue; // skip non-pink
+        if (brightness < 0.63) continue;                     // skip dark blue background
+        if (bf > rf + 0.08 && brightness < 0.80) continue;  // skip mid-tone blue
 
-        // CSS-pixel position matching background-size:cover + background-position:center
         const sx = ix * s + ox;
         const sy = iy * s + oy;
         if (sx < 0 || sx >= cardW || sy < 0 || sy >= cardH) continue;
@@ -141,13 +137,12 @@ function initHeroParticles() {
     }
 
     const N = hx.length;
-    // posArr: x, y, alpha (alpha driven by displacement – invisible at rest)
     const posArr = new Float32Array(N * 3);
     const velArr = new Float32Array(N * 2);
     const colArr = new Float32Array(N * 3);
 
     for (let i = 0; i < N; i++) {
-      posArr[i*3] = hx[i]; posArr[i*3+1] = hy[i]; posArr[i*3+2] = 0;
+      posArr[i*3] = hx[i]; posArr[i*3+1] = hy[i]; posArr[i*3+2] = 0.5;
       colArr[i*3] = cr[i]; colArr[i*3+1] = cg[i]; colArr[i*3+2] = cb[i];
     }
 
@@ -156,6 +151,7 @@ function initHeroParticles() {
       gl.shaderSource(s, src); gl.compileShader(s); return s;
     }
 
+    const ptSize = (6 * Math.min(window.devicePixelRatio || 1, 2)).toFixed(1);
     const vert = `
       attribute vec3 a_posa;
       attribute vec3 a_col;
@@ -163,7 +159,7 @@ function initHeroParticles() {
       varying float v_a;
       void main() {
         gl_Position  = vec4(a_posa.xy, 0.0, 1.0);
-        gl_PointSize = 4.0;
+        gl_PointSize = ${ptSize};
         v_col = a_col;
         v_a   = a_posa.z;
       }
@@ -175,7 +171,7 @@ function initHeroParticles() {
       void main() {
         float d = length(gl_PointCoord - 0.5);
         if (d > 0.5) discard;
-        float soft = 1.0 - smoothstep(0.3, 0.5, d);
+        float soft = 1.0 - smoothstep(0.15, 0.5, d);
         gl_FragColor = vec4(v_col, soft * v_a);
       }
     `;
@@ -197,29 +193,41 @@ function initHeroParticles() {
     gl.enable(gl.BLEND);
     gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
 
-    const RADIUS = 0.22;
-    const FORCE  = 0.022;
-    const SPRING = 0.055;
-    const DAMP   = 0.87;
+    const RADIUS = 0.28;
+    const FORCE  = 0.020;
+    const SPRING = 0.022;
+    const DAMP   = 0.88;
 
     function tick() {
+      const t = Date.now() * 0.001;
       const mxC = mouseX / cardW * 2 - 1;
       const myC = 1 - mouseY / cardH * 2;
+      const hasM = mouseX > -9999;
 
       for (let i = 0; i < N; i++) {
         let px = posArr[i*3],   py = posArr[i*3+1];
         let vx = velArr[i*2],   vy = velArr[i*2+1];
 
-        const dx = px - mxC, dy = py - myC;
-        const dist = Math.sqrt(dx*dx + dy*dy);
+        // Idle drift: each particle oscillates with a unique phase
+        const phX = hx[i] * 23.7 + hy[i] * 11.3;
+        const phY = hx[i] * 17.9 + hy[i] * 31.1;
+        const targetX = hx[i] + Math.sin(t * 0.45 + phX) * 0.018;
+        const targetY = hy[i] + Math.cos(t * 0.30 + phY) * 0.018;
 
-        if (dist < RADIUS && dist > 0.0005) {
-          const f = (1 - dist / RADIUS) * FORCE / dist;
-          vx += dx * f; vy += dy * f;
+        // Mouse attraction: particles flow toward cursor
+        if (hasM) {
+          const dx = mxC - px, dy = myC - py;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < RADIUS && dist > 0.001) {
+            const f = (1 - dist / RADIUS) * FORCE;
+            vx += (dx / dist) * f;
+            vy += (dy / dist) * f;
+          }
         }
 
-        vx += (hx[i] - px) * SPRING;
-        vy += (hy[i] - py) * SPRING;
+        // Spring toward drift target
+        vx += (targetX - px) * SPRING;
+        vy += (targetY - py) * SPRING;
         vx *= DAMP; vy *= DAMP;
 
         posArr[i*3]   = px + vx;
@@ -227,9 +235,11 @@ function initHeroParticles() {
         velArr[i*2]   = vx;
         velArr[i*2+1] = vy;
 
-        // Fade in only when displaced from home (invisible at rest)
-        const ddx = posArr[i*3] - hx[i], ddy = posArr[i*3+1] - hy[i];
-        posArr[i*3+2] = Math.min(1.0, Math.sqrt(ddx*ddx + ddy*ddy) / 0.025);
+        // Alpha: always visible base + brightness boost near mouse
+        const ddx = posArr[i*3] - mxC, ddy = posArr[i*3+1] - myC;
+        const distM = Math.sqrt(ddx * ddx + ddy * ddy);
+        const mBoost = hasM ? Math.max(0, 1 - distM / RADIUS) * 0.45 : 0;
+        posArr[i*3+2] = 0.48 + mBoost;
       }
 
       gl.clearColor(0, 0, 0, 0);
@@ -249,7 +259,7 @@ function initHeroParticles() {
     }
     tick();
   };
-  img.src = 'flower.png';
+  img.src = 'hero-flower.jpg';
 }
 initHeroParticles();
 
