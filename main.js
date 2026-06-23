@@ -70,7 +70,7 @@ function initHeroParticles() {
   canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border-radius:inherit;pointer-events:none;z-index:0;';
   hero.insertBefore(canvas, hero.firstChild);
 
-  const gl = canvas.getContext('webgl');
+  const gl = canvas.getContext('webgl', { alpha: true, premultipliedAlpha: false });
   if (!gl) { canvas.remove(); return; }
 
   hero.classList.add('webgl-active');
@@ -216,7 +216,7 @@ function initHeroParticles() {
       }
 
       // Render
-      gl.clearColor(0.031, 0.227, 0.220, 1.0);  // #083A38 dark teal
+      gl.clearColor(0, 0, 0, 0);
       gl.clear(gl.COLOR_BUFFER_BIT);
 
       gl.bindBuffer(gl.ARRAY_BUFFER, posBuf);
