@@ -35,15 +35,13 @@ document.querySelectorAll('.lang-btn').forEach(btn => {
 });
 
 
-// ── Hero: static flower + flowing blue background (shader domain-warp) ─────────
+// ── Hero: flowing cyanotype gradient (blue + cream), fully generative ─────────
 function initHeroFlow() {
   const hero = document.querySelector('.card-hero');
   if (!hero) return;
 
-  hero.style.backgroundImage = "url('hero-flower.jpg')";
-  hero.style.backgroundSize = 'cover';
-  hero.style.backgroundPosition = 'center 30%';
-  hero.style.backgroundRepeat = 'no-repeat';
+  hero.style.backgroundImage = 'none';
+  hero.style.backgroundColor = '#4A6682';
 
   const canvas = document.createElement('canvas');
   canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border-radius:inherit;pointer-events:none;z-index:0;';
@@ -81,9 +79,7 @@ function initHeroFlow() {
   const frag = `
     precision highp float;
     varying vec2 v_uv;
-    uniform sampler2D u_tex;
     uniform vec2  u_res;
-    uniform vec2  u_img;
     uniform float u_time;
 
     float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453123); }
@@ -95,38 +91,39 @@ function initHeroFlow() {
     }
     float fbm(vec2 p){
       float v = 0.0, a = 0.5;
-      for (int k = 0; k < 4; k++){ v += a * vnoise(p); p *= 2.0; a *= 0.5; }
+      for (int k = 0; k < 5; k++){ v += a * vnoise(p); p *= 2.0; a *= 0.5; }
       return v;
     }
 
     void main() {
-      // Map screen pixel → texture uv, mirroring background-size:cover + position:center 30%
-      float s = max(u_res.x / u_img.x, u_res.y / u_img.y);
-      vec2 off = vec2((u_res.x - u_img.x * s) * 0.5, (u_res.y - u_img.y * s) * 0.30);
-      vec2 sp = v_uv * u_res;
-      vec2 uv = ((sp - off) / s) / u_img;
+      // Aspect-correct coords so noise cells stay round
+      vec2 p = v_uv - 0.5;
+      p.x *= u_res.x / u_res.y;
 
-      // Coherent flow field — neighbouring pixels share the field so the
-      // whole blue mass advects together rather than as separate specks.
-      float t = u_time * 0.05;
-      vec2 q = vec2(
-        fbm(uv * 2.4 + vec2(0.0, t)),
-        fbm(uv * 2.4 + vec2(4.7, t * 0.8))
+      // Cyanotype palette pulled from the photo
+      vec3 blueDark = vec3(0.255, 0.357, 0.475);  // #41597A
+      vec3 blueMid  = vec3(0.494, 0.604, 0.710);  // #7E9AB5
+      vec3 cream    = vec3(0.937, 0.910, 0.835);  // #EFE8D5
+      vec3 mist     = vec3(0.792, 0.847, 0.886);  // #CAD8E2
+
+      // Slow drifting + domain warp → the whole field flows as one mass
+      float t = u_time * 0.06;
+      vec2 flow = vec2(t * 0.35, t * 0.22);
+      vec2 w = vec2(
+        fbm(p * 1.2 + flow),
+        fbm(p * 1.2 + flow + 7.3)
       );
-      vec2 warp = (q - 0.5) * 0.06;
+      float n1 = fbm(p * 1.7 + w * 0.9 + flow * 0.5);
+      float n2 = fbm(p * 2.6 - w * 0.6 + flow * 0.3 + 13.0);
 
-      vec4 staticCol = texture2D(u_tex, clamp(uv, 0.0, 1.0));
-      vec4 flowCol   = texture2D(u_tex, clamp(uv + warp, 0.0, 1.0));
+      // Layer the palette: blue base → cream glow blobs → soft mist highlights
+      vec3 col = mix(blueDark, blueMid, smoothstep(0.28, 0.72, n1));
+      col = mix(col, cream, smoothstep(0.40, 0.70, n2));
+      col = mix(col, mist,  smoothstep(0.55, 0.85, (n1 + n2) * 0.5) * 0.5);
 
-      // Mask: blue background (b clearly leads r & g) flows; flower stays put.
-      float blueLead = staticCol.b - max(staticCol.r, staticCol.g);
-      float mask = smoothstep(0.01, 0.07, blueLead);
-
-      vec3 col = mix(staticCol.rgb, flowCol.rgb, mask);
-
-      // In-shader readability darkening (mimics the old ::before gradient)
+      // Readability darkening (top + bottom)
       vec3 navy = vec3(0.031, 0.059, 0.110);
-      float dark = mix(0.30, 0.0, smoothstep(0.0, 0.55, v_uv.y));
+      float dark = mix(0.28, 0.0, smoothstep(0.0, 0.55, v_uv.y));
       dark += smoothstep(0.62, 1.0, v_uv.y) * 0.22;
       col = mix(col, navy, dark);
 
@@ -147,35 +144,18 @@ function initHeroFlow() {
   gl.enableVertexAttribArray(aPos);
   gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
 
-  const uTex  = gl.getUniformLocation(prog, 'u_tex');
   const uRes  = gl.getUniformLocation(prog, 'u_res');
-  const uImg  = gl.getUniformLocation(prog, 'u_img');
   const uTime = gl.getUniformLocation(prog, 'u_time');
 
-  const img = new Image();
-  img.onload = () => {
-    const tex = gl.createTexture();
-    gl.bindTexture(gl.TEXTURE_2D, tex);
-    gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, false);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
-    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
-
-    const start = Date.now();
-    function tick() {
-      gl.useProgram(prog);
-      gl.uniform1i(uTex, 0);
-      gl.uniform2f(uRes, canvas.width, canvas.height);
-      gl.uniform2f(uImg, img.width, img.height);
-      gl.uniform1f(uTime, (Date.now() - start) * 0.001);
-      gl.drawArrays(gl.TRIANGLES, 0, 6);
-      requestAnimationFrame(tick);
-    }
-    tick();
-  };
-  img.src = 'hero-flower.jpg';
+  const start = Date.now();
+  function tick() {
+    gl.useProgram(prog);
+    gl.uniform2f(uRes, canvas.width, canvas.height);
+    gl.uniform1f(uTime, (Date.now() - start) * 0.001);
+    gl.drawArrays(gl.TRIANGLES, 0, 6);
+    requestAnimationFrame(tick);
+  }
+  tick();
 }
 initHeroFlow();
 
