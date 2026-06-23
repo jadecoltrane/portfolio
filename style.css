@@ -88,14 +88,12 @@ img { max-width: 100%; display: block; }
 }
 .card-hero.webgl-active {
   animation: fadeUp 0.5s ease 0.05s forwards;
-  color: var(--color-text-dark);
 }
-.card-hero.webgl-active .hero-connect {
-  border-color: rgba(10,26,24,0.35);
-  color: var(--color-text-dark);
-}
-.card-hero.webgl-active .hero-connect:hover {
-  background: rgba(10,26,24,0.07);
+.card-hero.webgl-active::before {
+  content: '';
+  position: absolute; inset: 0; border-radius: inherit;
+  background: linear-gradient(160deg, rgba(8,15,28,0.32) 0%, rgba(8,15,28,0.04) 55%, rgba(8,15,28,0.26) 100%);
+  pointer-events: none; z-index: 0;
 }
 .card-hero > *:not(.time-overlay) { position: relative; z-index: 1; }
 .card-hero::after {
