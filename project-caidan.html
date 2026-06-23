@@ -3,47 +3,198 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>彩蛋 · 黄佩瑶</title>
+  <title>Smart 彩蛋 · 黄佩瑶</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="case-page">
     <a href="index.html" class="case-back">← 返回首页</a>
+
     <div class="case-header">
       <div class="case-tags">
         <span class="tag">Automotive UX</span>
         <span class="tag">HMI</span>
-        <span class="tag">2024</span>
+        <span class="tag">交互设计</span>
+        <span class="tag">2025</span>
       </div>
-      <h1 class="case-title">彩蛋</h1>
-      <p class="case-subtitle">车机系统功能设计与交互优化项目</p>
+      <h1 class="case-title">Smart 车机节日彩蛋</h1>
+      <p class="case-subtitle">如何在安全约束下，让车机系统有情绪？</p>
     </div>
-    <div class="case-cover" style="background: linear-gradient(135deg, #D4A5B5, #B08FA0);">封面图片</div>
+
+    <div class="case-meta">
+      <div class="case-meta-item">
+        <span class="case-meta-label">我的角色</span>
+        <span class="case-meta-value">竞品研究 · 系统规划 · 交互规范定义</span>
+      </div>
+      <div class="case-meta-item">
+        <span class="case-meta-label">产品</span>
+        <span class="case-meta-value">Smart 车机 HMI</span>
+      </div>
+      <div class="case-meta-item">
+        <span class="case-meta-label">年份</span>
+        <span class="case-meta-value">2025</span>
+      </div>
+    </div>
+
+    <div class="case-cover" style="background: linear-gradient(135deg, #5B4FCF 0%, #8470E8 50%, #A594F9 100%);"></div>
+
     <div class="case-section">
-      <h2>项目背景</h2>
-      <p>待填写：介绍项目背景、所在公司、项目规模、你的角色。</p>
-      <div class="case-image-placeholder">图片占位 · 后续替换</div>
+      <div class="case-challenge">
+        <p class="case-challenge-quote">"节日彩蛋要带来惊喜，但不能造成惊吓。"</p>
+        <p>车机不是手机——彩蛋必须在驾驶安全优先、多桌面并存、系统层级严格的约束下运行。本项目负责前期规划：研究竞品趋势、定义系统边界、制定交互规范，让后续的视觉动效设计有清晰的框架可依。</p>
+      </div>
     </div>
+
     <div class="case-section">
-      <h2>发现问题</h2>
-      <p>待填写：用户研究发现了什么问题？数据/调研支撑。</p>
-      <div class="case-image-placeholder">图片占位 · 后续替换</div>
+      <h2>竞品研究</h2>
+      <p>系统分析了 BMW、MINI Cooper、特斯拉（国际品牌）及小米、理想、小鹏（国内品牌）六款车机的节日彩蛋策略，重点关注触发方式、覆盖桌面和互动类型三个维度。</p>
+      <div class="case-insight">
+        <span class="case-insight-label">核心洞察</span>
+        <p>国内品牌均在向「互动型彩蛋」演进——不只是视觉展示，而是通过触发动画、挖宝、小游戏等机制提升用户参与感。Smart 的差异化切入点：把品牌温度注入情感语言，以「有性格的陪伴感」区别于竞品的功能堆叠。</p>
+      </div>
+      <div class="case-image-placeholder">竞品对比矩阵 · 图片占位</div>
     </div>
+
     <div class="case-section">
-      <h2>分析与洞察</h2>
-      <p>待填写：对问题的分析、用户旅程图、竞品分析等。</p>
-      <div class="case-image-placeholder">图片占位 · 后续替换</div>
+      <h2>核心设计决策</h2>
+      <p class="case-section-intro">以下四个决策是前期规划阶段的核心产出，每一条都在安全约束与情绪体验之间找平衡点。</p>
+
+      <div class="decision-card">
+        <div class="decision-header">
+          <span class="decision-number">01</span>
+          <div>
+            <h3 class="decision-title">系统层级定位</h3>
+            <p class="decision-question">彩蛋挂件应该放在系统的哪一层？</p>
+          </div>
+        </div>
+        <div class="decision-body">
+          <div class="decision-choice decision-choice--chosen">
+            <span class="decision-badge decision-badge--chosen">采用</span>
+            <p><strong>第 18 层（状态栏之下、通知层之上）</strong><br>彩蛋可见但不遮挡核心功能区，高于主界面内容、低于系统级提示</p>
+          </div>
+          <div class="decision-choice decision-choice--rejected">
+            <span class="decision-badge decision-badge--rejected">排除</span>
+            <p><strong>第 19 层（Dock 栏上方）</strong><br>会覆盖快捷操作区，用户在彩蛋挂件与功能按钮之间的误触率上升</p>
+          </div>
+        </div>
+        <div class="case-image-placeholder">系统层级示意图 · 图片占位</div>
+      </div>
+
+      <div class="decision-card">
+        <div class="decision-header">
+          <span class="decision-number">02</span>
+          <div>
+            <h3 class="decision-title">打断机制</h3>
+            <p class="decision-question">哪些系统事件必须中断彩蛋动画？</p>
+          </div>
+        </div>
+        <div class="decision-body">
+          <div class="decision-interrupt-grid">
+            <div class="interrupt-col interrupt-col--warn">
+              <span class="interrupt-col-label">必须打断</span>
+              <ul>
+                <li>SOS 紧急求救</li>
+                <li>热失控警告</li>
+                <li>AVM 倒车影像</li>
+              </ul>
+            </div>
+            <div class="interrupt-col interrupt-col--safe">
+              <span class="interrupt-col-label">不打断</span>
+              <ul>
+                <li>语音唤醒 / 语音交互</li>
+                <li>切换驾驶模式 / 拖拽地图</li>
+                <li>TOAST · 弹窗 · SmartBar</li>
+              </ul>
+            </div>
+          </div>
+          <p class="decision-principle">动画完整性优先保护节日情绪体验；只有涉及人身安全的事件才真正打断。</p>
+        </div>
+      </div>
+
+      <div class="decision-card">
+        <div class="decision-header">
+          <span class="decision-number">03</span>
+          <div>
+            <h3 class="decision-title">彩蛋发现机制</h3>
+            <p class="decision-question">用户怎么知道挂件可以交互？</p>
+          </div>
+        </div>
+        <div class="decision-body">
+          <p>完全无提示 → 功能不被发现；持续强提示 → 破坏惊喜感。两端之间需要一个「一次性微提示」规则：</p>
+          <div class="decision-rule">
+            <p>节日期间<strong>首次开机</strong>时，挂件有 2s 呼吸光效提示可交互，随后回归被动发现态。<br>重复进入同一桌面不再触发提示，保留用户自主探索的惊喜空间。</p>
+          </div>
+          <p>这条规则同时解决了「首次用户发现率」和「老用户不被打扰」两个相互矛盾的需求。</p>
+        </div>
+        <div class="case-image-placeholder">发现态 / 静默态 对比示意 · 图片占位</div>
+      </div>
+
+      <div class="decision-card">
+        <div class="decision-header">
+          <span class="decision-number">04</span>
+          <div>
+            <h3 class="decision-title">跨桌面状态一致性</h3>
+            <p class="decision-question">触发壁纸彩蛋后切换到导航桌面，动画怎么处理？</p>
+          </div>
+        </div>
+        <div class="decision-body">
+          <p>壁纸桌面、导航桌面、星球桌面各自有独立的彩蛋逻辑。用户在动画播放中途切换桌面时：</p>
+          <div class="decision-rule">
+            <p>动画在<strong>当前桌面自然结束</strong>后停止，不随用户迁移到其他桌面继续播放。<br>避免两套彩蛋动画在不同桌面同时运行，造成视觉冲突与用户操作混淆。</p>
+          </div>
+        </div>
+        <div class="case-image-placeholder">跨桌面状态流程 · 图片占位</div>
+      </div>
     </div>
+
     <div class="case-section">
-      <h2>设计方案</h2>
-      <p>待填写：设计思路、方案演变、最终方案。</p>
-      <div class="case-image-placeholder">图片占位 · 后续替换</div>
+      <h2>交互规范片段</h2>
+      <p>以下是交付给开发和动效团队的规范中几个关键边界定义——这类「边界情况」往往是视觉设计师容易忽略、开发同学需要明确答案的地方。</p>
+
+      <div class="spec-table">
+        <div class="spec-row spec-row--header">
+          <span>场景</span>
+          <span>挂件状态</span>
+          <span>决策依据</span>
+        </div>
+        <div class="spec-row">
+          <span>用户正常浏览桌面</span>
+          <span>正常可交互</span>
+          <span>无功能冲突</span>
+        </div>
+        <div class="spec-row">
+          <span>用户拖动地图控件时</span>
+          <span>半透明 · 不可操作</span>
+          <span>避免手势冲突，地图操作优先级更高</span>
+        </div>
+        <div class="spec-row">
+          <span>彩蛋资源下载中</span>
+          <span>隐藏挂件直至资源就绪</span>
+          <span>不显示 Loading 态，避免品牌调性受损</span>
+        </div>
+        <div class="spec-row">
+          <span>夜间行车 / 护眼模式</span>
+          <span>亮度跟随系统联动</span>
+          <span>防止高亮动画影响夜间视觉适应</span>
+        </div>
+      </div>
+
+      <div class="case-insight" style="margin-top: 20px;">
+        <span class="case-insight-label">节日优先级规则</span>
+        <p>当两个节日时间重叠（如春节 + 情人节），遵循：<strong>法定节日 > 品牌限定节 > 季节节气</strong>。只显示优先级更高的彩蛋，不叠加两套，避免视觉混乱。</p>
+      </div>
     </div>
+
     <div class="case-section">
-      <h2>结果与反思</h2>
-      <p>待填写：项目结果、数据收益、个人反思。</p>
+      <h2>设计反思</h2>
+      <p>这个项目让我意识到：在车机系统里做交互设计，决策的核心不是「这个设计好不好看」，而是「这条规则在边界条件下是否稳定」。</p>
+      <p style="margin-top: 14px; color: var(--color-text-mid);">彩蛋是情绪产品，但情绪需要建立在可靠的系统规则之上。每一条打断机制、每一个层级定位，都是在安全与体验之间找平衡点的过程。交互设计师在系统级产品里的价值，不只是设计界面，而是定义系统如何「做决定」。</p>
     </div>
-    <a href="index.html" class="case-back" style="margin-top: 40px; display: inline-flex;">← 返回首页</a>
+
+    <div class="case-nav">
+      <a href="index.html" class="case-back">← 返回首页</a>
+      <a href="project-hmi.html" class="case-next">查看下一个案例 →</a>
+    </div>
   </div>
   <script src="main.js"></script>
 </body>
