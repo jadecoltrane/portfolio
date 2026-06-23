@@ -79,7 +79,7 @@ function initHeroParticles() {
     offC.getContext('2d').drawImage(img, 0, 0);
     const px = offC.getContext('2d').getImageData(0, 0, img.width, img.height).data;
 
-    const STEP  = 4;
+    const STEP  = 6;
     const cardW = hero.offsetWidth;
     const cardH = hero.offsetHeight;
     const s  = Math.max(cardW / img.width, cardH / img.height);
@@ -94,11 +94,12 @@ function initHeroParticles() {
         const r = px[p], g = px[p+1], b = px[p+2], a = px[p+3];
         if (a < 10) continue;
 
-        // Keep bright glow pixels: cream/white blobs and light flower texture
+        // Keep blue mist/background pixels — skip the cream flower and very dark areas
         const rf = r / 255, gf = g / 255, bf = b / 255;
         const brightness = (rf + gf + bf) / 3;
-        if (brightness < 0.63) continue;                     // skip dark blue background
-        if (bf > rf + 0.08 && brightness < 0.80) continue;  // skip mid-tone blue
+        if (brightness < 0.30 || brightness > 0.82) continue;  // skip too dark or too white
+        if (bf <= rf + 0.05) continue;   // blue must clearly lead red
+        if (bf <= gf + 0.01) continue;   // blue must lead green too
 
         const sx = ix * s + ox;
         const sy = iy * s + oy;
@@ -125,7 +126,7 @@ function initHeroParticles() {
       gl.shaderSource(s, src); gl.compileShader(s); return s;
     }
 
-    const ptSize = (6 * Math.min(window.devicePixelRatio || 1, 2)).toFixed(1);
+    const ptSize = (9 * Math.min(window.devicePixelRatio || 1, 2)).toFixed(1);
     const vert = `
       attribute vec3 a_posa;
       attribute vec3 a_col;
@@ -145,7 +146,7 @@ function initHeroParticles() {
       void main() {
         float d = length(gl_PointCoord - 0.5);
         if (d > 0.5) discard;
-        float soft = 1.0 - smoothstep(0.15, 0.5, d);
+        float soft = 1.0 - smoothstep(0.05, 0.5, d);
         gl_FragColor = vec4(v_col, soft * v_a);
       }
     `;
@@ -167,10 +168,10 @@ function initHeroParticles() {
     gl.enable(gl.BLEND);
     gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
 
-    const RADIUS = 0.28;
-    const FORCE  = 0.020;
-    const SPRING = 0.022;
-    const DAMP   = 0.88;
+    const RADIUS = 0.32;
+    const FORCE  = 0.016;
+    const SPRING = 0.016;
+    const DAMP   = 0.91;
 
     function tick() {
       const t = Date.now() * 0.001;
@@ -185,8 +186,8 @@ function initHeroParticles() {
         // Idle drift: each particle oscillates with a unique phase
         const phX = hx[i] * 23.7 + hy[i] * 11.3;
         const phY = hx[i] * 17.9 + hy[i] * 31.1;
-        const targetX = hx[i] + Math.sin(t * 0.45 + phX) * 0.018;
-        const targetY = hy[i] + Math.cos(t * 0.30 + phY) * 0.018;
+        const targetX = hx[i] + Math.sin(t * 0.25 + phX) * 0.026;
+        const targetY = hy[i] + Math.cos(t * 0.18 + phY) * 0.024;
 
         // Mouse attraction: particles flow toward cursor
         if (hasM) {
@@ -212,8 +213,8 @@ function initHeroParticles() {
         // Alpha: always visible base + brightness boost near mouse
         const ddx = posArr[i*3] - mxC, ddy = posArr[i*3+1] - myC;
         const distM = Math.sqrt(ddx * ddx + ddy * ddy);
-        const mBoost = hasM ? Math.max(0, 1 - distM / RADIUS) * 0.45 : 0;
-        posArr[i*3+2] = 0.48 + mBoost;
+        const mBoost = hasM ? Math.max(0, 1 - distM / RADIUS) * 0.50 : 0;
+        posArr[i*3+2] = 0.28 + mBoost;
       }
 
       gl.clearColor(0, 0, 0, 0);
