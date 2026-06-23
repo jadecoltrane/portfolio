@@ -1,4 +1,18 @@
-// ── Clock ───────────────────────────────────────────────────────────────────
+// ── Cursor elements (injected on every page) ─────────────────────────────────
+(function() {
+  if (!document.getElementById('cursorDot')) {
+    const d = document.createElement('div');
+    d.id = 'cursorDot'; d.className = 'cursor-dot';
+    document.body.appendChild(d);
+  }
+  if (!document.getElementById('cursorRing')) {
+    const r = document.createElement('div');
+    r.id = 'cursorRing'; r.className = 'cursor-ring';
+    document.body.appendChild(r);
+  }
+})();
+
+// ── Clock ─────────────────────────────────────────────────────────────────────
 function updateClock() {
   const t = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Shanghai' }));
   const pad = n => String(n).padStart(2, '0');
@@ -115,7 +129,6 @@ function initHeroEffect() {
 
       float t = u_time * 0.12;
 
-      // Two layers of warped FBM — same technique as Unicorn Studio fluid effects
       vec2 q = vec2(fbm(uv * 2.8 + vec2(0.0,  0.0) + t * 0.3),
                     fbm(uv * 2.8 + vec2(5.2,  1.3) + t * 0.25));
 
@@ -125,11 +138,10 @@ function initHeroEffect() {
       float f = fbm(uv * 1.8 + 3.0 * r + t * 0.08);
       f = f * 0.5 + 0.5;
 
-      // Teal palette: deep → mid → bright → highlight
-      vec3 c0 = vec3(0.022, 0.180, 0.172); // #083A38 darkest
-      vec3 c1 = vec3(0.039, 0.369, 0.345); // #0A5E58
-      vec3 c2 = vec3(0.055, 0.510, 0.471); // #0E8278
-      vec3 c3 = vec3(0.098, 0.686, 0.627); // #19AFA0 brightest
+      vec3 c0 = vec3(0.022, 0.180, 0.172);
+      vec3 c1 = vec3(0.039, 0.369, 0.345);
+      vec3 c2 = vec3(0.055, 0.510, 0.471);
+      vec3 c3 = vec3(0.098, 0.686, 0.627);
 
       float lq = clamp(length(q) * 0.7, 0.0, 1.0);
       float lr = clamp(length(r) * 0.6, 0.0, 1.0);
@@ -138,11 +150,9 @@ function initHeroEffect() {
       col = mix(col, c2, lq);
       col = mix(col, c3, lr * lr * 0.6);
 
-      // Soft light bloom at top-centre
       float bloom = smoothstep(0.5, 0.0, length(uv - vec2(0.5, 0.25)));
       col += vec3(0.04, 0.12, 0.10) * bloom * 0.6;
 
-      // Subtle vignette
       float vig = uv.x * (1.0-uv.x) * uv.y * (1.0-uv.y);
       col *= 0.7 + 0.5 * pow(vig * 16.0, 0.18);
 
@@ -288,7 +298,7 @@ if (hero) {
   hero.addEventListener('mouseenter', () => document.body.classList.add('cursor-on-hero'));
   hero.addEventListener('mouseleave', () => document.body.classList.remove('cursor-on-hero'));
 }
-document.querySelectorAll('a, .lang-btn').forEach(el => {
+document.querySelectorAll('a, button, .lang-btn').forEach(el => {
   el.addEventListener('mouseenter', () => document.body.classList.add('cursor-on-link'));
   el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-on-link'));
 });
