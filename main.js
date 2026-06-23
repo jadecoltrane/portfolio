@@ -107,32 +107,34 @@ function initHeroFlow() {
       vec2 uv = ((v_uv * u_res - off) / s) / u_img;
       vec4 photo = texture2D(u_tex, clamp(uv, 0.0, 1.0));
 
-      // ── Flowing blue/cream gradient (the background that moves) ──
+      // ── Flow field (light moving across the background) ──
+      // The photo's blue background is smooth, so warping it shows no motion.
+      // Instead we keep each pixel's ORIGINAL colour and run a flowing band of
+      // light/shadow (in the photo's own tones) across it — clearly animated.
       vec2 p = v_uv - 0.5;
       p.x *= u_res.x / u_res.y;
-      vec3 blueDark = vec3(0.255, 0.357, 0.475);
-      vec3 blueMid  = vec3(0.494, 0.604, 0.710);
-      vec3 cream    = vec3(0.937, 0.910, 0.835);
-      vec3 mist     = vec3(0.792, 0.847, 0.886);
+      float t = u_time * 0.28;
+      vec2 flow = vec2(t, t * 0.6);
+      vec2 w = vec2(fbm(p * 1.4 + flow), fbm(p * 1.4 + flow + 7.3));
+      float nf = fbm(p * 1.8 + w * 1.1);
+      // a travelling wave guarantees the light visibly sweeps across the blue
+      float wave = 0.5 + 0.5 * sin((p.x * 2.2 + p.y * 1.4) * 3.1 - t * 2.0 + (w.x - 0.5) * 4.0);
+      float n = mix(nf, wave, 0.5);
 
-      float t = u_time * 0.06;
-      vec2 flow = vec2(t * 0.35, t * 0.22);
-      vec2 w = vec2(fbm(p * 1.2 + flow), fbm(p * 1.2 + flow + 7.3));
-      float n1 = fbm(p * 1.7 + w * 0.9 + flow * 0.5);
-      float n2 = fbm(p * 2.6 - w * 0.6 + flow * 0.3 + 13.0);
+      // Light/shadow derived from the local original colour → stays true to the photo
+      vec3 base = photo.rgb;
+      vec3 hi   = mix(base, vec3(0.937, 0.910, 0.835), 0.50);  // toward the photo's cream glow
+      vec3 lo   = base * 0.82;                                  // gentle shadow
+      vec3 flowCol = mix(lo, hi, smoothstep(0.32, 0.74, n));
 
-      vec3 grad = mix(blueDark, blueMid, smoothstep(0.28, 0.72, n1));
-      grad = mix(grad, cream, smoothstep(0.40, 0.70, n2));
-      grad = mix(grad, mist,  smoothstep(0.55, 0.85, (n1 + n2) * 0.5) * 0.5);
-
-      // ── Composite: lace flower stays from photo, blue background flows ──
+      // ── Composite: lace flower stays static, blue background flows ──
       // Cyanotype blue is desaturated, so (b - r) separates background blue
       // from the cream/lace flower far better than (b - max(r,g)).
       // Flower lace (cream / warm) → low b-r → keep photo (static).
-      // Smooth blue background → high b-r → flowing gradient shows through.
+      // Smooth blue background → high b-r → flowing light shows through.
       float blueLead = photo.b - photo.r;
       float bg = smoothstep(0.06, 0.12, blueLead);
-      vec3 col = mix(photo.rgb, grad, bg);
+      vec3 col = mix(base, flowCol, bg);
 
       // Readability darkening (top + bottom)
       vec3 navy = vec3(0.031, 0.059, 0.110);
