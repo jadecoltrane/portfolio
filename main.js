@@ -61,10 +61,16 @@ function applyAmbient() {
 applyAmbient();
 setInterval(applyAmbient, 300000);
 
-// ── Hero: flower particle scatter ─────────────────────────────────────────────
+// ── Hero: flower image background + colored-pixel scatter on hover ─────────────
 function initHeroParticles() {
   const hero = document.querySelector('.card-hero');
   if (!hero) return;
+
+  // Flower as CSS background (dark tint keeps text readable)
+  hero.style.backgroundImage = "linear-gradient(rgba(5,15,10,0.38),rgba(5,15,10,0.38)),url('flower.png')";
+  hero.style.backgroundSize = 'cover';
+  hero.style.backgroundPosition = 'center';
+  hero.style.backgroundRepeat = 'no-repeat';
 
   const canvas = document.createElement('canvas');
   canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border-radius:inherit;pointer-events:none;z-index:0;';
@@ -85,78 +91,92 @@ function initHeroParticles() {
   resize();
   new ResizeObserver(resize).observe(hero);
 
-  // Mouse in framebuffer coordinates
+  // Mouse in CSS pixels (matches cover-scaling math below)
   let mouseX = -99999, mouseY = -99999;
   hero.addEventListener('mousemove', e => {
     const r = hero.getBoundingClientRect();
-    const dpr = Math.min(devicePixelRatio, 2);
-    mouseX = (e.clientX - r.left) * dpr;
-    mouseY = (e.clientY - r.top)  * dpr;
+    mouseX = e.clientX - r.left;
+    mouseY = e.clientY - r.top;
   });
   hero.addEventListener('mouseleave', () => { mouseX = -99999; mouseY = -99999; });
 
   const img = new Image();
   img.onload = () => {
-    // ── Sample pixels, skip cream background ─────────────────────────────────
     const offC = document.createElement('canvas');
     offC.width = img.width; offC.height = img.height;
     offC.getContext('2d').drawImage(img, 0, 0);
     const px = offC.getContext('2d').getImageData(0, 0, img.width, img.height).data;
 
-    const STEP = 3;
+    const STEP   = 3;
+    const cardW  = hero.offsetWidth;
+    const cardH  = hero.offsetHeight;
+    // Mirror CSS background-size:cover to get exact particle positions
+    const s  = Math.max(cardW / img.width, cardH / img.height);
+    const ox = (cardW - img.width  * s) / 2;
+    const oy = (cardH - img.height * s) / 2;
+
     const hx = [], hy = [], cr = [], cg = [], cb = [];
 
     for (let iy = 0; iy < img.height; iy += STEP) {
       for (let ix = 0; ix < img.width; ix += STEP) {
         const p = (iy * img.width + ix) * 4;
-        const r = px[p], g = px[p+1], b = px[p+2];
+        const r = px[p], g = px[p+1], b = px[p+2], a = px[p+3];
+        if (a < 10) continue;
+
+        // Only keep non-cream pixels (the actual flower strokes)
         const brightness = (r + g + b) / (3 * 255);
         const max = Math.max(r, g, b), min = Math.min(r, g, b);
         const sat = max > 0 ? (max - min) / max : 0;
-        // Skip nearly-white cream background
         if (brightness > 0.87 && sat < 0.12) continue;
 
-        // Home position in clip space, image fills card
-        hx.push((ix / (img.width  - 1)) * 2 - 1);
-        hy.push(1 - (iy / (img.height - 1)) * 2);
+        // CSS-pixel position matching background-size:cover + background-position:center
+        const sx = ix * s + ox;
+        const sy = iy * s + oy;
+        if (sx < 0 || sx >= cardW || sy < 0 || sy >= cardH) continue;
+
+        hx.push((sx / cardW) * 2 - 1);
+        hy.push(1 - (sy / cardH) * 2);
         cr.push(r / 255); cg.push(g / 255); cb.push(b / 255);
       }
     }
 
     const N = hx.length;
-    const posArr = new Float32Array(N * 2);
-    const velArr = new Float32Array(N * 2);  // vx, vy interleaved
+    // posArr: x, y, alpha (alpha driven by displacement – invisible at rest)
+    const posArr = new Float32Array(N * 3);
+    const velArr = new Float32Array(N * 2);
     const colArr = new Float32Array(N * 3);
 
     for (let i = 0; i < N; i++) {
-      posArr[i*2] = hx[i]; posArr[i*2+1] = hy[i];
+      posArr[i*3] = hx[i]; posArr[i*3+1] = hy[i]; posArr[i*3+2] = 0;
       colArr[i*3] = cr[i]; colArr[i*3+1] = cg[i]; colArr[i*3+2] = cb[i];
     }
 
-    // ── WebGL setup ───────────────────────────────────────────────────────────
     function compileShader(type, src) {
       const s = gl.createShader(type);
       gl.shaderSource(s, src); gl.compileShader(s); return s;
     }
 
     const vert = `
-      attribute vec2 a_pos;
+      attribute vec3 a_posa;
       attribute vec3 a_col;
       varying vec3 v_col;
+      varying float v_a;
       void main() {
-        gl_Position  = vec4(a_pos, 0.0, 1.0);
-        gl_PointSize = 3.5;
+        gl_Position  = vec4(a_posa.xy, 0.0, 1.0);
+        gl_PointSize = 4.0;
         v_col = a_col;
+        v_a   = a_posa.z;
       }
     `;
     const frag = `
       precision mediump float;
       varying vec3 v_col;
+      varying float v_a;
       void main() {
         float d = length(gl_PointCoord - 0.5);
         if (d > 0.5) discard;
-        float a = 1.0 - smoothstep(0.3, 0.5, d);
-        gl_FragColor = vec4(v_col, a * 0.92);
+        float soft = 1.0 - smoothstep(0.3, 0.5, d);
+        gl_FragColor = vec4(v_col, soft * v_a);
       }
     `;
 
@@ -168,61 +188,57 @@ function initHeroParticles() {
     const posBuf = gl.createBuffer();
     const colBuf = gl.createBuffer();
 
-    // Upload static color data once
     gl.bindBuffer(gl.ARRAY_BUFFER, colBuf);
     gl.bufferData(gl.ARRAY_BUFFER, colArr, gl.STATIC_DRAW);
 
-    const aPos = gl.getAttribLocation(prog, 'a_pos');
-    const aCol = gl.getAttribLocation(prog, 'a_col');
+    const aPosa = gl.getAttribLocation(prog, 'a_posa');
+    const aCol  = gl.getAttribLocation(prog, 'a_col');
 
     gl.enable(gl.BLEND);
     gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
 
-    // ── Physics constants ──────────────────────────────────────────────────────
-    const RADIUS = 0.28;   // repulsion radius in clip space
-    const FORCE  = 0.025;  // repulsion strength
-    const SPRING = 0.055;  // return spring
-    const DAMP   = 0.87;   // velocity damping
+    const RADIUS = 0.22;
+    const FORCE  = 0.022;
+    const SPRING = 0.055;
+    const DAMP   = 0.87;
 
-    // ── Render loop ───────────────────────────────────────────────────────────
     function tick() {
-      // Convert mouse to clip space
-      const mxC = (mouseX / W) * 2 - 1;
-      const myC = 1 - (mouseY / H) * 2;
+      const mxC = mouseX / cardW * 2 - 1;
+      const myC = 1 - mouseY / cardH * 2;
 
       for (let i = 0; i < N; i++) {
-        let px = posArr[i*2],   py = posArr[i*2+1];
+        let px = posArr[i*3],   py = posArr[i*3+1];
         let vx = velArr[i*2],   vy = velArr[i*2+1];
 
         const dx = px - mxC, dy = py - myC;
-        const dist2 = dx*dx + dy*dy;
-        const dist = Math.sqrt(dist2);
+        const dist = Math.sqrt(dx*dx + dy*dy);
 
         if (dist < RADIUS && dist > 0.0005) {
           const f = (1 - dist / RADIUS) * FORCE / dist;
-          vx += dx * f;
-          vy += dy * f;
+          vx += dx * f; vy += dy * f;
         }
 
-        // Spring toward home
         vx += (hx[i] - px) * SPRING;
         vy += (hy[i] - py) * SPRING;
         vx *= DAMP; vy *= DAMP;
 
-        posArr[i*2]   = px + vx;
-        posArr[i*2+1] = py + vy;
+        posArr[i*3]   = px + vx;
+        posArr[i*3+1] = py + vy;
         velArr[i*2]   = vx;
         velArr[i*2+1] = vy;
+
+        // Fade in only when displaced from home (invisible at rest)
+        const ddx = posArr[i*3] - hx[i], ddy = posArr[i*3+1] - hy[i];
+        posArr[i*3+2] = Math.min(1.0, Math.sqrt(ddx*ddx + ddy*ddy) / 0.025);
       }
 
-      // Render
       gl.clearColor(0, 0, 0, 0);
       gl.clear(gl.COLOR_BUFFER_BIT);
 
       gl.bindBuffer(gl.ARRAY_BUFFER, posBuf);
       gl.bufferData(gl.ARRAY_BUFFER, posArr, gl.DYNAMIC_DRAW);
-      gl.enableVertexAttribArray(aPos);
-      gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
+      gl.enableVertexAttribArray(aPosa);
+      gl.vertexAttribPointer(aPosa, 3, gl.FLOAT, false, 0, 0);
 
       gl.bindBuffer(gl.ARRAY_BUFFER, colBuf);
       gl.enableVertexAttribArray(aCol);
