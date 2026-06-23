@@ -66,8 +66,8 @@ function initHeroParticles() {
   const hero = document.querySelector('.card-hero');
   if (!hero) return;
 
-  // Flower as CSS background (dark tint keeps text readable)
-  hero.style.backgroundImage = "linear-gradient(rgba(5,15,10,0.38),rgba(5,15,10,0.38)),url('flower.png')";
+  // Flower as CSS background — original colors, no overlay
+  hero.style.backgroundImage = "url('flower.png')";
   hero.style.backgroundSize = 'cover';
   hero.style.backgroundPosition = 'center';
   hero.style.backgroundRepeat = 'no-repeat';
@@ -123,11 +123,11 @@ function initHeroParticles() {
         const r = px[p], g = px[p+1], b = px[p+2], a = px[p+3];
         if (a < 10) continue;
 
-        // Only keep non-cream pixels (the actual flower strokes)
-        const brightness = (r + g + b) / (3 * 255);
-        const max = Math.max(r, g, b), min = Math.min(r, g, b);
-        const sat = max > 0 ? (max - min) / max : 0;
-        if (brightness > 0.87 && sat < 0.12) continue;
+        // Only keep pink/rose pixels (R significantly dominates G and B)
+        const rf = r / 255, gf = g / 255, bf = b / 255;
+        const brightness = (rf + gf + bf) / 3;
+        if (brightness > 0.92) continue;          // skip cream/white
+        if ((rf - gf) < 0.10 || (rf - bf) < 0.08) continue; // skip non-pink
 
         // CSS-pixel position matching background-size:cover + background-position:center
         const sx = ix * s + ox;

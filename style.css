@@ -104,9 +104,17 @@ body.cursor-active.cursor-on-link .cursor-dot  { width: 10px; height: 10px; back
   color: var(--color-white); display: flex; flex-direction: column;
   justify-content: space-between; padding: 32px;
 }
-/* When WebGL canvas is active, stop the CSS gradient animation */
+/* When WebGL canvas is active, stop gradient animation and switch to dark text */
 .card-hero.webgl-active {
   animation: fadeUp 0.5s ease 0.05s forwards;
+  color: var(--color-text-dark);
+}
+.card-hero.webgl-active .hero-connect {
+  border-color: rgba(10,26,24,0.35);
+  color: var(--color-text-dark);
+}
+.card-hero.webgl-active .hero-connect:hover {
+  background: rgba(10,26,24,0.07);
 }
 .card-hero > *:not(.time-overlay) { position: relative; z-index: 1; }
 .card-hero::after {
