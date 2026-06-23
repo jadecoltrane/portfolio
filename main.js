@@ -121,38 +121,26 @@ if (hero) {
   });
 }
 
-// ── Custom cursor + Parallax ───────────────────────────────────────────────────
+// ── Custom cursor ───────────────────────────────────────────────────────────
 const dot  = document.getElementById('cursorDot');
 const ring = document.getElementById('cursorRing');
-const middleEl = document.querySelector('.bento-middle');
-const rightEl  = document.querySelector('.bento-right');
-const hasHover = window.matchMedia('(hover: hover)').matches;
 
 let mx = -100, my = -100, rx = -100, ry = -100;
-let pmx = 0, pmy = 0, plx = 0, ply = 0;
 
 document.addEventListener('mousemove', e => {
   mx = e.clientX; my = e.clientY;
-  pmx = (e.clientX / window.innerWidth  - 0.5) * 2;
-  pmy = (e.clientY / window.innerHeight - 0.5) * 2;
   document.body.classList.add('cursor-active');
   if (dot) { dot.style.left = mx + 'px'; dot.style.top = my + 'px'; }
 });
 
 document.addEventListener('mouseleave', () => {
   document.body.classList.remove('cursor-active');
-  pmx = 0; pmy = 0;
 });
 
 function mainLoop() {
   if (ring) {
     rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
     ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
-  }
-  if (hasHover) {
-    plx += (pmx - plx) * 0.07; ply += (pmy - ply) * 0.07;
-    if (middleEl) middleEl.style.transform = `translate(${plx * 8}px, ${ply * 5}px)`;
-    if (rightEl)  rightEl.style.transform  = `translate(${plx * 14}px, ${ply * 8}px)`;
   }
   requestAnimationFrame(mainLoop);
 }
