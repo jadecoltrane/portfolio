@@ -3,47 +3,192 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>座舱 HMI · 黄佩瑶</title>
+  <title>控制中心改版迭代 · 黄佩瑶</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="case-page">
     <a href="index.html" class="case-back">← 返回首页</a>
+
     <div class="case-header">
       <div class="case-tags">
         <span class="tag">HMI</span>
         <span class="tag">Smart Cockpit</span>
-        <span class="tag">车企</span>
+        <span class="tag">量产项目</span>
       </div>
-      <h1 class="case-title">智能座舱 HMI</h1>
-      <p class="case-subtitle">智能座舱人机交互体验设计</p>
+      <h1 class="case-title">控制中心改版迭代</h1>
+      <p class="case-subtitle">当功能不断涌入，控制中心如何保持「伸手就到」？</p>
     </div>
-    <div class="case-cover" style="background: linear-gradient(135deg, #9B7FA8, #C4A8BC);">封面图片</div>
+
+    <div class="case-meta">
+      <div class="case-meta-item">
+        <span class="case-meta-label">我的角色</span>
+        <span class="case-meta-value">交互设计 · 功能排序与布局 · 准入规则定义</span>
+      </div>
+      <div class="case-meta-item">
+        <span class="case-meta-label">产品</span>
+        <span class="case-meta-value">某量产车机 · 控制中心</span>
+      </div>
+      <div class="case-meta-item">
+        <span class="case-meta-label">状态</span>
+        <span class="case-meta-value">已随量产版本上线</span>
+      </div>
+    </div>
+
+    <div class="case-cover" style="background: linear-gradient(135deg, #D05A30, #A83A18);"></div>
+
+    <!-- 核心问题 -->
     <div class="case-section">
-      <h2>项目背景</h2>
-      <p>待填写：项目背景、你的角色与职责范围。</p>
-      <div class="case-image-placeholder">图片占位 · 后续替换</div>
+      <div class="case-challenge">
+        <p class="case-challenge-quote">"驾驶中，找一个开关的每一秒都有成本。"</p>
+        <p>控制中心是车机里使用频率最高的面板之一，也是系统的「泄洪区」——每当产品定义一个新功能而它没有明确归属时，控制中心往往是第一候选落点。我作为 UX 设计师深度参与控制中心的改版迭代与新功能承接：<strong>加什么功能是产品定义的；怎么进、放在哪、怎么呈现，是我定的。</strong></p>
+      </div>
     </div>
+
+    <!-- 发现问题 -->
     <div class="case-section">
-      <h2>发现问题</h2>
-      <p>待填写：用户研究、痛点发现。</p>
-      <div class="case-image-placeholder">图片占位 · 后续替换</div>
+      <h2>问题：一级入口的结构性膨胀</h2>
+      <p>车机功能沿版本持续增长，而控制中心的物理条件是刚性的：屏幕尺寸固定、驾驶中可安全触达的热区有限、单次瞥视时长有硬约束。功能是流量，面板是容器——没有准入和排序规则的容器，迟早溢出。</p>
+      <p style="margin-top: 14px;">改版前的具体表现：高频功能与低频功能平铺混排，视觉权重接近，找目标靠「逐个看」；部分高频开关落在驾驶位难以触达的区域。</p>
+      <div class="case-insight">
+        <span class="case-insight-label">问题定义</span>
+        <p>在容器不变、功能持续增加的前提下，如何让驾驶员在行驶中用<strong>最少的注意力</strong>找到并够到目标开关？这句话拆出三个可设计的变量：<strong>什么配进来（准入）、按什么排（排序）、怎么被看见（呈现）</strong>——对应下面三个核心决策。</p>
+      </div>
+      <div class="case-image-placeholder">改版前界面重绘 + 问题标注（热区 / 混排 / 密度）· 图片占位</div>
     </div>
+
+    <!-- 竞品拆解 -->
     <div class="case-section">
-      <h2>分析与洞察</h2>
-      <p>待填写：分析过程、框架工具使用。</p>
-      <div class="case-image-placeholder">图片占位 · 后续替换</div>
+      <h2>竞品拆解：五个维度看控制中心</h2>
+      <p>改版前做过竞品布局对比；整理本案例时深化为五个维度的结构化拆解（全部基于公开渠道界面）：<strong>入口密度、常驻 vs 可自定义、开关状态可读性、驾驶中热区可达性、与设置页的层级分工</strong>。</p>
+      <div class="case-insight">
+        <span class="case-insight-label">两个关键输入</span>
+        <p>「系统钦定核心区 + 少量自定义」是主流折中——全靠用户自定义，大多数用户从不改；全系统钦定，重度用户不满。真正拉开差距的是<strong>开关状态可读性</strong>：做得好的用色彩 + 图标双通道编码，做得差的开与关只差一点透明度。</p>
+      </div>
+      <div class="case-image-placeholder">五维度竞品对比矩阵 · 图片占位</div>
     </div>
+
+    <!-- 核心设计决策 -->
     <div class="case-section">
-      <h2>设计方案</h2>
-      <p>待填写：设计过程与最终方案。</p>
-      <div class="case-image-placeholder">图片占位 · 后续替换</div>
+      <h2>核心设计决策</h2>
+      <p class="case-section-intro">三个决策分别回答「按什么排、什么配进来、怎么被看见」，共同构成控制中心的守门逻辑。</p>
+
+      <!-- 01 排序逻辑 -->
+      <div class="decision-card">
+        <div class="decision-header">
+          <span class="decision-number">01</span>
+          <div>
+            <h3 class="decision-title">排序逻辑</h3>
+            <p class="decision-question">几十个功能，谁排前面？</p>
+          </div>
+        </div>
+        <div class="decision-body">
+          <div class="decision-rule">
+            <p>三轮筛选：先按<strong>使用频率</strong>排出基础序 → 再用<strong>驾驶安全相关性</strong>做局部上浮（除雾这类「必须立即完成」的操作，哪怕绝对频率不是最高）→ 最后按<strong>热区可达性</strong>映射到布局，权重最高的功能放驾驶位单手可达热区。</p>
+          </div>
+          <div class="decision-choice decision-choice--rejected">
+            <span class="decision-badge decision-badge--rejected">放弃</span>
+            <p><strong>按功能类别分组</strong>（空调一组、多媒体一组）<br>驾驶中的任务是「调一个具体开关」而非「浏览一个类别」，分组徒增一次定位；且各组内高低频混排，热区利用率低</p>
+          </div>
+          <div class="decision-choice decision-choice--rejected">
+            <span class="decision-badge decision-badge--rejected">放弃</span>
+            <p><strong>完全交给用户自定义</strong><br>大多数用户不会配置，默认序仍然要有人负责——自定义可以作为补充，不能作为答案</p>
+          </div>
+        </div>
+        <div class="case-image-placeholder">排序前后对比 · 三因子作用标注 · 图片占位</div>
+      </div>
+
+      <!-- 02 准入与去向 -->
+      <div class="decision-card">
+        <div class="decision-header">
+          <span class="decision-number">02</span>
+          <div>
+            <h3 class="decision-title">准入与去向</h3>
+            <p class="decision-question">新功能持续到来，什么配进控制中心？</p>
+          </div>
+        </div>
+        <div class="decision-body">
+          <div class="decision-rule">
+            <p>控制中心只收「<strong>驾驶中会用、状态会变、操作是一步开关或一步调档</strong>」的功能；需要浏览、需要多步配置的，沉设置页。</p>
+          </div>
+          <p>这条规则把「产品让加」转写成「我定义了进入方式与呈现层级」——需求来源是产品的，功能落在哪一层、以什么形态出现，是设计侧的裁量权，而我建立了行使这个裁量权的规则。它在后续版本的新功能承接中被继续使用：容器有了守门逻辑，膨胀不再靠一次次改版兜底。</p>
+        </div>
+        <div class="case-image-placeholder">准入决策树（什么进、进到哪）· 图片占位</div>
+      </div>
+
+      <!-- 03 车规约束 -->
+      <div class="decision-card">
+        <div class="decision-header">
+          <span class="decision-number">03</span>
+          <div>
+            <h3 class="decision-title">车规约束下的呈现</h3>
+            <p class="decision-question">排好了序，驾驶中真的「看得清、够得着」吗？</p>
+          </div>
+        </div>
+        <div class="decision-body">
+          <ul style="padding-left: 20px; display: grid; gap: 8px;">
+            <li><strong>盲操与瞥视</strong>——单次瞥视时长有限，开关必须在一瞥内可辨识：图标 + 状态色双通道编码，不依赖细小文字</li>
+            <li><strong>亮暗态</strong>——夜间行车暗态下对比度重新校验，状态色不能靠饱和度硬撑</li>
+            <li><strong>可达热区</strong>——布局映射遵循驾驶位单手可达分区，高频开关不进屏幕远端</li>
+          </ul>
+        </div>
+        <div class="case-image-placeholder">亮暗态对比 / 热区分区图 · 图片占位</div>
+      </div>
     </div>
+
+    <!-- 结果 -->
     <div class="case-section">
-      <h2>结果与反思</h2>
-      <p>待填写：项目结果与个人成长。</p>
+      <h2>结果</h2>
+      <p>改版随量产版本上线。比上线更持久的结果是<strong>规则</strong>：排序三因子和准入判断成为后续版本承接新功能时的守门逻辑。</p>
+      <div class="case-image-placeholder">上线后用户反馈 · 验收结论（脱敏整理中）· 占位</div>
     </div>
-    <a href="index.html" class="case-back" style="margin-top: 40px; display: inline-flex;">← 返回首页</a>
+
+    <!-- LLM 延伸 -->
+    <div class="case-section">
+      <h2>延伸思考：当 Agent 能听懂「我有点冷」，控制中心还剩什么？</h2>
+      <p class="case-section-intro">以上全部工作有一个隐含前提：用户自己动手操作。LLM 驱动的座舱 Agent 正在改变这个前提——当用户说「我有点冷」，Agent 直接调高温度，不需要任何人找任何开关。为「人找开关」而生的控制中心，是否就该消失？</p>
+      <p>我的判断：<strong>不是消失，而是转型——从操作入口变成 Agent 行为的可见层。</strong>Agent 接管执行后，控制中心的新职责恰恰是 Agent 无法自我提供的：</p>
+      <div class="principle-grid" style="margin-top: 18px;">
+        <div class="principle-card">
+          <span class="principle-num">01</span>
+          <h4 class="principle-title">执行回显</h4>
+          <p class="principle-desc">Agent 刚才调了什么？温度从几度到几度？动作要被看见，信任才有依据。</p>
+        </div>
+        <div class="principle-card">
+          <span class="principle-num">02</span>
+          <h4 class="principle-title">当前状态</h4>
+          <p class="principle-desc">语音是瞬时的，状态需要一个常驻的、可一眼读取的真相之源。</p>
+        </div>
+        <div class="principle-card">
+          <span class="principle-num">03</span>
+          <h4 class="principle-title">一键撤销</h4>
+          <p class="principle-desc">Agent 理解错了（「我有点冷」其实是想关空调），撤销必须比重新对话快。</p>
+        </div>
+        <div class="principle-card">
+          <span class="principle-num">04</span>
+          <h4 class="principle-title">授权开关</h4>
+          <p class="principle-desc">哪些操作 Agent 可以直接做、哪些要先问我——授权边界需要一个用户可控的物理落点。</p>
+        </div>
+      </div>
+      <div class="case-insight" style="margin-top: 20px;">
+        <span class="case-insight-label">有趣的对称</span>
+        <p>手动面板成为人对 Agent 的<strong>信任兜底</strong>。排序逻辑此时依然成立，只是对象变了——从「用户最常操作的功能」变成「用户最需要看见和干预的 Agent 行为」：高频被 Agent 代办的操作，其回显和撤销入口反而要排最前。</p>
+      </div>
+      <div class="case-image-placeholder">概念稿：控制中心作为 Agent 行为可见层（回显流 + 撤销 + 授权开关）· 图片占位</div>
+    </div>
+
+    <!-- 设计反思 -->
+    <div class="case-section">
+      <h2>设计反思</h2>
+      <p>这个项目里我做的最有价值的东西不是某一版界面，而是两条能持续运转的规则：排序三因子与准入判断。界面会被下一次改版覆盖，规则会被下一个功能继续使用。</p>
+      <p style="margin-top: 14px; color: var(--color-text-mid);">这也是我看待座舱 Agent 时代的方式：我做过 Agent 将要操作的工具层，所以我知道「可见、可撤销、可授权」不是锦上添花，而是控制中心存在的下一个理由。</p>
+    </div>
+
+    <!-- 底部导航 -->
+    <div class="case-nav">
+      <a href="index.html" class="case-back">← 返回首页</a>
+      <a href="project-ai.html" class="case-next">查看下一个案例 →</a>
+    </div>
   </div>
   <script src="main.js"></script>
 </body>
