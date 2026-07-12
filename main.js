@@ -301,3 +301,43 @@ document.querySelectorAll('a, button, .lang-btn').forEach(el => {
   el.addEventListener('mouseenter', () => document.body.classList.add('cursor-on-link'));
   el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-on-link'));
 });
+
+// ── Mini control center (bento-right widget) ─────────────────────────────────
+(function () {
+  const root = document.documentElement;
+  const ACCENTS = ['', 'teal', 'violet'];
+
+  const dark = document.getElementById('ctrlDark');
+  function syncDark() {
+    const on = root.getAttribute('data-theme') === 'dark';
+    if (dark) { dark.classList.toggle('ctrl-row--on', on); dark.setAttribute('aria-pressed', String(on)); }
+  }
+  if (dark) {
+    dark.addEventListener('click', () => {
+      const on = root.getAttribute('data-theme') === 'dark';
+      if (on) { root.removeAttribute('data-theme'); try { localStorage.removeItem('jcTheme'); } catch (e) {} }
+      else { root.setAttribute('data-theme', 'dark'); try { localStorage.setItem('jcTheme', 'dark'); } catch (e) {} }
+      syncDark();
+    });
+    syncDark();
+  }
+
+  const amb = document.getElementById('ctrlAmbient');
+  function syncAmb() {
+    const cur = root.getAttribute('data-accent') || '';
+    if (!amb) return;
+    amb.classList.toggle('ctrl-row--on', cur !== '');
+    amb.querySelectorAll('.ctrl-dot').forEach(d =>
+      d.classList.toggle('ctrl-dot--active', (d.dataset.accent || '') === cur));
+  }
+  if (amb) {
+    amb.addEventListener('click', () => {
+      const cur = root.getAttribute('data-accent') || '';
+      const next = ACCENTS[(ACCENTS.indexOf(cur) + 1) % ACCENTS.length];
+      if (next) { root.setAttribute('data-accent', next); try { localStorage.setItem('jcAccent', next); } catch (e) {} }
+      else { root.removeAttribute('data-accent'); try { localStorage.removeItem('jcAccent'); } catch (e) {} }
+      syncAmb();
+    });
+    syncAmb();
+  }
+})();

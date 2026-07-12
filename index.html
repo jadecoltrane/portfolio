@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>黄佩瑶 · UX Designer</title>
   <link rel="stylesheet" href="style.css">
+  <script>(function(){try{var t=localStorage.getItem("jcTheme");if(t)document.documentElement.setAttribute("data-theme",t);var a=localStorage.getItem("jcAccent");if(a)document.documentElement.setAttribute("data-accent",a);}catch(e){}})();</script>
 </head>
 <body data-lang="zh">
 
@@ -68,13 +69,39 @@
       </div>
 
       <div class="bento-right">
-        <div class="card card-photo">
-          <div class="photo-label" data-zh="最近在拍" data-en="Recently shot">最近在拍</div>
-          <div class="photo-frame">
-            <div class="photo-placeholder">
-              <span data-zh="图片占位" data-en="Photo">图片占位</span>
+        <div class="card card-controls">
+          <div class="photo-label" data-zh="迷你控制中心 · 真的能用" data-en="Mini control center · it works">迷你控制中心 · 真的能用</div>
+          <div class="ctrl-rows">
+            <button class="ctrl-row" id="ctrlDark" aria-pressed="false">
+              <span class="ctrl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></span>
+              <span class="ctrl-txt">
+                <span class="ctrl-name" data-zh="暗夜模式" data-en="Dark mode">暗夜模式</span>
+                <span class="ctrl-sub" data-zh="暗态对比度已校验" data-en="Dark-state contrast checked">暗态对比度已校验</span>
+              </span>
+              <span class="ctrl-sw"></span>
+            </button>
+            <button class="ctrl-row" id="ctrlAmbient">
+              <span class="ctrl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.4 1 2.3h6c0-.9.4-1.8 1-2.3A7 7 0 0 0 12 2z"/></svg></span>
+              <span class="ctrl-txt">
+                <span class="ctrl-name" data-zh="氛围灯" data-en="Ambient light">氛围灯</span>
+                <span class="ctrl-sub" data-zh="点击切换主题色" data-en="Tap to cycle accent">点击切换主题色</span>
+              </span>
+              <span class="ctrl-dots">
+                <span class="ctrl-dot" data-accent="" style="background:#D05A30;color:#D05A30;"></span>
+                <span class="ctrl-dot" data-accent="teal" style="background:#0E8278;color:#0E8278;"></span>
+                <span class="ctrl-dot" data-accent="violet" style="background:#5B4FCF;color:#5B4FCF;"></span>
+              </span>
+            </button>
+            <div class="ctrl-row ctrl-row--disabled" id="ctrlDemo">
+              <span class="ctrl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v2M5.6 5.6l1.4 1.4M3 12h2M18.4 5.6 17 7M19 12h2M12 21a7 7 0 0 0 7-7H5a7 7 0 0 0 7 7z"/></svg></span>
+              <span class="ctrl-txt">
+                <span class="ctrl-name">Agent Demo</span>
+                <span class="ctrl-sub" data-zh="上线后从这里直达" data-en="Direct link once live">上线后从这里直达</span>
+              </span>
+              <span class="ctrl-badge" data-zh="建设中" data-en="WIP">建设中</span>
             </div>
           </div>
+          <div class="ctrl-hint" data-zh="开关状态双通道编码——为什么这样做,见「控制中心」案例 →" data-en="Two-channel state encoding — see the Control Center case →">开关状态双通道编码——为什么这样做,见<a href="project-hmi.html">「控制中心」案例</a> →</div>
         </div>
         <a href="resume.html" class="card card-resume">
           <div class="resume-mini-label">Resume ✦</div>
