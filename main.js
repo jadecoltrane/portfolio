@@ -35,30 +35,24 @@ document.querySelectorAll('.lang-btn').forEach(btn => {
 });
 
 
-// ── Hero: static cutout flower + flowing blue/cream gradient behind it ────────
+// ── Hero: interactive dark flow field (touch/cursor ripples) ─────────────────
 function initHeroFlow() {
   const hero = document.querySelector('.card-hero');
   if (!hero) return;
-
-  // Photo stays as a CSS fallback (and for non-WebGL browsers)
-  hero.style.backgroundImage = "url('hero-flower.jpg')";
-  hero.style.backgroundSize = 'cover';
-  hero.style.backgroundPosition = 'center 30%';
-  hero.style.backgroundRepeat = 'no-repeat';
 
   const canvas = document.createElement('canvas');
   canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border-radius:inherit;pointer-events:none;z-index:0;';
   hero.insertBefore(canvas, hero.firstChild);
 
-  const gl = canvas.getContext('webgl', { alpha: true });
+  const gl = canvas.getContext('webgl', { alpha: true, antialias: false, powerPreference: 'low-power' });
   if (!gl) { canvas.remove(); return; }
 
   hero.classList.add('webgl-active');
 
+  const DPR = Math.min(devicePixelRatio || 1, 1.5);
   function resize() {
-    const dpr = Math.min(devicePixelRatio, 2);
-    canvas.width  = hero.offsetWidth  * dpr;
-    canvas.height = hero.offsetHeight * dpr;
+    canvas.width  = Math.max(1, hero.offsetWidth  * DPR);
+    canvas.height = Math.max(1, hero.offsetHeight * DPR);
     gl.viewport(0, 0, canvas.width, canvas.height);
   }
   resize();
@@ -67,6 +61,9 @@ function initHeroFlow() {
   function compileShader(type, src) {
     const s = gl.createShader(type);
     gl.shaderSource(s, src); gl.compileShader(s);
+    if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) {
+      console.error('shader error:', gl.getShaderInfoLog(s));
+    }
     return s;
   }
 
@@ -79,68 +76,77 @@ function initHeroFlow() {
     }
   `;
 
+  const RIPPLES = 10;
   const frag = `
     precision highp float;
     varying vec2 v_uv;
-    uniform sampler2D u_tex;
     uniform vec2  u_res;
-    uniform vec2  u_img;
     uniform float u_time;
+    uniform vec3  u_accent;
+    uniform float u_dark;
+    uniform vec2  u_ptr;
+    uniform vec4  u_rip[${RIPPLES}];
 
     float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453123); }
     float vnoise(vec2 p){
       vec2 i = floor(p), f = fract(p);
       vec2 u = f * f * (3.0 - 2.0 * f);
-      return mix(mix(hash(i + vec2(0.0,0.0)), hash(i + vec2(1.0,0.0)), u.x),
+      return mix(mix(hash(i), hash(i + vec2(1.0,0.0)), u.x),
                  mix(hash(i + vec2(0.0,1.0)), hash(i + vec2(1.0,1.0)), u.x), u.y);
     }
     float fbm(vec2 p){
       float v = 0.0, a = 0.5;
-      for (int k = 0; k < 5; k++){ v += a * vnoise(p); p *= 2.0; a *= 0.5; }
+      for (int k = 0; k < 4; k++){ v += a * vnoise(p); p *= 2.03; a *= 0.5; }
       return v;
     }
 
     void main() {
-      // Screen pixel → photo uv (mirrors background-size:cover + position:center 30%)
-      float s = max(u_res.x / u_img.x, u_res.y / u_img.y);
-      vec2 off = vec2((u_res.x - u_img.x * s) * 0.5, (u_res.y - u_img.y * s) * 0.30);
-      vec2 uv = ((v_uv * u_res - off) / s) / u_img;
-      vec4 photo = texture2D(u_tex, clamp(uv, 0.0, 1.0));
-
-      // ── Flow field (light moving across the background) ──
-      // The photo's blue background is smooth, so warping it shows no motion.
-      // Instead we keep each pixel's ORIGINAL colour and run a flowing band of
-      // light/shadow (in the photo's own tones) across it — clearly animated.
       vec2 p = v_uv - 0.5;
       p.x *= u_res.x / u_res.y;
-      float t = u_time * 0.28;
-      vec2 flow = vec2(t, t * 0.6);
-      vec2 w = vec2(fbm(p * 1.4 + flow), fbm(p * 1.4 + flow + 7.3));
-      float nf = fbm(p * 1.8 + w * 1.1);
-      // a travelling wave guarantees the light visibly sweeps across the blue
-      float wave = 0.5 + 0.5 * sin((p.x * 2.2 + p.y * 1.4) * 3.1 - t * 2.0 + (w.x - 0.5) * 4.0);
-      float n = mix(nf, wave, 0.5);
 
-      // Light/shadow derived from the local original colour → stays true to the photo
-      vec3 base = photo.rgb;
-      vec3 hi   = mix(base, vec3(0.937, 0.910, 0.835), 0.50);  // toward the photo's cream glow
-      vec3 lo   = base * 0.82;                                  // gentle shadow
-      vec3 flowCol = mix(lo, hi, smoothstep(0.32, 0.74, n));
+      float t = u_time * 0.05;
 
-      // ── Composite: lace flower stays static, blue background flows ──
-      // Cyanotype blue is desaturated, so (b - r) separates background blue
-      // from the cream/lace flower far better than (b - max(r,g)).
-      // Flower lace (cream / warm) → low b-r → keep photo (static).
-      // Smooth blue background → high b-r → flowing light shows through.
-      float blueLead = photo.b - photo.r;
-      float bg = smoothstep(0.06, 0.12, blueLead);
-      vec3 col = mix(base, flowCol, bg);
+      // ripples: expanding, fading rings that also bend the flow field
+      vec2 disp = vec2(0.0);
+      float glow = 0.0;
+      for (int i = 0; i < ${RIPPLES}; i++){
+        float age = u_rip[i].z;
+        if (age < 0.0 || age > 2.5) continue;
+        vec2 d = p - u_rip[i].xy;
+        float len = length(d) + 1e-4;
+        float ring = sin(26.0 * len - 7.0 * age) * exp(-2.0 * age) * exp(-5.5 * len);
+        disp += (d / len) * ring * 0.028;
+        glow += exp(-2.6 * age) * exp(-11.0 * len) * 0.30;
+      }
 
-      // Readability darkening (top + bottom)
-      vec3 navy = vec3(0.031, 0.059, 0.110);
-      float dark = mix(0.28, 0.0, smoothstep(0.0, 0.55, v_uv.y));
-      dark += smoothstep(0.62, 1.0, v_uv.y) * 0.22;
-      col = mix(col, navy, dark);
+      // pointer: soft glow + local bend
+      float pd = length(p - u_ptr);
+      glow += exp(-9.0 * pd) * 0.18;
+      vec2 pv = p - u_ptr;
+      disp += vec2(-pv.y, pv.x) * exp(-7.0 * pd) * 0.05;
+
+      // domain-warped fluid
+      vec2 w = vec2(fbm(p * 1.6 + vec2(t, -t * 0.7) + disp * 3.0),
+                    fbm(p * 1.6 + vec2(-t * 0.6, t) + 3.7 + disp * 3.0));
+      float n = fbm(p * 2.1 + w * 1.5 + disp * 6.0);
+
+      // deep teal palette (site hero colors)
+      vec3 deep = vec3(0.016, 0.110, 0.104);
+      vec3 mid  = vec3(0.039, 0.290, 0.271);
+      vec3 hi   = vec3(0.055, 0.480, 0.443);
+      float dim = 1.0 - u_dark * 0.35;
+      vec3 col = mix(deep, mid, smoothstep(0.28, 0.78, n));
+      col = mix(col, hi, smoothstep(0.66, 0.96, n) * 0.55);
+      col *= dim;
+
+      // accent shimmer on ridges + tinted interaction glow
+      float ridge = smoothstep(0.66, 0.78, n) * smoothstep(0.92, 0.80, n);
+      col += u_accent * ridge * 0.09;
+      col += u_accent * glow;
+
+      // readability: darken top (clock) and bottom (name) bands
+      float dk = smoothstep(0.45, 0.0, v_uv.y) * 0.22 + smoothstep(0.60, 1.0, v_uv.y) * 0.30;
+      col *= (1.0 - dk);
 
       gl_FragColor = vec4(col, 1.0);
     }
@@ -149,7 +155,9 @@ function initHeroFlow() {
   const prog = gl.createProgram();
   gl.attachShader(prog, compileShader(gl.VERTEX_SHADER, vert));
   gl.attachShader(prog, compileShader(gl.FRAGMENT_SHADER, frag));
-  gl.linkProgram(prog); gl.useProgram(prog);
+  gl.linkProgram(prog);
+  if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) { console.error(gl.getProgramInfoLog(prog)); canvas.remove(); return; }
+  gl.useProgram(prog);
 
   const quad = new Float32Array([-1,-1, 1,-1, -1,1, -1,1, 1,-1, 1,1]);
   const buf = gl.createBuffer();
@@ -159,35 +167,85 @@ function initHeroFlow() {
   gl.enableVertexAttribArray(aPos);
   gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
 
-  const uTex  = gl.getUniformLocation(prog, 'u_tex');
-  const uRes  = gl.getUniformLocation(prog, 'u_res');
-  const uImg  = gl.getUniformLocation(prog, 'u_img');
-  const uTime = gl.getUniformLocation(prog, 'u_time');
+  const uRes    = gl.getUniformLocation(prog, 'u_res');
+  const uTime   = gl.getUniformLocation(prog, 'u_time');
+  const uAccent = gl.getUniformLocation(prog, 'u_accent');
+  const uDark   = gl.getUniformLocation(prog, 'u_dark');
+  const uPtr    = gl.getUniformLocation(prog, 'u_ptr');
+  const uRip    = gl.getUniformLocation(prog, 'u_rip');
 
-  const img = new Image();
-  img.onload = () => {
-    const tex = gl.createTexture();
-    gl.bindTexture(gl.TEXTURE_2D, tex);
-    gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, false);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
-    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
+  // ── interaction state ──
+  const ripples = [];            // {x, y, t0}
+  let ptr = [ -10, -10 ];
+  let lastMove = 0, lastRipple = 0;
 
-    const start = Date.now();
-    function tick() {
-      gl.useProgram(prog);
-      gl.uniform1i(uTex, 0);
-      gl.uniform2f(uRes, canvas.width, canvas.height);
-      gl.uniform2f(uImg, img.width, img.height);
-      gl.uniform1f(uTime, (Date.now() - start) * 0.001);
-      gl.drawArrays(gl.TRIANGLES, 0, 6);
-      requestAnimationFrame(tick);
+  function toField(e) {
+    const r = hero.getBoundingClientRect();
+    const aspect = r.width / r.height;
+    return [ ((e.clientX - r.left) / r.width - 0.5) * aspect,
+             ((e.clientY - r.top) / r.height - 0.5) ];
+  }
+  function addRipple(x, y) {
+    ripples.push({ x, y, t0: performance.now() });
+    if (ripples.length > RIPPLES) ripples.shift();
+  }
+  hero.addEventListener('pointermove', e => {
+    ptr = toField(e);
+    lastMove = performance.now();
+    if (lastMove - lastRipple > 110) { lastRipple = lastMove; addRipple(ptr[0], ptr[1]); }
+  }, { passive: true });
+  hero.addEventListener('pointerdown', e => {
+    ptr = toField(e);
+    lastMove = lastRipple = performance.now();
+    addRipple(ptr[0], ptr[1]);
+  }, { passive: true });
+  hero.addEventListener('pointerleave', () => { ptr = [ -10, -10 ]; });
+
+  // ── theme hooks: accent color follows 氛围灯, palette follows 暗夜模式 ──
+  let accent = [ 0.815, 0.353, 0.188 ], dark = 0, themeTick = 0;
+  function hexToRgb(h) {
+    h = h.trim().replace('#', '');
+    if (h.length === 3) h = h[0]+h[0]+h[1]+h[1]+h[2]+h[2];
+    const v = parseInt(h, 16);
+    return isNaN(v) ? [0.815, 0.353, 0.188] : [ (v>>16 & 255)/255, (v>>8 & 255)/255, (v & 255)/255 ];
+  }
+  function readTheme() {
+    accent = hexToRgb(getComputedStyle(document.documentElement).getPropertyValue('--color-accent'));
+    dark = document.documentElement.getAttribute('data-theme') === 'dark' ? 1 : 0;
+  }
+  readTheme();
+
+  // ── render loop: pause offscreen/hidden, half-rate when idle ──
+  let visible = true, frame = 0;
+  new IntersectionObserver(es => { visible = es[0].isIntersecting; }).observe(hero);
+
+  const ripFlat = new Float32Array(RIPPLES * 4).fill(-1);
+  const start = performance.now();
+  function tick(now) {
+    requestAnimationFrame(tick);
+    if (!visible || document.hidden) return;
+    frame++;
+    const idle = now - lastMove > 3000;
+    if (idle && frame % 2) return;               // ~30fps when idle
+    if (++themeTick > 30) { themeTick = 0; readTheme(); }
+
+    for (let i = 0; i < RIPPLES; i++) {
+      const r = ripples[i];
+      ripFlat[i*4]   = r ? r.x : -10;
+      ripFlat[i*4+1] = r ? r.y : -10;
+      ripFlat[i*4+2] = r ? (now - r.t0) / 1000 : -1;
+      ripFlat[i*4+3] = 0;
     }
-    tick();
-  };
-  img.src = 'hero-flower.jpg';
+    gl.useProgram(prog);
+    gl.uniform2f(uRes, canvas.width, canvas.height);
+    gl.uniform1f(uTime, (now - start) * 0.001);
+    gl.uniform3f(uAccent, accent[0], accent[1], accent[2]);
+    gl.uniform1f(uDark, dark);
+    gl.uniform2f(uPtr, ptr[0], ptr[1]);
+    gl.uniform4fv(uRip, ripFlat);
+    gl.drawArrays(gl.TRIANGLES, 0, 6);
+  }
+  requestAnimationFrame(tick);
 }
 initHeroFlow();
 
