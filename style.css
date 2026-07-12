@@ -526,3 +526,26 @@ html[data-accent="violet"] { --color-accent: #5B4FCF; }
 }
 .ctrl-hint { font-size: 10px; color: var(--color-text-mid); line-height: 1.5; flex-shrink: 0; }
 .ctrl-hint a { color: var(--color-accent); }
+
+/* ===== Janelle-style: vivid project cards ===== */
+.card-project { color: #fff; }
+.card-project .card-cover { opacity: 1; }
+.card-project .card-tag { color: rgba(255,255,255,0.9); }
+.card-project .card-desc { color: rgba(255,255,255,0.82); }
+.card-project .card-arrow { color: #fff; }
+.card-project:hover { transform: translateY(-4px) scale(1.01); box-shadow: 0 14px 30px rgba(10,26,24,0.16); }
+.card-project:active { transform: scale(0.985); transition: transform 0.12s ease; }
+
+/* ===== Scroll-reveal (Framer-like appear) ===== */
+html.js-reveal .rv {
+  animation: none;
+  opacity: 0;
+  transform: translateY(26px) scale(0.985);
+  transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1), transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+html.js-reveal .rv.rv-in { opacity: 1; transform: none; }
+html.js-reveal .rv.rv-in.rv-done {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.5s ease, color 0.5s ease;
+  will-change: auto;
+}

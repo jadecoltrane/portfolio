@@ -83,6 +83,10 @@ function initHeroFlow() {
     uniform vec2  u_res;
     uniform float u_time;
     uniform vec3  u_accent;
+    uniform vec3  u_c0;
+    uniform vec3  u_c1;
+    uniform vec3  u_c2;
+    uniform float u_boost;
     uniform float u_dark;
     uniform vec2  u_ptr;
     uniform vec4  u_rip[${RIPPLES}];
@@ -130,10 +134,9 @@ function initHeroFlow() {
                     fbm(p * 1.6 + vec2(-t * 0.6, t) + 3.7 + disp * 3.0));
       float n = fbm(p * 2.1 + w * 1.5 + disp * 6.0);
 
-      // deep teal palette (site hero colors)
-      vec3 deep = vec3(0.016, 0.110, 0.104);
-      vec3 mid  = vec3(0.039, 0.290, 0.271);
-      vec3 hi   = vec3(0.055, 0.480, 0.443);
+      vec3 deep = u_c0;
+      vec3 mid  = u_c1;
+      vec3 hi   = u_c2;
       float dim = 1.0 - u_dark * 0.35;
       vec3 col = mix(deep, mid, smoothstep(0.28, 0.78, n));
       col = mix(col, hi, smoothstep(0.66, 0.96, n) * 0.55);
@@ -141,8 +144,8 @@ function initHeroFlow() {
 
       // accent shimmer on ridges + tinted interaction glow
       float ridge = smoothstep(0.66, 0.78, n) * smoothstep(0.92, 0.80, n);
-      col += u_accent * ridge * 0.09;
-      col += u_accent * glow;
+      col += u_accent * ridge * 0.09 * u_boost;
+      col += u_accent * glow * u_boost;
 
       // readability: darken top (clock) and bottom (name) bands
       float dk = smoothstep(0.45, 0.0, v_uv.y) * 0.22 + smoothstep(0.60, 1.0, v_uv.y) * 0.30;
@@ -170,6 +173,13 @@ function initHeroFlow() {
   const uRes    = gl.getUniformLocation(prog, 'u_res');
   const uTime   = gl.getUniformLocation(prog, 'u_time');
   const uAccent = gl.getUniformLocation(prog, 'u_accent');
+  const uC0 = gl.getUniformLocation(prog, 'u_c0');
+  const uC1 = gl.getUniformLocation(prog, 'u_c1');
+  const uC2 = gl.getUniformLocation(prog, 'u_c2');
+  const uBoost = gl.getUniformLocation(prog, 'u_boost');
+  const PAL = window.__HERO_PALETTE || {
+    c0: [0.016, 0.110, 0.104], c1: [0.039, 0.290, 0.271], c2: [0.055, 0.480, 0.443], boost: 1.0
+  };
   const uDark   = gl.getUniformLocation(prog, 'u_dark');
   const uPtr    = gl.getUniformLocation(prog, 'u_ptr');
   const uRip    = gl.getUniformLocation(prog, 'u_rip');
@@ -240,6 +250,10 @@ function initHeroFlow() {
     gl.uniform2f(uRes, canvas.width, canvas.height);
     gl.uniform1f(uTime, (now - start) * 0.001);
     gl.uniform3f(uAccent, accent[0], accent[1], accent[2]);
+    gl.uniform3f(uC0, PAL.c0[0], PAL.c0[1], PAL.c0[2]);
+    gl.uniform3f(uC1, PAL.c1[0], PAL.c1[1], PAL.c1[2]);
+    gl.uniform3f(uC2, PAL.c2[0], PAL.c2[1], PAL.c2[2]);
+    gl.uniform1f(uBoost, PAL.boost);
     gl.uniform1f(uDark, dark);
     gl.uniform2f(uPtr, ptr[0], ptr[1]);
     gl.uniform4fv(uRip, ripFlat);
@@ -398,4 +412,35 @@ document.querySelectorAll('a, button, .lang-btn').forEach(el => {
     });
     syncAmb();
   }
+})();
+
+// ── Scroll reveal (Framer-like appear on scroll) ─────────────────────────────
+(function () {
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!('IntersectionObserver' in window)) return;
+  const targets = document.querySelectorAll(
+    '.bento .card:not(.card-hero), .case-page .case-header, .case-page .case-meta, .case-page .case-cover, .case-section > *, .case-page .case-nav'
+  );
+  if (!targets.length) return;
+  document.documentElement.classList.add('js-reveal');
+  targets.forEach(t => t.classList.add('rv'));
+
+  let batch = 0, lastTime = 0;
+  const io = new IntersectionObserver(entries => {
+    const now = performance.now();
+    if (now - lastTime > 400) batch = 0;
+    lastTime = now;
+    for (const en of entries) {
+      if (!en.isIntersecting) continue;
+      const el = en.target;
+      el.style.transitionDelay = Math.min(batch++ * 70, 350) + 'ms';
+      el.classList.add('rv-in');
+      el.addEventListener('transitionend', () => {
+        el.style.transitionDelay = '';
+        el.classList.add('rv-done');
+      }, { once: true });
+      io.unobserve(el);
+    }
+  }, { threshold: 0.06, rootMargin: '0px 0px -8% 0px' });
+  targets.forEach(t => io.observe(t));
 })();
