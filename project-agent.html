@@ -15,7 +15,7 @@
       <div class="case-tags">
         <span class="tag">AI Agent</span>
         <span class="tag">LLM UX</span>
-        <span class="tag">概念项目 · Demo 建设中</span>
+        <span class="tag">概念项目 · 可运行 Demo</span>
       </div>
       <h1 class="case-title">从「听得懂指令」到「敢把车交给它」</h1>
       <p class="case-subtitle">车载语音助手 → LLM 驱动座舱 Agent 的重设计</p>
@@ -32,11 +32,14 @@
       </div>
       <div class="case-meta-item">
         <span class="case-meta-label">Demo</span>
-        <span class="case-meta-value">建设中,链接稍后放出</span>
+        <span class="case-meta-value"><a href="demo/">在线体验 →</a></span>
       </div>
     </div>
 
-    <div class="case-cover" style="background: linear-gradient(135deg, #5B4FCF, #3A2FA0);"></div>
+    <figure class="case-figure" style="margin: 0 0 56px;">
+      <img src="assets/case02/04-证据场景-D挡拦截.png" alt="Demo:行驶中「关闭所有灯光」被策略层拦截并给出替代方案">
+      <figcaption>Demo 实拍:D 挡下「关闭所有灯光」被确定性策略层拦截,说明原因并给出安全替代</figcaption>
+    </figure>
 
     <!-- 核心问题 -->
     <div class="case-section">
@@ -47,95 +50,104 @@
       </div>
     </div>
 
-    <!-- 五命题 -->
+    <!-- 安全委托闭环 -->
     <div class="case-section">
-      <h2>五个命题的设计答案</h2>
-      <p class="case-section-intro">把大问题拆成五个可设计、可检验的命题——每个命题都有明确的设计产出,并在 demo 中可交互验证。</p>
+      <h2>安全委托闭环:五个阶段</h2>
+      <p class="case-section-intro">不把 AI 议题平铺成知识点,而是组织成一个端到端闭环:<strong>理解 → 提案 → 授权 → 执行 → 恢复</strong>。每个阶段都有明确的设计产出,并在 Demo 中可交互验证。</p>
 
-      <!-- 01 不确定性 -->
+      <!-- 01 理解 -->
       <div class="decision-card">
         <div class="decision-header">
           <span class="decision-number">01</span>
           <div>
-            <h3 class="decision-title">不确定性表达</h3>
-            <p class="decision-question">模型没把握时,UI 怎么办?</p>
+            <h3 class="decision-title">理解:系统还缺什么信息?</h3>
+            <p class="decision-question">不把模型表达的信心当成正确率</p>
           </div>
         </div>
         <div class="decision-body">
-          <p>置信度不展示数值,转译成交互形态——用户不需要知道「78% 确定」,需要知道「它要不要我确认」。</p>
+          <p>用户不需要知道「模型说自己有 78% 把握」,需要知道系统还缺什么信息、是否会立即执行。意图歧义由<strong>可观察信号</strong>构成:必要参数缺失、指代不明、多个工具同时匹配、表达与车辆状态冲突。</p>
           <div class="decision-rule">
-            <p><strong>高置信</strong> → 直接执行 + 回显;<strong>中置信</strong> → 先复述意图再执行,留出打断窗口;<strong>低置信</strong> → 转确认式,给 2-3 个候选。涉及安全与不可逆操作时,中置信也降为确认式——宁可问,不可猜。</p>
+            <p><strong>信息完整且低风险</strong> → 进入策略层判断;<strong>存在一个关键歧义</strong> → 复述理解并询问必要信息;<strong>多个意图并列</strong> → 给 2-3 个候选,不猜测执行。</p>
           </div>
-          <p>降级不是报错,是换一种问法——语气与视觉上不制造「失败感」。</p>
+          <p>歧义不是报错,是换一种问法——不制造「你说错了」的失败感;驾驶中候选上限 2-3 个,语音与屏显同步编号。</p>
         </div>
-        <div class="case-image-placeholder">三档降级状态图 · 图片占位</div>
+        <figure class="case-figure">
+          <img src="assets/case02/07-场景3-歧义澄清.png" alt="Demo:导航去公司存在两个候选地址,系统列出候选请求澄清">
+          <figcaption>Demo 实拍:「导航去公司」检出两个候选地址 → 列出候选,不猜测执行</figcaption>
+        </figure>
       </div>
 
-      <!-- 02 流式 -->
+      <!-- 02 提案 -->
       <div class="decision-card">
         <div class="decision-header">
           <span class="decision-number">02</span>
           <div>
-            <h3 class="decision-title">流式响应</h3>
-            <p class="decision-question">token 逐字吐出,驾驶场景怎么呈现?</p>
+            <h3 class="decision-title">提案:把规划与等待变成可理解状态</h3>
+            <p class="decision-question">流式是技术事实,不是必须暴露给用户的交互形态</p>
           </div>
         </div>
         <div class="decision-body">
-          <p>流式是技术事实,不是交互形态。驾驶场景下「逐字蹦」对屏显是噪音、对语音不可行:</p>
+          <p>驾驶场景下,逐字滚动会产生不可瞥视的半句话;用户更需要知道系统正在做什么、下一步会发生什么。</p>
           <div class="decision-rule">
-            <p><strong>语音走句子级缓冲</strong>——攒满语义完整的句子才开口,首句要快;<strong>屏显走块级更新</strong>——按语义块整块出现,驾驶中瞥到的永远是完整可读的信息;<strong>等待要可解释</strong>——「正在查充电桩…」而不是抽象转圈;<strong>随时可打断</strong>,打断后保留上下文。</p>
+            <p><strong>先给接受反馈</strong>——立即说明「我来查找…」,不让用户猜有没有听见;<strong>语音按句播报</strong>——攒成语义完整的句子再开口;<strong>屏显按块更新</strong>——一个步骤、一张卡片整体出现;<strong>等待可解释</strong>——「正在查充电设施」而不是抽象转圈;<strong>随时可打断</strong>,打断后保留已明确的目标与参数。</p>
           </div>
         </div>
         <div class="case-image-placeholder">双通道时序图(生成流 / 语音 / 屏显)· 图片占位</div>
       </div>
 
-      <!-- 03 授权边界 -->
+      <!-- 03 授权 -->
       <div class="decision-card">
         <div class="decision-header">
           <span class="decision-number">03</span>
           <div>
-            <h3 class="decision-title">Agent 授权边界</h3>
-            <p class="decision-question">它能直接做什么?错了怎么办?</p>
+            <h3 class="decision-title">授权:由策略层决定能不能做</h3>
+            <p class="decision-question">LLM 只提出候选动作,确定性的策略层决定能否执行</p>
           </div>
         </div>
         <div class="decision-body">
-          <p>按「错了的代价」分级,而不是按「技术上能不能做」分级:</p>
+          <p>策略层综合四类输入:<strong>动作风险</strong>(可逆性/安全后果/涉钱涉隐私/影响第三方)× <strong>车辆状态</strong>(P/D 挡、速度)× <strong>用户授权</strong>(自动执行/每次确认/禁止)× <strong>意图歧义</strong>。</p>
           <div class="decision-rule">
-            <p><strong>直接执行</strong>(可逆、纠错成本≈0):温度、音量 → 执行 + 回显 + 一键撤销;<br><strong>口头确认</strong>(可逆但打断成本高):导航改道、发消息 → 复述意图,口头确认即执行;<br><strong>强确认</strong>(不可逆 / 涉钱 / 涉行车安全):付款等 → 必须屏幕或实体键确认,语音不可确认,且<strong>不可降级</strong>。</p>
+            <p>四种输出:<strong>直接执行</strong>(回显 + 一键撤销)/<strong>请求确认</strong>(复述对象与后果)/<strong>停车后继续</strong>(保存任务,P 挡恢复)/<strong>拒绝执行</strong>(说明原因 + 给安全替代)。用户可以收紧授权;<strong>系统安全底线不可被用户降级</strong>。</p>
           </div>
-          <p>边界要可感知(授权总览)、可调整(分级用户可调,底线除外)、可追溯(行为流水)。与控制中心案例的「Agent 行为可见层」直接咬合。</p>
+          <div class="case-insight" style="margin: 4px 0 0;">
+            <span class="case-insight-label">现实锚点</span>
+            <p>2026 年初,多个品牌被公开报道「行驶中语音误关大灯」缺陷,其一酿成实际碰撞;厂商紧急补丁的规则——行驶中禁止语音关闭外灯、仅 P 挡且指令明确时允许——正是「动作风险 × 车辆状态」判据的现实版。<strong>策略层不是过度设计,是事故已经替行业验证过的必需品。</strong></p>
+          </div>
+          <p>边界可感知(授权设置页)、可调整(底线除外)、可解释(拦截时说明关键条件)、可追溯(行为记录)。与控制中心案例的「Agent 行为可见层」直接咬合。</p>
         </div>
-        <div class="case-image-placeholder">三级授权表 + 授权设置界面 · 图片占位</div>
       </div>
 
-      <!-- 04 注意力 -->
+      <!-- 04 执行 -->
       <div class="decision-card">
         <div class="decision-header">
           <span class="decision-number">04</span>
           <div>
-            <h3 class="decision-title">多模态与驾驶注意力</h3>
-            <p class="decision-question">信息往哪放?</p>
+            <h3 class="decision-title">执行:让动作与状态同步可见</h3>
+            <p class="decision-question">通道分工服从驾驶注意力预算</p>
           </div>
         </div>
         <div class="decision-body">
           <div class="decision-rule">
-            <p>按注意力预算分配通道(参考 NHTSA 分心指南,单次瞥视 &lt;2s):<strong>语音说结论</strong>,不播列表;<strong>屏显放可瞥视的结构化卡片</strong>,行车中永远不需要滚动;<strong>停车态才解锁</strong>长列表与多轮比价;Agent 行车中的主动发言仅限安全相关。</p>
+            <p>以 NHTSA 视觉—手动任务指南的测试标准(单次离路视线 &lt;2s、任务累计 &lt;12s)作为<strong>验证参考</strong>:<strong>语音播报结论</strong>与关键后果,不朗读列表;<strong>屏显放可瞥视卡片</strong>,D 挡不出现滚动与连续点按;<strong>停车态才解锁</strong>长列表、完整比较和付款;语音回显、中控卡片和车控状态指向<strong>同一个真相之源</strong>;行驶中主动播报仅限安全相关与用户订阅事项。</p>
           </div>
         </div>
-        <div class="case-image-placeholder">通道分配矩阵 + 行车/停车两态 · 图片占位</div>
+        <figure class="case-figure">
+          <img src="assets/case02/01-场景1-执行回显.png" alt="Demo:调温执行后出现状态回显与一键撤销">
+          <figcaption>Demo 实拍:「我有点冷」→ 低风险直接执行,状态回显 + 一键撤销,控制中心同步更新</figcaption>
+        </figure>
       </div>
 
-      <!-- 05 失败降级 -->
+      <!-- 05 恢复 -->
       <div class="decision-card">
         <div class="decision-header">
           <span class="decision-number">05</span>
           <div>
-            <h3 class="decision-title">失败降级</h3>
+            <h3 class="decision-title">恢复:失败之后仍有下一步</h3>
             <p class="decision-question">失败体验是 AI 产品的第一体验</p>
           </div>
         </div>
         <div class="decision-body">
-          <p>每种失败都有明确的「下一步」,用户永远不站在死胡同里:断网 → 显式声明 + 本地车控可用;听错 → 转确认式;事实类回答 → 标注来源,查不到就说查不到;执行失败 → 回显原因 + 重试/换方式/算了。</p>
+          <p>每种失败都有明确的「下一步」,用户永远不站在死胡同里:断网 → 显式声明 + 降级到本地指令集,常用车控不受影响;听错/歧义 → 转确认式,指出缺失信息;事实类回答 → 标注来源,查不到就说查不到;执行失败 → 回显原因 + 保留意图上下文,「重试 / 换方式 / 算了」三选一;当前状态不允许 → 保存任务并说明恢复条件。</p>
           <div class="decision-rule">
             <p><strong>手动兜底是安全网,也是信任机制</strong>:任何时刻一步退回手动。用户知道随时能收回控制权,才敢把控制权交出去。</p>
           </div>
@@ -146,37 +158,37 @@
 
     <!-- 三场景 -->
     <div class="case-section">
-      <h2>三个场景,串起五命题</h2>
+      <h2>三个场景,串起闭环</h2>
       <div class="process-steps">
         <div class="process-step">
           <span class="process-step-num">01</span>
           <h4 class="process-step-title">"我有点冷"</h4>
-          <p class="process-step-desc">高置信直接执行 + 回显 + 一键撤销;调整授权级别后,同一句话走确认流程</p>
+          <p class="process-step-desc">信息完整 → 策略判断 → 低风险执行 → 状态回显 → 一键撤销;把授权收紧为「每次确认」后,同一句话转入确认流程</p>
         </div>
         <div class="process-step-arrow">→</div>
         <div class="process-step">
           <span class="process-step-num">02</span>
           <h4 class="process-step-title">"找个能充电还能遛狗的地方"</h4>
-          <p class="process-step-desc">多步规划过程回显 + 块级流式呈现 + 中置信候选确认</p>
+          <p class="process-step-desc">多步提案 + 等待可解释;D 挡只给 2-3 个可瞥视候选,P 挡展开完整列表</p>
         </div>
         <div class="process-step-arrow">→</div>
         <div class="process-step">
           <span class="process-step-num">03</span>
-          <h4 class="process-step-title">开车中改行程,途中断网</h4>
-          <p class="process-step-desc">强确认流程 + 显式降级声明,本地车控不受影响</p>
+          <h4 class="process-step-title">改行程 · 付款拦截 · 断网</h4>
+          <p class="process-step-desc">确认改道 → 行驶中付款转「停车后继续」→ 断网显式降级,本地车控不受影响</p>
         </div>
       </div>
-      <div class="case-image-placeholder">三场景关键帧 · 图片占位</div>
     </div>
 
     <!-- Demo -->
     <div class="case-section">
-      <h2>可运行 Demo(建设中)</h2>
-      <p>demo 不是完整产品,是五命题的可交互证明:座舱模拟界面 + 真实 LLM 流式调用与工具执行 + 演示控制台(断网开关、置信度拨盘、授权设置)——你可以故意说模糊的话看它降级,调低某个功能的授权级别再试同一句话,或者一键断网看降级路径。</p>
+      <h2>可运行 Demo</h2>
+      <p>Demo 不是完整产品,是<strong>安全委托机制的可交互证明</strong>:座舱模拟界面 + 确定性策略层 + 模拟车控工具 + 测试注入控制台(断网 / 工具故障 / 歧义注入 / 授权设置)。演示控制台明确标注为测试工具,不把注入状态包装成量产系统能力;理解层可替换(规则引擎 ⇆ LLM API),授权决策永远留在确定性策略层。</p>
       <div class="case-insight" style="margin-top: 16px;">
-        <span class="case-insight-label">进度</span>
-        <p>方案已定(裸 API + 轻前端),按周迭代中;链接与实机录屏将在本页更新。</p>
+        <span class="case-insight-label">你可以试什么</span>
+        <p>执行后说「撤销」——纠错比重说一遍快;把空调授权改为「每次确认」再说「我有点冷」;在 D 挡说<strong>「关闭所有灯光」</strong>看策略层拦截,切 P 挡再试;一键断网看降级路径。<strong><a href="demo/">打开 Demo →</a></strong></p>
       </div>
+      <p style="margin-top: 12px; font-size: 13px;">机制经 25 条脚本化测试验证:授权 × 车辆状态两态一致性、歧义先澄清不猜测、失败均有出口、回显与真相状态一致、同输入同输出。这是机制验证,不等同于真实道路分心测试。</p>
     </div>
 
     <!-- 局限 -->

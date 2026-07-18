@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 460" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif">
+  <style>
+    .title{font-size:18px;font-weight:700;fill:#1f2937}
+    .sub{font-size:12px;fill:#6b7280}
+    .label{font-size:14px;font-weight:600;fill:#1f2937}
+    .small{font-size:11px;fill:#6b7280}
+  </style>
+  <rect width="880" height="460" fill="#ffffff"/>
+  <text x="40" y="42" class="title">发现机制：一次性微提示</text>
+  <text x="40" y="62" class="sub">完全无提示 → 功能不被发现；持续强提示 → 破坏惊喜感。取两端之间：仅首次开机提示一次</text>
+
+  <!-- 帧1：发现态 -->
+  <g transform="translate(60,95)">
+    <text x="0" y="0" class="label">发现态（节日期间首次开机）</text>
+    <rect x="0" y="12" width="340" height="190" rx="12" fill="#111827"/>
+    <rect x="12" y="24" width="200" height="120" rx="6" fill="#1f2937"/>
+    <text x="112" y="88" text-anchor="middle" class="small" fill="#6b7280">桌面内容（示意）</text>
+    <!-- 挂件 + 呼吸光效 -->
+    <circle cx="285" cy="70" r="34" fill="none" stroke="#60a5fa" stroke-width="2" opacity="0.35"/>
+    <circle cx="285" cy="70" r="27" fill="none" stroke="#60a5fa" stroke-width="2" opacity="0.7"/>
+    <circle cx="285" cy="70" r="20" fill="#2563eb"/>
+    <text x="285" y="75" text-anchor="middle" class="small" fill="#ffffff">挂件</text>
+    <text x="285" y="125" text-anchor="middle" class="small" fill="#93c5fd">呼吸光效 · 视野边缘</text>
+    <rect x="12" y="156" width="316" height="34" rx="6" fill="#1f2937"/>
+    <text x="170" y="177" text-anchor="middle" class="small" fill="#6b7280">Dock（不被覆盖）</text>
+  </g>
+
+  <!-- 帧2：静默态 -->
+  <g transform="translate(480,95)">
+    <text x="0" y="0" class="label">静默态（此后所有时刻）</text>
+    <rect x="0" y="12" width="340" height="190" rx="12" fill="#111827"/>
+    <rect x="12" y="24" width="200" height="120" rx="6" fill="#1f2937"/>
+    <text x="112" y="88" text-anchor="middle" class="small" fill="#6b7280">桌面内容（示意）</text>
+    <circle cx="285" cy="70" r="20" fill="#374151" stroke="#4b5563"/>
+    <text x="285" y="75" text-anchor="middle" class="small" fill="#9ca3af">挂件</text>
+    <text x="285" y="125" text-anchor="middle" class="small" fill="#6b7280">被动发现 · 保留探索惊喜</text>
+    <rect x="12" y="156" width="316" height="34" rx="6" fill="#1f2937"/>
+    <text x="170" y="177" text-anchor="middle" class="small" fill="#6b7280">Dock（不被覆盖）</text>
+  </g>
+
+  <!-- 时间轴 -->
+  <g transform="translate(60,340)">
+    <line x1="0" y1="20" x2="760" y2="20" stroke="#9ca3af" stroke-width="1.5" marker-end="url(#arr)"/>
+    <circle cx="40" cy="20" r="6" fill="#2563eb"/>
+    <text x="40" y="48" text-anchor="middle" class="small">节日窗口开始 · 首次开机</text>
+    <rect x="40" y="8" width="70" height="24" rx="12" fill="#dbeafe" stroke="#2563eb" opacity="0.9"/>
+    <text x="75" y="24" text-anchor="middle" class="small" fill="#1d4ed8">提示 2s*</text>
+    <circle cx="300" cy="20" r="5" fill="#6b7280"/>
+    <text x="300" y="48" text-anchor="middle" class="small">重复进入同一桌面 · 不再触发</text>
+    <circle cx="560" cy="20" r="5" fill="#6b7280"/>
+    <text x="560" y="48" text-anchor="middle" class="small">此后开机 · 静默态</text>
+    <text x="0" y="80" class="small">* 2s 为原型参数，非已验证最优值；待可发现性与干扰感测试校准</text>
+  </g>
+
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#9ca3af"/></marker>
+  </defs>
+</svg>

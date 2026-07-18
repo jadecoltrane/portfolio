@@ -38,29 +38,25 @@
       </div>
 
       <div class="bento-middle">
-        <a href="project-agent.html" class="card card-project">
-          <div class="card-cover" style="background: linear-gradient(135deg, #5B4FCF, #3A2FA0);"></div>
-          <div class="card-tag" data-zh="AI Agent · 概念 + Demo" data-en="AI Agent · Concept + Demo">AI Agent · 概念 + Demo</div>
+        <a href="project-agent.html" class="card card-project" style="--dot:#0071e3;">
+          <div class="card-tag" data-zh="AI Agent · 可运行 Demo" data-en="AI Agent · Live Demo">AI Agent · 可运行 Demo</div>
           <div class="card-title">LLM 座舱 Agent</div>
           <div class="card-desc" data-zh="车载语音助手 → LLM 驱动座舱 Agent 重设计" data-en="Voice assistant → LLM-driven cockpit agent">车载语音助手 → LLM 驱动座舱 Agent 重设计</div>
           <div class="card-arrow">→</div>
         </a>
-        <a href="project-hmi.html" class="card card-project">
-          <div class="card-cover" style="background: linear-gradient(135deg, #D05A30, #A83A18);"></div>
+        <a href="project-hmi.html" class="card card-project" style="--dot:#ff9500;">
           <div class="card-tag" data-zh="HMI · 智能座舱" data-en="HMI · Smart Cockpit">HMI · 智能座舱</div>
           <div class="card-title">控制中心</div>
           <div class="card-desc" data-zh="量产车机控制中心改版迭代" data-en="Production HMI control center redesign">量产车机控制中心改版迭代</div>
           <div class="card-arrow">→</div>
         </a>
-        <a href="project-ai.html" class="card card-project">
-          <div class="card-cover" style="background: linear-gradient(135deg, #DB8F2A, #9C5E10);"></div>
+        <a href="project-ai.html" class="card card-project" style="--dot:#af52de;">
           <div class="card-tag" data-zh="AI × 设计工作流 · GAS" data-en="AI × Workflow · GAS">AI × 设计工作流 · GAS</div>
           <div class="card-title">AI in Design</div>
           <div class="card-desc" data-zh="AI 辅助的合规审查工作流与 GAS 适配落地" data-en="AI-assisted compliance review & GAS adaptation">AI 辅助的合规审查工作流与 GAS 适配落地</div>
           <div class="card-arrow">→</div>
         </a>
-        <a href="project-caidan.html" class="card card-project">
-          <div class="card-cover" style="background: linear-gradient(135deg, #0A8278, #0A5E58);"></div>
+        <a href="project-caidan.html" class="card card-project" style="--dot:#34c759;">
           <div class="card-tag" data-zh="汽车 UX · 2024" data-en="Automotive UX · 2024">汽车 UX · 2024</div>
           <div class="card-title">彩蛋</div>
           <div class="card-desc" data-zh="车机系统功能设计与交互优化" data-en="HMI feature design & interaction">车机系统功能设计与交互优化</div>
@@ -87,19 +83,19 @@
                 <span class="ctrl-sub" data-zh="点击切换主题色" data-en="Tap to cycle accent">点击切换主题色</span>
               </span>
               <span class="ctrl-dots">
-                <span class="ctrl-dot" data-accent="" style="background:#D05A30;color:#D05A30;"></span>
-                <span class="ctrl-dot" data-accent="teal" style="background:#0E8278;color:#0E8278;"></span>
-                <span class="ctrl-dot" data-accent="violet" style="background:#5B4FCF;color:#5B4FCF;"></span>
+                <span class="ctrl-dot" data-accent="" style="background:#0071e3;color:#0071e3;"></span>
+                <span class="ctrl-dot" data-accent="teal" style="background:#2c8c7d;color:#2c8c7d;"></span>
+                <span class="ctrl-dot" data-accent="violet" style="background:#6e56cf;color:#6e56cf;"></span>
               </span>
             </button>
-            <div class="ctrl-row ctrl-row--disabled" id="ctrlDemo">
+            <a class="ctrl-row" id="ctrlDemo" href="demo/">
               <span class="ctrl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v2M5.6 5.6l1.4 1.4M3 12h2M18.4 5.6 17 7M19 12h2M12 21a7 7 0 0 0 7-7H5a7 7 0 0 0 7 7z"/></svg></span>
               <span class="ctrl-txt">
                 <span class="ctrl-name">Agent Demo</span>
-                <span class="ctrl-sub" data-zh="上线后从这里直达" data-en="Direct link once live">上线后从这里直达</span>
+                <span class="ctrl-sub" data-zh="座舱 Agent 安全委托闭环 · 点击体验" data-en="Safe-delegation loop · try it">座舱 Agent 安全委托闭环 · 点击体验</span>
               </span>
-              <span class="ctrl-badge" data-zh="建设中" data-en="WIP">建设中</span>
-            </div>
+              <span class="ctrl-badge ctrl-badge--live">LIVE</span>
+            </a>
           </div>
           <div class="ctrl-hint" data-zh="开关状态双通道编码——为什么这样做,见「控制中心」案例 →" data-en="Two-channel state encoding — see the Control Center case →">开关状态双通道编码——为什么这样做,见<a href="project-hmi.html">「控制中心」案例</a> →</div>
         </div>
@@ -117,6 +113,7 @@
 
     </div>
   </div>
+  <script>window.__HERO_PALETTE = { c0: [0.030, 0.030, 0.040], c1: [0.075, 0.075, 0.095], c2: [0.145, 0.145, 0.175], boost: 0.55 };</script>
   <script src="main.js"></script>
 </body>
 </html>

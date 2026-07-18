@@ -37,7 +37,7 @@
       </div>
     </div>
 
-    <div class="case-cover" style="background: linear-gradient(135deg, #5B4FCF 0%, #8470E8 50%, #A594F9 100%);"></div>
+    <div class="case-cover" style="background: linear-gradient(160deg, #101014, #16211c);"></div>
 
     <!-- 核心问题 -->
     <div class="case-section">
@@ -84,7 +84,7 @@
       <p>系统分析了 BMW、MINI Cooper、特斯拉（国际品牌）及小米、理想、小鹏（国内品牌）六款车机的节日彩蛋策略，重点关注触发方式、覆盖桌面和互动类型三个维度。</p>
       <div class="case-insight">
         <span class="case-insight-label">核心洞察</span>
-        <p>国内品牌均在向「互动型彩蛋」演进——不只是视觉展示，而是通过触发动画、挖宝、小游戏等机制提升用户参与感。该品牌的差异化切入点：把品牌温度注入情感语言，以「有性格的陪伴感」区别于竞品的功能堆叠。</p>
+        <p>在本次采样的国内产品中，互动型彩蛋比单纯视觉展示更常见——常通过触发动画、探索或小游戏提升参与感（结论仅适用于当时选取的样本与版本，不外推为全行业趋势）。该品牌的差异化切入点：把品牌温度转译成「有性格的陪伴感」，而不是继续增加玩法数量。</p>
       </div>
       <div class="case-image-placeholder">竞品对比矩阵 · 图片占位</div>
     </div>
@@ -134,45 +134,35 @@
         <div class="decision-body">
           <div class="decision-choice decision-choice--chosen">
             <span class="decision-badge decision-badge--chosen">采用</span>
-            <p><strong>第 18 层（状态栏之下、通知层之上）</strong><br>彩蛋可见但不遮挡核心功能区，高于主界面内容、低于系统级提示</p>
+            <p><strong>相对层级：低于安全提示、系统状态与阻断性弹窗，高于普通桌面内容</strong><br>彩蛋可见但不遮挡核心功能区；不覆盖 Dock 与核心快捷操作区（对外只表达相对层级与仲裁原则，不公开内部层级编号）</p>
           </div>
           <div class="decision-choice decision-choice--rejected">
             <span class="decision-badge decision-badge--rejected">排除</span>
-            <p><strong>第 19 层（Dock 栏上方）</strong><br>会覆盖快捷操作区，用户在彩蛋挂件与功能按钮之间的误触率上升</p>
+            <p><strong>覆盖 Dock 快捷操作区的方案</strong><br>挂件与高频按钮争夺同一区域，会增加误触风险并削弱快捷操作的稳定性</p>
           </div>
         </div>
-        <div class="case-image-placeholder">系统层级示意图 · 图片占位</div>
+        <figure class="case-figure"><img src="assets/case05/图2-系统层级与事件仲裁.svg" alt="系统层级与事件仲裁:彩蛋挂件的相对层级定位 + 继续/弱化/暂停/终止四类响应"><figcaption>系统层级与事件仲裁:彩蛋挂件的相对层级定位 + 继续/弱化/暂停/终止四类响应</figcaption></figure>
       </div>
 
-      <!-- 02 打断机制 -->
+      <!-- 02 状态仲裁 -->
       <div class="decision-card">
         <div class="decision-header">
           <span class="decision-number">02</span>
           <div>
-            <h3 class="decision-title">打断机制</h3>
-            <p class="decision-question">哪些系统事件必须中断彩蛋动画？</p>
+            <h3 class="decision-title">状态仲裁</h3>
+            <p class="decision-question">系统事件发生时，彩蛋如何让位？</p>
           </div>
         </div>
         <div class="decision-body">
-          <div class="decision-interrupt-grid">
-            <div class="interrupt-col interrupt-col--warn">
-              <span class="interrupt-col-label">必须打断</span>
-              <ul>
-                <li>SOS 紧急求救</li>
-                <li>热失控警告</li>
-                <li>AVM 倒车影像</li>
-              </ul>
-            </div>
-            <div class="interrupt-col interrupt-col--safe">
-              <span class="interrupt-col-label">不打断</span>
-              <ul>
-                <li>语音唤醒 / 语音交互</li>
-                <li>切换驾驶模式 / 拖拽地图</li>
-                <li>TOAST · 弹窗 · SmartBar</li>
-              </ul>
-            </div>
+          <p>「打断 / 不打断」不足以覆盖真实状态，因此将系统响应分为四类：</p>
+          <div class="spec-table">
+            <div class="spec-row spec-row--header"><span>响应</span><span>适用事件示例</span><span>彩蛋行为与恢复</span></div>
+            <div class="spec-row"><span>继续</span><span>不遮挡挂件的轻量状态更新</span><span>保持当前状态，无需恢复</span></div>
+            <div class="spec-row"><span>弱化</span><span>语音唤醒、语音播报</span><span>暂停动效，保留静态挂件；语音结束后恢复静默态，不自动重播</span></div>
+            <div class="spec-row"><span>暂停</span><span>拖拽地图、阻断性系统弹窗</span><span>停止动效与点击，保留进度；事件结束且仍在原桌面时恢复</span></div>
+            <div class="spec-row"><span>终止</span><span>SOS、热失控、AVM 等安全界面</span><span>立即隐藏并清除播放状态；不自动续播，等待下次主动触发</span></div>
           </div>
-          <p class="decision-principle">动画完整性优先保护节日情绪体验；只有涉及人身安全的事件才真正打断。</p>
+          <p class="decision-principle">安全事件拥有最高优先级；非安全事件也要根据注意力竞争、遮挡和手势冲突选择弱化或暂停，而不是一概「不断动画」。</p>
         </div>
       </div>
 
@@ -188,11 +178,11 @@
         <div class="decision-body">
           <p>完全无提示 → 功能不被发现；持续强提示 → 破坏惊喜感。两端之间需要一个「一次性微提示」规则：</p>
           <div class="decision-rule">
-            <p>节日期间<strong>首次开机</strong>时，挂件有 2s 呼吸光效提示可交互，随后回归被动发现态。<br>重复进入同一桌面不再触发提示，保留用户自主探索的惊喜空间。</p>
+            <p>节日期间<strong>首次开机</strong>时，挂件用短暂呼吸光效提示可交互，随后回归被动发现态。<br>重复进入同一桌面不再触发提示，保留用户自主探索的惊喜空间。</p>
           </div>
-          <p>这条规则同时解决了「首次用户发现率」和「老用户不被打扰」两个相互矛盾的需求。</p>
+          <p>原型暂以 2 秒作为动效参数，但它不是已验证的最优值，需通过可发现性与干扰感测试校准。该规则希望同时平衡首次发现与重复打扰，而不预先声称已经提高发现率。</p>
         </div>
-        <div class="case-image-placeholder">发现态 / 静默态 对比示意 · 图片占位</div>
+        <figure class="case-figure"><img src="assets/case05/图3-发现态静默态对比.svg" alt="发现机制:仅首次开机的一次性微提示 vs 此后的被动发现静默态"><figcaption>发现机制:仅首次开机的一次性微提示 vs 此后的被动发现静默态</figcaption></figure>
       </div>
 
       <!-- 04 跨桌面状态 -->
@@ -207,10 +197,10 @@
         <div class="decision-body">
           <p>壁纸桌面、导航桌面、星球桌面各自有独立的彩蛋逻辑。用户在动画播放中途切换桌面时：</p>
           <div class="decision-rule">
-            <p>动画在<strong>当前桌面自然结束</strong>后停止，不随用户迁移到其他桌面继续播放。<br>避免两套彩蛋动画在不同桌面同时运行，造成视觉冲突与用户操作混淆。</p>
+            <p>用户离开触发动画的桌面后，<strong>原桌面立即停止渲染</strong>，动画状态在后台走完当前时间线；目标桌面不启动另一套动画。<br>返回原桌面时只看到静默挂件——不续播、不补播。若期间发生安全事件，全局进入「终止」，后台时间线一并清除。</p>
           </div>
         </div>
-        <div class="case-image-placeholder">跨桌面状态流程 · 图片占位</div>
+        <figure class="case-figure"><img src="assets/case05/图4-跨桌面状态流程.svg" alt="跨桌面状态一致性:停止渲染、不迁移、不续播;安全事件全局终止"><figcaption>跨桌面状态一致性:停止渲染、不迁移、不续播;安全事件全局终止</figcaption></figure>
       </div>
     </div>
 
@@ -248,12 +238,12 @@
               <span class="lifecycle-step-desc">主动触发完整彩蛋动画序列</span>
             </div>
             <div class="lifecycle-step lifecycle-step--highlight">
-              <span class="lifecycle-step-name">安全事件监听</span>
-              <span class="lifecycle-step-desc">SOS / 热失控 / AVM → 立即中断动画</span>
+              <span class="lifecycle-step-name">系统事件仲裁</span>
+              <span class="lifecycle-step-desc">按继续 / 弱化 / 暂停 / 终止四类响应处理；安全事件立即终止并清除播放状态</span>
             </div>
             <div class="lifecycle-step">
               <span class="lifecycle-step-name">桌面切换处理</span>
-              <span class="lifecycle-step-desc">当前桌面动画自然结束，不迁移到新桌面</span>
+              <span class="lifecycle-step-desc">离开即停止渲染，不迁移、不续播；目标桌面不启动另一套动画</span>
             </div>
           </div>
         </div>
@@ -264,16 +254,12 @@
           <div class="lifecycle-phase-label">阶段三 · 退出</div>
           <div class="lifecycle-steps">
             <div class="lifecycle-step">
-              <span class="lifecycle-step-name">节日窗口关闭</span>
-              <span class="lifecycle-step-desc">节日结束后次日零点，彩蛋挂件自动隐藏</span>
+              <span class="lifecycle-step-name">节日窗口结束</span>
+              <span class="lifecycle-step-desc">节日窗口关闭后，挂件不再展示</span>
             </div>
             <div class="lifecycle-step lifecycle-step--highlight">
-              <span class="lifecycle-step-name">重复体验降级</span>
-              <span class="lifecycle-step-desc">同一节日再次到来，取消 2s 光效提示，直接进入静默可交互态</span>
-            </div>
-            <div class="lifecycle-step">
-              <span class="lifecycle-step-name">资源清理</span>
-              <span class="lifecycle-step-desc">本地彩蛋资源缓存在退出后 24h 内异步释放</span>
+              <span class="lifecycle-step-name">无痕退场</span>
+              <span class="lifecycle-step-desc">挂件与彩蛋资源无痕退出，不留残余入口</span>
             </div>
           </div>
         </div>

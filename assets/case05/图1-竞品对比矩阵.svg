@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 500" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif">
+  <style>
+    .title{font-size:18px;font-weight:700;fill:#1f2937}
+    .sub{font-size:12px;fill:#6b7280}
+    .head{font-size:13px;font-weight:700;fill:#374151}
+    .brand{font-size:13px;font-weight:600;fill:#1f2937}
+    .cell{font-size:12px;fill:#374151}
+    .todo{font-size:12px;fill:#d97706}
+    .small{font-size:11px;fill:#6b7280}
+  </style>
+  <rect width="880" height="500" fill="#ffffff"/>
+  <text x="40" y="42" class="title">竞品对比矩阵：6 款车机的节日彩蛋策略</text>
+  <text x="40" y="62" class="sub">3 个核心维度：触发方式 · 覆盖桌面 · 互动类型（⚠ 单元格内容需按当年调研结果填写，此稿为版式）</text>
+
+  <!-- 表头 -->
+  <g transform="translate(40,84)">
+    <rect x="0" y="0" width="140" height="40" fill="#1f2937"/>
+    <text x="70" y="25" text-anchor="middle" class="head" fill="#ffffff">品牌</text>
+    <rect x="140" y="0" width="220" height="40" fill="#1f2937"/>
+    <text x="250" y="25" text-anchor="middle" class="head" fill="#ffffff">触发方式</text>
+    <rect x="360" y="0" width="220" height="40" fill="#1f2937"/>
+    <text x="470" y="25" text-anchor="middle" class="head" fill="#ffffff">覆盖桌面</text>
+    <rect x="580" y="0" width="220" height="40" fill="#1f2937"/>
+    <text x="690" y="25" text-anchor="middle" class="head" fill="#ffffff">互动类型</text>
+
+    <!-- 行 -->
+    <g id="rows">
+      <!-- 国际品牌 -->
+      <rect x="0" y="40" width="800" height="46" fill="#f9fafb" stroke="#e5e7eb"/>
+      <rect x="8" y="52" width="22" height="22" rx="4" fill="#9ca3af"/>
+      <text x="40" y="67" class="brand">BMW</text>
+      <text x="250" y="67" text-anchor="middle" class="todo">【待填】</text>
+      <text x="470" y="67" text-anchor="middle" class="todo">【待填】</text>
+      <text x="690" y="67" text-anchor="middle" class="todo">【待填】</text>
+
+      <rect x="0" y="86" width="800" height="46" fill="#ffffff" stroke="#e5e7eb"/>
+      <rect x="8" y="98" width="22" height="22" rx="4" fill="#9ca3af"/>
+      <text x="40" y="113" class="brand">MINI</text>
+      <text x="250" y="113" text-anchor="middle" class="todo">【待填】</text>
+      <text x="470" y="113" text-anchor="middle" class="todo">【待填】</text>
+      <text x="690" y="113" text-anchor="middle" class="todo">【待填】</text>
+
+      <rect x="0" y="132" width="800" height="46" fill="#f9fafb" stroke="#e5e7eb"/>
+      <rect x="8" y="144" width="22" height="22" rx="4" fill="#9ca3af"/>
+      <text x="40" y="159" class="brand">特斯拉</text>
+      <text x="250" y="159" text-anchor="middle" class="todo">【待填】</text>
+      <text x="470" y="159" text-anchor="middle" class="todo">【待填】</text>
+      <text x="690" y="159" text-anchor="middle" class="todo">【待填】</text>
+
+      <!-- 国内品牌 -->
+      <rect x="0" y="178" width="800" height="46" fill="#ffffff" stroke="#e5e7eb"/>
+      <rect x="8" y="190" width="22" height="22" rx="4" fill="#2563eb"/>
+      <text x="40" y="205" class="brand">小米</text>
+      <text x="250" y="205" text-anchor="middle" class="todo">【待填】</text>
+      <text x="470" y="205" text-anchor="middle" class="todo">【待填】</text>
+      <text x="690" y="205" text-anchor="middle" class="todo">【待填】</text>
+
+      <rect x="0" y="224" width="800" height="46" fill="#f9fafb" stroke="#e5e7eb"/>
+      <rect x="8" y="236" width="22" height="22" rx="4" fill="#2563eb"/>
+      <text x="40" y="251" class="brand">理想</text>
+      <text x="250" y="251" text-anchor="middle" class="todo">【待填】</text>
+      <text x="470" y="251" text-anchor="middle" class="todo">【待填】</text>
+      <text x="690" y="251" text-anchor="middle" class="todo">【待填】</text>
+
+      <rect x="0" y="270" width="800" height="46" fill="#ffffff" stroke="#e5e7eb"/>
+      <rect x="8" y="282" width="22" height="22" rx="4" fill="#2563eb"/>
+      <text x="40" y="297" class="brand">小鹏</text>
+      <text x="250" y="297" text-anchor="middle" class="todo">【待填】</text>
+      <text x="470" y="297" text-anchor="middle" class="todo">【待填】</text>
+      <text x="690" y="297" text-anchor="middle" class="todo">【待填】</text>
+    </g>
+  </g>
+
+  <!-- 图例 -->
+  <g transform="translate(40,428)">
+    <rect x="0" y="0" width="14" height="14" rx="3" fill="#9ca3af"/>
+    <text x="22" y="12" class="small">国际品牌</text>
+    <rect x="90" y="0" width="14" height="14" rx="3" fill="#2563eb"/>
+    <text x="112" y="12" class="small">国内品牌（本次采样中互动型彩蛋更常见——结论仅限当时样本与版本）</text>
+  </g>
+  <text x="40" y="470" class="sub">互动类型参考分类：视觉展示 / 触发动画 / 探索互动 / 小游戏 · 竞品格内可放公开截图缩略或示意色块</text>
+</svg>
