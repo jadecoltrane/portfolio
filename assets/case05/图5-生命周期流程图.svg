@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 420" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif">
+  <style>
+    .title{font-size:18px;font-weight:700;fill:#1f2937}
+    .sub{font-size:12px;fill:#6b7280}
+    .stage{font-size:14px;font-weight:700;fill:#1d4ed8}
+    .node{font-size:12px;fill:#1f2937}
+    .small{font-size:11px;fill:#6b7280}
+  </style>
+  <rect width="880" height="420" fill="#ffffff"/>
+  <text x="40" y="42" class="title">彩蛋完整生命周期</text>
+  <text x="40" y="62" class="sub">进入 → 激活 → 退出 · 安全终止可从任意状态直达</text>
+
+  <!-- 三段背景 -->
+  <rect x="40" y="90" width="250" height="220" rx="10" fill="#f9fafb" stroke="#d1d5db"/>
+  <rect x="315" y="90" width="250" height="220" rx="10" fill="#f9fafb" stroke="#d1d5db"/>
+  <rect x="590" y="90" width="250" height="220" rx="10" fill="#f9fafb" stroke="#d1d5db"/>
+  <text x="60" y="118" class="stage">阶段一 · 进入</text>
+  <text x="335" y="118" class="stage">阶段二 · 激活</text>
+  <text x="610" y="118" class="stage">阶段三 · 退出</text>
+
+  <!-- 阶段一节点 -->
+  <g>
+    <rect x="60" y="135" width="210" height="34" rx="6" fill="#ffffff" stroke="#9ca3af"/>
+    <text x="165" y="156" text-anchor="middle" class="node">开机检测：日期在节日窗口内？</text>
+    <rect x="60" y="185" width="210" height="34" rx="6" fill="#ffffff" stroke="#9ca3af"/>
+    <text x="165" y="206" text-anchor="middle" class="node">资源后台预加载（未就绪不显示）</text>
+    <rect x="60" y="235" width="210" height="34" rx="6" fill="#dbeafe" stroke="#2563eb"/>
+    <text x="165" y="256" text-anchor="middle" class="node">呼吸光效微提示（仅首次开机）</text>
+    <line x1="165" y1="169" x2="165" y2="185" stroke="#9ca3af" marker-end="url(#arr)"/>
+    <line x1="165" y1="219" x2="165" y2="235" stroke="#9ca3af" marker-end="url(#arr)"/>
+  </g>
+
+  <!-- 阶段二节点 -->
+  <g>
+    <rect x="335" y="135" width="210" height="34" rx="6" fill="#ffffff" stroke="#9ca3af"/>
+    <text x="440" y="156" text-anchor="middle" class="node">用户主动点击 → 播放完整动画</text>
+    <rect x="335" y="185" width="210" height="34" rx="6" fill="#fffbeb" stroke="#d97706"/>
+    <text x="440" y="206" text-anchor="middle" class="node">系统事件仲裁：继续/弱化/暂停/终止</text>
+    <rect x="335" y="235" width="210" height="34" rx="6" fill="#ffffff" stroke="#9ca3af"/>
+    <text x="440" y="256" text-anchor="middle" class="node">切换桌面：停止渲染 · 不迁移不续播</text>
+    <line x1="440" y1="169" x2="440" y2="185" stroke="#9ca3af" marker-end="url(#arr)"/>
+    <line x1="440" y1="219" x2="440" y2="235" stroke="#9ca3af" marker-end="url(#arr)"/>
+  </g>
+
+  <!-- 阶段三节点 -->
+  <g>
+    <rect x="610" y="135" width="210" height="34" rx="6" fill="#ffffff" stroke="#9ca3af"/>
+    <text x="715" y="156" text-anchor="middle" class="node">节日窗口结束</text>
+    <rect x="610" y="185" width="210" height="34" rx="6" fill="#ffffff" stroke="#9ca3af"/>
+    <text x="715" y="206" text-anchor="middle" class="node">挂件与资源无痕退场</text>
+    <line x1="715" y1="169" x2="715" y2="185" stroke="#9ca3af" marker-end="url(#arr)"/>
+  </g>
+
+  <!-- 阶段间箭头 -->
+  <line x1="290" y1="200" x2="315" y2="200" stroke="#2563eb" stroke-width="2" marker-end="url(#arrb)"/>
+  <line x1="565" y1="200" x2="590" y2="200" stroke="#2563eb" stroke-width="2" marker-end="url(#arrb)"/>
+
+  <!-- 安全终止通道 -->
+  <rect x="40" y="340" width="800" height="44" rx="8" fill="#dc2626"/>
+  <text x="440" y="360" text-anchor="middle" class="node" fill="#ffffff" font-weight="700">安全终止通道：SOS / 热失控 / AVM → 从任意状态立即隐藏并清除播放状态，事件结束后不自动续播</text>
+  <text x="440" y="377" text-anchor="middle" class="small" fill="#fca5a5">安全事件优先级高于生命周期的任何阶段</text>
+  <line x1="165" y1="310" x2="165" y2="340" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arrr)"/>
+  <line x1="440" y1="310" x2="440" y2="340" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arrr)"/>
+  <line x1="715" y1="310" x2="715" y2="340" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arrr)"/>
+
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#9ca3af"/></marker>
+    <marker id="arrb" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#2563eb"/></marker>
+    <marker id="arrr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#dc2626"/></marker>
+  </defs>
+</svg>

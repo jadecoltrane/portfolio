@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 500" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif">
+  <style>
+    .title{font-size:18px;font-weight:700;fill:#1f2937}
+    .sub{font-size:12px;fill:#6b7280}
+    .label{font-size:13px;font-weight:600;fill:#1f2937}
+    .node{font-size:12px;fill:#1f2937}
+    .small{font-size:11px;fill:#6b7280}
+  </style>
+  <rect width="880" height="500" fill="#ffffff"/>
+  <text x="40" y="42" class="title">跨桌面状态一致性</text>
+  <text x="40" y="62" class="sub">一次触发只对应一次生命周期：不迁移、不续播、不在多桌面并存两套动画</text>
+
+  <!-- 泳道：原桌面 -->
+  <g transform="translate(40,90)">
+    <rect x="0" y="0" width="800" height="120" rx="10" fill="#f9fafb" stroke="#d1d5db"/>
+    <text x="16" y="26" class="label">原桌面（触发动画的桌面）</text>
+    <rect x="20" y="42" width="150" height="40" rx="6" fill="#dbeafe" stroke="#2563eb"/>
+    <text x="95" y="66" text-anchor="middle" class="node">动画播放中</text>
+    <rect x="240" y="42" width="170" height="40" rx="6" fill="#fffbeb" stroke="#d97706"/>
+    <text x="325" y="60" text-anchor="middle" class="node">立即停止渲染</text>
+    <text x="325" y="76" text-anchor="middle" class="small">状态在后台走完当前时间线</text>
+    <rect x="480" y="42" width="170" height="40" rx="6" fill="#f3f4f6" stroke="#9ca3af"/>
+    <text x="565" y="60" text-anchor="middle" class="node">返回时：静默挂件</text>
+    <text x="565" y="76" text-anchor="middle" class="small">不续播 · 不补播</text>
+    <line x1="170" y1="62" x2="240" y2="62" stroke="#9ca3af" marker-end="url(#arr)"/>
+    <line x1="410" y1="62" x2="480" y2="62" stroke="#9ca3af" marker-end="url(#arr)"/>
+  </g>
+
+  <!-- 切换事件 -->
+  <g transform="translate(40,222)">
+    <rect x="140" y="0" width="200" height="30" rx="15" fill="#1f2937"/>
+    <text x="240" y="20" text-anchor="middle" class="node" fill="#ffffff">用户切换桌面 ↓</text>
+    <rect x="440" y="0" width="200" height="30" rx="15" fill="#1f2937"/>
+    <text x="540" y="20" text-anchor="middle" class="node" fill="#ffffff">用户返回原桌面 ↑</text>
+  </g>
+
+  <!-- 泳道：目标桌面 -->
+  <g transform="translate(40,268)">
+    <rect x="0" y="0" width="800" height="100" rx="10" fill="#f9fafb" stroke="#d1d5db"/>
+    <text x="16" y="26" class="label">目标桌面（壁纸 / 导航 / 星球，各自独立彩蛋逻辑）</text>
+    <rect x="240" y="40" width="290" height="40" rx="6" fill="#f3f4f6" stroke="#9ca3af"/>
+    <text x="385" y="58" text-anchor="middle" class="node">不启动另一套动画</text>
+    <text x="385" y="74" text-anchor="middle" class="small">避免两个桌面同时出现两套动画</text>
+  </g>
+
+  <!-- 安全事件 -->
+  <g transform="translate(40,395)">
+    <rect x="0" y="0" width="800" height="52" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+    <text x="16" y="22" class="label" fill="#b91c1c">安全事件插入（任意时刻）</text>
+    <text x="16" y="40" class="small" fill="#b91c1c">全局状态直接进入「终止」：所有桌面隐藏挂件，后台时间线一并清除，不自动续播</text>
+  </g>
+
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#9ca3af"/></marker>
+  </defs>
+</svg>
