@@ -15,14 +15,11 @@
     <button class="lang-btn" data-l="en">EN</button>
   </div>
 
-  <div class="cursor-dot" id="cursorDot"></div>
-  <div class="cursor-ring" id="cursorRing"></div>
-
   <div class="page">
     <div class="bento">
 
-      <div class="card card-hero hero--light" id="heroCard">
-        <div class="time-overlay" id="timeOverlay"></div>
+      <div class="card card-hero" id="heroCard">
+        <div class="hero-blobs"><span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span></div>
         <div>
           <div class="hero-time" id="clock">--:--:--</div>
           <div class="hero-location" data-zh="上海 · Shanghai" data-en="Shanghai, China">上海 · Shanghai</div>
@@ -38,25 +35,25 @@
       </div>
 
       <div class="bento-middle">
-        <a href="project-agent.html" class="card card-project" style="--dot:#0071e3;">
+        <a href="project-agent.html" class="card card-project theme-agent">
           <div class="card-tag" data-zh="AI Agent · 可运行 Demo" data-en="AI Agent · Live Demo">AI Agent · 可运行 Demo</div>
           <div class="card-title">LLM 座舱 Agent</div>
           <div class="card-desc" data-zh="车载语音助手 → LLM 驱动座舱 Agent 重设计" data-en="Voice assistant → LLM-driven cockpit agent">车载语音助手 → LLM 驱动座舱 Agent 重设计</div>
           <div class="card-arrow">→</div>
         </a>
-        <a href="project-hmi.html" class="card card-project" style="--dot:#ff9500;">
+        <a href="project-hmi.html" class="card card-project theme-hmi">
           <div class="card-tag" data-zh="HMI · 智能座舱" data-en="HMI · Smart Cockpit">HMI · 智能座舱</div>
           <div class="card-title">控制中心</div>
           <div class="card-desc" data-zh="量产车机控制中心改版迭代" data-en="Production HMI control center redesign">量产车机控制中心改版迭代</div>
           <div class="card-arrow">→</div>
         </a>
-        <a href="project-ai.html" class="card card-project" style="--dot:#af52de;">
+        <a href="project-ai.html" class="card card-project theme-gas">
           <div class="card-tag" data-zh="AI × 设计工作流 · GAS" data-en="AI × Workflow · GAS">AI × 设计工作流 · GAS</div>
           <div class="card-title">AI in Design</div>
           <div class="card-desc" data-zh="AI 辅助的合规审查工作流与 GAS 适配落地" data-en="AI-assisted compliance review & GAS adaptation">AI 辅助的合规审查工作流与 GAS 适配落地</div>
           <div class="card-arrow">→</div>
         </a>
-        <a href="project-caidan.html" class="card card-project" style="--dot:#34c759;">
+        <a href="project-caidan.html" class="card card-project theme-egg">
           <div class="card-tag" data-zh="汽车 UX · 2024" data-en="Automotive UX · 2024">汽车 UX · 2024</div>
           <div class="card-title">彩蛋</div>
           <div class="card-desc" data-zh="车机系统功能设计与交互优化" data-en="HMI feature design & interaction">车机系统功能设计与交互优化</div>
@@ -83,9 +80,9 @@
                 <span class="ctrl-sub" data-zh="点击切换主题色" data-en="Tap to cycle accent">点击切换主题色</span>
               </span>
               <span class="ctrl-dots">
-                <span class="ctrl-dot" data-accent="" style="background:#0071e3;color:#0071e3;"></span>
-                <span class="ctrl-dot" data-accent="teal" style="background:#2c8c7d;color:#2c8c7d;"></span>
-                <span class="ctrl-dot" data-accent="violet" style="background:#6e56cf;color:#6e56cf;"></span>
+                <span class="ctrl-dot" data-accent="" style="background:#2b50d4;color:#2b50d4;"></span>
+                <span class="ctrl-dot" data-accent="teal" style="background:#a4532a;color:#a4532a;"></span>
+                <span class="ctrl-dot" data-accent="violet" style="background:#47703f;color:#47703f;"></span>
               </span>
             </button>
             <a class="ctrl-row" id="ctrlDemo" href="demo/">
@@ -113,12 +110,6 @@
 
     </div>
   </div>
-  <script>
-    // 英雄卡流体配色。备选(换方案改这一行即可):
-    // B 深邃极光: { c0:[0.02,0.03,0.10], c1:[0.18,0.14,0.42], c2:[0.12,0.60,0.62], boost:1.3 }
-    // C 暮色座舱: { c0:[0.03,0.07,0.11], c1:[0.10,0.22,0.36], c2:[0.88,0.48,0.20], boost:1.1 }
-    window.__HERO_PALETTE = { c0: [0.93,0.93,0.96], c1: [0.76,0.79,0.98], c2: [1.0,0.85,0.82], boost: 0.85, light: 1 };
-  </script>
   <script src="main.js"></script>
 </body>
 </html>
