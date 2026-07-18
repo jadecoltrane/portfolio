@@ -139,6 +139,20 @@ img { max-width: 100%; display: block; }
   50%       { opacity: 0.4; box-shadow: 0 0 0 5px rgba(255,255,255,0); }
 }
 
+/* 浅色英雄卡:深字 + 白雾遮罩 + 反转按钮 */
+.card-hero.hero--light {
+  color: #1d1d1f; border: 1px solid var(--hairline);
+  background: linear-gradient(160deg, #ececf2, #e2e5f6 55%, #f7eae6);
+}
+.card-hero.hero--light.webgl-active::before {
+  background: linear-gradient(160deg, rgba(255,255,255,0.42) 0%, rgba(255,255,255,0.04) 55%, rgba(255,255,255,0.38) 100%);
+}
+.card-hero.hero--light::after {
+  background: radial-gradient(420px circle at var(--mx) var(--my), rgba(255,255,255,0.35), transparent 65%);
+}
+.card-hero.hero--light .hero-connect { background: #1d1d1f; color: #ffffff; }
+.card-hero.hero--light .hero-connect:hover { background: #333336; }
+
 /* Apple 式白色胶囊按钮 */
 .hero-connect {
   display: inline-block; margin-top: 22px; padding: 11px 26px;

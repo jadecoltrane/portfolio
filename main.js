@@ -87,6 +87,7 @@ function initHeroFlow() {
     uniform vec3  u_c1;
     uniform vec3  u_c2;
     uniform float u_boost;
+    uniform float u_light;
     uniform float u_dark;
     uniform vec2  u_ptr;
     uniform vec4  u_rip[${RIPPLES}];
@@ -147,9 +148,11 @@ function initHeroFlow() {
       col += u_accent * ridge * 0.09 * u_boost;
       col += u_accent * glow * u_boost;
 
-      // readability: darken top (clock) and bottom (name) bands
+      // readability bands: dark hero darkens, light hero lifts toward white
       float dk = smoothstep(0.45, 0.0, v_uv.y) * 0.22 + smoothstep(0.60, 1.0, v_uv.y) * 0.30;
-      col *= (1.0 - dk);
+      vec3 darkened = col * (1.0 - dk);
+      vec3 lightened = col + (vec3(1.0) - col) * dk * 1.1;
+      col = mix(darkened, lightened, u_light);
 
       gl_FragColor = vec4(col, 1.0);
     }
@@ -177,9 +180,11 @@ function initHeroFlow() {
   const uC1 = gl.getUniformLocation(prog, 'u_c1');
   const uC2 = gl.getUniformLocation(prog, 'u_c2');
   const uBoost = gl.getUniformLocation(prog, 'u_boost');
+  const uLight = gl.getUniformLocation(prog, 'u_light');
   const PAL = window.__HERO_PALETTE || {
     c0: [0.016, 0.110, 0.104], c1: [0.039, 0.290, 0.271], c2: [0.055, 0.480, 0.443], boost: 1.0
   };
+  if (PAL.light) hero.classList.add('hero--light');
   const uDark   = gl.getUniformLocation(prog, 'u_dark');
   const uPtr    = gl.getUniformLocation(prog, 'u_ptr');
   const uRip    = gl.getUniformLocation(prog, 'u_rip');
@@ -254,6 +259,7 @@ function initHeroFlow() {
     gl.uniform3f(uC1, PAL.c1[0], PAL.c1[1], PAL.c1[2]);
     gl.uniform3f(uC2, PAL.c2[0], PAL.c2[1], PAL.c2[2]);
     gl.uniform1f(uBoost, PAL.boost);
+    gl.uniform1f(uLight, PAL.light ? 1.0 : 0.0);
     gl.uniform1f(uDark, dark);
     gl.uniform2f(uPtr, ptr[0], ptr[1]);
     gl.uniform4fv(uRip, ripFlat);
