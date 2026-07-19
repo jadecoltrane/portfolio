@@ -1,82 +1,102 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 500" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 560" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif">
   <style>
     .title{font-size:18px;font-weight:700;fill:#1f2937}
     .sub{font-size:12px;fill:#6b7280}
-    .head{font-size:13px;font-weight:700;fill:#374151}
+    .head{font-size:13px;font-weight:700;fill:#ffffff}
     .brand{font-size:13px;font-weight:600;fill:#1f2937}
-    .cell{font-size:12px;fill:#374151}
-    .todo{font-size:12px;fill:#d97706}
+    .cell{font-size:11.5px;fill:#374151}
+    .cell2{font-size:10.5px;fill:#6b7280}
     .small{font-size:11px;fill:#6b7280}
   </style>
-  <rect width="880" height="500" fill="#ffffff"/>
-  <text x="40" y="42" class="title">竞品对比矩阵：6 款车机的节日彩蛋策略</text>
-  <text x="40" y="62" class="sub">3 个核心维度：触发方式 · 覆盖桌面 · 互动类型（⚠ 单元格内容需按当年调研结果填写，此稿为版式）</text>
+  <rect width="880" height="560" fill="#ffffff"/>
+  <text x="40" y="40" class="title">竞品对比矩阵：6 款车机的节日彩蛋策略</text>
+  <text x="40" y="60" class="sub">3 个核心维度：触发方式 · 覆盖载体 · 互动类型（信息基于当时公开可观察的产品行为，随版本迭代可能变化）</text>
 
-  <!-- 表头 -->
-  <g transform="translate(40,84)">
-    <rect x="0" y="0" width="140" height="40" fill="#1f2937"/>
-    <text x="70" y="25" text-anchor="middle" class="head" fill="#ffffff">品牌</text>
-    <rect x="140" y="0" width="220" height="40" fill="#1f2937"/>
-    <text x="250" y="25" text-anchor="middle" class="head" fill="#ffffff">触发方式</text>
-    <rect x="360" y="0" width="220" height="40" fill="#1f2937"/>
-    <text x="470" y="25" text-anchor="middle" class="head" fill="#ffffff">覆盖桌面</text>
-    <rect x="580" y="0" width="220" height="40" fill="#1f2937"/>
-    <text x="690" y="25" text-anchor="middle" class="head" fill="#ffffff">互动类型</text>
+  <g transform="translate(40,80)">
+    <!-- 表头 -->
+    <rect x="0" y="0" width="120" height="36" fill="#1f2937"/>
+    <text x="60" y="23" text-anchor="middle" class="head">品牌</text>
+    <rect x="120" y="0" width="230" height="36" fill="#1f2937"/>
+    <text x="235" y="23" text-anchor="middle" class="head">触发方式</text>
+    <rect x="350" y="0" width="220" height="36" fill="#1f2937"/>
+    <text x="460" y="23" text-anchor="middle" class="head">覆盖载体</text>
+    <rect x="570" y="0" width="230" height="36" fill="#1f2937"/>
+    <text x="685" y="23" text-anchor="middle" class="head">互动类型</text>
 
-    <!-- 行 -->
-    <g id="rows">
-      <!-- 国际品牌 -->
-      <rect x="0" y="40" width="800" height="46" fill="#f9fafb" stroke="#e5e7eb"/>
-      <rect x="8" y="52" width="22" height="22" rx="4" fill="#9ca3af"/>
-      <text x="40" y="67" class="brand">BMW</text>
-      <text x="250" y="67" text-anchor="middle" class="todo">【待填】</text>
-      <text x="470" y="67" text-anchor="middle" class="todo">【待填】</text>
-      <text x="690" y="67" text-anchor="middle" class="todo">【待填】</text>
+    <!-- BMW -->
+    <rect x="0" y="36" width="800" height="58" fill="#f9fafb" stroke="#e5e7eb"/>
+    <rect x="10" y="50" width="20" height="20" rx="4" fill="#9ca3af"/>
+    <text x="40" y="65" class="brand">宝马</text>
+    <text x="130" y="59" class="cell">固定节日自动推送（元旦/春节/中秋/圣诞）</text>
+    <text x="130" y="77" class="cell2">语音助手引导增强触达</text>
+    <text x="360" y="59" class="cell">车机主界面动画视频</text>
+    <text x="360" y="77" class="cell2">联动车灯灯效 + 语音播报</text>
+    <text x="580" y="59" class="cell">视觉展示为主，形成完整闭环</text>
+    <text x="580" y="77" class="cell2">情绪定位「陪伴 / 祝福」</text>
 
-      <rect x="0" y="86" width="800" height="46" fill="#ffffff" stroke="#e5e7eb"/>
-      <rect x="8" y="98" width="22" height="22" rx="4" fill="#9ca3af"/>
-      <text x="40" y="113" class="brand">MINI</text>
-      <text x="250" y="113" text-anchor="middle" class="todo">【待填】</text>
-      <text x="470" y="113" text-anchor="middle" class="todo">【待填】</text>
-      <text x="690" y="113" text-anchor="middle" class="todo">【待填】</text>
+    <!-- MINI -->
+    <rect x="0" y="94" width="800" height="58" fill="#ffffff" stroke="#e5e7eb"/>
+    <rect x="10" y="108" width="20" height="20" rx="4" fill="#9ca3af"/>
+    <text x="40" y="123" class="brand">MINI</text>
+    <text x="130" y="117" class="cell">节日推送，用户可自主切换动画</text>
+    <text x="130" y="135" class="cell2">冬日 / 春节 / 中秋等主题</text>
+    <text x="360" y="117" class="cell">车机界面主题动画</text>
+    <text x="360" y="135" class="cell2">不同节日对应不同情境</text>
+    <text x="580" y="117" class="cell">角色化动画（固定 IP 主角）</text>
+    <text x="580" y="135" class="cell2">人车互动轻量有趣，强调陪伴感</text>
 
-      <rect x="0" y="132" width="800" height="46" fill="#f9fafb" stroke="#e5e7eb"/>
-      <rect x="8" y="144" width="22" height="22" rx="4" fill="#9ca3af"/>
-      <text x="40" y="159" class="brand">特斯拉</text>
-      <text x="250" y="159" text-anchor="middle" class="todo">【待填】</text>
-      <text x="470" y="159" text-anchor="middle" class="todo">【待填】</text>
-      <text x="690" y="159" text-anchor="middle" class="todo">【待填】</text>
+    <!-- 特斯拉 -->
+    <rect x="0" y="152" width="800" height="58" fill="#f9fafb" stroke="#e5e7eb"/>
+    <rect x="10" y="166" width="20" height="20" rx="4" fill="#9ca3af"/>
+    <text x="40" y="181" class="brand">特斯拉</text>
+    <text x="130" y="175" class="cell">用户主动触发（语音 / 触屏），路径短</text>
+    <text x="130" y="193" class="cell2">无固定节日频率，全球同模板</text>
+    <text x="360" y="175" class="cell">车外：灯光 · 车门 · 音响</text>
+    <text x="360" y="193" class="cell2">整车硬件联动演出</text>
+    <text x="580" y="175" class="cell">功能联动型（代表：圣诞模式）</text>
+    <text x="580" y="193" class="cell2">偏重展示硬件能力与技术感</text>
 
-      <!-- 国内品牌 -->
-      <rect x="0" y="178" width="800" height="46" fill="#ffffff" stroke="#e5e7eb"/>
-      <rect x="8" y="190" width="22" height="22" rx="4" fill="#2563eb"/>
-      <text x="40" y="205" class="brand">小米</text>
-      <text x="250" y="205" text-anchor="middle" class="todo">【待填】</text>
-      <text x="470" y="205" text-anchor="middle" class="todo">【待填】</text>
-      <text x="690" y="205" text-anchor="middle" class="todo">【待填】</text>
+    <!-- 小米 -->
+    <rect x="0" y="210" width="800" height="58" fill="#ffffff" stroke="#e5e7eb"/>
+    <rect x="10" y="224" width="20" height="20" rx="4" fill="#2563eb"/>
+    <text x="40" y="239" class="brand">小米</text>
+    <text x="130" y="233" class="cell">语音一语触达，即时响应</text>
+    <text x="130" y="251" class="cell2">节日限定（如小年彩蛋表情）</text>
+    <text x="360" y="233" class="cell">仪表盘 / 智能双表盘为主</text>
+    <text x="360" y="251" class="cell2">彩蛋体积小，契合驾驶安全</text>
+    <text x="580" y="233" class="cell">轻量视觉表情，视觉极简</text>
+    <text x="580" y="251" class="cell2">「表情化」传递品牌亲和</text>
 
-      <rect x="0" y="224" width="800" height="46" fill="#f9fafb" stroke="#e5e7eb"/>
-      <rect x="8" y="236" width="22" height="22" rx="4" fill="#2563eb"/>
-      <text x="40" y="251" class="brand">理想</text>
-      <text x="250" y="251" text-anchor="middle" class="todo">【待填】</text>
-      <text x="470" y="251" text-anchor="middle" class="todo">【待填】</text>
-      <text x="690" y="251" text-anchor="middle" class="todo">【待填】</text>
+    <!-- 理想 -->
+    <rect x="0" y="268" width="800" height="58" fill="#f9fafb" stroke="#e5e7eb"/>
+    <rect x="10" y="282" width="20" height="20" rx="4" fill="#2563eb"/>
+    <text x="40" y="297" class="brand">理想</text>
+    <text x="130" y="291" class="cell">节日推送 + 寻宝任务解锁</text>
+    <text x="130" y="309" class="cell2">春节通关解锁 25 个彩蛋</text>
+    <text x="360" y="291" class="cell">中控多场景 + 相机联动</text>
+    <text x="360" y="309" class="cell2">AI 语音 · 动画多模态</text>
+    <text x="580" y="291" class="cell">游戏化互动，参与感最强</text>
+    <text x="580" y="309" class="cell2">家庭亲子导向，含 AI 定制内容</text>
 
-      <rect x="0" y="270" width="800" height="46" fill="#ffffff" stroke="#e5e7eb"/>
-      <rect x="8" y="282" width="22" height="22" rx="4" fill="#2563eb"/>
-      <text x="40" y="297" class="brand">小鹏</text>
-      <text x="250" y="297" text-anchor="middle" class="todo">【待填】</text>
-      <text x="470" y="297" text-anchor="middle" class="todo">【待填】</text>
-      <text x="690" y="297" text-anchor="middle" class="todo">【待填】</text>
-    </g>
+    <!-- 小鹏 -->
+    <rect x="0" y="326" width="800" height="58" fill="#ffffff" stroke="#e5e7eb"/>
+    <rect x="10" y="340" width="20" height="20" rx="4" fill="#2563eb"/>
+    <text x="40" y="355" class="brand">小鹏</text>
+    <text x="130" y="349" class="cell">节庆口令触发 + 空间探索发现</text>
+    <text x="130" y="367" class="cell2">旋转视角 / 特定角度现隐藏元素</text>
+    <text x="360" y="349" class="cell">3D 空间场景</text>
+    <text x="360" y="367" class="cell2">春节版本随系统更新推送</text>
+    <text x="580" y="349" class="cell">等级化探索（普通/S/SS/SSS）</text>
+    <text x="580" y="367" class="cell2">强化探索感与成就感、节日仪式感</text>
   </g>
 
-  <!-- 图例 -->
-  <g transform="translate(40,428)">
+  <!-- 图例与综合观察 -->
+  <g transform="translate(40,486)">
     <rect x="0" y="0" width="14" height="14" rx="3" fill="#9ca3af"/>
     <text x="22" y="12" class="small">国际品牌</text>
-    <rect x="90" y="0" width="14" height="14" rx="3" fill="#2563eb"/>
-    <text x="112" y="12" class="small">国内品牌（本次采样中互动型彩蛋更常见——结论仅限当时样本与版本）</text>
+    <rect x="86" y="0" width="14" height="14" rx="3" fill="#2563eb"/>
+    <text x="108" y="12" class="small">国内品牌（采样中互动型彩蛋更常见——结论仅限当时样本与版本）</text>
   </g>
-  <text x="40" y="470" class="sub">互动类型参考分类：视觉展示 / 触发动画 / 探索互动 / 小游戏 · 竞品格内可放公开截图缩略或示意色块</text>
+  <text x="40" y="526" class="sub">综合观察：全球车型品牌以特定节日推出为主，春节与圣诞最多；多数品牌在节日期间提供重现入口；</text>
+  <text x="40" y="544" class="sub">表现从车机延伸至灯效、车门、仪表等整车载体；近两年明显互动化——寻宝、口令、等级解锁提升参与和社交热度。</text>
 </svg>
