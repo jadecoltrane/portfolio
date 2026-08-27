@@ -1,125 +1,109 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 640" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 742" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif">
   <style>
-    .title{font-size:18px;font-weight:700;fill:#1f2937}
-    .sub{font-size:12px;fill:#6b7280}
-    .fnum{font-size:11px;font-weight:700;fill:#ffffff}
-    .flabel{font-size:13px;font-weight:700;fill:#1f2937}
-    .cap{font-size:11px;fill:#6b7280}
-    .cap b{font-weight:700;fill:#374151}
-    .tiny{font-size:9px;fill:#9ca3af}
-    .mark{font-size:10px;font-weight:700;fill:#1d4ed8}
-    .markw{font-size:10px;font-weight:700;fill:#b45309}
-    .note{font-size:11px;fill:#9ca3af}
+    .fnum{font-size:15px;font-weight:700;fill:#ffffff}
+    .flabel{font-size:19px;font-weight:700;fill:#1f2937}
+    .cap{font-size:16px;fill:#6b7280}
+    .capb{font-size:16px;font-weight:700;fill:#374151}
+    .tiny{font-size:13px;fill:#9ca3af}
+    .mark{font-size:15px;font-weight:700;fill:#1d4ed8}
+    .markw{font-size:15px;font-weight:700;fill:#b45309}
   </style>
-  <rect width="880" height="640" fill="#ffffff"/>
+  <rect width="1400" height="742" fill="#ffffff"/>
 
-  <text x="40" y="42" class="title">交互稿 · 规则的落地</text>
-  <text x="40" y="63" class="sub">脱敏重绘为线框标注稿：剥掉视觉素材后，剩下的都是本人定义的交互规则</text>
-
-  <!-- ============ 1 联屏落位 ============ -->
-  <g transform="translate(40,92)">
-    <circle cx="9" cy="9" r="9" fill="#2563eb"/><text x="9" y="13" text-anchor="middle" class="fnum">1</text>
-    <text x="26" y="13" class="flabel">壁纸桌面 · 联屏落位</text>
-
-    <!-- CSD -->
-    <g transform="translate(0,26)">
-      <rect width="228" height="132" rx="5" fill="#f9fafb" stroke="#d1d5db"/>
-      <rect x="1" y="1" width="226" height="13" rx="4" fill="#f3f4f6"/>
-      <text x="8" y="11" class="tiny">状态栏</text>
-      <rect x="10" y="24" width="86" height="34" rx="4" fill="#ffffff" stroke="#e5e7eb"/>
-      <rect x="10" y="86" width="208" height="22" rx="4" fill="#ffffff" stroke="#e5e7eb"/>
-      <rect x="1" y="114" width="226" height="17" rx="4" fill="#f3f4f6"/>
-      <text x="8" y="126" class="tiny">Dock</text>
-      <rect x="170" y="26" width="44" height="44" rx="8" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
-      <text x="192" y="52" text-anchor="middle" class="mark">挂件</text>
-      <text x="114" y="80" text-anchor="middle" class="tiny">中控屏 CSD</text>
+  <!-- ========== 1 联屏落位 ========== -->
+  <g transform="translate(0,0)">
+    <circle cx="13" cy="14" r="13" fill="#2563eb"/><text x="13" y="20" text-anchor="middle" class="fnum">1</text>
+    <text x="36" y="20" class="flabel">壁纸桌面 · 联屏落位</text>
+    <g transform="translate(0,32)">
+      <rect width="392" height="244" rx="8" fill="#f9fafb" stroke="#d1d5db" stroke-width="1.5"/>
+      <rect x="2" y="2" width="388" height="24" rx="6" fill="#f3f4f6"/>
+      <text x="14" y="19" class="tiny">状态栏</text>
+      <rect x="18" y="44" width="150" height="60" rx="7" fill="#ffffff" stroke="#e5e7eb"/>
+      <rect x="18" y="158" width="356" height="40" rx="7" fill="#ffffff" stroke="#e5e7eb"/>
+      <rect x="2" y="212" width="388" height="30" rx="6" fill="#f3f4f6"/>
+      <text x="14" y="232" class="tiny">Dock</text>
+      <rect x="290" y="46" width="80" height="80" rx="14" fill="#dbeafe" stroke="#2563eb" stroke-width="2.5"/>
+      <text x="330" y="93" text-anchor="middle" class="mark">挂件</text>
+      <text x="196" y="146" text-anchor="middle" class="tiny">中控屏 CSD</text>
     </g>
-    <!-- PSD -->
-    <g transform="translate(236,26)">
-      <rect width="144" height="132" rx="5" fill="#f9fafb" stroke="#d1d5db"/>
-      <rect x="1" y="1" width="142" height="13" rx="4" fill="#f3f4f6"/>
-      <rect x="1" y="114" width="142" height="17" rx="4" fill="#f3f4f6"/>
-      <text x="72" y="80" text-anchor="middle" class="tiny">副驾屏 PSD</text>
+    <g transform="translate(404,32)">
+      <rect width="256" height="244" rx="8" fill="#f9fafb" stroke="#d1d5db" stroke-width="1.5"/>
+      <rect x="2" y="2" width="252" height="24" rx="6" fill="#f3f4f6"/>
+      <rect x="2" y="212" width="252" height="30" rx="6" fill="#f3f4f6"/>
+      <text x="128" y="146" text-anchor="middle" class="tiny">副驾屏 PSD</text>
     </g>
-    <!-- 联屏底纹 -->
-    <line x1="4" y1="172" x2="376" y2="172" stroke="#6366f1" stroke-width="2" stroke-dasharray="6 4"/>
-    <text x="190" y="188" text-anchor="middle" class="markw" fill="#4338ca">全屏联屏壁纸横跨两屏</text>
-    <text x="0" y="212" class="cap" font-weight="700" fill="#374151">挂件区域只响应挂件点击事件</text>
-    <text x="0" y="230" class="cap">壁纸横跨两屏，可交互的只有挂件那一小块</text>
+    <line x1="6" y1="288" x2="654" y2="288" stroke="#6366f1" stroke-width="3" stroke-dasharray="9 6"/>
+    <text x="330" y="312" text-anchor="middle" class="mark" fill="#4338ca">全屏联屏壁纸横跨两屏</text>
+    <text x="0" y="348" class="capb">挂件区域只响应挂件点击事件</text>
+    <text x="0" y="372" class="cap">壁纸横跨两屏，可交互的只有挂件那一小块</text>
   </g>
 
-  <!-- ============ 2 热区跟随 ============ -->
-  <g transform="translate(460,92)">
-    <circle cx="9" cy="9" r="9" fill="#2563eb"/><text x="9" y="13" text-anchor="middle" class="fnum">2</text>
-    <text x="26" y="13" class="flabel">导航桌面 · 热区跟随挂件</text>
-
-    <g transform="translate(0,26)">
-      <rect width="380" height="132" rx="5" fill="#f9fafb" stroke="#d1d5db"/>
-      <rect x="1" y="1" width="378" height="13" rx="4" fill="#f3f4f6"/>
-      <path d="M20 40 L120 62 L210 34 L300 70 M60 120 L150 40 L250 110" stroke="#e5e7eb" stroke-width="6" fill="none" stroke-linecap="round"/>
-      <path d="M20 40 L120 62 L210 34 L300 70" stroke="#dbeafe" stroke-width="2" fill="none"/>
-      <text x="14" y="112" class="tiny">地图</text>
-      <rect x="1" y="114" width="378" height="17" rx="4" fill="#f3f4f6"/>
-      <rect x="292" y="34" width="42" height="42" rx="8" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
-      <text x="313" y="59" text-anchor="middle" class="mark">挂件</text>
-      <rect x="278" y="22" width="70" height="66" rx="6" fill="none" stroke="#2563eb" stroke-width="1.5" stroke-dasharray="5 3"/>
-      <text x="313" y="102" text-anchor="middle" class="mark">交互热区</text>
-      <path d="M348 55 L372 55" stroke="#9ca3af" stroke-width="1.2" stroke-dasharray="3 2"/>
+  <!-- ========== 2 热区跟随 ========== -->
+  <g transform="translate(740,0)">
+    <circle cx="13" cy="14" r="13" fill="#2563eb"/><text x="13" y="20" text-anchor="middle" class="fnum">2</text>
+    <text x="36" y="20" class="flabel">导航桌面 · 热区跟随挂件</text>
+    <g transform="translate(0,32)">
+      <rect width="660" height="244" rx="8" fill="#f9fafb" stroke="#d1d5db" stroke-width="1.5"/>
+      <rect x="2" y="2" width="656" height="24" rx="6" fill="#f3f4f6"/>
+      <path d="M40 76 L200 116 L360 62 L520 130 M110 220 L270 74 L430 200" stroke="#e5e7eb" stroke-width="11" fill="none" stroke-linecap="round"/>
+      <path d="M40 76 L200 116 L360 62 L520 130" stroke="#dbeafe" stroke-width="3.5" fill="none"/>
+      <text x="24" y="206" class="tiny">地图</text>
+      <rect x="2" y="212" width="656" height="30" rx="6" fill="#f3f4f6"/>
+      <rect x="508" y="66" width="78" height="78" rx="14" fill="#dbeafe" stroke="#2563eb" stroke-width="2.5"/>
+      <text x="547" y="112" text-anchor="middle" class="mark">挂件</text>
+      <rect x="484" y="42" width="126" height="126" rx="10" fill="none" stroke="#2563eb" stroke-width="2" stroke-dasharray="8 5"/>
+      <text x="547" y="192" text-anchor="middle" class="mark">交互热区</text>
+      <path d="M614 105 L650 105" stroke="#9ca3af" stroke-width="2" stroke-dasharray="5 4"/>
     </g>
-    <text x="0" y="212" class="cap" font-weight="700" fill="#374151">热区跟随挂件移动，热区外照常操作地图</text>
-    <text x="0" y="230" class="cap">不遮盖原有导航控件（含分屏浮窗等极限情况）</text>
+    <text x="0" y="348" class="capb">热区跟随挂件移动，热区外照常操作地图</text>
+    <text x="0" y="372" class="cap">不遮盖原有导航控件（含分屏浮窗等极限情况）</text>
   </g>
 
-  <!-- ============ 3 弱化态 ============ -->
-  <g transform="translate(40,340)">
-    <circle cx="9" cy="9" r="9" fill="#b45309"/><text x="9" y="13" text-anchor="middle" class="fnum">3</text>
-    <text x="26" y="13" class="flabel">导航桌面 · 弱化态</text>
-    <rect x="196" y="0" width="184" height="18" rx="9" fill="#fffbeb" stroke="#d97706"/>
-    <text x="288" y="13" text-anchor="middle" class="markw">这就是「弱化」的实证</text>
-
-    <g transform="translate(0,26)">
-      <rect width="380" height="132" rx="5" fill="#f9fafb" stroke="#d1d5db"/>
-      <rect x="1" y="1" width="378" height="13" rx="4" fill="#f3f4f6"/>
-      <path d="M20 40 L120 62 L210 34 L300 70 M60 120 L150 40 L250 110" stroke="#e5e7eb" stroke-width="6" fill="none" stroke-linecap="round"/>
-      <rect x="1" y="114" width="378" height="17" rx="4" fill="#f3f4f6"/>
+  <!-- ========== 3 弱化态 ========== -->
+  <g transform="translate(0,392)">
+    <circle cx="13" cy="14" r="13" fill="#b45309"/><text x="13" y="20" text-anchor="middle" class="fnum">3</text>
+    <text x="36" y="20" class="flabel">导航桌面 · 弱化态</text>
+    <rect x="316" y="0" width="266" height="28" rx="14" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+    <text x="449" y="20" text-anchor="middle" class="markw">这就是「弱化」的实证</text>
+    <g transform="translate(0,32)">
+      <rect width="660" height="244" rx="8" fill="#f9fafb" stroke="#d1d5db" stroke-width="1.5"/>
+      <rect x="2" y="2" width="656" height="24" rx="6" fill="#f3f4f6"/>
+      <path d="M40 76 L200 116 L360 62 L520 130 M110 220 L270 74 L430 200" stroke="#e5e7eb" stroke-width="11" fill="none" stroke-linecap="round"/>
+      <rect x="2" y="212" width="656" height="30" rx="6" fill="#f3f4f6"/>
       <g opacity="0.35">
-        <rect x="292" y="34" width="42" height="42" rx="8" fill="#fef3c7" stroke="#b45309" stroke-width="2"/>
-        <text x="313" y="59" text-anchor="middle" class="markw">挂件</text>
+        <rect x="508" y="66" width="78" height="78" rx="14" fill="#fef3c7" stroke="#b45309" stroke-width="2.5"/>
+        <text x="547" y="112" text-anchor="middle" class="markw">挂件</text>
       </g>
-      <g transform="translate(150,58)">
-        <circle r="15" fill="#ffffff" stroke="#2563eb" stroke-width="1.5"/>
-        <path d="M0 -8 L0 8 M-8 0 L8 0" stroke="#2563eb" stroke-width="1.6"/>
+      <g transform="translate(266,104)">
+        <circle r="27" fill="#ffffff" stroke="#2563eb" stroke-width="2.5"/>
+        <path d="M0 -14 L0 14 M-14 0 L14 0" stroke="#2563eb" stroke-width="2.8"/>
       </g>
-      <text x="150" y="96" text-anchor="middle" class="mark">拖动地图中</text>
-      <text x="313" y="102" text-anchor="middle" class="markw">半透明 · 不可操作</text>
+      <text x="266" y="168" text-anchor="middle" class="mark">拖动地图中</text>
+      <text x="547" y="192" text-anchor="middle" class="markw">半透明 · 不可操作</text>
     </g>
-    <text x="0" y="212" class="cap" font-weight="700" fill="#b45309">既没有停止，也没有照常播放</text>
-    <text x="0" y="230" class="cap">原始规范把它归进「不打断」，但它明显不是</text>
+    <text x="0" y="308" class="capb" fill="#b45309">既没有停止，也没有照常播放</text>
+    <text x="0" y="332" class="cap">原始规范把它归进「不打断」，但它明显不是</text>
   </g>
 
-  <!-- ============ 4 碎片范围 ============ -->
-  <g transform="translate(460,340)">
-    <circle cx="9" cy="9" r="9" fill="#2563eb"/><text x="9" y="13" text-anchor="middle" class="fnum">4</text>
-    <text x="26" y="13" class="flabel">壁纸桌面 · 动效边界</text>
-
-    <g transform="translate(0,26)">
-      <rect width="380" height="132" rx="5" fill="#f9fafb" stroke="#d1d5db"/>
-      <rect x="1" y="1" width="378" height="13" rx="4" fill="#f3f4f6"/>
-      <text x="8" y="11" class="tiny">状态栏</text>
-      <rect x="1" y="114" width="378" height="17" rx="4" fill="#f3f4f6"/>
-      <text x="8" y="126" class="tiny">Dock</text>
-      <rect x="8" y="20" width="364" height="88" rx="5" fill="none" stroke="#2563eb" stroke-width="1.5" stroke-dasharray="5 3"/>
+  <!-- ========== 4 动效边界 ========== -->
+  <g transform="translate(740,392)">
+    <circle cx="13" cy="14" r="13" fill="#2563eb"/><text x="13" y="20" text-anchor="middle" class="fnum">4</text>
+    <text x="36" y="20" class="flabel">壁纸桌面 · 动效边界</text>
+    <g transform="translate(0,32)">
+      <rect width="660" height="244" rx="8" fill="#f9fafb" stroke="#d1d5db" stroke-width="1.5"/>
+      <rect x="2" y="2" width="656" height="24" rx="6" fill="#f3f4f6"/>
+      <text x="14" y="19" class="tiny">状态栏</text>
+      <rect x="2" y="212" width="656" height="30" rx="6" fill="#f3f4f6"/>
+      <text x="14" y="232" class="tiny">Dock</text>
+      <rect x="16" y="38" width="628" height="166" rx="9" fill="none" stroke="#2563eb" stroke-width="2" stroke-dasharray="8 5"/>
       <g fill="#93c5fd">
-        <circle cx="70" cy="44" r="4"/><circle cx="132" cy="70" r="3"/><circle cx="196" cy="38" r="4.5"/>
-        <circle cx="244" cy="86" r="3"/><circle cx="300" cy="52" r="4"/><circle cx="164" cy="96" r="3.5"/>
-        <circle cx="104" cy="88" r="3"/><circle cx="272" cy="30" r="3"/>
+        <circle cx="120" cy="80" r="7"/><circle cx="230" cy="132" r="5.5"/><circle cx="340" cy="68" r="8"/>
+        <circle cx="424" cy="166" r="5.5"/><circle cx="524" cy="98" r="7"/><circle cx="286" cy="182" r="6"/>
+        <circle cx="180" cy="168" r="5.5"/><circle cx="472" cy="56" r="5.5"/><circle cx="596" cy="146" r="6"/>
       </g>
-      <text x="190" y="70" text-anchor="middle" class="mark">碎片可及范围</text>
+      <text x="330" y="128" text-anchor="middle" class="mark">碎片可及范围</text>
     </g>
-    <text x="0" y="212" class="cap" font-weight="700" fill="#374151">碎片范围不含状态栏与 Dock</text>
-    <text x="0" y="230" class="cap">「只叠加不替换」的具体执行</text>
+    <text x="0" y="308" class="capb">碎片范围不含状态栏与 Dock</text>
+    <text x="0" y="332" class="cap">「只叠加不替换」的具体执行</text>
   </g>
-
-  <line x1="40" y1="598" x2="840" y2="598" stroke="#e5e7eb"/>
-  <text x="40" y="622" class="note">底图为脱敏重绘线框，不含产品既有界面与节日视觉素材。标注层（挂件落位、热区、状态变化、动效边界）为本人定义。</text>
 </svg>
