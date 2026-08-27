@@ -1,0 +1,548 @@
+<title>节日彩蛋 · 五页排版预览</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap">
+<style>
+:root{
+  --ws:#e9edf2; --ws-ink:#3d4654; --ws-mute:#78828f; --ws-line:#d3dae3; --ws-card:#ffffff;
+  --paper:#ffffff; --ink:#1f2937; --ink2:#374151; --mute:#6b7280; --faint:#9ca3af;
+  --line:#e5e7eb; --wash:#f9fafb; --accent:#2563eb; --accent-w:#dbeafe;
+  --danger:#dc2626; --danger-w:#fee2e2; --warn:#b45309; --warn-w:#fffbeb;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --ws:#161b22; --ws-ink:#c9d1d9; --ws-mute:#8b949e; --ws-line:#2b323b; --ws-card:#1c222b;
+}}
+:root[data-theme="dark"]{
+  --ws:#161b22; --ws-ink:#c9d1d9; --ws-mute:#8b949e; --ws-line:#2b323b; --ws-card:#1c222b;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ws);color:var(--ws-ink);
+  font-family:"PingFang SC","PingFang TC",-apple-system,"Noto Sans SC","Microsoft YaHei",sans-serif;
+  -webkit-font-smoothing:antialiased;line-height:1.6}
+.wrap{max-width:1180px;margin:0 auto;padding:56px 28px 96px}
+
+.masthead{margin-bottom:44px}
+.kicker{font-family:inherit;font-size:11px;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ws-mute);margin-bottom:14px}
+.masthead h1{font-size:30px;font-weight:900;color:var(--ws-ink);margin:0 0 10px;letter-spacing:-.01em;text-wrap:balance}
+.masthead p{margin:0;max-width:64ch;font-size:14px;color:var(--ws-mute)}
+.meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.tag{font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--ws-line);
+  background:var(--ws-card);color:var(--ws-mute)}
+.tag b{color:var(--ws-ink);font-weight:600}
+
+.sheetwrap{margin-bottom:40px}
+.sheetnum{font-family:inherit;font-size:11px;font-weight:600;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--ws-mute);margin-bottom:9px;display:flex;gap:12px;align-items:baseline}
+.sheetnum em{font-style:normal;color:var(--ws-ink);font-weight:700}
+.sheet{background:var(--paper);color:var(--ink);border:1px solid var(--ws-line);
+  border-radius:3px;box-shadow:0 1px 2px rgba(15,23,42,.06),0 12px 32px -12px rgba(15,23,42,.18);
+  aspect-ratio:16/9;padding:46px 54px;display:flex;flex-direction:column;overflow:hidden}
+
+.eyebrow{font-family:inherit;font-size:10px;font-weight:600;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--faint);margin-bottom:18px}
+.l1{font-size:31px;font-weight:900;line-height:1.28;letter-spacing:-.01em;color:var(--ink);
+  margin:0 0 14px;text-wrap:balance;max-width:22ch}
+.l1.sm{font-size:26px;max-width:26ch}
+.l2{font-size:15px;font-weight:400;line-height:1.7;color:var(--ink2);margin:0 0 18px;max-width:56ch}
+.l3{font-size:12px;line-height:1.7;color:var(--mute)}
+.accent{color:var(--accent)}
+.rule{height:1px;background:var(--line);margin:auto 0 16px}
+
+.tri{display:flex;gap:30px;margin-top:6px}
+.tri div{font-size:13px;font-weight:700;color:var(--ink)}
+.tri span{display:block;font-family:inherit;font-size:10px;font-weight:500;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin-top:3px}
+
+.cols{display:grid;gap:26px;flex:1;min-height:0}
+.c2{grid-template-columns:1fr 1fr}
+.c12{grid-template-columns:1.05fr 1fr}
+.fig{width:100%;height:100%;display:block;min-height:0}
+.figbox{min-height:0;display:flex;align-items:center;justify-content:center}
+.figcap{font-family:inherit;font-size:9px;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--faint);margin-top:6px;text-align:center}
+
+table{border-collapse:collapse;width:100%;font-size:11px}
+td,th{text-align:left;padding:6px 10px 6px 0;vertical-align:top;border-bottom:1px solid var(--line)}
+th{font-size:9.5px;font-weight:700;letter-spacing:.06em;color:var(--faint);text-transform:uppercase}
+td.hl{color:var(--warn);font-weight:600}
+
+.stack{display:flex;flex-direction:column;gap:9px}
+.item{padding-left:13px;border-left:2px solid var(--line);font-size:12px;line-height:1.6;color:var(--ink2)}
+.item b{display:block;color:var(--ink);font-size:12.5px;font-weight:700;margin-bottom:1px}
+.item.on{border-left-color:var(--accent)}
+.item.warnb{border-left-color:var(--warn)}
+.item .m{color:var(--mute)}
+
+.fests{display:flex;flex-wrap:wrap;gap:7px;margin:14px 0 4px}
+.fest{font-size:12px;font-weight:700;padding:6px 14px;border-radius:999px;
+  background:var(--accent-w);color:#1d4ed8}
+.fest.key{background:var(--accent);color:#fff}
+
+.stamp{font-family:inherit;font-size:9px;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;padding:3px 9px;border-radius:999px;white-space:nowrap}
+.stamp.old{background:var(--wash);color:var(--mute);border:1px solid var(--line)}
+.stamp.new{background:var(--warn-w);color:var(--warn);border:1px solid #d97706}
+.headrow{display:flex;align-items:center;justify-content:space-between;gap:16px}
+
+.quote{font-size:14px;line-height:1.75;color:var(--ink);border-left:3px solid var(--accent);
+  padding-left:16px;max-width:60ch}
+
+.note{background:var(--ws-card);border:1px solid var(--ws-line);border-radius:6px;
+  padding:20px 24px;margin-top:8px}
+.note h2{font-size:14px;font-weight:700;margin:0 0 12px;color:var(--ws-ink)}
+.note ul{margin:0;padding-left:19px;font-size:13px;color:var(--ws-mute);line-height:1.85}
+.note li b{color:var(--ws-ink);font-weight:600}
+@media (max-width:820px){
+  .sheet{aspect-ratio:auto;padding:30px 26px}
+  .l1{font-size:23px}.l1.sm{font-size:20px}
+  .cols{grid-template-columns:1fr !important}
+}
+</style><div class="wrap">
+<div class="masthead">
+<div class="kicker">PDF Layout Preview · 案例⑤</div>
+<h1>节日彩蛋 · 五页排版预览</h1>
+<p>按 <b>排版规范</b> 与 <b>分镜 v3</b> 排的 5 张 16:9 页面，用于确认结构与视觉层级。文字为正文 v3 定稿内容，图为最终 SVG。全书统一 PingFang SC，配图字体已一致，排版时不需要再替换。</p>
+<div class="meta">
+<span class="tag"><b>5</b> 页</span>
+<span class="tag">三层字级 <b>L1 / L2 / L3</b></span>
+<span class="tag"><b>PingFang SC</b></span>
+<span class="tag">黑白灰 + <b>#2563eb</b></span>
+<span class="tag">安全语义色 <b>#dc2626</b></span>
+</div>
+</div>
+<div class="sheetwrap"><div class="sheetnum"><em>P1</em> OPENER</div>
+<div class="sheet">
+<div class="eyebrow">01 / Case ⑤ · 某新能源品牌车机 HMI · 2025</div>
+<h2 class="l1">在驾驶安全优先的车机里，<br>情绪该怎么出现？</h2>
+<p class="l2">表面是做一个节日彩蛋，实际是给一个纯情绪元素定义系统行为——当它被放进一块随时可能被安全事件抢占的屏幕，系统应该怎么替它做决定。</p>
+<div class="stack" style="max-width:60ch">
+<div class="item on"><b>本案有两层</b><span class="m">当年交付了一套沿用至今的系统规则；复盘时我发现其中最核心的分类在自己的文档里就已经不成立，于是把它重建了。</span></div>
+</div>
+<div class="rule"></div>
+<div class="tri">
+<div>UX 设计 · 竞品分析 · 概念设计<span>Role</span></div>
+<div>3D / 动效 / 语音 / 开发<span>交付对象</span></div>
+<div style="color:var(--mute)">视觉动效与量产落地非本人产出<span>边界</span></div>
+</div></div></div><div class="sheetwrap"><div class="sheetnum"><em>P2</em> CHALLENGE → RESEARCH</div>
+<div class="sheet">
+<div class="eyebrow">02 / Design Challenge</div>
+<h2 class="l1 sm">How can a car surprise users<br>without distracting them?</h2>
+<div class="cols c12">
+<div style="display:flex;flex-direction:column;min-height:0">
+<p class="l2" style="margin-bottom:14px">手机彩蛋成立的三个前提，在车机里全部不成立：注意力是安全资源、四个桌面横跨两块屏、随时有更高优先级抢屏。</p>
+<table><tbody>
+<tr><td style="width:44%;color:var(--faint)">注意力可被完整占用</td><td>注意力是安全资源</td></tr>
+<tr><td style="color:var(--faint)">单一前台，退出即结束</td><td>四桌面并存，跨中控与副驾屏</td></tr>
+<tr><td style="color:var(--faint)">没有更高优先级抢屏</td><td>SOS / 热失控 / AVM 随时压过一切</td></tr>
+</tbody></table>
+<div class="tri" style="margin-top:16px">
+<div>Emotion<span>× Safety</span></div>
+<div>Discovery<span>× Interruption</span></div>
+<div>Interaction<span>× System</span></div>
+</div>
+<div class="quote" style="margin-top:auto;font-size:13px">不要让用户「去玩」彩蛋，<br>而要让用户「<span class="accent">撞见</span>」它。</div>
+</div>
+<div class="figbox"><svg class="fig" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 660" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif">
+  <style>
+    .title{font-size:18px;font-weight:700;fill:#1f2937}
+    .sub{font-size:12px;fill:#6b7280}
+    .head{font-size:12px;font-weight:700;fill:#374151}
+    .brand{font-size:13px;font-weight:700;fill:#1f2937}
+    .cell{font-size:11px;fill:#374151}
+    .small{font-size:11px;fill:#6b7280}
+    .grp{font-size:11px;font-weight:700;fill:#9ca3af}
+    .chip{font-size:12px;font-weight:700;fill:#1d4ed8}
+    .opp{font-size:15px;font-weight:700;fill:#1f2937}
+  </style>
+  <defs>
+    <marker id="d" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#9ca3af"/>
+    </marker>
+  </defs>
+  <rect fill="#ffffff"/>
+
+  <text x="40" y="42" class="title">竞品对比矩阵 · 6 款车机节日彩蛋</text>
+  <text x="40" y="63" class="sub">维度：触发机制 / 视觉呈现 / 情感价值　　（结论只适用于当时选取的样本与版本，不外推为全行业趋势）</text>
+
+  <!-- 表头 -->
+  <g>
+    <line x1="40" y1="98" x2="840" y2="98" stroke="#9ca3af" stroke-width="1.4"/>
+    <text x="48" y="118" class="head">品牌</text>
+    <text x="180" y="118" class="head">触发机制</text>
+    <text x="410" y="118" class="head">视觉呈现</text>
+    <text x="640" y="118" class="head">情感价值</text>
+    <line x1="40" y1="130" x2="840" y2="130" stroke="#d1d5db"/>
+  </g>
+
+  <!-- 国际 -->
+  <text x="48" y="152" class="grp">国际品牌</text>
+  <g>
+    <text x="48" y="184" class="brand">宝马</text>
+    <text x="180" y="178" class="cell">语音引导触发，节日覆盖面广</text>
+    <text x="180" y="196" class="cell">（元旦 / 春节 / 中秋 / 圣诞）</text>
+    <text x="410" y="178" class="cell">动画视频 + 车机灯效 +</text>
+    <text x="410" y="196" class="cell">语音播报，完整闭环</text>
+    <text x="640" y="187" class="cell">「陪伴」与「祝福」的情感链接</text>
+    <line x1="40" y1="212" x2="840" y2="212" stroke="#f3f4f6"/>
+  </g>
+  <g>
+    <text x="48" y="248" class="brand">MINI Cooper</text>
+    <text x="180" y="242" class="cell">用户可自主切换节日动画主题</text>
+    <text x="180" y="260" class="cell">可控性强</text>
+    <text x="410" y="242" class="cell">固定角色贯穿各节日，</text>
+    <text x="410" y="260" class="cell">不同节日对应不同情境动画</text>
+    <text x="640" y="251" class="cell">品牌人格延伸，轻松有趣</text>
+    <line x1="40" y1="276" x2="840" y2="276" stroke="#f3f4f6"/>
+  </g>
+  <g>
+    <text x="48" y="312" class="brand">特斯拉</text>
+    <text x="180" y="306" class="cell">语音触发 / 触屏启动，</text>
+    <text x="180" y="324" class="cell">交互路径最短</text>
+    <text x="410" y="306" class="cell">车身灯光 + 音响 + 动画</text>
+    <text x="410" y="324" class="cell">多模态联动，全球共用模板</text>
+    <text x="640" y="315" class="cell">功能型导向，偏重技术感</text>
+    <line x1="40" y1="340" x2="840" y2="340" stroke="#e5e7eb"/>
+  </g>
+
+  <!-- 国内 -->
+  <text x="48" y="362" class="grp">中国品牌</text>
+  <g>
+    <text x="48" y="394" class="brand">小米</text>
+    <text x="180" y="388" class="cell">语音指令触发，</text>
+    <text x="180" y="406" class="cell">轻量化、触发快</text>
+    <text x="410" y="388" class="cell">以仪表盘为载体，</text>
+    <text x="410" y="406" class="cell">彩蛋体积小，视觉极简统一</text>
+    <text x="640" y="397" class="cell">表情化问候，强化品牌亲和力</text>
+    <line x1="40" y1="422" x2="840" y2="422" stroke="#f3f4f6"/>
+  </g>
+  <g>
+    <text x="48" y="458" class="brand">理想</text>
+    <text x="180" y="452" class="cell">点击解锁，寻宝式逐步通关</text>
+    <text x="180" y="470" class="cell">参与门槛高、时长长</text>
+    <text x="410" y="452" class="cell">卡通化视觉，</text>
+    <text x="410" y="470" class="cell">结合 AI 语音、相机与动画</text>
+    <text x="640" y="461" class="cell">家庭与亲子导向</text>
+    <line x1="40" y1="486" x2="840" y2="486" stroke="#f3f4f6"/>
+  </g>
+  <g>
+    <text x="48" y="522" class="brand">小鹏</text>
+    <text x="180" y="516" class="cell">节庆口令语义触发；</text>
+    <text x="180" y="534" class="cell">旋转视角发现隐藏元素</text>
+    <text x="410" y="516" class="cell">多等级彩蛋分层</text>
+    <text x="410" y="534" class="cell">（普通 / S / SS / SSS）</text>
+    <text x="640" y="525" class="cell">探索感与成就感</text>
+    <line x1="40" y1="550" x2="840" y2="550" stroke="#9ca3af" stroke-width="1.4"/>
+  </g>
+
+  <!-- 收敛 -->
+  <g transform="translate(0,576)">
+    <text x="40" y="12" class="small">收敛为三种模式</text>
+    <g transform="translate(40,24)">
+      <rect rx="15" fill="#dbeafe" stroke="#2563eb"/>
+      <text x="75" y="20" text-anchor="middle" class="chip">完整闭环式</text>
+    </g>
+    <g transform="translate(202,24)">
+      <rect rx="15" fill="#dbeafe" stroke="#2563eb"/>
+      <text x="75" y="20" text-anchor="middle" class="chip">品牌人格式</text>
+    </g>
+    <g transform="translate(364,24)">
+      <rect rx="15" fill="#dbeafe" stroke="#2563eb"/>
+      <text x="75" y="20" text-anchor="middle" class="chip">探索游戏式</text>
+    </g>
+    <line x1="528" y1="39" x2="566" y2="39" stroke="#9ca3af" stroke-width="1.4" marker-end="url(#d)"/>
+    <text x="580" y="30" class="opp">三种模式都在答「怎么增加玩法」</text>
+    <text x="580" y="52" class="opp" fill="#1d4ed8">没人答「它该怎么出现和退场」</text>
+  </g>
+</svg></div>
+</div></div></div><div class="sheetwrap"><div class="sheetnum"><em>P3</em> 当年交付的系统规则</div>
+<div class="sheet">
+<div class="eyebrow">03 / What I delivered</div>
+<div class="cols c12">
+<div style="display:flex;flex-direction:column;min-height:0">
+<h2 class="l1 sm" style="margin-bottom:10px">只叠加，不替换</h2>
+<p class="l2" style="font-size:14px;margin-bottom:16px">彩蛋永远是附加层，系统必须能随时把它拿掉而不影响任何主线功能。<b>后面那个模型，整个建立在这条之上。</b></p>
+<div class="stack">
+<div class="item"><b>四条原则</b><span class="m">安全优先 · 节日统一 · 体验连贯 · 可拓展性</span></div>
+<div class="item warnb"><b>交互事件定义表 —— 「可拓展性」的兑现物</b><span class="m">基础交互（单击/双击/长按/连点）· 复合交互（轮播/条件触发/组合）· 系统类（副屏同步/首次开机/时间触发/临时下架/语音）</span></div>
+<div class="item on"><b>后续节日只需挑选事件组合</b><span class="m">不需要重新定义系统行为</span></div>
+</div>
+</div>
+<div class="figbox"><svg class="fig" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 520" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif">
+  <style>
+    .title{font-size:18px;font-weight:700;fill:#1f2937}
+    .sub{font-size:12px;fill:#6b7280}
+    .head{font-size:13px;font-weight:700;fill:#374151}
+    .label{font-size:13px;font-weight:600;fill:#1f2937}
+    .small{font-size:11px;fill:#6b7280}
+    .note{font-size:11px;fill:#9ca3af}
+    .key{font-size:14px;font-weight:700;fill:#1f2937}
+  </style>
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#9ca3af"/>
+    </marker>
+  </defs>
+  <rect fill="#ffffff"/>
+
+  <text x="40" y="42" class="title">载体分配与相对层级</text>
+  <text x="40" y="63" class="sub">同一个情绪需求，用两种载体承担；区别不在尺寸，在是否与任务竞争注意力（不使用内部层级编号）</text>
+
+  <!-- 左：相对层级 -->
+  <g>
+    <text x="60" y="100" class="head">相对层级</text>
+    <g transform="translate(60,112)">
+      <polygon points="34,0 300,0 266,40 0,40" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5"/>
+      <text x="150" y="17" text-anchor="middle" class="label" fill="#b91c1c" font-size="12">安全提示 / 阻断性弹窗</text>
+      <text x="150" y="32" text-anchor="middle" class="small" fill="#b91c1c">无条件覆盖一切</text>
+    </g>
+    <g transform="translate(60,164)">
+      <polygon points="34,0 300,0 266,40 0,40" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.2"/>
+      <text x="150" y="25" text-anchor="middle" class="label" font-size="12">系统状态（语音 / 通知）</text>
+    </g>
+    <g transform="translate(60,216)">
+      <polygon points="34,0 300,0 266,40 0,40" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+      <text x="150" y="17" text-anchor="middle" class="label" fill="#1d4ed8" font-size="12">彩蛋挂件（可交互）</text>
+      <text x="150" y="32" text-anchor="middle" class="small" fill="#1d4ed8">不覆盖 Dock 与核心快捷操作区</text>
+    </g>
+    <g transform="translate(60,268)">
+      <polygon points="34,0 300,0 266,40 0,40" fill="#f9fafb" stroke="#d1d5db" stroke-width="1.2"/>
+      <text x="150" y="25" text-anchor="middle" class="label" fill="#6b7280" font-size="12">普通桌面内容</text>
+    </g>
+    <g transform="translate(60,320)">
+      <polygon points="34,0 300,0 266,40 0,40" fill="#eef2ff" stroke="#6366f1" stroke-width="1.5" stroke-dasharray="5 3"/>
+      <text x="150" y="17" text-anchor="middle" class="label" fill="#4338ca" font-size="12">全屏联屏壁纸（背景）</text>
+      <text x="150" y="32" text-anchor="middle" class="small" fill="#4338ca">虚线 = 不参与挂件层级仲裁</text>
+    </g>
+    <line x1="46" y1="120" x2="46" y2="352" stroke="#9ca3af" stroke-width="1.2" marker-end="url(#ar)"/>
+    <text x="34" y="236" class="note" transform="rotate(-90 34 236)" text-anchor="middle">优先级由高到低</text>
+  </g>
+
+  <!-- 右：两个载体的落点 -->
+  <g transform="translate(430,88)">
+    <text x="0" y="12" class="head">两种载体在四个桌面的落点</text>
+
+    <g transform="translate(0,30)">
+      <rect rx="8" fill="#eef2ff" stroke="#6366f1" stroke-width="1.5"/>
+      <text x="16" y="26" class="label" fill="#4338ca">全屏联屏壁纸</text>
+      <text x="16" y="46" class="small" fill="#4338ca">仅壁纸桌面 · 跨中控屏与副驾屏联屏</text>
+      <text x="16" y="64" class="small">它就是背景本身，不与任何任务争夺注意力，且由用户主动选择</text>
+    </g>
+
+    <g transform="translate(0,120)">
+      <rect rx="8" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+      <text x="16" y="26" class="label" fill="#1d4ed8">边缘挂件（可交互）</text>
+      <text x="16" y="46" class="small" fill="#1d4ed8">壁纸 / 导航 / 星球 / 实况　四个桌面</text>
+      <text x="16" y="64" class="small">可交互的部分必须退到视野边缘</text>
+      <text x="16" y="82" class="small">不遮盖原有控件（含分屏浮窗等极限情况）</text>
+    </g>
+
+    <g transform="translate(0,228)">
+      <rect rx="8" fill="#f9fafb" stroke="#d1d5db" stroke-dasharray="5 3"/>
+      <text x="16" y="24" class="label" fill="#9ca3af">✕　覆盖 Dock 的挂件</text>
+      <text x="16" y="42" class="small">与高频按钮争夺同一区域，增加误触风险</text>
+    </g>
+  </g>
+
+  <line x1="40" y1="400" x2="840" y2="400" stroke="#e5e7eb"/>
+  <text x="40" y="428" class="key">全屏不是被否掉的方案，而是被分配到了唯一能容纳它的位置。</text>
+  <text x="40" y="452" class="small">在「它是背景」时可以铺满整屏；在「它可被点击」时必须退到边缘。</text>
+  <text x="40" y="486" class="note">角色说明：两种载体如何共存、各自的层级与优先级，规则出自本人；视觉表现均非本人产出。</text>
+</svg></div>
+</div></div></div><div class="sheetwrap"><div class="sheetnum"><em>P4</em> 复盘：二元 → 四级　（HERO）</div>
+<div class="sheet">
+<div class="headrow" style="margin-bottom:12px">
+<div><div class="eyebrow" style="margin-bottom:8px">04 / The reframe</div>
+<h2 class="l1 sm" style="margin:0">二元分类的问题不是分得不对，<br>是<span class="accent">分辨率不够</span>。</h2></div>
+</div>
+<p class="l2" style="font-size:13px;margin-bottom:12px">它只回答「停不停」，不回答「让多少、怎么让、之后怎么回来」——而真实系统里的中间态，恰恰全靠这三个问题定义。</p>
+<div class="cols c2" style="gap:20px">
+<div style="display:flex;flex-direction:column;min-height:0">
+<div class="figbox" style="flex:1"><svg class="fig" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 512" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif">
+  <style>
+    .title{font-size:18px;font-weight:700;fill:#1f2937}
+    .sub{font-size:12px;fill:#6b7280}
+    .boxhead{font-size:14px;font-weight:700;fill:#ffffff}
+    .cat{font-size:12px;font-weight:700;fill:#374151}
+    .item{font-size:13px;fill:#1f2937}
+    .small{font-size:11px;fill:#6b7280}
+    .stamp{font-size:11px;font-weight:700;fill:#6b7280}
+  </style>
+  <rect fill="#ffffff"/>
+
+  <text x="40" y="42" class="title">打断机制 · 当年交付版本</text>
+  <text x="40" y="63" class="sub">原始规范把系统事件二分为「打断」与「不打断」两类，分界线是「是否影响驾驶安全」</text>
+
+  <rect x="695" y="28" rx="11" fill="#f3f4f6" stroke="#d1d5db"/>
+  <text x="767" y="43" text-anchor="middle" class="stamp">2025 · 当年交付物</text>
+
+  <!-- 打断原则 -->
+  <g transform="translate(40,92)">
+    <rect rx="8" fill="#f9fafb" stroke="#e5e7eb"/>
+    <text x="16" y="30" class="cat">打断原则</text>
+    <text x="16" y="64" class="item">动画播放后原则上</text>
+    <text x="16" y="88" class="item" font-weight="700" fill="#2563eb">不会停止</text>
+    <text x="16" y="112" class="item">直至动画播放完成，</text>
+    <text x="16" y="136" class="item">除非</text>
+    <text x="16" y="160" class="item" font-weight="700" fill="#dc2626">影响驾驶安全的</text>
+    <text x="16" y="182" class="item" font-weight="700" fill="#dc2626">紧急情况</text>
+  </g>
+
+  <!-- 打断逻辑 -->
+  <g transform="translate(320,92)">
+    <rect rx="8" fill="#b45309"/>
+    <text x="120" y="23" text-anchor="middle" class="boxhead">打断逻辑</text>
+    <rect y="46" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+    <text x="20" y="80" class="cat" fill="#b45309">安全类</text>
+    <text x="20" y="102" class="item">紧急警告：SOS、热失控等</text>
+    <line x1="20" y1="122" x2="220" y2="122" stroke="#fde68a"/>
+    <text x="20" y="150" class="cat" fill="#b45309">系统类</text>
+    <text x="20" y="172" class="item">AVM 倒车影像</text>
+    <line x1="20" y1="192" x2="220" y2="192" stroke="#fde68a"/>
+    <text x="20" y="220" class="cat" fill="#b45309">用户主动操作类</text>
+    <text x="20" y="242" class="item">切换桌面主题</text>
+  </g>
+
+  <!-- 中缝 -->
+
+  <!-- 不打断逻辑 -->
+  <g transform="translate(630,92)">
+    <rect rx="8" fill="#4f46e5"/>
+    <text x="105" y="23" text-anchor="middle" class="boxhead">不打断逻辑</text>
+    <rect y="46" rx="8" fill="#eef2ff" stroke="#6366f1" stroke-width="1.5"/>
+    <text x="20" y="80" class="cat" fill="#4338ca">语音交互类</text>
+    <text x="20" y="102" class="item">语音唤醒</text>
+    <line x1="20" y1="122" x2="190" y2="122" stroke="#c7d2fe"/>
+    <text x="20" y="150" class="cat" fill="#4338ca">导航类</text>
+    <text x="20" y="172" class="item">切换驾驶模式 / 拖地图</text>
+    <line x1="20" y1="192" x2="190" y2="192" stroke="#c7d2fe"/>
+    <text x="20" y="220" class="cat" fill="#4338ca">系统反馈类</text>
+    <text x="20" y="242" class="item">toast / 弹窗 / smartbar</text>
+  </g>
+
+  <line x1="40" y1="412" x2="840" y2="412" stroke="#e5e7eb"/>
+  <text x="40" y="440" class="cat">这套分类只回答一个问题</text>
+  <text x="40" y="472" class="item" font-size="22" font-weight="700" fill="#1f2937">停，还是不停。</text>
+  <text x="40" y="498" class="small">它不回答：让多少、怎么让、之后怎么回来——而真实系统里的中间态，恰恰全靠这三个问题定义。</text>
+</svg></div>
+<div class="figcap">图 3 · 2025 当年交付物</div>
+</div>
+<div style="display:flex;flex-direction:column;min-height:0">
+<div class="figbox" style="flex:1"><svg class="fig" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 460" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif">
+  <style>
+    .title{font-size:18px;font-weight:700;fill:#1f2937}
+    .sub{font-size:12px;fill:#6b7280}
+    .node{font-size:13px;font-weight:600;fill:#1f2937}
+    .resp{font-size:15px;font-weight:700}
+    .item{font-size:12px;fill:#374151}
+    .small{font-size:11px;fill:#6b7280}
+    .stamp{font-size:11px;font-weight:700;fill:#b45309}
+    .from{font-size:10px;fill:#9ca3af}
+  </style>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#9ca3af"/>
+    </marker>
+  </defs>
+  <rect fill="#ffffff"/>
+
+  <text x="40" y="42" class="title">四级状态仲裁模型</text>
+  <text x="40" y="63" class="sub">按「注意力竞争程度」与「是否可恢复」两个维度重新切分系统响应</text>
+
+  <rect x="660" y="28" rx="11" fill="#fffbeb" stroke="#d97706"/>
+  <text x="750" y="43" text-anchor="middle" class="stamp">复盘产物 · 非当年交付物</text>
+
+  <!-- 树 -->
+  <g>
+    <rect x="380" y="92" rx="8" fill="#f3f4f6" stroke="#9ca3af"/>
+    <text x="440" y="114" text-anchor="middle" class="node">系统事件</text>
+    <path d="M440 126 L440 146" stroke="#9ca3af" stroke-width="1.4"/>
+    <path d="M160 146 L720 146" stroke="#9ca3af" stroke-width="1.4"/>
+    <path d="M160 146 L160 176" stroke="#9ca3af" stroke-width="1.4" marker-end="url(#a)"/>
+    <path d="M440 146 L440 176" stroke="#9ca3af" stroke-width="1.4" marker-end="url(#a)"/>
+    <path d="M720 146 L720 176" stroke="#9ca3af" stroke-width="1.4" marker-end="url(#a)"/>
+
+    <text x="160" y="196" text-anchor="middle" class="node">普通更新</text>
+    <text x="440" y="196" text-anchor="middle" class="node" fill="#b45309">注意力冲突</text>
+    <text x="720" y="196" text-anchor="middle" class="node" fill="#dc2626">安全事件</text>
+
+    <path d="M160 208 L160 232" stroke="#9ca3af" stroke-width="1.4" marker-end="url(#a)"/>
+    <path d="M720 208 L720 232" stroke="#dc2626" stroke-width="1.4" marker-end="url(#a)"/>
+    <path d="M440 208 L440 218" stroke="#d97706" stroke-width="1.4"/>
+    <path d="M330 218 L550 218" stroke="#d97706" stroke-width="1.4"/>
+    <path d="M330 218 L330 232" stroke="#d97706" stroke-width="1.4" marker-end="url(#a)"/>
+    <path d="M550 218 L550 232" stroke="#d97706" stroke-width="1.4" marker-end="url(#a)"/>
+  </g>
+
+  <!-- 四个响应 -->
+  <g transform="translate(80,240)">
+    <rect rx="8" fill="#f9fafb" stroke="#9ca3af" stroke-width="1.5"/>
+    <text x="80" y="30" text-anchor="middle" class="resp" fill="#4b5563">继续</text>
+    <text x="80" y="52" text-anchor="middle" class="item">保持当前状态</text>
+    <text x="80" y="72" text-anchor="middle" class="small">无需恢复</text>
+  </g>
+  <g transform="translate(250,240)">
+    <rect rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+    <text x="80" y="30" text-anchor="middle" class="resp" fill="#b45309">弱化</text>
+    <text x="80" y="52" text-anchor="middle" class="item">半透明 · 停动效</text>
+    <text x="80" y="72" text-anchor="middle" class="small">让注意力 · 可恢复</text>
+  </g>
+  <g transform="translate(470,240)">
+    <rect rx="8" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+    <text x="80" y="30" text-anchor="middle" class="resp" fill="#92400e">暂停</text>
+    <text x="80" y="52" text-anchor="middle" class="item">停响应 · 留进度</text>
+    <text x="80" y="72" text-anchor="middle" class="small">让操作 / 让屏幕 · 可恢复</text>
+  </g>
+  <g transform="translate(640,240)">
+    <rect rx="8" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+    <text x="80" y="30" text-anchor="middle" class="resp" fill="#b91c1c">终止</text>
+    <text x="80" y="52" text-anchor="middle" class="item">隐藏 · 清除状态</text>
+    <text x="80" y="72" text-anchor="middle" class="small">不可恢复 · 不续播</text>
+  </g>
+
+  <!-- 与原始分类的对应 -->
+  <line x1="40" y1="358" x2="840" y2="358" stroke="#e5e7eb"/>
+  <text x="40" y="382" class="item" font-weight="700">在原始二元分类里的位置</text>
+  <text x="160" y="406" text-anchor="middle" class="from">← 不打断</text>
+  <text x="330" y="406" text-anchor="middle" class="from" fill="#b45309" font-weight="700">← 不打断（分辨率不足）</text>
+  <text x="550" y="406" text-anchor="middle" class="from" fill="#b45309" font-weight="700">← 不打断（分辨率不足）</text>
+  <text x="720" y="406" text-anchor="middle" class="from">← 打断</text>
+  <text x="40" y="436" class="small">模型没有改变任何一条当年的实际行为，只是给已经存在的中间态找到了准确的名字。</text>
+</svg></div>
+<div class="figcap">图 4 · 复盘产物，非当年交付物</div>
+</div>
+</div>
+<div class="rule" style="margin:14px 0 10px"></div>
+<table><thead><tr><th style="width:34%">原始规范怎么归类</th><th>同一份文档里的实际行为</th></tr></thead><tbody>
+<tr><td>拖地图 → 不打断</td><td class="hl">导航桌面页：挂件半透明不可操作</td></tr>
+<tr><td>节日结束 → 隐含终止</td><td class="hl">壁纸桌面页：先出提醒通知，再渐隐</td></tr>
+<tr><td>语音唤醒 → 不打断</td><td class="hl">语音 GUI 会遮挡挂件区域</td></tr>
+</tbody></table></div></div><div class="sheetwrap"><div class="sheetnum"><em>P5</em> 验证 · 结果 · 反思</div>
+<div class="sheet">
+<div class="eyebrow">05 / Outcome</div>
+<h2 class="l1 sm" style="margin-bottom:8px">一套规范，沿用于 6 个节日</h2>
+<div class="fests">
+<span class="fest key">春节</span><span class="fest key">圣诞节</span><span class="fest">中秋节</span>
+<span class="fest">儿童节</span><span class="fest">元旦</span><span class="fest">情人节</span>
+</div>
+<p class="l2" style="font-size:13px;margin-bottom:16px">系统行为不需要逐个节日重新定义——这是「节日统一」与「可拓展性」两条原则最直接的证据。</p>
+<div class="cols c2" style="flex:0 0 auto;gap:24px">
+<div class="stack">
+<div class="item on"><b>性能验证</b><span class="m">壁纸与导航桌面各 10 次平均负载测试，确认现有硬件下稳定运行（数值属内部数据，不入册）</span></div>
+<div class="item"><b>调研输入</b><span class="m">团队访谈发现星球桌面与语音助手形象最受喜爱 —— 非本人产出，作为设计输入</span></div>
+</div>
+<div class="stack">
+<div class="item warnb"><b>产出边界</b><span class="m">视觉动效、3D 资产、后续实况桌面均非本人产出</span></div>
+</div>
+</div>
+<div class="rule" style="margin-top:auto"></div>
+<div class="quote" style="font-size:13px">一套规则能跑起来，不代表它描述准确了自己。当年那张二元表在 6 个节日里都工作正常，因为具体行为是我逐个桌面写死的——<b>分类的粗糙被实现的细致掩盖了。</b></div></div></div>
+<div class="note">
+<h2>排版时不能省的三件事</h2>
+<ul>
+<li><b>P4 的两个角标</b>：图 3「2025 当年交付物」与图 4「复盘产物」。这一页的说服力全部来自诚实——一旦让人误以为四级模型是当年产出，案例价值反而归零。</li>
+<li><b>P4 必须整页且左右并置</b>。两张图同宽同视觉语言就是为此画的，拆开使用会丢掉整个案例的论点。</li>
+<li><b>P3 的事件定义表别压太小</b>。这是全案最像系统级设计师的产出。</li>
+</ul>
+</div>
+</div>
