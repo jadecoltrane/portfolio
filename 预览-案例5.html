@@ -122,7 +122,7 @@ td.hl{color:var(--warn);font-weight:600}
 <div class="sheet">
 <div class="eyebrow">01 ／ 项目概览　某新能源品牌车机 HMI · 2025</div>
 <h2 class="l1">为车机节日彩蛋建立一套<br>跨四个桌面的系统响应规则。</h2>
-<p class="l2">彩蛋要跑在一块随时被 SOS、热失控、倒车影像抢占的屏幕上，横跨四个桌面、两块屏。我定义了它的层级、交互事件、系统响应和生命周期，覆盖 6 个节日的彩蛋规划。</p>
+<p class="l2">彩蛋要跑在一块随时被 SOS、热失控、倒车影像抢占的屏幕上，横跨四个桌面、两块屏。我定义了它的层级、交互事件、系统响应和生命周期，交付给 3D、动效、语音与开发四个团队。</p>
 <div class="stack" style="max-width:60ch">
 <div class="item on"><b>这个案子有两段</b><span class="m">2025 年我写了一套规则交付给 3D、动效、语音与开发；今年复盘时发现其中的事件分类与我自己文档里写的行为对不上，第二段是我如何重新分类。</span></div>
 </div>
@@ -148,7 +148,15 @@ td.hl{color:var(--warn);font-weight:600}
 <div>被发现<span>× 被打扰</span></div>
 <div>可互动<span>× 系统稳定</span></div>
 </div>
-<div class="quote" style="margin-top:auto;font-size:13px">六款竞品都在延长互动时长。<br>我们的方向是让用户<span class="accent">顺手发现</span>，不需要专门去玩。</div>
+<div style="margin-top:auto">
+<div class="l3" style="font-size:11px;margin-bottom:6px"><b style="color:var(--ink)">各家在哪些节日推彩蛋</b>（按车企数量）</div>
+<div class="fests" style="margin:0 0 10px">
+<span class="fest key">春节 <i>7</i></span><span class="fest key">圣诞节 <i>3</i></span>
+<span class="fest">中秋节 <i>2</i></span><span class="fest">儿童节 <i>1</i></span>
+<span class="fest">元旦 <i>1</i></span><span class="fest">情人节 <i>1</i></span>
+</div>
+<div class="quote" style="font-size:12.5px;padding-left:14px">春节是最集中的节日，也是竞争最激烈的时段。<br>各家都在延长互动时长，我们的方向是让用户<span class="accent">顺手发现</span>。</div>
+</div>
 </div>
 <div class="figbox"><svg class="fig" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 660" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif">
   <style>
@@ -660,13 +668,9 @@ td.hl{color:var(--warn);font-weight:600}
 </div></div><div class="sheetwrap"><div class="sheetnum"><em>P6</em> 结果与验证</div>
 <div class="sheet">
 <div class="eyebrow">06 ／ 结果与验证</div>
-<h2 class="l1 sm" style="margin-bottom:12px">一套系统响应规则，<br>覆盖 6 个节日、15 个彩蛋。</h2>
-<div class="fests" style="margin:0 0 12px">
-<span class="fest key">春节 <i>7</i></span><span class="fest key">圣诞节 <i>3</i></span>
-<span class="fest">中秋节 <i>2</i></span><span class="fest">儿童节 <i>1</i></span>
-<span class="fest">元旦 <i>1</i></span><span class="fest">情人节 <i>1</i></span>
-</div>
-<p class="l2" style="font-size:13.5px;margin-bottom:16px">规范按事件类型而非按节日编写，因此新增节日只需选择事件组合，系统响应不必重新定义。春节与圣诞节为重点节日。</p>
+<h2 class="l1 sm" style="margin-bottom:12px">规范按事件类型编写，<br>新增节日不必重新定义系统响应。</h2>
+<p class="l2" style="font-size:13.5px;margin-bottom:18px">交互被拆成基础、复合、系统三类事件并给出编码，节日之间只换内容、不换规则。这套响应规则与生命周期是当年交付给四个团队的最终依据。</p>
+
 <div class="cols c2" style="flex:0 0 auto;gap:30px;margin-bottom:14px">
 <div class="stack">
 <div class="item on"><b>性能验证</b><span class="m">壁纸桌面与导航桌面各进行 10 次平均负载测试，测量 GPU 占用、内存与显存增量、CPU 峰值，并与静态桌面及双屏模式对比，确认现有车机硬件下可稳定运行</span></div>
@@ -689,7 +693,7 @@ td.hl{color:var(--warn);font-weight:600}
 <li><b>P4 必须整页且左右并置</b>。两张图同宽同视觉语言就是为此画的，拆开使用会丢掉整个案例的论点。</li>
 <li><b>P3 的事件定义表别压太小</b>。这是全案最像系统级设计师的产出。</li>
 <li><b>P5 第 3 格「弱化态」不要缩小</b>。挂件半透明、不可操作——既没有停止，也没有照常播放，它就是 P4 论点的实证。视觉素材非本人产出，所以这一页放交互稿，不是视觉大图。</li>
-<li><b>P6 只说覆盖范围，不说上线结果</b>。6 个节日、15 个彩蛋是规范面向的规划范围，实际落地情况无从佐证，写成「沿用」就越界了。</li>
+<li><b>P6 不写节日数量</b>。节日频次那组数字是竞品调研结论（各车企在哪些节日推彩蛋），已放回 P2；它不能当作本案的产出规模。实际落地情况无从佐证，也不写「沿用」。</li>
 <li><b>文案是陈述句，不是问句也不是格言。</b>标题说清做了什么并以句号结尾；一句话讲问题、一句话讲我做了什么、一句话讲结果。感慨留给反思那一行，全案只留一句。</li>
 </ul>
 </div>
