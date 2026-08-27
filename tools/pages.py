@@ -62,24 +62,26 @@ P2 = page("".join([
  T(M, 840, "三组必须同时成立的矛盾", size=15, fill=C["faint"]),
 ]))
 
-# ══════════ 03 竞品研究 ══════════
+# ══════════ 03 竞品研究与设计主张 ══════════
 fests=[("春节","7",1),("圣诞节","3",1),("中秋节","2",0),("儿童节","1",0),("元旦","1",0),("情人节","1",0)]
-fx=M; fchips=[]
+fx=470; fchips=[]
 for nm,ct,key in fests:
-    w=len(nm)*20+50
-    fchips+=[R(fx,596,w,40,fill=C["acc"] if key else C["accw"],rx=20),
-             T(fx+18,623,nm,size=19,weight=700,fill="#ffffff" if key else "#1d4ed8"),
-             T(fx+w-24,623,ct,size=17,weight=700,fill="#ffffff" if key else "#1d4ed8",anchor="middle",op="0.75")]
-    fx+=w+12
+    w=len(nm)*19+46
+    fchips+=[R(fx,806,w,38,fill=C["acc"] if key else C["accw"],rx=19),
+             T(fx+17,832,nm,size=18,weight=700,fill="#ffffff" if key else "#1d4ed8"),
+             T(fx+w-22,832,ct,size=16,weight=700,fill="#ffffff" if key else "#1d4ed8",anchor="middle",op="0.75")]
+    fx+=w+11
 P3 = page("".join([
- eyebrow("03 ／ 竞品研究"),
- h1(["六家都在延长互动时长，","没人管它怎么出现和收场。"], y=200, size=46),
- body(["样本取三家国际＋三家国内；三个维度分别回答「怎么被触发、长什么样、","为什么打动人」。"], 366, size=19, fill=C["faint"]),
- T(M, 556, "各家在哪些节日推彩蛋（按车企数量）", size=17, weight=700),
+ eyebrow("03 ／ 竞品研究与设计主张"),
+ h1(["别让用户专门去玩它，","让他自己撞见。"], y=214, size=52),
+ body(["六款产品收敛成三种模式：完整闭环式、品牌人格式、探索游戏式。","三种都在比谁的玩法多。"], 396, size=21),
+ T(M, 520, "样本取三家国际＋三家国内，覆盖当时已上线节日彩蛋的主流车机；", size=16, fill=C["faint"]),
+ T(M, 548, "三个维度分别回答「怎么被触发、长什么样、为什么打动人」。", size=16, fill=C["faint"]),
+ fig("图1-竞品对比矩阵.svg", 760, 150, 720, 590),
+ LN(M, 764, 1480, 764),
+ T(M, 812, "另一个决定：做哪些节日", size=18, weight=700),
+ T(M, 842, "春节最集中，也最卷", size=15, fill=C["faint"]),
  "".join(fchips),
- R(M, 700, 4, 92, fill=C["acc"]),
- TL(M+26, 730, ["春节最集中，也最卷。","我们的方向是让用户顺手发现。"], size=21, lh=1.62, fill=C["ink"]),
- fig("图1-竞品对比矩阵.svg", 800, 190, 680, 620),
 ]))
 
 # ══════════ 04 原则与范围 ══════════
