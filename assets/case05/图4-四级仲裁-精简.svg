@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 300" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif">
+  <style>
+    .node{font-size:13.5px;font-weight:600;fill:#1f2937}
+    .resp{font-size:16px;font-weight:700}
+    .item{font-size:12px;fill:#374151}
+    .small{font-size:11px;fill:#6b7280}
+    .from{font-size:11px;fill:#9ca3af}
+  </style>
+  <defs><marker id="ar4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+    <path d="M0 0 L10 5 L0 10 z" fill="#9ca3af"/></marker></defs>
+  <rect width="820" height="300" fill="#ffffff"/>
+  <rect x="350" y="0" width="120" height="32" rx="8" fill="#f3f4f6" stroke="#9ca3af"/>
+  <text x="410" y="21" text-anchor="middle" class="node">系统事件</text>
+  <path d="M410 32 L410 50 M140 50 L680 50 M140 50 L140 72 M410 50 L410 72 M680 50 L680 72"
+        stroke="#9ca3af" stroke-width="1.4" fill="none" marker-end="url(#ar4)"/>
+  <text x="140" y="92" text-anchor="middle" class="node">普通更新</text>
+  <text x="410" y="92" text-anchor="middle" class="node" fill="#b45309">注意力冲突</text>
+  <text x="680" y="92" text-anchor="middle" class="node" fill="#dc2626">安全事件</text>
+  <path d="M140 104 L140 126" stroke="#9ca3af" stroke-width="1.4" marker-end="url(#ar4)"/>
+  <path d="M680 104 L680 126" stroke="#dc2626" stroke-width="1.4" marker-end="url(#ar4)"/>
+  <path d="M410 104 L410 114 M300 114 L520 114 M300 114 L300 126 M520 114 L520 126"
+        stroke="#d97706" stroke-width="1.4" fill="none" marker-end="url(#ar4)"/>
+  <g transform="translate(62,132)">
+    <rect width="156" height="82" rx="8" fill="#f9fafb" stroke="#9ca3af" stroke-width="1.5"/>
+    <text x="78" y="30" text-anchor="middle" class="resp" fill="#4b5563">继续</text>
+    <text x="78" y="52" text-anchor="middle" class="item">保持当前状态</text>
+    <text x="78" y="70" text-anchor="middle" class="small">无需恢复</text>
+  </g>
+  <g transform="translate(222,132)">
+    <rect width="156" height="82" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+    <text x="78" y="30" text-anchor="middle" class="resp" fill="#b45309">弱化</text>
+    <text x="78" y="52" text-anchor="middle" class="item">半透明 · 停动效</text>
+    <text x="78" y="70" text-anchor="middle" class="small">让注意力 · 可恢复</text>
+  </g>
+  <g transform="translate(442,132)">
+    <rect width="156" height="82" rx="8" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+    <text x="78" y="30" text-anchor="middle" class="resp" fill="#92400e">暂停</text>
+    <text x="78" y="52" text-anchor="middle" class="item">停响应 · 留进度</text>
+    <text x="78" y="70" text-anchor="middle" class="small">让操作 / 让屏幕</text>
+  </g>
+  <g transform="translate(602,132)">
+    <rect width="156" height="82" rx="8" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+    <text x="78" y="30" text-anchor="middle" class="resp" fill="#b91c1c">终止</text>
+    <text x="78" y="52" text-anchor="middle" class="item">隐藏 · 清除状态</text>
+    <text x="78" y="70" text-anchor="middle" class="small">不可恢复 · 不续播</text>
+  </g>
+  <line x1="20" y1="240" x2="800" y2="240" stroke="#e5e7eb"/>
+  <text x="20" y="264" class="item" font-weight="700">在原始二元分类里的位置</text>
+  <text x="140" y="290" text-anchor="middle" class="from">← 不打断</text>
+  <text x="300" y="290" text-anchor="middle" class="from" fill="#b45309" font-weight="700">← 不打断（分辨率不足）</text>
+  <text x="520" y="290" text-anchor="middle" class="from" fill="#b45309" font-weight="700">← 不打断（分辨率不足）</text>
+  <text x="680" y="290" text-anchor="middle" class="from">← 打断</text>
+</svg>
