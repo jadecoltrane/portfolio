@@ -75,9 +75,16 @@ td.hl{color:var(--warn);font-weight:600}
 .item .m{color:var(--mute)}
 
 .fests{display:flex;flex-wrap:wrap;gap:7px;margin:14px 0 4px}
-.fest{font-size:12px;font-weight:700;padding:6px 14px;border-radius:999px;
-  background:var(--accent-w);color:#1d4ed8}
+.fest{font-size:12px;font-weight:700;padding:6px 13px;border-radius:999px;
+  background:var(--accent-w);color:#1d4ed8;display:inline-flex;align-items:baseline;gap:6px}
+.fest i{font-style:normal;font-size:10.5px;font-weight:600;opacity:.72;
+  font-variant-numeric:tabular-nums}
 .fest.key{background:var(--accent);color:#fff}
+.kpi{display:flex;gap:34px;margin:2px 0 4px}
+.kpi div{min-width:0}
+.kpi b{display:block;font-size:26px;font-weight:900;color:var(--ink);
+  line-height:1.15;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+.kpi span{display:block;font-size:11px;color:var(--mute);margin-top:2px}
 
 .stamp{font-family:inherit;font-size:9px;font-weight:700;letter-spacing:.08em;
   text-transform:uppercase;padding:3px 9px;border-radius:999px;white-space:nowrap}
@@ -114,10 +121,10 @@ td.hl{color:var(--warn);font-weight:600}
 <div class="sheetwrap"><div class="sheetnum"><em>P1</em> 开篇</div>
 <div class="sheet">
 <div class="eyebrow">01 ／ 项目概览　某新能源品牌车机 HMI · 2025</div>
-<h2 class="l1">做一个节日彩蛋，<br>最后变成了写系统规则</h2>
-<p class="l2">彩蛋本身不难。难的是它得待在一块随时会被 SOS、倒车影像抢走的屏幕上，横跨四个桌面、两块屏，还不能碍事。所以真正要定的是：出什么事的时候，它该怎么让。</p>
+<h2 class="l1">为车机节日彩蛋建立一套<br>跨四个桌面的系统响应规则。</h2>
+<p class="l2">彩蛋要跑在一块随时被 SOS、热失控、倒车影像抢占的屏幕上，横跨四个桌面、两块屏。我定义了它的层级、交互事件、系统响应和生命周期，覆盖 6 个节日的彩蛋规划。</p>
 <div class="stack" style="max-width:60ch">
-<div class="item on"><b>这个案子有两段</b><span class="m">2025 年我写了一套规则交出去；今年翻回去看，发现最关键的那张分类表，跟我自己文档里写的行为对不上。后半段讲我怎么把它改对。</span></div>
+<div class="item on"><b>这个案子有两段</b><span class="m">2025 年我写了一套规则交付给 3D、动效、语音与开发；今年复盘时发现其中的事件分类与我自己文档里写的行为对不上，第二段是我如何重新分类。</span></div>
 </div>
 <div class="rule"></div>
 <div class="tri">
@@ -127,21 +134,21 @@ td.hl{color:var(--warn);font-weight:600}
 </div></div></div><div class="sheetwrap"><div class="sheetnum"><em>P2</em> 挑战与竞品</div>
 <div class="sheet">
 <div class="eyebrow">02 ／ 设计挑战</div>
-<h2 class="l1 sm">手机上那套，<br>搬到车上不成立</h2>
+<h2 class="l1 sm">手机彩蛋的三个前提，<br>在车机上都不成立。</h2>
 <div class="cols c12">
 <div style="display:flex;flex-direction:column;min-height:0">
-<p class="l2" style="margin-bottom:14px">手机彩蛋默认你能盯着看、退出就结束、没别的东西来抢屏。车上这三条一条都不成立。</p>
+<p class="l2" style="margin-bottom:14px">手机彩蛋默认用户可以专注观看、退出即结束、没有更高优先级的内容抢占屏幕。车机上这三条都不成立。</p>
 <table><tbody>
-<tr><td style="width:44%;color:var(--faint)">注意力可被完整占用</td><td>盯着屏幕是要出事的</td></tr>
-<tr><td style="color:var(--faint)">单一前台，退出即结束</td><td>四个桌面来回切，还跨两块屏</td></tr>
-<tr><td style="color:var(--faint)">没有更高优先级抢屏</td><td>SOS、热失控、倒车影像说来就来</td></tr>
+<tr><td style="width:44%;color:var(--faint)">注意力可被完整占用</td><td>驾驶中注视屏幕有安全代价</td></tr>
+<tr><td style="color:var(--faint)">单一前台，退出即结束</td><td>四个桌面随时切换，横跨两块屏</td></tr>
+<tr><td style="color:var(--faint)">没有更高优先级抢屏</td><td>SOS、热失控、倒车影像随时抢占</td></tr>
 </tbody></table>
 <div class="tri" style="margin-top:16px">
 <div>情绪<span>× 安全</span></div>
 <div>被发现<span>× 被打扰</span></div>
 <div>可互动<span>× 系统稳定</span></div>
 </div>
-<div class="quote" style="margin-top:auto;font-size:13px">六家都在琢磨怎么让人玩得更久。<br>我们想让人<span class="accent">自己撞见</span>，不用专门去玩。</div>
+<div class="quote" style="margin-top:auto;font-size:13px">六款竞品都在延长互动时长。<br>我们的方向是让用户<span class="accent">顺手发现</span>，不需要专门去玩。</div>
 </div>
 <div class="figbox"><svg class="fig" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 660" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif">
   <style>
@@ -260,12 +267,12 @@ td.hl{color:var(--warn);font-weight:600}
 <div class="eyebrow">03 ／ 当年交付</div>
 <div class="cols c12">
 <div style="display:flex;flex-direction:column;min-height:0">
-<h2 class="l1 sm" style="margin-bottom:10px">只加一层，不动原来的</h2>
-<p class="l2" style="font-size:14px;margin-bottom:16px">彩蛋是加在现有界面上的一层，系统得能随时把它撤掉，主线功能一点不受影响。<b>后面所有规则都是从这条推下来的。</b></p>
+<h2 class="l1 sm" style="margin-bottom:10px">彩蛋只加一层，<br>系统随时可以撤掉它。</h2>
+<p class="l2" style="font-size:14px;margin-bottom:16px">彩蛋只在现有界面上叠加，不替换任何元素。撤掉之后主线功能与交互完全不受影响。<b>后面的层级、响应与生命周期规则都由这一条推出。</b></p>
 <div class="stack">
 <div class="item"><b>四条原则</b><span class="m">安全优先 · 节日统一 · 体验连贯 · 可拓展性</span></div>
 <div class="item warnb"><b>交互事件定义表 —— 按类型写，不按节日写</b><span class="m">基础交互（单击/双击/长按/连点）· 复合交互（轮播/条件触发/组合）· 系统类（副屏同步/首次开机/时间触发/临时下架/语音）</span></div>
-<div class="item on"><b>下个节日来了，挑几个事件组合就行</b><span class="m">不用再讨论一遍系统该怎么反应</span></div>
+<div class="item on"><b>新节日只需选择事件组合</b><span class="m">系统响应不必重新定义</span></div>
 </div>
 </div>
 <div class="figbox"><svg class="fig" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 520" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif">
@@ -353,9 +360,9 @@ td.hl{color:var(--warn);font-weight:600}
 <div class="sheet">
 <div class="headrow" style="margin-bottom:12px">
 <div><div class="eyebrow" style="margin-bottom:8px">04 ／ 复盘</div>
-<h2 class="l1 sm" style="margin:0">分成两类，<span class="accent">不够用</span></h2></div>
+<h2 class="l1 sm" style="margin:0">把「打断／不打断」两类，<br>拆成<span class="accent">四类响应</span>。</h2></div>
 </div>
-<p class="l2" style="font-size:13px;margin-bottom:12px">语音播报和 SOS 都算「打断」，但一个只是让个位置、播完还能回来，另一个必须立刻清掉、不许续播。两类分不出这个差别，评审时就会被一个场景一个场景地推翻。</p>
+<p class="l2" style="font-size:13px;margin-bottom:12px">语音播报与 SOS 在原规范里同属「打断」，但前者只需让出注意力、结束后可恢复，后者必须立即清除且不允许续播。两类分不出这个差别，评审时会被逐个场景推翻。</p>
 <div class="cols c2" style="gap:20px">
 <div style="display:flex;flex-direction:column;min-height:0">
 <div class="figbox" style="flex:1"><svg class="fig" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 512" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif">
@@ -521,8 +528,8 @@ td.hl{color:var(--warn);font-weight:600}
 <div class="sheet">
 <div class="eyebrow">05 ／ 设计输出</div>
 <div class="headrow" style="margin-bottom:8px">
-<h2 class="l1 sm" style="margin:0">挂件放在哪、热区多大、<br>什么时候半透明</h2>
-<span class="stamp new">第 3 格就是「弱化」</span>
+<h2 class="l1 sm" style="margin:0">挂件落位、交互热区<br>与三种显示状态的定义。</h2>
+<span class="stamp new">第 3 格即「弱化」状态</span>
 </div>
 <div class="figbox" style="flex:1;margin:6px 0"><svg class="fig" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 640" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif">
   <style>
@@ -649,19 +656,31 @@ td.hl{color:var(--warn);font-weight:600}
   <line x1="40" y1="598" x2="840" y2="598" stroke="#e5e7eb"/>
   <text x="40" y="622" class="note">底图为脱敏重绘线框，不含产品既有界面与节日视觉素材。标注层（挂件落位、热区、状态变化、动效边界）为本人定义。</text>
 </svg></div>
-<div class="l3" style="color:var(--faint);font-size:10.5px">四张图都是脱敏重画的线框，没有原界面和节日视觉素材。挂件放哪、热区多大、什么时候变半透明、碎片能飘到哪——这些是我定的。</div>
-</div></div><div class="sheetwrap"><div class="sheetnum"><em>P6</em> 结果与反思</div>
+<div class="l3" style="color:var(--faint);font-size:10.5px">四张均为脱敏重绘线框，不含原界面与节日视觉素材。挂件落位、交互热区、显示状态与动效边界由本人定义。</div>
+</div></div><div class="sheetwrap"><div class="sheetnum"><em>P6</em> 结果与验证</div>
 <div class="sheet">
-<div class="eyebrow">06 ／ 结果与反思</div>
-<h2 class="l1 sm" style="margin-bottom:10px">一套规则，六个节日通用</h2>
-<div class="fests">
-<span class="fest key">春节</span><span class="fest key">圣诞节</span><span class="fest">中秋节</span>
-<span class="fest">儿童节</span><span class="fest">元旦</span><span class="fest">情人节</span>
+<div class="eyebrow">06 ／ 结果与验证</div>
+<h2 class="l1 sm" style="margin-bottom:12px">一套系统响应规则，<br>覆盖 6 个节日、15 个彩蛋。</h2>
+<div class="fests" style="margin:0 0 12px">
+<span class="fest key">春节 <i>7</i></span><span class="fest key">圣诞节 <i>3</i></span>
+<span class="fest">中秋节 <i>2</i></span><span class="fest">儿童节 <i>1</i></span>
+<span class="fest">元旦 <i>1</i></span><span class="fest">情人节 <i>1</i></span>
 </div>
-<p class="l2" style="font-size:13.5px;margin-bottom:8px">规范是照着这六个节日的彩蛋规划写的，春节和圣诞是重点。换个节日只是换内容，系统该怎么反应不用重新讨论。</p>
-<p class="l3" style="font-size:11px;color:var(--faint);margin:0 0 14px">后来每个节日具体做成什么样、有没有都上线，我不清楚，所以这里只说规范管到哪儿。视觉动效和 3D 不是我做的。</p>
-<div class="rule" style="margin-top:auto"></div>
-<div class="quote" style="font-size:13.5px">当时那张表其实不够用，但一直没出事——因为每个桌面具体怎么做，我都单独写清楚了。<b>该改的是分类，我却用细节绕了过去，这次翻回来才看出来。</b></div>
+<p class="l2" style="font-size:13.5px;margin-bottom:16px">规范按事件类型而非按节日编写，因此新增节日只需选择事件组合，系统响应不必重新定义。春节与圣诞节为重点节日。</p>
+<div class="cols c2" style="flex:0 0 auto;gap:30px;margin-bottom:14px">
+<div class="stack">
+<div class="item on"><b>性能验证</b><span class="m">壁纸桌面与导航桌面各进行 10 次平均负载测试，测量 GPU 占用、内存与显存增量、CPU 峰值，并与静态桌面及双屏模式对比，确认现有车机硬件下可稳定运行</span></div>
+</div>
+<div class="stack">
+<div class="item"><b>交付对象：四个团队</b><span class="m">3D、动效、语音、开发读同一份文档。规范必须做到不产生第二种理解——这是把交互按事件类型编码、而非写成描述性文字的原因</span></div>
+</div>
+</div>
+<div class="rule" style="margin-top:auto;margin-bottom:12px"></div>
+<div class="cols c12" style="flex:0 0 auto;gap:26px">
+<div class="quote" style="font-size:12.5px;padding-left:14px">复盘让我看到，当时那张两类的分类表其实不够用，只是被逐个桌面写死的细节掩盖了。<b>规则能跑起来和分类是否准确，是两件事。</b></div>
+<div class="l3" style="font-size:11.5px"><b style="color:var(--ink)">后续方向</b><br>跨桌面协同、节日体系化运营、AI 生成式设计。</div>
+</div>
+<div class="l3" style="font-size:10.5px;color:var(--faint);margin-top:12px">各节日后续的实际落地情况本人不掌握，此处仅陈述规范的覆盖范围。视觉动效与 3D 资产非本人产出。</div>
 </div></div>
 <div class="note">
 <h2>排版时不能省的三件事</h2>
@@ -670,7 +689,8 @@ td.hl{color:var(--warn);font-weight:600}
 <li><b>P4 必须整页且左右并置</b>。两张图同宽同视觉语言就是为此画的，拆开使用会丢掉整个案例的论点。</li>
 <li><b>P3 的事件定义表别压太小</b>。这是全案最像系统级设计师的产出。</li>
 <li><b>P5 第 3 格「弱化态」不要缩小</b>。挂件半透明、不可操作——既没有停止，也没有照常播放，它就是 P4 论点的实证。视觉素材非本人产出，所以这一页放交互稿，不是视觉大图。</li>
-<li><b>P6 只说覆盖范围，不说上线结果</b>。6 个节日是规范面向的规划范围，实际落地情况无从佐证，写成「沿用」就越界了。</li>
+<li><b>P6 只说覆盖范围，不说上线结果</b>。6 个节日、15 个彩蛋是规范面向的规划范围，实际落地情况无从佐证，写成「沿用」就越界了。</li>
+<li><b>文案是陈述句，不是问句也不是格言。</b>标题说清做了什么并以句号结尾；一句话讲问题、一句话讲我做了什么、一句话讲结果。感慨留给反思那一行，全案只留一句。</li>
 </ul>
 </div>
 </div>
