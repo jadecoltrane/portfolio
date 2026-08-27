@@ -13,9 +13,6 @@
   <text x="40" y="42" class="title">打断机制 · 当年交付版本</text>
   <text x="40" y="63" class="sub">原始规范把系统事件二分为「打断」与「不打断」两类，分界线是「是否影响驾驶安全」</text>
 
-  <rect x="695" y="28" width="145" height="22" rx="11" fill="#f3f4f6" stroke="#d1d5db"/>
-  <text x="767" y="43" text-anchor="middle" class="stamp">2025 · 当年交付物</text>
-
   <!-- 打断原则 -->
   <g transform="translate(40,92)">
     <rect width="230" height="204" rx="8" fill="#f9fafb" stroke="#e5e7eb"/>
