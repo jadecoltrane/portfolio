@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 540" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif">
+  <style>
+    .title{font-size:18px;font-weight:700;fill:#1f2937}
+    .sub{font-size:12px;fill:#6b7280}
+    .cap{font-size:12px;font-weight:700;fill:#1f2937}
+    .capsub{font-size:10.5px;fill:#6b7280}
+    .note{font-size:11px;fill:#374151}
+    .bad{font-size:11px;font-weight:700;fill:#b45309}
+    .good{font-size:11px;font-weight:700;fill:#047857}
+    .kicker{font-size:10px;fill:#9ca3af;letter-spacing:1px}
+    .src{font-size:9.5px;fill:#9ca3af}
+    .tag{font-size:10px;font-weight:700;fill:#ffffff}
+  </style>
+  <rect width="880" height="540" fill="#ffffff"/>
+  <text x="40" y="38" class="title">P-09　面板对齐方式随内容量跳变</text>
+  <text x="40" y="59" class="sub">删掉一张卡片，整屏内容从居中变为居左 —— 所有位置一起漂移，肌肉记忆作废。</text>
+
+  <!-- 现状 -->
+  <text x="40" y="94" class="kicker">现状</text>
+  <g transform="translate(40,106)">
+    <!-- 状态1 不满一屏 居中 -->
+    <rect x="0" y="0" width="330" height="150" rx="8" fill="#f9fafb" stroke="#e5e7eb"/>
+    <g transform="translate(63,22)">
+      <rect x="0" y="0" width="48" height="34" rx="5" fill="#d1d5db"/>
+      <rect x="56" y="0" width="48" height="34" rx="5" fill="#d1d5db"/>
+      <rect x="112" y="0" width="48" height="34" rx="5" fill="#d1d5db"/>
+      <rect x="168" y="0" width="36" height="34" rx="5" fill="#374151"/>
+      <text x="186" y="43" text-anchor="middle" class="src">目标</text>
+      <rect x="0" y="52" width="48" height="34" rx="5" fill="#d1d5db"/>
+      <rect x="56" y="52" width="48" height="34" rx="5" fill="#d1d5db"/>
+      <rect x="112" y="52" width="48" height="34" rx="5" fill="#d1d5db"/>
+    </g>
+    <text x="14" y="140" class="cap">不满一屏 → 内容居中</text>
+    <line x1="165" y1="14" x2="165" y2="124" stroke="#9ca3af" stroke-width="1" stroke-dasharray="3 3"/>
+  </g>
+
+  <g transform="translate(386,176)">
+    <path d="M0,0 L46,0" stroke="#b45309" stroke-width="2"/>
+    <path d="M46,-6 L58,0 L46,6 Z" fill="#b45309"/>
+    <text x="-6" y="-14" class="bad">用户删掉 1 张</text>
+  </g>
+
+  <g transform="translate(470,106)">
+    <!-- 状态2 超过一屏 居左 -->
+    <rect x="0" y="0" width="330" height="150" rx="8" fill="#f9fafb" stroke="#e5e7eb"/>
+    <g transform="translate(16,22)">
+      <rect x="0" y="0" width="48" height="34" rx="5" fill="#d1d5db"/>
+      <rect x="56" y="0" width="48" height="34" rx="5" fill="#d1d5db"/>
+      <rect x="112" y="0" width="48" height="34" rx="5" fill="#d1d5db"/>
+      <rect x="168" y="0" width="36" height="34" rx="5" fill="#374151"/>
+      <text x="186" y="43" text-anchor="middle" class="src">目标</text>
+      <rect x="0" y="52" width="48" height="34" rx="5" fill="#d1d5db"/>
+      <rect x="56" y="52" width="48" height="34" rx="5" fill="#d1d5db"/>
+    </g>
+    <text x="14" y="140" class="cap">超过一屏 → 内容居左</text>
+    <line x1="165" y1="14" x2="165" y2="124" stroke="#9ca3af" stroke-width="1" stroke-dasharray="3 3"/>
+  </g>
+
+  <!-- 漂移标注 -->
+  <g transform="translate(0,0)">
+    <path d="M289,150 C340,168 420,168 502,150" stroke="#b45309" stroke-width="1.5" fill="none" stroke-dasharray="4 3"/>
+    <path d="M508,148 L496,145 L500,156 Z" fill="#b45309"/>
+    <rect x="352" y="252" width="176" height="20" rx="10" fill="#b45309"/>
+    <text x="440" y="266" text-anchor="middle" class="tag">同一功能，位置整体左移</text>
+  </g>
+
+  <!-- 为什么要紧 -->
+  <g transform="translate(40,292)">
+    <rect x="0" y="0" width="386" height="120" rx="8" fill="#fffbeb" stroke="#fcd34d"/>
+    <text x="20" y="28" class="bad">为什么在车上是硬伤</text>
+    <text x="20" y="52" class="note">控制中心是靠肌肉记忆使用的面板 —— 驾驶员</text>
+    <text x="20" y="72" class="note">不看也能伸手按到常用开关。位置随内容量漂移，</text>
+    <text x="20" y="92" class="note">等于每次编辑之后，肌肉记忆全部作废。</text>
+    <text x="20" y="110" class="src">手机上找不到可以停下来翻，开车时不行。</text>
+  </g>
+
+  <g transform="translate(454,292)">
+    <rect x="0" y="0" width="386" height="120" rx="8" fill="#ecfdf5" stroke="#6ee7b7"/>
+    <text x="20" y="28" class="good">建议</text>
+    <text x="20" y="52" class="note">固定左对齐（或固定网格锚点），内容只在网格内</text>
+    <text x="20" y="72" class="note">增减，<tspan font-weight="700" fill="#1f2937">不改变整体对齐方式</tspan>。</text>
+    <text x="20" y="98" class="src">代价：不满一屏时右侧留白。收益：位置恒定。</text>
+    <text x="20" y="114" class="src">在瞥视场景里，可预测性优先于视觉平衡。</text>
+  </g>
+
+  <!-- 结论 -->
+  <g transform="translate(40,432)">
+    <rect x="0" y="0" width="800" height="62" rx="8" fill="#f9fafb" stroke="#e5e7eb"/>
+    <text x="20" y="26" class="note">这是<tspan font-weight="700" fill="#1f2937">面板级</tspan>的一致性问题，但成因和控件级完全一样：</text>
+    <text x="20" y="48" class="note" font-weight="700" fill="#1f2937">规则只定义了两种状态各自的样子，没有定义两者之间的关系。</text>
+  </g>
+
+  <text x="40" y="522" class="src">2026-08 一致性审查发现 P-09 · 界面为示意重绘，不对应任何真实产品界面</text>
+</svg>

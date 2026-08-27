@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 620" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif">
+  <style>
+    .title{font-size:18px;font-weight:700;fill:#1f2937}
+    .sub{font-size:12px;fill:#6b7280}
+    .head{font-size:11.5px;font-weight:700;fill:#ffffff}
+    .type{font-size:12px;font-weight:700;fill:#1f2937}
+    .q{font-size:11px;fill:#1f2937}
+    .qa{font-size:11px;font-weight:700;fill:#047857}
+    .cell{font-size:10.5px;fill:#374151}
+    .no{font-size:10.5px;fill:#9ca3af}
+    .note{font-size:11px;fill:#374151}
+    .kicker{font-size:10px;fill:#9ca3af;letter-spacing:1px}
+    .src{font-size:9.5px;fill:#9ca3af}
+  </style>
+  <rect width="880" height="620" fill="#ffffff"/>
+  <text x="40" y="38" class="title">产出一：功能 → 控件类型 选型决策表</text>
+  <text x="40" y="59" class="sub">把选型从「讨论」变成「查询」：先回答第二列的判定问题，即可唯一确定控件类型。</text>
+
+  <g transform="translate(40,84)">
+    <rect x="0" y="0" width="250" height="32" fill="#1f2937"/><text x="14" y="21" class="head">判定问题（问一句就够）</text>
+    <rect x="250" y="0" width="140" height="32" fill="#1f2937"/><text x="320" y="21" text-anchor="middle" class="head">控件类型</text>
+    <rect x="390" y="0" width="86" height="32" fill="#1f2937"/><text x="433" y="21" text-anchor="middle" class="head">状态数</text>
+    <rect x="476" y="0" width="96" height="32" fill="#1f2937"/><text x="524" y="21" text-anchor="middle" class="head">图标随状态变</text>
+    <rect x="572" y="0" width="228" height="32" fill="#1f2937"/><text x="586" y="21" class="head">不适用于</text>
+
+    <!-- 1 开关 -->
+    <rect x="0" y="32" width="800" height="52" fill="#ffffff" stroke="#e5e7eb"/>
+    <text x="14" y="52" class="q">关掉之后它会一直保持关着吗？</text><text x="14" y="70" class="qa">→ 是</text>
+    <rect x="264" y="46" width="14" height="14" rx="7" fill="#1f2937"/><text x="286" y="58" class="type">开关</text>
+    <text x="433" y="58" text-anchor="middle" class="cell">2 态</text>
+    <text x="524" y="58" text-anchor="middle" class="cell">是（图标+底色）</text>
+    <text x="586" y="58" class="no">一次性动作</text>
+
+    <!-- 2 按钮 -->
+    <rect x="0" y="84" width="800" height="52" fill="#f9fafb" stroke="#e5e7eb"/>
+    <text x="14" y="104" class="q">点完之后有「开着」这个状态吗？</text><text x="14" y="122" class="qa">→ 否</text>
+    <rect x="264" y="98" width="14" height="14" rx="3" fill="#1f2937"/><text x="286" y="110" class="type">按钮</text>
+    <text x="433" y="110" text-anchor="middle" class="cell">单态 + 按压</text>
+    <text x="524" y="110" text-anchor="middle" class="no">否（恒定）</text>
+    <text x="586" y="110" class="no">任何有开关态的功能</text>
+
+    <!-- 3 分段 -->
+    <rect x="0" y="136" width="800" height="52" fill="#ffffff" stroke="#e5e7eb"/>
+    <text x="14" y="156" class="q">选项之间是平级的吗？</text><text x="14" y="174" class="qa">→ 是（2–3 个）</text>
+    <rect x="258" y="152" width="26" height="14" rx="3" fill="#1f2937"/><rect x="286" y="152" width="0" height="0"/><text x="292" y="164" class="type">分段选择</text>
+    <text x="433" y="164" text-anchor="middle" class="cell">2–3 选项</text>
+    <text x="524" y="164" text-anchor="middle" class="cell">选中项高亮</text>
+    <text x="586" y="164" class="no">超过 3 个选项</text>
+
+    <!-- 4 多模 -->
+    <rect x="0" y="188" width="800" height="52" fill="#f9fafb" stroke="#e5e7eb"/>
+    <text x="14" y="208" class="q">状态之间有强弱 / 顺序吗？</text><text x="14" y="226" class="qa">→ 是（3–4 态）</text>
+    <rect x="258" y="204" width="10" height="14" rx="2" fill="#1f2937"/><rect x="271" y="204" width="10" height="14" rx="2" fill="#9ca3af"/><text x="292" y="216" class="type">多模切换</text>
+    <text x="433" y="216" text-anchor="middle" class="cell">3–4 态</text>
+    <text x="524" y="216" text-anchor="middle" class="cell">是（每态独立）</text>
+    <text x="586" y="216" class="no">超过 4 态（改用二级页）</text>
+
+    <!-- 5 滑条 -->
+    <rect x="0" y="240" width="800" height="52" fill="#ffffff" stroke="#e5e7eb"/>
+    <text x="14" y="260" class="q">值是连续的吗？</text><text x="14" y="278" class="qa">→ 是</text>
+    <rect x="258" y="261" width="26" height="4" rx="2" fill="#1f2937"/><text x="292" y="268" class="type">进度滑条</text>
+    <text x="433" y="268" text-anchor="middle" class="cell">连续</text>
+    <text x="524" y="268" text-anchor="middle" class="no">否</text>
+    <text x="586" y="268" class="no">只有几个固定档位的功能</text>
+
+    <!-- 6 二次确认 -->
+    <rect x="0" y="292" width="800" height="52" fill="#f9fafb" stroke="#e5e7eb"/>
+    <text x="14" y="312" class="q">误触会有安全后果吗？</text><text x="14" y="330" class="qa">→ 是</text>
+    <rect x="258" y="306" width="14" height="14" rx="3" fill="#1f2937"/><rect x="264" y="312" width="14" height="14" rx="3" fill="#ffffff" stroke="#1f2937"/><text x="292" y="320" class="type">按钮 + 二次确认</text>
+    <text x="433" y="320" text-anchor="middle" class="cell">单态 + 弹窗</text>
+    <text x="524" y="320" text-anchor="middle" class="no">否</text>
+    <text x="586" y="320" class="no">低风险的普通动作</text>
+  </g>
+
+  <g transform="translate(40,462)">
+    <rect x="0" y="0" width="800" height="106" rx="8" fill="#f9fafb" stroke="#e5e7eb"/>
+    <text x="20" y="30" class="kicker">这张表的意义</text>
+    <text x="20" y="56" class="note">不在表本身，在于它把选型从「每次重新讨论」变成「查一次表」。新功能进来时，不再需要有人凭经验拍板，</text>
+    <text x="20" y="76" class="note">也不再产生新的分叉。<tspan font-weight="700" fill="#1f2937">同一性质的功能必须使用同一控件类型，不允许个案发挥。</tspan></text>
+    <text x="20" y="96" class="src">针对审查发现 P-01（同类功能被建成不同模型）与 P-03（分段选择与多模切换职责重叠）</text>
+  </g>
+
+  <text x="40" y="598" class="src">2026-08 改进提案产出 · 已反馈团队 · 非原项目交付物 · 内容示意化，不引用内部规范措辞</text>
+</svg>
