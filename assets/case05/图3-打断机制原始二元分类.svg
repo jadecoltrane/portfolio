@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 512" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif">
+  <style>
+    .title{font-size:18px;font-weight:700;fill:#1f2937}
+    .sub{font-size:12px;fill:#6b7280}
+    .boxhead{font-size:14px;font-weight:700;fill:#ffffff}
+    .cat{font-size:12px;font-weight:700;fill:#374151}
+    .item{font-size:13px;fill:#1f2937}
+    .small{font-size:11px;fill:#6b7280}
+    .stamp{font-size:11px;font-weight:700;fill:#6b7280}
+  </style>
+  <rect width="880" height="512" fill="#ffffff"/>
+
+  <text x="40" y="42" class="title">打断机制 · 当年交付版本</text>
+  <text x="40" y="63" class="sub">原始规范把系统事件二分为「打断」与「不打断」两类，分界线是「是否影响驾驶安全」</text>
+
+  <rect x="695" y="28" width="145" height="22" rx="11" fill="#f3f4f6" stroke="#d1d5db"/>
+  <text x="767" y="43" text-anchor="middle" class="stamp">2025 · 当年交付物</text>
+
+  <!-- 打断原则 -->
+  <g transform="translate(40,92)">
+    <rect width="230" height="204" rx="8" fill="#f9fafb" stroke="#e5e7eb"/>
+    <text x="16" y="30" class="cat">打断原则</text>
+    <text x="16" y="64" class="item">动画播放后原则上</text>
+    <text x="16" y="88" class="item" font-weight="700" fill="#2563eb">不会停止</text>
+    <text x="16" y="112" class="item">直至动画播放完成，</text>
+    <text x="16" y="136" class="item">除非</text>
+    <text x="16" y="160" class="item" font-weight="700" fill="#dc2626">影响驾驶安全的</text>
+    <text x="16" y="182" class="item" font-weight="700" fill="#dc2626">紧急情况</text>
+  </g>
+
+  <!-- 打断逻辑 -->
+  <g transform="translate(320,92)">
+    <rect width="240" height="34" rx="8" fill="#b45309"/>
+    <text x="120" y="23" text-anchor="middle" class="boxhead">打断逻辑</text>
+    <rect y="46" width="240" height="250" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+    <text x="20" y="80" class="cat" fill="#b45309">安全类</text>
+    <text x="20" y="102" class="item">紧急警告：SOS、热失控等</text>
+    <line x1="20" y1="122" x2="220" y2="122" stroke="#fde68a"/>
+    <text x="20" y="150" class="cat" fill="#b45309">系统类</text>
+    <text x="20" y="172" class="item">AVM 倒车影像</text>
+    <line x1="20" y1="192" x2="220" y2="192" stroke="#fde68a"/>
+    <text x="20" y="220" class="cat" fill="#b45309">用户主动操作类</text>
+    <text x="20" y="242" class="item">切换桌面主题</text>
+  </g>
+
+  <!-- 中缝 -->
+
+  <!-- 不打断逻辑 -->
+  <g transform="translate(630,92)">
+    <rect width="210" height="34" rx="8" fill="#4f46e5"/>
+    <text x="105" y="23" text-anchor="middle" class="boxhead">不打断逻辑</text>
+    <rect y="46" width="210" height="250" rx="8" fill="#eef2ff" stroke="#6366f1" stroke-width="1.5"/>
+    <text x="20" y="80" class="cat" fill="#4338ca">语音交互类</text>
+    <text x="20" y="102" class="item">语音唤醒</text>
+    <line x1="20" y1="122" x2="190" y2="122" stroke="#c7d2fe"/>
+    <text x="20" y="150" class="cat" fill="#4338ca">导航类</text>
+    <text x="20" y="172" class="item">切换驾驶模式 / 拖地图</text>
+    <line x1="20" y1="192" x2="190" y2="192" stroke="#c7d2fe"/>
+    <text x="20" y="220" class="cat" fill="#4338ca">系统反馈类</text>
+    <text x="20" y="242" class="item">toast / 弹窗 / smartbar</text>
+  </g>
+
+  <line x1="40" y1="412" x2="840" y2="412" stroke="#e5e7eb"/>
+  <text x="40" y="440" class="cat">这套分类只回答一个问题</text>
+  <text x="40" y="472" class="item" font-size="22" font-weight="700" fill="#1f2937">停，还是不停。</text>
+  <text x="40" y="498" class="small">它不回答：让多少、怎么让、之后怎么回来——而真实系统里的中间态，恰恰全靠这三个问题定义。</text>
+</svg>
