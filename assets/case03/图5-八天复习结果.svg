@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 480" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif">
+  <style>
+    .title{font-size:18px;font-weight:700;fill:#1f2937}
+    .sub{font-size:12px;fill:#6b7280}
+    .ax{font-size:11px;fill:#6b7280}
+    .pct{font-size:12px;font-weight:700;fill:#1f2937}
+    .lg{font-size:11px;fill:#6b7280}
+    .cal{font-size:11px;fill:#b45309}
+    .bad{font-size:12px;font-weight:700;fill:#dc2626}
+    .ft{font-size:12px;fill:#374151}
+    .fs{font-size:11px;fill:#9ca3af}
+  </style>
+  <rect width="880" height="480" fill="#ffffff"/>
+
+  <text x="40" y="42" class="title">八天的复习结果</text>
+  <text x="40" y="63" class="sub">每天到期卡片的三档判定占比　2026-10-12 至 10-19</text>
+
+  <!-- 图例 -->
+  <g>
+    <rect x="40"  y="84" width="10" height="10" fill="#2563eb"/><text x="58"  y="93" class="lg">记得</text>
+    <rect x="110" y="84" width="10" height="10" fill="#b45309"/><text x="128" y="93" class="lg">差一点</text>
+    <rect x="192" y="84" width="10" height="10" fill="#dc2626"/><text x="210" y="93" class="lg">没想起来</text>
+  </g>
+
+  <!-- 条 · 每条 y 间距 40,条高 22,起点 x=108,满宽 620 -->
+  <g>
+    <text x="40" y="140" class="ax">10/12</text>
+    <rect x="108" y="124" width="74"  height="22" fill="#2563eb"/>
+    <rect x="182" y="124" width="37"  height="22" fill="#b45309"/>
+    <rect x="219" y="124" width="509" height="22" fill="#dc2626"/>
+    <text x="744" y="140" class="pct">12%</text>
+  </g>
+  <g>
+    <text x="40" y="180" class="ax">10/13</text>
+    <rect x="108" y="164" width="620" height="22" fill="#2563eb" fill-opacity="0.35"/>
+    <text x="744" y="180" class="pct" fill="#9ca3af">100%</text>
+    <text x="118" y="180" class="cal">只答了 2 张,按规则不计</text>
+  </g>
+  <g>
+    <text x="40" y="220" class="ax">10/14</text>
+    <rect x="108" y="204" width="558" height="22" fill="#2563eb"/>
+    <rect x="666" y="204" width="62"  height="22" fill="#dc2626"/>
+    <text x="744" y="220" class="pct">90%</text>
+  </g>
+  <g>
+    <text x="40" y="260" class="ax">10/15</text>
+    <rect x="108" y="244" width="496" height="22" fill="#2563eb"/>
+    <rect x="604" y="244" width="62"  height="22" fill="#b45309"/>
+    <rect x="666" y="244" width="62"  height="22" fill="#dc2626"/>
+    <text x="744" y="260" class="pct">80%</text>
+  </g>
+  <g>
+    <text x="40" y="300" class="ax">10/16</text>
+    <rect x="108" y="284" width="546" height="22" fill="#2563eb"/>
+    <rect x="654" y="284" width="74"  height="22" fill="#dc2626"/>
+    <text x="744" y="300" class="pct">88%</text>
+  </g>
+  <g>
+    <text x="40" y="340" class="ax">10/17</text>
+    <rect x="108" y="324" width="440" height="22" fill="#2563eb"/>
+    <rect x="548" y="324" width="87"  height="22" fill="#b45309"/>
+    <rect x="635" y="324" width="93"  height="22" fill="#dc2626"/>
+    <text x="744" y="340" class="pct">71%</text>
+  </g>
+  <g>
+    <text x="40" y="380" class="ax">10/18</text>
+    <rect x="108" y="364" width="56"  height="22" fill="#2563eb"/>
+    <rect x="164" y="364" width="564" height="22" fill="#dc2626"/>
+    <text x="744" y="380" class="bad">9%</text>
+    <text x="790" y="380" class="bad">←</text>
+  </g>
+  <g>
+    <text x="40" y="420" class="ax">10/19</text>
+    <rect x="108" y="404" width="341" height="22" fill="#2563eb"/>
+    <rect x="449" y="404" width="112" height="22" fill="#b45309"/>
+    <rect x="561" y="404" width="167" height="22" fill="#dc2626"/>
+    <text x="744" y="420" class="pct">55%</text>
+  </g>
+
+  <line x1="40" y1="450" x2="840" y2="450" stroke="#e5e7eb"/>
+  <text x="40" y="470" class="ft">10/18 十七张卡零个记得。当晚查出问题在题面,改了四处;第二天回到 55%。</text>
+</svg>

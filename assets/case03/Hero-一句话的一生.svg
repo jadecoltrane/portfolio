@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 430" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif">
+  <style>
+    .title{font-size:18px;font-weight:700;fill:#1f2937}
+    .sub{font-size:12px;fill:#6b7280}
+    .day{font-size:11px;font-weight:700;fill:#9ca3af}
+    .nt{font-size:13px;font-weight:700;fill:#1f2937}
+    .nd{font-size:11px;fill:#6b7280}
+    .acc{font-size:11px;font-weight:700;fill:#1d4ed8}
+    .foot{font-size:12px;font-weight:700;fill:#1f2937}
+    .fs{font-size:11px;fill:#9ca3af}
+  </style>
+  <defs>
+    <marker id="a3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#9ca3af"/>
+    </marker>
+  </defs>
+  <rect width="880" height="430" fill="#ffffff"/>
+
+  <text x="40" y="42" class="title">一句话的一生</text>
+  <text x="40" y="63" class="sub">今天说错的话,怎么变成明天的课本、后天的复习题</text>
+
+  <!-- 节点 -->
+  <g>
+    <rect x="40" y="110" width="150" height="104" fill="#f9fafb" stroke="#e5e7eb"/>
+    <text x="56" y="134" class="day">第 1 天</text>
+    <text x="56" y="158" class="nt">我限时回一句</text>
+    <text x="56" y="180" class="nd">六十秒,想到什么说什么</text>
+    <text x="56" y="198" class="nd">当场不纠错</text>
+  </g>
+  <line x1="196" y1="162" x2="222" y2="162" stroke="#9ca3af" stroke-width="1.4" marker-end="url(#a3)"/>
+
+  <g>
+    <rect x="228" y="110" width="162" height="104" fill="#eff6ff" stroke="#2563eb"/>
+    <text x="244" y="134" class="day">第 2 天</text>
+    <text x="244" y="158" class="nt">被改成地道说法</text>
+    <text x="244" y="180" class="nd">一条改顺我的原句</text>
+    <text x="244" y="198" class="nd">一条给母语者的说法</text>
+  </g>
+  <line x1="396" y1="162" x2="422" y2="162" stroke="#9ca3af" stroke-width="1.4" marker-end="url(#a3)"/>
+
+  <g>
+    <rect x="428" y="110" width="162" height="104" fill="#eff6ff" stroke="#2563eb"/>
+    <text x="444" y="134" class="day">第 2 天</text>
+    <text x="444" y="158" class="nt">提炼成新表达</text>
+    <text x="444" y="180" class="acc">标明「来自你的回答」</text>
+    <text x="444" y="198" class="nd">和按主题选的新词各占一半</text>
+  </g>
+  <line x1="596" y1="162" x2="622" y2="162" stroke="#9ca3af" stroke-width="1.4" marker-end="url(#a3)"/>
+
+  <g>
+    <rect x="628" y="110" width="212" height="104" fill="#f9fafb" stroke="#e5e7eb"/>
+    <text x="644" y="134" class="day">第 3 / 7 / 20 天</text>
+    <text x="644" y="158" class="nt">在全新情境里被考</text>
+    <text x="644" y="180" class="nd">每次换场景,不重复同一道题</text>
+    <text x="644" y="198" class="nd">答对就推远,想不起来就降一级</text>
+  </g>
+
+  <!-- 回流 -->
+  <path d="M734 220 L734 266 L115 266 L115 220" fill="none" stroke="#2563eb" stroke-width="1.4"
+        stroke-dasharray="4 4" marker-end="url(#a3)"/>
+  <rect x="352" y="252" width="176" height="28" fill="#ffffff"/>
+  <text x="440" y="271" class="acc" text-anchor="middle">说出来的,又回到练习里</text>
+
+  <line x1="40" y1="320" x2="840" y2="320" stroke="#e5e7eb"/>
+  <text x="40" y="348" class="foot">八天里十四个新表达,六个走的这条路。</text>
+  <text x="40" y="372" class="fs">其余八个按当天场景选。数据来自产品数据库 2026-10-12 至 10-19。</text>
+  <text x="40" y="398" class="fs">第 1 天当场不纠错,是为了让人敢说完;纠错整体推到第 2 天。</text>
+</svg>
