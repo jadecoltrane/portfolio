@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 520" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif">
+  <style>
+    .title{font-size:18px;font-weight:700;fill:#1f2937}
+    .sub{font-size:12px;fill:#6b7280}
+    .head{font-size:12px;font-weight:700;fill:#9ca3af}
+    .name{font-size:14px;font-weight:700;fill:#1f2937}
+    .cell{font-size:12px;fill:#374151}
+    .gap{font-size:12px;fill:#b45309}
+    .claim{font-size:17px;font-weight:700;fill:#1f2937}
+    .fs{font-size:11px;fill:#9ca3af}
+  </style>
+  <defs>
+    <marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#9ca3af"/>
+    </marker>
+  </defs>
+  <rect width="880" height="520" fill="#ffffff"/>
+
+  <text x="40" y="42" class="title">三类做法,缺的是同一样东西</text>
+  <text x="40" y="63" class="sub">对照维度:练什么 / 说完之后这句话去了哪里</text>
+
+  <line x1="40" y1="96" x2="840" y2="96" stroke="#9ca3af" stroke-width="1.4"/>
+  <text x="40"  y="88" class="head">做法</text>
+  <text x="250" y="88" class="head">练什么</text>
+  <text x="400" y="88" class="head">卡在哪</text>
+
+  <g>
+    <text x="40"  y="128" class="name">背单词 / 刷题</text>
+    <text x="250" y="128" class="cell">认得出</text>
+    <text x="400" y="128" class="cell">认得出不等于说得出</text>
+    <text x="400" y="148" class="cell">题目和真实场合无关</text>
+    <line x1="40" y1="166" x2="840" y2="166" stroke="#e5e7eb"/>
+  </g>
+  <g>
+    <text x="40"  y="198" class="name">AI 口语陪练</text>
+    <text x="250" y="198" class="cell">说得爽</text>
+    <text x="400" y="198" class="cell">说完就没了</text>
+    <text x="400" y="218" class="cell">不沉淀、不复习、不针对我的毛病</text>
+    <line x1="40" y1="236" x2="840" y2="236" stroke="#e5e7eb"/>
+  </g>
+  <g>
+    <text x="40"  y="268" class="name">外教课</text>
+    <text x="250" y="268" class="cell">说得对</text>
+    <text x="400" y="268" class="cell">贵、低频</text>
+    <text x="400" y="288" class="cell">纠错当场发生,越纠越不敢说</text>
+    <line x1="40" y1="306" x2="840" y2="306" stroke="#e5e7eb"/>
+  </g>
+
+  <!-- 收敛 -->
+  <path d="M150 316 L440 360" fill="none" stroke="#9ca3af" stroke-width="1.2"/>
+  <path d="M440 316 L440 360" fill="none" stroke="#9ca3af" stroke-width="1.2"/>
+  <path d="M730 316 L440 360" fill="none" stroke="#9ca3af" stroke-width="1.2"/>
+  <line x1="440" y1="360" x2="440" y2="392" stroke="#9ca3af" stroke-width="1.4" marker-end="url(#a1)"/>
+
+  <text x="440" y="344" class="gap" text-anchor="middle">三家都没回答:说完之后,这句话去了哪里</text>
+
+  <rect x="110" y="404" width="660" height="60" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="440" y="441" class="claim" text-anchor="middle">练的是说出口,不是答对</text>
+
+  <text x="40" y="496" class="fs">结论只适用于当时对照的这三类做法,不外推为全行业判断。未做用户测试,属个人使用后的归纳。</text>
+</svg>

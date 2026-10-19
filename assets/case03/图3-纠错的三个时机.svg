@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 400" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif">
+  <style>
+    .title{font-size:18px;font-weight:700;fill:#1f2937}
+    .sub{font-size:12px;fill:#6b7280}
+    .when{font-size:11px;font-weight:700;fill:#9ca3af}
+    .act{font-size:15px;font-weight:700;fill:#1f2937}
+    .serve{font-size:12px;fill:#374151}
+    .why{font-size:11px;fill:#6b7280}
+    .no{font-size:12px;font-weight:700;fill:#dc2626}
+    .fs{font-size:11px;fill:#9ca3af}
+  </style>
+  <defs>
+    <marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#9ca3af"/>
+    </marker>
+  </defs>
+  <rect width="880" height="400" fill="#ffffff"/>
+
+  <text x="40" y="42" class="title">纠错放在什么时候</text>
+  <text x="40" y="63" class="sub">同一个错误,在三个时机处理,服务的是三个不同的目标</text>
+
+  <g>
+    <rect x="40" y="100" width="248" height="168" fill="#f9fafb" stroke="#e5e7eb"/>
+    <text x="60" y="126" class="when">对话进行中</text>
+    <text x="60" y="152" class="act">一律不纠</text>
+    <line x1="60" y1="166" x2="268" y2="166" stroke="#e5e7eb"/>
+    <text x="60" y="190" class="serve">服务:敢把话说完</text>
+    <text x="60" y="214" class="why">针对意思回应,不提语法。</text>
+    <text x="60" y="232" class="why">当场纠错能让这一句更准,</text>
+    <text x="60" y="250" class="why">代价是下一句不敢开口。</text>
+  </g>
+  <line x1="294" y1="184" x2="320" y2="184" stroke="#9ca3af" stroke-width="1.4" marker-end="url(#a2)"/>
+
+  <g>
+    <rect x="326" y="100" width="248" height="168" fill="#f9fafb" stroke="#e5e7eb"/>
+    <text x="346" y="126" class="when">当天 · 复习卡</text>
+    <text x="346" y="152" class="act">只判定,不讲评</text>
+    <line x1="346" y1="166" x2="554" y2="166" stroke="#e5e7eb"/>
+    <text x="346" y="190" class="serve">服务:知道自己记住没有</text>
+    <text x="346" y="214" class="why">分三档:对了 / 差一点 / 没想起来。</text>
+    <text x="346" y="232" class="why">拼写小出入算记得,</text>
+    <text x="346" y="250" class="why">只说差在哪,不重印整句。</text>
+  </g>
+  <line x1="580" y1="184" x2="606" y2="184" stroke="#9ca3af" stroke-width="1.4" marker-end="url(#a2)"/>
+
+  <g>
+    <rect x="612" y="100" width="228" height="168" fill="#eff6ff" stroke="#2563eb"/>
+    <text x="632" y="126" class="when">第二天 · 批改卡</text>
+    <text x="632" y="152" class="act">完整批改</text>
+    <line x1="632" y1="166" x2="820" y2="166" stroke="#2563eb" stroke-opacity="0.3"/>
+    <text x="632" y="190" class="serve">服务:把昨天的错变成今天的课</text>
+    <text x="632" y="214" class="why">双线批改,并从中提炼</text>
+    <text x="632" y="232" class="why">当天要学的新表达。</text>
+  </g>
+
+  <line x1="40" y1="306" x2="840" y2="306" stroke="#e5e7eb"/>
+  <text x="40" y="334" class="no">被排除:在对话中即时纠正。</text>
+  <text x="248" y="334" class="why">它提高单句正确率,但会让人在开口前先自我检查——那半秒就是卡壳的来源。</text>
+  <text x="40" y="368" class="fs">这是设计判断,依据是自己连续使用后的观察,未做对照实验。</text>
+</svg>
