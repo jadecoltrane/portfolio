@@ -2,7 +2,10 @@
 """导出 v1 投递版全本。
 
     pip3 install --target /tmp/pylibs pymupdf
-    PYTHONPATH=/tmp/pylibs python3 tools/build_v1.py
+    PYTHONPATH=/tmp/pylibs python3 tools/build_v1.py [输出路径]
+
+不传输出路径时写到仓库根目录的 作品集-v1.pdf（该文件入库，联系方式应为占位）。
+导出要发出去的投递版时传一个仓库外的路径，别把带联系方式的 PDF 提交上来。
 
 顺序：封面 / 关于我 / 目录 ／ 案例一 控制中心 ／ 案例二 节日彩蛋 ／ 经历 GAS ／ 结尾
 联系方式从仓库根目录的 contact.local.txt 读取（不入库）；缺文件时结尾页显示占位。
@@ -39,7 +42,7 @@ def main():
         io.open(f, "w", encoding="utf-8").write(svg)
         out.insert_pdf(fitz.open("pdf", fitz.open(f).convert_to_pdf()))
     out.subset_fonts()
-    dst = os.path.join(ROOT, "作品集-v1.pdf")
+    dst = sys.argv[1] if len(sys.argv) > 1 else os.path.join(ROOT, "作品集-v1.pdf")
     out.save(dst, garbage=4, deflate=True, clean=True)
     print("导出 %d 页 → %s" % (out.page_count, dst))
     if not os.path.exists(os.path.join(ROOT, "contact.local.txt")):
