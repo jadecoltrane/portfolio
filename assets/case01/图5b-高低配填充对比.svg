@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 500" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif">
+  <style>
+    .title{font-size:18px;font-weight:700;fill:#1f2937}
+    .sub{font-size:12px;fill:#6b7280}
+    .kicker{font-size:10px;fill:#9ca3af;letter-spacing:1px}
+    .slot{font-size:12px;font-weight:700;fill:#1f2937}
+    .cap{font-size:10.5px;fill:#6b7280}
+    .miss{font-size:10.5px;font-weight:700;fill:#b45309}
+    .ok{font-size:11px;font-weight:700;fill:#047857}
+    .src{font-size:9.5px;fill:#9ca3af}
+  </style>
+  <rect width="880" height="500" fill="#ffffff"/>
+  <text x="40" y="36" class="title">默认序不是给一台车排的，是给整个车型矩阵排的</text>
+  <text x="40" y="57" class="sub">交付的不是一张固定清单，是一条全量降序队列加一条填充规则：<tspan font-weight="700" fill="#1f2937">缺项不留空位，由队列中的下一项自动补位。</tspan></text>
+
+  <!-- 中间：全量降序队列 -->
+  <g transform="translate(372,86)">
+    <text x="68" y="0" text-anchor="middle" class="kicker">全量降序队列</text>
+    <rect x="0" y="12" width="136" height="336" rx="6" fill="#f9fafb" stroke="#d1d5db"/>
+    <g>
+      <rect x="14" y="28" width="108" height="34" rx="4" fill="#1f2937"/><text x="68" y="50" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff">A</text>
+      <rect x="14" y="70" width="108" height="34" rx="4" fill="#1f2937"/><text x="68" y="92" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff">B</text>
+      <rect x="14" y="112" width="108" height="34" rx="4" fill="#b45309"/><text x="68" y="134" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff">C</text>
+      <rect x="14" y="154" width="108" height="34" rx="4" fill="#1f2937"/><text x="68" y="176" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff">D</text>
+      <rect x="14" y="196" width="108" height="34" rx="4" fill="#1f2937"/><text x="68" y="218" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff">E</text>
+      <rect x="14" y="238" width="108" height="34" rx="4" fill="#9ca3af"/><text x="68" y="260" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff">F</text>
+      <rect x="14" y="280" width="108" height="34" rx="4" fill="#9ca3af"/><text x="68" y="302" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff">G</text>
+    </g>
+    <text x="68" y="334" text-anchor="middle" class="cap">C ＝ 仅高配配备</text>
+  </g>
+
+  <!-- 左：高配面板 -->
+  <g transform="translate(60,86)">
+    <text x="0" y="0" class="kicker">高配车型</text>
+    <rect x="0" y="12" width="240" height="252" rx="6" fill="#ffffff" stroke="#d1d5db"/>
+    <rect x="16" y="28" width="208" height="34" rx="4" fill="#f3f4f6" stroke="#e5e7eb"/><text x="120" y="50" text-anchor="middle" class="slot">A</text>
+    <rect x="16" y="70" width="208" height="34" rx="4" fill="#f3f4f6" stroke="#e5e7eb"/><text x="120" y="92" text-anchor="middle" class="slot">B</text>
+    <rect x="16" y="112" width="208" height="34" rx="4" fill="#fffbeb" stroke="#b45309"/><text x="120" y="134" text-anchor="middle" class="slot">C</text>
+    <rect x="16" y="154" width="208" height="34" rx="4" fill="#f3f4f6" stroke="#e5e7eb"/><text x="120" y="176" text-anchor="middle" class="slot">D</text>
+    <rect x="16" y="196" width="208" height="34" rx="4" fill="#f3f4f6" stroke="#e5e7eb"/><text x="120" y="218" text-anchor="middle" class="slot">E</text>
+    <text x="0" y="288" class="cap">队列前五项直接落位，填满即止。</text>
+  </g>
+
+  <!-- 右：低配面板 -->
+  <g transform="translate(580,86)">
+    <text x="0" y="0" class="kicker">低配车型（无 C）</text>
+    <rect x="0" y="12" width="240" height="252" rx="6" fill="#ffffff" stroke="#d1d5db"/>
+    <rect x="16" y="28" width="208" height="34" rx="4" fill="#f3f4f6" stroke="#e5e7eb"/><text x="120" y="50" text-anchor="middle" class="slot">A</text>
+    <rect x="16" y="70" width="208" height="34" rx="4" fill="#f3f4f6" stroke="#e5e7eb"/><text x="120" y="92" text-anchor="middle" class="slot">B</text>
+    <rect x="16" y="112" width="208" height="34" rx="4" fill="#ecfdf5" stroke="#047857"/><text x="120" y="134" text-anchor="middle" class="slot">D</text>
+    <rect x="16" y="154" width="208" height="34" rx="4" fill="#ecfdf5" stroke="#047857"/><text x="120" y="176" text-anchor="middle" class="slot">E</text>
+    <rect x="16" y="196" width="208" height="34" rx="4" fill="#ecfdf5" stroke="#047857"/><text x="120" y="218" text-anchor="middle" class="slot">F</text>
+    <text x="0" y="288" class="ok">C 缺失 → D/E 上移，F 自动补进末位</text>
+    <text x="0" y="306" class="cap">不留空位，也不另维护一份低配布局。</text>
+  </g>
+
+  <!-- 连线 -->
+  <path d="M508 118 L580 118" stroke="#9ca3af" stroke-width="1.2" stroke-dasharray="3 3"/>
+  <path d="M508 244 L556 244 L556 132 L580 132" stroke="#047857" stroke-width="1.6" fill="none" marker-end="url(#f5bA)"/>
+  <path d="M300 132 L372 132" stroke="#b45309" stroke-width="1.6" stroke-dasharray="3 3"/>
+  <defs>
+    <marker id="f5bA" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0 0 L8 4 L0 8 z" fill="#047857"/>
+    </marker>
+  </defs>
+
+  <g transform="translate(60,406)">
+    <rect x="0" y="0" width="760" height="52" rx="4" fill="#1f2937"/>
+    <text x="20" y="22" font-size="12.5" font-weight="700" fill="#ffffff">交付的是机制，不是一份清单。</text>
+    <text x="20" y="42" font-size="11.5" fill="#d1d5db">车型越多，固定清单的维护成本越不可控；一条规则可以让任何配置组合自己算出结果。</text>
+  </g>
+
+  <text x="40" y="486" class="src">功能全部以 A/B/C… 占位，不出现真实功能名、真实队列长度与配置口径。顺序由产品定义侧决定；本图呈现的填充机制由本人在交互规范中定义。</text>
+</svg>
