@@ -1,7 +1,30 @@
 # -*- coding: utf-8 -*-
 import io, re, os
 W,H = 1600, 900
-ASSETS = "/Users/peiyaohuang/Desktop/portfolio/assets/case05"
+# 仓库根目录下的 assets/，不再写死某台机器的绝对路径
+_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ASSETS = os.path.join(_ROOT, "assets", "case05")
+
+def use_assets(sub):
+    """切换配图目录，例如 use_assets("case01")"""
+    global ASSETS
+    ASSETS = os.path.join(_ROOT, "assets", sub)
+
+def contact():
+    """联系方式从未入库的本地文件读取（见 .gitignore）。
+    格式：每行 `标签: 值`，例如 `邮箱: x@y.com`。文件不存在时返回占位。"""
+    f = os.path.join(_ROOT, "contact.local.txt")
+    if not os.path.exists(f):
+        return [("邮箱", "（导出投递版前填入 contact.local.txt）"),
+                ("手机", "（同上）")]
+    out=[]
+    for line in io.open(f, encoding="utf-8"):
+        line=line.strip()
+        if not line or line.startswith("#"): continue
+        if ":" in line or "：" in line:
+            k,v=re.split(r"[:：]", line, 1)
+            out.append((k.strip(), v.strip()))
+    return out
 FF = "PingFang SC, Noto Sans CJK SC, Heiti SC, Microsoft YaHei, sans-serif"
 C = dict(ink="#1f2937", ink2="#374151", mute="#6b7280", faint="#9ca3af",
          line="#e5e7eb", wash="#f9fafb", acc="#2563eb", accw="#dbeafe",
