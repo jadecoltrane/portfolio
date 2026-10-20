@@ -5,27 +5,25 @@
     .band{font-size:11px;font-weight:700;fill:#6b7280}
     .dt{font-size:11px;font-weight:700;fill:#1d4ed8}
     .nt{font-size:12px;font-weight:700;fill:#1f2937}
-    .nd{font-size:11px;fill:#6b7280}
+    .nd{font-size:10.5px;fill:#6b7280}
     .fs{font-size:11px;fill:#9ca3af}
     .key{font-size:12px;font-weight:700;fill:#1f2937}
   </style>
   <rect width="880" height="560" fill="#ffffff"/>
 
-  <text x="40" y="42" class="title">二十六天,十次改向</text>
+  <text x="40" y="42" class="title">二十七天,十一次改向</text>
   <text x="40" y="63" class="sub">每个节点都是先发现自己学不会,才动手改的</text>
 
-  <!-- 形态分段带 -->
-  <rect x="40" y="96" width="268" height="22" fill="#f9fafb" stroke="#e5e7eb"/>
-  <text x="174" y="112" class="band" text-anchor="middle">阅读简报</text>
-  <rect x="308" y="96" width="140" height="22" fill="#f4f4f2" stroke="#e5e7eb"/>
-  <text x="378" y="112" class="band" text-anchor="middle">过渡</text>
-  <rect x="448" y="96" width="392" height="22" fill="#eff6ff" stroke="#2563eb"/>
-  <text x="644" y="112" class="band" text-anchor="middle">练习页</text>
+  <rect x="40" y="96" width="242" height="22" fill="#f9fafb" stroke="#e5e7eb"/>
+  <text x="161" y="112" class="band" text-anchor="middle">阅读简报</text>
+  <rect x="282" y="96" width="112" height="22" fill="#f4f4f2" stroke="#e5e7eb"/>
+  <text x="338" y="112" class="band" text-anchor="middle">过渡</text>
+  <rect x="394" y="96" width="446" height="22" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="617" y="112" class="band" text-anchor="middle">练习页</text>
 
-  <!-- 轴 -->
   <line x1="40" y1="300" x2="840" y2="300" stroke="#9ca3af" stroke-width="1.4"/>
 
-  <!-- 上方节点 -->
+  <!-- 上排 -->
   <g>
     <circle cx="60" cy="300" r="4" fill="#9ca3af"/>
     <line x1="60" y1="296" x2="60" y2="252" stroke="#e5e7eb"/>
@@ -34,73 +32,80 @@
     <text x="48" y="204" class="nd">十五分钟长文精读,纯输入</text>
   </g>
   <g>
-    <circle cx="228" cy="300" r="5" fill="#2563eb"/>
-    <line x1="228" y1="295" x2="228" y2="252" stroke="#e5e7eb"/>
-    <text x="216" y="240" class="dt">9/28</text>
-    <text x="216" y="222" class="nt">转向口语</text>
-    <text x="216" y="204" class="nd">一晚定下五条规则,今天还有一半在用</text>
+    <circle cx="208" cy="300" r="4" fill="#9ca3af"/>
+    <line x1="208" y1="296" x2="208" y2="252" stroke="#e5e7eb"/>
+    <text x="196" y="240" class="dt">10/8</text>
+    <text x="196" y="222" class="nt">砍掉纯输入模块</text>
+    <text x="196" y="204" class="nd">篇幅最长的那一块</text>
   </g>
   <g>
-    <circle cx="420" cy="300" r="4" fill="#9ca3af"/>
-    <line x1="420" y1="296" x2="420" y2="252" stroke="#e5e7eb"/>
-    <text x="408" y="240" class="dt">10/11</text>
-    <text x="408" y="222" class="nt">积压暴露</text>
-    <text x="408" y="204" class="nd">场景改成求职导向</text>
+    <circle cx="356" cy="300" r="5" fill="#2563eb"/>
+    <line x1="356" y1="295" x2="356" y2="252" stroke="#e5e7eb"/>
+    <text x="344" y="240" class="dt">10/12</text>
+    <text x="344" y="222" class="nt">变成练习页</text>
+    <text x="344" y="204" class="nd">定英文优先;撤掉朗读</text>
   </g>
   <g>
-    <circle cx="612" cy="300" r="4" fill="#9ca3af"/>
-    <line x1="612" y1="296" x2="612" y2="252" stroke="#e5e7eb"/>
-    <text x="600" y="240" class="dt">10/15</text>
-    <text x="600" y="222" class="nt">批改模块上线</text>
-    <text x="600" y="204" class="nd">产品从这天起真正开始工作</text>
+    <circle cx="504" cy="300" r="4" fill="#9ca3af"/>
+    <line x1="504" y1="296" x2="504" y2="252" stroke="#e5e7eb"/>
+    <text x="492" y="240" class="dt">10/15</text>
+    <text x="492" y="222" class="nt">批改模块上线</text>
+    <text x="492" y="204" class="nd">产品真正开始工作</text>
   </g>
   <g>
-    <circle cx="756" cy="300" r="5" fill="#dc2626"/>
-    <line x1="756" y1="295" x2="756" y2="252" stroke="#e5e7eb"/>
-    <text x="700" y="240" class="dt">10/18</text>
-    <text x="700" y="222" class="nt">最差的一天</text>
-    <text x="700" y="204" class="nd">十七张卡零个记得,当晚改了四处</text>
+    <circle cx="652" cy="300" r="5" fill="#dc2626"/>
+    <line x1="652" y1="295" x2="652" y2="252" stroke="#e5e7eb"/>
+    <text x="640" y="240" class="dt">10/18</text>
+    <text x="640" y="222" class="nt">最差的一天</text>
+    <text x="640" y="204" class="nd">零个记得,当晚改四处</text>
+  </g>
+  <g>
+    <circle cx="800" cy="300" r="4" fill="#9ca3af"/>
+    <line x1="800" y1="296" x2="800" y2="252" stroke="#e5e7eb"/>
+    <text x="840" y="240" class="dt" text-anchor="end">10/20</text>
+    <text x="840" y="222" class="nt" text-anchor="end">把 bug 修成规则</text>
+    <text x="840" y="204" class="nd" text-anchor="end">写进每天的生成指令</text>
   </g>
 
-  <!-- 下方节点 -->
+  <!-- 下排 -->
   <g>
-    <circle cx="148" cy="300" r="4" fill="#9ca3af"/>
-    <line x1="148" y1="304" x2="148" y2="340" stroke="#e5e7eb"/>
-    <text x="136" y="358" class="dt">10/8</text>
-    <text x="136" y="376" class="nt">砍掉纯输入模块</text>
-    <text x="136" y="394" class="nd">篇幅最长的那一块</text>
+    <circle cx="134" cy="300" r="5" fill="#2563eb"/>
+    <line x1="134" y1="305" x2="134" y2="340" stroke="#e5e7eb"/>
+    <text x="122" y="358" class="dt">9/28</text>
+    <text x="122" y="376" class="nt">转向口语</text>
+    <text x="122" y="394" class="nd">一晚定下五条规则</text>
   </g>
   <g>
-    <circle cx="324" cy="300" r="5" fill="#2563eb"/>
-    <line x1="324" y1="305" x2="324" y2="340" stroke="#e5e7eb"/>
-    <text x="312" y="358" class="dt">10/12</text>
-    <text x="312" y="376" class="nt">从对话变成练习页</text>
-    <text x="312" y="394" class="nd">定下英文优先;撤掉朗读</text>
+    <circle cx="282" cy="300" r="4" fill="#9ca3af"/>
+    <line x1="282" y1="304" x2="282" y2="340" stroke="#e5e7eb"/>
+    <text x="270" y="358" class="dt">10/11</text>
+    <text x="270" y="376" class="nt">积压暴露</text>
+    <text x="270" y="394" class="nd">场景改成职场导向</text>
   </g>
   <g>
-    <circle cx="516" cy="300" r="4" fill="#9ca3af"/>
-    <line x1="516" y1="304" x2="516" y2="340" stroke="#e5e7eb"/>
-    <text x="504" y="358" class="dt">10/14</text>
-    <text x="504" y="376" class="nt">否掉两种题型</text>
-    <text x="504" y="394" class="nd">纠错推迟到第二天</text>
+    <circle cx="430" cy="300" r="4" fill="#9ca3af"/>
+    <line x1="430" y1="304" x2="430" y2="340" stroke="#e5e7eb"/>
+    <text x="418" y="358" class="dt">10/14</text>
+    <text x="418" y="376" class="nt">否掉两种题型</text>
+    <text x="418" y="394" class="nd">纠错推迟到第二天</text>
   </g>
   <g>
-    <circle cx="684" cy="300" r="4" fill="#9ca3af"/>
-    <line x1="684" y1="304" x2="684" y2="340" stroke="#e5e7eb"/>
-    <text x="672" y="358" class="dt">10/16</text>
-    <text x="672" y="376" class="nt">一次推倒重来</text>
-    <text x="672" y="394" class="nd">大改模块结构</text>
+    <circle cx="578" cy="300" r="4" fill="#9ca3af"/>
+    <line x1="578" y1="304" x2="578" y2="340" stroke="#e5e7eb"/>
+    <text x="566" y="358" class="dt">10/16</text>
+    <text x="566" y="376" class="nt">一次推倒重来</text>
+    <text x="566" y="394" class="nd">大改模块结构</text>
   </g>
   <g>
-    <circle cx="820" cy="300" r="4" fill="#9ca3af"/>
-    <line x1="820" y1="304" x2="820" y2="340" stroke="#e5e7eb"/>
-    <text x="748" y="358" class="dt">10/19</text>
-    <text x="748" y="376" class="nt">加「英语思维」一节</text>
-    <text x="748" y="394" class="nd">原产品最后一块被删掉</text>
+    <circle cx="726" cy="300" r="4" fill="#9ca3af"/>
+    <line x1="726" y1="304" x2="726" y2="340" stroke="#e5e7eb"/>
+    <text x="714" y="358" class="dt">10/19</text>
+    <text x="714" y="376" class="nt">加「小练习」一节</text>
+    <text x="714" y="394" class="nd">原产品最后一块删掉</text>
   </g>
 
   <line x1="40" y1="452" x2="840" y2="452" stroke="#e5e7eb"/>
   <text x="40" y="480" class="key">形态变了两次,规则只加不减:9/28 定下的五条,一条没被推翻。</text>
-  <text x="40" y="506" class="fs">节点取自 9/24–10/19 的十二份改版记录,日期为实际发生日期。蓝点为产品形态发生变化的节点。</text>
+  <text x="40" y="506" class="fs">节点取自 9/24–10/20 的十三份改版记录,日期为实际发生日期。蓝点为产品形态发生变化的节点,红点为数据最差的一天。</text>
   <text x="40" y="528" class="fs">轴为事件顺序,非等比时间轴。</text>
 </svg>
