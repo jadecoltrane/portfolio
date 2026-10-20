@@ -14,7 +14,8 @@ def contact():
     """联系方式从未入库的本地文件读取（见 .gitignore）。
     格式：每行 `标签: 值`，例如 `邮箱: x@y.com`。文件不存在时返回占位。"""
     f = os.path.join(_ROOT, "contact.local.txt")
-    if not os.path.exists(f):
+    # 导出入库副本时强制占位，避免真实联系方式被提交（build_v1.py 会设这个环境变量）
+    if os.environ.get("PORTFOLIO_NO_CONTACT") == "1" or not os.path.exists(f):
         return [("邮箱", "（导出投递版前填入 contact.local.txt）"),
                 ("手机", "（同上）")]
     out=[]

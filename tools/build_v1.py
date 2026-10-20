@@ -24,6 +24,9 @@ def collect():
             + pages04.PAGES + frontback.BACK)
 
 def main():
+    # 不传路径 = 导出入库副本：强制联系方式占位，真实值只进仓库外的那份
+    if len(sys.argv) <= 1:
+        os.environ["PORTFOLIO_NO_CONTACT"] = "1"
     # pages01 会把 ASSETS 切到 case01，pages 需要 case05 —— 分别导入时各自设定
     import lib
     lib.use_assets("case01"); import pages01
@@ -45,7 +48,9 @@ def main():
     dst = sys.argv[1] if len(sys.argv) > 1 else os.path.join(ROOT, "作品集-v1.pdf")
     out.save(dst, garbage=4, deflate=True, clean=True)
     print("导出 %d 页 → %s" % (out.page_count, dst))
-    if not os.path.exists(os.path.join(ROOT, "contact.local.txt")):
+    if os.environ.get("PORTFOLIO_NO_CONTACT") == "1":
+        print("· 入库副本：联系方式为占位。导投递版请传一个仓库外的路径。")
+    elif not os.path.exists(os.path.join(ROOT, "contact.local.txt")):
         print("⚠️ 没有 contact.local.txt，结尾页的联系方式是占位文字，别直接发出去")
 
 if __name__ == "__main__":
