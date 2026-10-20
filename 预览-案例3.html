@@ -54,7 +54,8 @@ body{margin:0;background:var(--ws);color:var(--ws-ink);
 .tri span{display:block;font-family:inherit;font-size:10px;font-weight:500;
   letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin-top:3px}
 
-.cols{display:grid;gap:26px;flex:1;min-height:0}
+.cols{display:grid;gap:26px;flex:1;min-height:0;grid-template-rows:minmax(0,1fr)}
+.stack{min-height:0}
 .c2{grid-template-columns:1fr 1fr}
 .c12{grid-template-columns:1.05fr 1fr}
 .fig{width:100%;height:100%;display:block;min-height:0}
@@ -100,9 +101,10 @@ td.hl{color:var(--warn);font-weight:600}
 .note h2{font-size:14px;font-weight:700;margin:0 0 12px;color:var(--ws-ink)}
 .note ul{margin:0;padding-left:19px;font-size:13px;color:var(--ws-mute);line-height:1.85}
 .note li b{color:var(--ws-ink);font-weight:600}
-.shots{display:grid;gap:20px;grid-template-columns:repeat(3,1fr)}
-.shot{min-width:0;display:flex;flex-direction:column;gap:7px}
-.shot .ph{height:250px;border:1px solid var(--line);border-radius:4px;background:var(--wash);
+.shots{display:grid;gap:20px;grid-template-columns:repeat(3,1fr);flex:1;min-height:0}
+.shots.fixed{flex:0 0 auto}
+.shot{min-width:0;min-height:0;display:flex;flex-direction:column;gap:7px}
+.shot .ph{flex:1;min-height:0;border:1px solid var(--line);border-radius:4px;background:var(--wash);
   overflow:hidden;display:flex;align-items:center;justify-content:center}
 .shot .ph img{width:100%;height:100%;object-fit:contain;display:block}
 .shot .cap{font-size:11px;line-height:1.55;color:var(--mute)}
@@ -119,9 +121,9 @@ td.hl{color:var(--warn);font-weight:600}
 <div class="masthead">
 <div class="kicker">排版预览 ／ 案例③</div>
 <h1>每天十五分钟的英语口语练习 · 排版预览</h1>
-<p>10 张 16:9 页面,看结构和字级层次用的。文案是正文初稿,图是最终 SVG,P8 两页是去过水印的真实界面。全书统一 PingFang SC,配图色板沿用规范第 6 节。</p>
+<p>12 张 16:9 页面,看结构和字级层次用的。文案是正文初稿,图是最终 SVG,P8 两页是去过水印的真实界面,图 5 单独占一张。全书统一 PingFang SC,配图色板沿用规范第 6 节。</p>
 <div class="meta">
-<span class="tag"><b>10</b> 页</span>
+<span class="tag"><b>12</b> 页</span>
 <span class="tag">三层字级 <b>L1 / L2 / L3</b></span>
 <span class="tag">六张图 <b>已完成</b></span>
 <span class="tag">六张真实截图 <b>已就位</b></span>
@@ -230,8 +232,10 @@ td.hl{color:var(--warn);font-weight:600}
 <div class="sheetwrap"><div class="sheetnum"><em>P7</em> 改版时间线　<span style="color:var(--ws-mute)">图 2</span></div>
 <div class="sheet">
 <div class="eyebrow">07 ／ 改版时间线</div>
-<h2 class="l1 sm">二十七天,改了十几版。</h2>
+<h2 class="l1 sm">形态变了两次,规则一条没推翻。</h2>
+<p class="l2" style="margin-bottom:10px">9/28 那一晚定下五条:只示范地道说法、按岗位排场景、用遗忘曲线、表不用手动维护、控制总时长。二十七天里产品从一份阅读简报变成一个练习页,这五条一条没动过。</p>
 <div class="figbox" style="flex:1"><img class="fig" src="assets/case03/图2-改版时间线.svg" alt="改版时间线"></div>
+<p class="l3" style="margin-top:10px">每次改向都是先发现自己学不会才动手,不是看到更好的做法才动手。后期的改动也越来越多是在写规则而不是改一次。</p>
 </div></div>
 
 <div class="sheetwrap"><div class="sheetnum"><em>P8</em> 设计输出 ①　<span style="color:var(--ws-mute)">图 6 上半 · 真实界面</span></div>
@@ -240,11 +244,11 @@ td.hl{color:var(--warn);font-weight:600}
 <h2 class="l1 sm">规则落到屏幕上。</h2>
 <p class="l2" style="margin-bottom:16px">前面讲的规则,到这里要能看见。三张截图是同一天同一集连着截的。</p>
 <div class="shots">
-<div class="shot"><div class="ph" style="height:376px"><img src="assets/case03/screens/desktop-主界面.jpg" alt="主界面"></div>
+<div class="shot"><div class="ph"><img src="assets/case03/screens/desktop-主界面.jpg" alt="主界面"></div>
 <div class="cap"><b>主界面</b>步骤条按当天有什么内容长出来,八类里这天只出现六步。</div></div>
-<div class="shot"><div class="ph" style="height:376px"><img src="assets/case03/screens/desktop-对话上半.jpg" alt="情景对话"></div>
+<div class="shot"><div class="ph"><img src="assets/case03/screens/desktop-对话上半.jpg" alt="情景对话"></div>
 <div class="cap"><b>情景对话</b>正在复习的表达标绿,今天的新表达标黄,接话的同时认出来。</div></div>
-<div class="shot"><div class="ph" style="height:376px"><img src="assets/case03/screens/desktop-剧情随回答变化.jpg" alt="剧情接住回答"></div>
+<div class="shot"><div class="ph"><img src="assets/case03/screens/desktop-剧情随回答变化.jpg" alt="剧情接住回答"></div>
 <div class="cap"><b>剧情接住我的回答</b>我说走过去有点远,下一句就改约出租车。剧情跟着我的话走。</div></div>
 </div>
 </div></div>
@@ -253,12 +257,12 @@ td.hl{color:var(--warn);font-weight:600}
 <div class="sheet">
 <div class="eyebrow">08 ／ 设计输出 · 判分怎么判</div>
 <h2 class="l1 sm">判分不给标准答案。</h2>
-<div class="shots" style="margin-bottom:14px">
-<div class="shot"><div class="ph" style="height:246px"><img src="assets/case03/screens/crops/批改卡.jpg" alt="批改卡"></div>
+<div class="shots" style="margin-bottom:14px;flex:1 1 46%">
+<div class="shot"><div class="ph"><img src="assets/case03/screens/crops/批改卡.jpg" alt="批改卡"></div>
 <div class="cap"><b>批改卡</b>改写 + 踩了第几条规律;下面另起一块,收从这句话里提出来的新表达。</div></div>
-<div class="shot"><div class="ph" style="height:246px"><img src="assets/case03/screens/crops/自己说判两条.jpg" alt="自己说 · AI 判两条"></div>
+<div class="shot"><div class="ph"><img src="assets/case03/screens/crops/自己说判两条.jpg" alt="自己说 · AI 判两条"></div>
 <div class="cap"><b>自己说 · AI 判</b>两条分开:一条只把我的话改自然,一条才是用上要复习的表达。</div></div>
-<div class="shot"><div class="ph" style="height:246px"><img src="assets/case03/screens/crops/填一个词.jpg" alt="填一个词"></div>
+<div class="shot"><div class="ph"><img src="assets/case03/screens/crops/填一个词.jpg" alt="填一个词"></div>
 <div class="cap"><b>填一个词</b>打字自动判,底下再说清楚为什么是这个词。</div></div>
 </div>
 <div class="rule" style="margin:0 0 12px"></div>
@@ -268,22 +272,26 @@ td.hl{color:var(--warn);font-weight:600}
 <div class="item on"><b>判错只说缺了什么</b><span class="m">只差标点或大小写时直接说缺什么,不把整句重印一遍。</span></div>
 <div class="item on"><b>改写要成套</b><span class="m">开场白和提示词一起重生成,并加一道退回原稿的检查。</span></div>
 </div>
-<p class="l3" style="margin-top:12px">判分的那一次看不见页面上的图,也不知道要我绕开哪个词。解法是把这两样跟题目一起交过去——<b>参考答案于是从「标准答案」降级成「告诉判分者现场有什么」。</b></p>
+<p class="l3" style="margin-top:12px">判分的那一次看不见页面上的图,也不知道要我绕开哪个词。解法是把这两样跟题目一起交过去——<b>参考答案于是从「标准答案」降级成「告诉判分者现场有什么」。</b>同一类耦合在 10/20 又咬了一次:提示词和开场白对不上,前两次猜的原因都不对,最后定位到的是我自己——我的回答改变了剧情,提示词却没跟着改。</p>
 </div></div>
 
-<div class="sheetwrap"><div class="sheetnum"><em>P9</em> 结果与反思　<span style="color:var(--ws-mute)">图 5</span></div>
+<div class="sheetwrap"><div class="sheetnum"><em>P9</em> 结果与反思　<span style="color:var(--ws-mute)">图 5 见次页</span></div>
 <div class="sheet">
 <div class="eyebrow">09 ／ 结果与反思</div>
-<h2 class="l1 sm">最差的那天,告诉我题出错了。</h2>
-<div class="cols c12">
-<div class="figbox"><img class="fig" src="assets/case03/图5-八天复习结果.svg" alt="八天复习结果"></div>
-<div>
-<p class="l2" style="margin-top:0">当晚打开复习卡,发现题面本身已经把答案写进去了——要求用某个表达说一句的时候,这道题测的根本不是回忆。</p>
-<p class="l3">当晚改完四处:判定改成由 AI 判自然度、删掉首字母提示、每次复习换新场景、保留历次答案。第二天回到 50%——没回到出事前的水平,但不再是零。</p>
-<p class="l3" style="margin-top:10px">10/20 又出了一次:提示词和开场白对不上。前两次猜的原因都不对,<b>最后定位到的是我自己——我的回答改变了剧情,提示词却没跟着改。</b></p>
-<p class="l3" style="margin-top:10px;color:var(--warn)">没做成的:最该练的是嘴,但页面做不了语音,最后做成了一次交接。接缝设计得再顺,它还是一道接缝。</p>
+<h2 class="l1 sm">记得率跌了一半,记得的个数一个没少。</h2>
+<p class="l2" style="margin-bottom:16px">10/14 的记得率 90%,10/20 是 45%,可这两天记得的个数都是九个。变的不是记性,是判分权——10/18 那一晚,判分从我手上交给了机器和 AI。</p>
+<div class="stack" style="flex:1;min-height:0;justify-content:space-evenly">
+<div class="item on"><b>这条线不能当记忆曲线读</b><span class="m">自己判的 64 张记得 42 张(66%),机器或 AI 判的 45 张记得 19 张(42%);同一时间每天到期量从十张涨到二十张。只由自己判分、题目还一直在改的产品,曲线永远好看。</span></div>
+<div class="item warnb"><b>零分那天</b><span class="m">10/18 十七张零个记得。回头翻才看明白:10/17 之前「自己说」的题面上直接印着要用的那个表达,答案就在题干里。当晚改完四处,第二天回到 50%——零分那天不是最糟的一天,是它第一次说实话的一天。</span></div>
+<div class="item on"><b>卡住的那一级</b><span class="m">换成严口径后的两天:打出缺的那个词,三十一张对十七张;自己造一句由 AI 判,九张对两张。越靠近真要开口,掉得越狠。</span></div>
 </div>
-</div>
+<div class="rule" style="margin:0 0 14px"></div>
+<p class="l3" style="margin:0"><b>这组数字的边界:</b>八天、一个人、没有对照组,它证明不了方法有效——只能证明口径一换,同一个人、同一套内容的数字会差一倍。有两天我没做完,图里照原样留着,没补算也没剔除。<span style="color:var(--warn)">　没做成的:最该练的是嘴,但页面做不了语音,最后做成了一次交接。</span></p>
+</div></div>
+
+<div class="sheetwrap"><div class="sheetnum"><em>P9</em> 附　图 5 · 八天复习结果</div>
+<div class="sheet" style="aspect-ratio:auto">
+<img class="fig" src="assets/case03/图5-八天复习结果.svg" alt="八天复习结果" style="height:auto">
 </div></div>
 
 <div class="note">
@@ -291,9 +299,9 @@ td.hl{color:var(--warn);font-weight:600}
 <ul>
 <li><b>P8 的截图已就位</b>——六张真实界面,全部去过水印,P8 已按预案拆成两页。</li>
 <li><b>图 3 / 图 4</b> 已画完,作为 P4–P6 的页内插图备用,哪页挤了就撤哪张。</li>
-<li><b>P9 已经超一页的量</b>——排版时「一次定位」挪到 P8 ② 页脚,「没做成的」压成一行注释。</li>
+<li><b>P9 已按真实数据重排</b>——图 5 改成绝对张数,标出 10/18 换判定口径那条线;十一张页面实测都没有溢出。</li>
 <li><b>备选截图</b>:限时与输入、听力跟读两张留在 screens/ 没进图 6,哪一页空了可以补。</li>
-<li><b>伸缩预案</b>:可压到 7 页(P4 P5 合并、时间线并入 P3)。现在是 10 页。</li>
+<li><b>页数已定:12 页,不压。</b>每一页都在干不同的活,抽任何一页都会断一环。唯一能抽的是图 5 那张单页(抽掉只损失可视化,结论在 P9 正文里还在)——投车企嫌长时抽它,变 11 页。</li>
 </ul>
 </div>
 </div>
