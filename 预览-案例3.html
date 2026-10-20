@@ -100,21 +100,31 @@ td.hl{color:var(--warn);font-weight:600}
 .note h2{font-size:14px;font-weight:700;margin:0 0 12px;color:var(--ws-ink)}
 .note ul{margin:0;padding-left:19px;font-size:13px;color:var(--ws-mute);line-height:1.85}
 .note li b{color:var(--ws-ink);font-weight:600}
+.shots{display:grid;gap:20px;grid-template-columns:repeat(3,1fr)}
+.shot{min-width:0;display:flex;flex-direction:column;gap:7px}
+.shot .ph{height:250px;border:1px solid var(--line);border-radius:4px;background:var(--wash);
+  overflow:hidden;display:flex;align-items:center;justify-content:center}
+.shot .ph img{width:100%;height:100%;object-fit:contain;display:block}
+.shot .cap{font-size:11px;line-height:1.55;color:var(--mute)}
+.shot .cap b{display:block;color:var(--ink);font-size:11.5px;font-weight:700;margin-bottom:1px}
+.c22{display:grid;grid-template-columns:1fr 1fr;gap:9px 24px}
 @media (max-width:820px){
   .sheet{aspect-ratio:auto;padding:30px 26px}
   .l1{font-size:23px}.l1.sm{font-size:20px}
   .cols{grid-template-columns:1fr !important}
+  .shots,.c22{grid-template-columns:1fr !important}
+  .shot .ph{height:auto}
 }
 </style><div class="wrap">
 <div class="masthead">
 <div class="kicker">排版预览 ／ 案例③</div>
 <h1>每天十五分钟的英语口语练习 · 排版预览</h1>
-<p>9 张 16:9 页面,看结构和字级层次用的。文案是正文初稿,图是最终 SVG。P8 等真实截图,现在是占位。全书统一 PingFang SC,配图色板沿用规范第 6 节。</p>
+<p>10 张 16:9 页面,看结构和字级层次用的。文案是正文初稿,图是最终 SVG,P8 两页是去过水印的真实界面。全书统一 PingFang SC,配图色板沿用规范第 6 节。</p>
 <div class="meta">
-<span class="tag"><b>9</b> 页</span>
+<span class="tag"><b>10</b> 页</span>
 <span class="tag">三层字级 <b>L1 / L2 / L3</b></span>
 <span class="tag">六张图 <b>已完成</b></span>
-<span class="tag">一张图 <b>等截图</b></span>
+<span class="tag">六张真实截图 <b>已就位</b></span>
 <span class="tag">黑白灰 + <b>#2563eb</b></span>
 </div>
 </div>
@@ -224,23 +234,41 @@ td.hl{color:var(--warn);font-weight:600}
 <div class="figbox" style="flex:1"><img class="fig" src="assets/case03/图2-改版时间线.svg" alt="改版时间线"></div>
 </div></div>
 
-<div class="sheetwrap"><div class="sheetnum"><em>P8</em> 设计输出　<span style="color:var(--danger)">等截图</span></div>
+<div class="sheetwrap"><div class="sheetnum"><em>P8</em> 设计输出 ①　<span style="color:var(--ws-mute)">图 6 上半 · 真实界面</span></div>
 <div class="sheet">
-<div class="eyebrow">08 ／ 设计输出</div>
-<h2 class="l1">规则落到屏幕上。</h2>
-<div class="cols c2">
-<div style="border:2px dashed var(--danger);border-radius:4px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;color:var(--danger);font-size:13px;font-weight:700;padding:20px;text-align:center">
-图 6 · 六张真实截图<span style="font-weight:400;color:var(--mute);font-size:12px">主界面 1 · 接话回合连续 4 · 批改卡 1<br>截图已收齐,待排版</span>
+<div class="eyebrow">08 ／ 设计输出 · 一天怎么走</div>
+<h2 class="l1 sm">规则落到屏幕上。</h2>
+<p class="l2" style="margin-bottom:16px">前面讲的规则,到这里要能看见。三张截图是同一天同一集连着截的。</p>
+<div class="shots">
+<div class="shot"><div class="ph" style="height:376px"><img src="assets/case03/screens/desktop-主界面.jpg" alt="主界面"></div>
+<div class="cap"><b>主界面</b>步骤条按当天有什么内容长出来,八类里这天只出现六步。</div></div>
+<div class="shot"><div class="ph" style="height:376px"><img src="assets/case03/screens/desktop-对话上半.jpg" alt="情景对话"></div>
+<div class="cap"><b>情景对话</b>正在复习的表达标绿,今天的新表达标黄,接话的同时认出来。</div></div>
+<div class="shot"><div class="ph" style="height:376px"><img src="assets/case03/screens/desktop-剧情随回答变化.jpg" alt="剧情接住回答"></div>
+<div class="cap"><b>剧情接住我的回答</b>我说走过去有点远,下一句就改约出租车。剧情跟着我的话走。</div></div>
 </div>
-<div class="stack">
-<div class="item on"><b>倒计时可关</b><span class="m">六十秒是为了逼自己别先想中文;但它也会让人只敢说 yes。所以留了开关。</span></div>
-<div class="item on"><b>输入时不被刷新打断</b><span class="m">页面每分钟同步一次,光标在输入框里时跳过那一次。写到一半被清空只需要发生一次,人就不写了。</span></div>
-<div class="item on"><b>判错只说缺了什么</b><span class="m">拼写对、只差标点或大小写时,直接说"句末少了句号",不把整句重印一遍。重印等于让人自己找不同。</span></div>
-<div class="item on"><b>改写要成套</b><span class="m">页面按我的回答改写下一轮开场白,提示词原来不跟着改,开场一变提示就对不上。改成两者一起重生成,并加了一道退回原稿的检查。</span></div>
+</div></div>
+
+<div class="sheetwrap"><div class="sheetnum"><em>P8</em> 设计输出 ②　<span style="color:var(--ws-mute)">图 6 下半 · 判分与取舍</span></div>
+<div class="sheet">
+<div class="eyebrow">08 ／ 设计输出 · 判分怎么判</div>
+<h2 class="l1 sm">判分不给标准答案。</h2>
+<div class="shots" style="margin-bottom:14px">
+<div class="shot"><div class="ph" style="height:246px"><img src="assets/case03/screens/crops/批改卡.jpg" alt="批改卡"></div>
+<div class="cap"><b>批改卡</b>改写 + 踩了第几条规律;下面另起一块,收从这句话里提出来的新表达。</div></div>
+<div class="shot"><div class="ph" style="height:246px"><img src="assets/case03/screens/crops/自己说判两条.jpg" alt="自己说 · AI 判两条"></div>
+<div class="cap"><b>自己说 · AI 判</b>两条分开:一条只把我的话改自然,一条才是用上要复习的表达。</div></div>
+<div class="shot"><div class="ph" style="height:246px"><img src="assets/case03/screens/crops/填一个词.jpg" alt="填一个词"></div>
+<div class="cap"><b>填一个词</b>打字自动判,底下再说清楚为什么是这个词。</div></div>
 </div>
+<div class="rule" style="margin:0 0 12px"></div>
+<div class="c22">
+<div class="item on"><b>倒计时可关</b><span class="m">六十秒是为了逼自己别先想中文;但它也会让人只敢说 yes。</span></div>
+<div class="item on"><b>输入时不被刷新打断</b><span class="m">光标在输入框里时跳过那一次同步。被清空一次,人就不写了。</span></div>
+<div class="item on"><b>判错只说缺了什么</b><span class="m">只差标点或大小写时直接说缺什么,不把整句重印一遍。</span></div>
+<div class="item on"><b>改写要成套</b><span class="m">开场白和提示词一起重生成,并加一道退回原稿的检查。</span></div>
 </div>
-<div class="rule"></div>
-<p class="l3">把判分交给 AI 之后冒出一类新问题:判分的那一次看不见图,也不知道要我绕开哪个词。解法是把这两样跟题目一起交过去——<b>参考答案于是从「标准答案」降级成「告诉判分者现场有什么」。</b></p>
+<p class="l3" style="margin-top:12px">判分的那一次看不见页面上的图,也不知道要我绕开哪个词。解法是把这两样跟题目一起交过去——<b>参考答案于是从「标准答案」降级成「告诉判分者现场有什么」。</b></p>
 </div></div>
 
 <div class="sheetwrap"><div class="sheetnum"><em>P9</em> 结果与反思　<span style="color:var(--ws-mute)">图 5</span></div>
