@@ -33,8 +33,8 @@
     <rect x="228" y="110" width="162" height="104" fill="#eff6ff" stroke="#2563eb"/>
     <text x="244" y="134" class="day">第 2 天</text>
     <text x="244" y="158" class="nt">被改成地道说法</text>
-    <text x="244" y="180" class="nd">一条改顺我的原句</text>
-    <text x="244" y="198" class="nd">一条给母语者的说法</text>
+    <text x="244" y="180" class="nd">改成地道的说法</text>
+    <text x="244" y="198" class="nd">并注明踩了第几条规律</text>
   </g>
   <line x1="396" y1="162" x2="422" y2="162" stroke="#9ca3af" stroke-width="1.4" marker-end="url(#a3)"/>
 
@@ -43,7 +43,7 @@
     <text x="444" y="134" class="day">第 2 天</text>
     <text x="444" y="158" class="nt">提炼成新表达</text>
     <text x="444" y="180" class="acc">标明「来自你的回答」</text>
-    <text x="444" y="198" class="nd">和按主题选的新词各占一半</text>
+    <text x="444" y="198" class="nd">其余按当天场景选</text>
   </g>
   <line x1="596" y1="162" x2="622" y2="162" stroke="#9ca3af" stroke-width="1.4" marker-end="url(#a3)"/>
 
@@ -62,7 +62,7 @@
   <text x="440" y="271" class="acc" text-anchor="middle">说出来的,又回到练习里</text>
 
   <line x1="40" y1="320" x2="840" y2="320" stroke="#e5e7eb"/>
-  <text x="40" y="348" class="foot">八天里十四个新表达,六个走的这条路。</text>
-  <text x="40" y="372" class="fs">其余八个按当天场景选。数据来自产品数据库 2026-10-12 至 10-19。</text>
+  <text x="40" y="348" class="foot">八天里十六个新表达,七个走的这条路。</text>
+  <text x="40" y="372" class="fs">其余九个按当天场景选。数据来自产品数据库 2026-10-13 至 10-20。</text>
   <text x="40" y="398" class="fs">第 1 天当场不纠错,是为了让人敢说完;纠错整体推到第 2 天。</text>
 </svg>

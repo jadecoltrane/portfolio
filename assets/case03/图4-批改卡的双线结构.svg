@@ -1,51 +1,51 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 430" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 520" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif">
   <style>
     .title{font-size:18px;font-weight:700;fill:#1f2937}
     .sub{font-size:12px;fill:#6b7280}
     .lbl{font-size:11px;font-weight:700;fill:#9ca3af}
-    .en{font-size:13px;fill:#1f2937}
-    .enb{font-size:13px;font-weight:700;fill:#1d4ed8}
+    .lblg{font-size:11px;font-weight:700;fill:#15803d}
+    .sec{font-size:13px;font-weight:700;fill:#1f2937}
+    .en{font-size:13px;fill:#9ca3af}
+    .enb{font-size:14px;font-weight:700;fill:#1f2937}
+    .chunk{font-size:14px;font-weight:700;fill:#1d4ed8}
     .note{font-size:11px;fill:#6b7280}
     .mid{font-size:12px;font-weight:700;fill:#b45309}
+    .aside{font-size:11px;font-weight:700;fill:#2563eb}
     .ft{font-size:12px;fill:#374151}
-    .fs{font-size:11px;fill:#9ca3af}
   </style>
-  <rect width="880" height="430" fill="#ffffff"/>
+  <rect width="880" height="520" fill="#ffffff"/>
 
-  <text x="40" y="42" class="title">批改卡为什么是两条,不是一条</text>
-  <text x="40" y="63" class="sub">两条服务的是两个不同的时间点:一条今天就能用,一条是一个月后的目标</text>
+  <text x="40" y="42" class="title">批改卡为什么是两块,不是一块</text>
+  <text x="40" y="63" class="sub">两块服务的是两个不同的时间点:一块今天就能用,一块一个月后才算数</text>
 
-  <!-- 原句 -->
-  <rect x="40" y="96" width="800" height="54" fill="#f9fafb" stroke="#e5e7eb"/>
-  <text x="60" y="118" class="lbl">我昨天写的</text>
-  <text x="60" y="140" class="en">Actually I didn't do a test, but I know it's a basic concept that everybody knows.</text>
+  <!-- 第一块 -->
+  <rect x="40" y="92" width="800" height="186" fill="#ffffff" stroke="#e5e7eb"/>
+  <text x="64" y="120" class="sec">第一块 · 昨天这句话,怎么说更地道</text>
+  <text x="700" y="120" class="aside">今天就能照着改口</text>
 
-  <line x1="440" y1="150" x2="440" y2="176" stroke="#9ca3af" stroke-width="1.2"/>
-  <line x1="240" y1="176" x2="640" y2="176" stroke="#9ca3af" stroke-width="1.2"/>
-  <line x1="240" y1="176" x2="240" y2="198" stroke="#9ca3af" stroke-width="1.2"/>
-  <line x1="640" y1="176" x2="640" y2="198" stroke="#9ca3af" stroke-width="1.2"/>
+  <text x="64" y="150" class="lbl">你说的</text>
+  <text x="64" y="172" class="en">Honestluuy. I have not test with real drivers</text>
 
-  <!-- 左:改顺我的句子 -->
-  <rect x="40" y="198" width="380" height="132" fill="#ffffff" stroke="#e5e7eb"/>
-  <text x="60" y="222" class="lbl">第一条 · 把我的句子改顺</text>
-  <text x="60" y="248" class="en">I haven't tested it, but it's something</text>
-  <text x="60" y="268" class="en">everyone in the field takes as given.</text>
-  <line x1="60" y1="284" x2="400" y2="284" stroke="#e5e7eb"/>
-  <text x="60" y="304" class="note">保留我原本想说的意思。</text>
-  <text x="60" y="322" class="note">这是我明天就能用出来的版本。</text>
+  <text x="64" y="204" class="lblg">更地道</text>
+  <rect x="64" y="212" width="3" height="30" fill="#15803d"/>
+  <text x="80" y="234" class="enb">Honestly, I haven't tested it with real drivers yet. That's what I'd do next.</text>
 
-  <!-- 右:母语者的说法 -->
-  <rect x="460" y="198" width="380" height="132" fill="#eff6ff" stroke="#2563eb"/>
-  <text x="480" y="222" class="lbl">第二条 · 母语者会怎么说</text>
-  <text x="480" y="248" class="enb">I can't point to a study, but it's pretty</text>
-  <text x="480" y="268" class="enb">much taken for granted around here.</text>
-  <line x1="480" y1="284" x2="820" y2="284" stroke="#2563eb" stroke-opacity="0.3"/>
-  <text x="480" y="304" class="note">换了说法,也换了语气。</text>
-  <text x="480" y="322" class="note">这是一个月后的目标,不是今天的要求。</text>
+  <text x="64" y="264" class="note">规律①:先老实回答,面试官会尊重。语法:have not 后面要用过去分词 tested,再加 yet 表示「到现在还没」。</text>
 
-  <text x="440" y="356" class="mid" text-anchor="middle">刻意不合并</text>
+  <!-- 中间 -->
+  <line x1="440" y1="278" x2="440" y2="302" stroke="#b45309" stroke-width="1.2" stroke-dasharray="4 4"/>
+  <text x="458" y="298" class="mid">刻意不合并</text>
 
-  <line x1="40" y1="372" x2="840" y2="372" stroke="#e5e7eb"/>
-  <text x="40" y="396" class="ft">只给「正确答案」的批改没用——那不是我会说的话,下次还是说不出来。</text>
-  <text x="40" y="418" class="fs">例句为演示用,句式取自实际使用中的同类批改;具体内容已改写。</text>
+  <!-- 第二块 -->
+  <rect x="40" y="302" width="800" height="138" fill="#f9fafb" stroke="#e5e7eb"/>
+  <text x="64" y="330" class="sec">第二块 · 从我这句话里提出来的新表达</text>
+  <text x="704" y="330" class="aside">一个月后才算数</text>
+
+  <text x="64" y="366" class="chunk">That's what I'd do next.</text>
+  <text x="64" y="390" class="note">意思:坦白某件事还没做,后面补一句下一步。</text>
+  <text x="64" y="414" class="note">单独存进复习队列,三天、七天、二十天后各在一个新情境里重考一次。</text>
+
+  <line x1="40" y1="464" x2="840" y2="464" stroke="#e5e7eb"/>
+  <text x="40" y="486" class="ft">只给「正确答案」的批改没用——那不是我会说的话,下次还是说不出来。</text>
+  <text x="40" y="506" class="ft">所以改写归改写,提炼归提炼:前者让我今天改口,后者才进得了长期记忆。</text>
 </svg>
