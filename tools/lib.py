@@ -89,6 +89,29 @@ def fig(name,x,y,w,h):
     return ('<g transform="translate(%.2f,%.2f) scale(%.4f)" font-family="%s">%s</g>'
             % (ox,oy,sc,FF,body))
 
+def img(relpath, x, y, w, h, rx=8, border=True):
+    """把位图（截图）以 base64 嵌进 SVG。按 w/h 等比缩放居中，整图不裁。
+    relpath 相对 ASSETS。"""
+    import base64, mimetypes
+    f = os.path.join(ASSETS, relpath)
+    mt = mimetypes.guess_type(f)[0] or "image/jpeg"
+    b64 = base64.b64encode(io.open(f, "rb").read()).decode()
+    try:
+        from PIL import Image
+        iw, ih = Image.open(f).size
+    except Exception:
+        iw, ih = w, h
+    sc = min(w / float(iw), h / float(ih))
+    dw, dh = iw * sc, ih * sc
+    ox, oy = x + (w - dw) / 2.0, y + (h - dh) / 2.0
+    out = ''
+    if border:
+        out += R(ox - 1, oy - 1, dw + 2, dh + 2, fill="none", stroke=C["line"], rx=rx + 1)
+    out += ('<image x="%.2f" y="%.2f" width="%.2f" height="%.2f" '
+            'preserveAspectRatio="xMidYMid meet" href="data:%s;base64,%s"/>'
+            % (ox, oy, dw, dh, mt, b64))
+    return out
+
 def page(content):
     return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" '
             f'width="{W}" height="{H}" font-family="{FF}">'

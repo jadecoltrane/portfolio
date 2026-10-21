@@ -7,7 +7,7 @@
 不传输出路径时写到仓库根目录的 作品集.pdf（该文件入库，联系方式应为占位）。
 导出要发出去的投递版时传一个仓库外的路径，别把带联系方式的 PDF 提交上来。
 
-顺序：封面 / 关于我 / 目录 ／ 案例一 控制中心 ／ 案例二 节日彩蛋 ／ 经历 GAS ／ 结尾
+顺序：封面 / 关于我 / 目录 ／ 案例一 控制中心 ／ 案例二 节日彩蛋 ／ 案例三 英语练习 ／ 经历 GAS ／ 结尾
 联系方式从仓库根目录的 contact.local.txt 读取（不入库）；缺文件时结尾页显示占位。
 """
 import io, os, sys, tempfile
@@ -31,13 +31,18 @@ def main():
     import lib
     lib.use_assets("case01"); import pages01
     lib.use_assets("case05"); import pages
+    lib.use_assets("case03"); import pages03
     import frontback, pages04
-    svgs = frontback.FRONT + pages01.PAGES + pages.PAGES + pages04.PAGES + frontback.BACK
+    svgs = (frontback.FRONT + pages01.PAGES + pages.PAGES + pages03.PAGES
+            + pages04.PAGES + frontback.BACK)
 
-    n_case1 = len(pages01.PAGES)
-    if n_case1 != frontback.N_CASE1:
-        print(f"⚠️ 目录页按案例一 {frontback.N_CASE1} 页算，实际 {n_case1} 页 —— "
-              f"改 tools/frontback.py 的 N_CASE1 后重导")
+    for nm, mod, want in (("案例一", pages01, frontback.N_CASE1),
+                          ("案例二", pages,   frontback.N_CASE2),
+                          ("案例三", pages03, frontback.N_CASE3),
+                          ("经历页", pages04, frontback.N_EXP)):
+        if len(mod.PAGES) != want:
+            print(f"⚠️ 目录页按{nm} {want} 页算，实际 {len(mod.PAGES)} 页 —— "
+                  f"改 tools/frontback.py 的页数常量后重导")
 
     d = tempfile.mkdtemp(); out = fitz.open()
     for i, svg in enumerate(svgs):

@@ -29,7 +29,7 @@
     <line x1="60" y1="296" x2="60" y2="252" stroke="#e5e7eb"/>
     <text x="48" y="240" class="dt">9/24</text>
     <text x="48" y="222" class="nt">起点:阅读简报</text>
-    <text x="48" y="204" class="nd">十五分钟长文精读,纯输入</text>
+    <text x="48" y="204" class="nd">长文精读,纯输入</text>
   </g>
   <g>
     <circle cx="208" cy="300" r="4" fill="#9ca3af"/>
@@ -43,7 +43,7 @@
     <line x1="356" y1="295" x2="356" y2="252" stroke="#e5e7eb"/>
     <text x="344" y="240" class="dt">10/12</text>
     <text x="344" y="222" class="nt">变成练习页</text>
-    <text x="344" y="204" class="nd">定英文优先;撤掉朗读</text>
+    <text x="344" y="204" class="nd">英文优先;撤掉朗读</text>
   </g>
   <g>
     <circle cx="504" cy="300" r="4" fill="#9ca3af"/>
@@ -57,14 +57,14 @@
     <line x1="652" y1="295" x2="652" y2="252" stroke="#e5e7eb"/>
     <text x="640" y="240" class="dt">10/18</text>
     <text x="640" y="222" class="nt">最差的一天</text>
-    <text x="640" y="204" class="nd">当晚查出问题在题面</text>
+    <text x="640" y="204" class="nd">问题出在题面</text>
   </g>
   <g>
     <circle cx="800" cy="300" r="4" fill="#9ca3af"/>
     <line x1="800" y1="296" x2="800" y2="252" stroke="#e5e7eb"/>
     <text x="840" y="240" class="dt" text-anchor="end">10/20</text>
     <text x="840" y="222" class="nt" text-anchor="end">把修补写成规则</text>
-    <text x="840" y="204" class="nd" text-anchor="end">写进每天的生成指令</text>
+    <text x="840" y="204" class="nd" text-anchor="end">写进生成指令</text>
   </g>
 
   <!-- 下排 -->
@@ -94,18 +94,18 @@
     <line x1="578" y1="304" x2="578" y2="340" stroke="#e5e7eb"/>
     <text x="566" y="358" class="dt">10/16</text>
     <text x="566" y="376" class="nt">重构模块结构</text>
-    <text x="566" y="394" class="nd">一次性大改,不是零敲碎打</text>
+    <text x="566" y="394" class="nd">一次性大改</text>
   </g>
   <g>
     <circle cx="726" cy="300" r="4" fill="#9ca3af"/>
     <line x1="726" y1="304" x2="726" y2="340" stroke="#e5e7eb"/>
     <text x="714" y="358" class="dt">10/19</text>
     <text x="714" y="376" class="nt">加「小练习」一节</text>
-    <text x="714" y="394" class="nd">原产品最后一块删掉</text>
+    <text x="714" y="394" class="nd">原产品最后一块删</text>
   </g>
 
   <line x1="40" y1="452" x2="840" y2="452" stroke="#e5e7eb"/>
   <text x="40" y="480" class="key">形态变了两次,规则只加不减:9/28 定下的五条,一条没被推翻。</text>
-  <text x="40" y="506" class="fs">节点取自 9/24–10/20 的十三份改版记录,日期为实际发生日期。蓝点为产品形态发生变化的节点,红点为数据最差的一天。</text>
+  <text x="40" y="506" class="fs">节点取自 9/24–10/20 的十三份改版记录。蓝点为形态变化,红点为数据最差的一天。</text>
   <text x="40" y="528" class="fs">轴为事件顺序,非等比时间轴。</text>
 </svg>
