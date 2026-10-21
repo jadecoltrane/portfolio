@@ -3,3 +3,6 @@
 
 # 联系方式不入库（本仓库公开维护）；导出投递版前在本地创建
 contact.local.txt
+
+__pycache__/
+*.pyc
