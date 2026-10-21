@@ -5,6 +5,8 @@
 """
 from lib import *
 
+set_theme(C["mute"])   # 经历页不是案例，给一条灰标签，和三个案例的主题色区分开
+
 M = 120
 def eyebrow(t): return T(M, 100, t, size=17, fill=C["faint"], weight=600, ls="3")
 
@@ -52,5 +54,7 @@ EXP = page("".join([
  T(M, 886, "合作规范对厂商保密：全文不引条款原文、不出现条款编号，不出现品牌与车型。",
    size=14, fill=C["faint"]),
 ]))
+
+set_theme(None)
 
 PAGES = [EXP]

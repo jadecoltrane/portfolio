@@ -9,9 +9,9 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from lib import *
 
 N_FRONT = 3          # 封面 / 简介 / 目录
-N_CASE1 = 10         # 案例一 控制中心
-N_CASE2 = 8          # 案例二 节日彩蛋（已导出）
-N_CASE3 = 12         # 案例三 英语口语练习（自用产品）
+N_CASE1 = 11         # 案例一 控制中心（含扉页）
+N_CASE2 = 9          # 案例二 节日彩蛋（含扉页）
+N_CASE3 = 13         # 案例三 英语口语练习（含扉页）
 N_EXP   = 1          # GAS 经历页
 P_CASE1 = N_FRONT + 1
 P_CASE2 = P_CASE1 + N_CASE1
@@ -30,7 +30,7 @@ def rng(a, n): return f"{a}" if n == 1 else f"{a}–{a+n-1}"
 COVER = page("".join([
  R(0, 0, W, 10, fill=C["ink"]),
  T(M, 150, "作品集 ／ PORTFOLIO", size=17, fill=C["faint"], weight=600, ls="3"),
- TL(M, 300, ["我做的是系统级规则设计，", "不是页面设计。"],
+ TL(M, 292, ["我交付的是一整套", "能照着做的规则。"],
     size=74, lh=1.3, weight=700, fill=C["ink"]),
  LN(M, 520, 420, 520, stroke=C["acc"], sw=3),
  T(M, 580, "黄佩瑶 · UX Designer", size=30, weight=700, fill=C["ink"]),
@@ -50,8 +50,8 @@ def _exp(x, y, org, period, lines):
 
 ABOUT = page("".join([
  eyebrow("关于我"),
- h1(["我的产出是一套规则，", "写出来就是给别人照着执行的。"], y=200, size=50),
- body(["专注智能座舱的 UX 设计师，做 HMI 交互、多模态整合与系统级规范。"], 352, size=23),
+ h1(["我一直在框架和规范这一层。"], y=210, size=50),
+ body(["智能座舱 UX 设计师，做 HMI 交互与多模态整合，也写各家团队照着执行的交互规范。"], 352, size=23),
  LN(M, 404, W-M, 404),
 
  T(M, 448, "经历", size=15, fill=C["faint"], weight=600, ls="2"),
@@ -77,9 +77,10 @@ ABOUT = page("".join([
 ]))
 
 # ══════════ 3 目录 ══════════
-def _toc(y, no, title, role, pages):
+def _toc(y, no, title, role, pages, color=None):
     return "".join([
-      T(M, y, no, size=16, fill=C["acc"], weight=700, ls="1"),
+      R(M, y-26, 46, 5, fill=color or C["faint"]),
+      T(M, y, no, size=16, fill=color or C["mute"], weight=700, ls="1"),
       T(M+120, y, title, size=30, weight=700, fill=C["ink"]),
       T(M+120, y+34, role, size=17, fill=C["mute"]),
       T(W-M, y, pages, size=26, weight=700, fill=C["ink"], anchor="end"),
@@ -93,13 +94,13 @@ TOC = page("".join([
        "一个管说错的话怎么变成明天的课。"], 272, size=22),
 
  _toc(386, "案例一", "控制中心：控件规范审查", "规则的统一：同类交互被建成不同模型",
-      rng(P_CASE1, N_CASE1)),
+      rng(P_CASE1, N_CASE1), C["acc"]),
  _toc(492, "案例二", "车机节日彩蛋", "规则的仲裁：驾驶安全约束下的事件让位",
-      rng(P_CASE2, N_CASE2)),
+      rng(P_CASE2, N_CASE2), C["teal"]),
  _toc(598, "案例三", "每天十五分钟的英语口语练习", "规则的自证：把判分权交出去之后发生了什么",
-      rng(P_CASE3, N_CASE3)),
+      rng(P_CASE3, N_CASE3), C["violet"]),
  _toc(704, "经历", "GAS 规范适配", "出海车型的平台规范适配与认证",
-      rng(P_EXP, N_EXP)),
+      rng(P_EXP, N_EXP), C["mute"]),
 
  T(M, 828, "案例三是自用产品，界面为真实截图；其余案例的界面均为脱敏重绘，不含甲方品牌、车型与内部资料。",
    size=15, fill=C["faint"]),

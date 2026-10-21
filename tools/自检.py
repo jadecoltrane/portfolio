@@ -19,6 +19,7 @@ import fitz, lib
 lib.use_assets("case01"); import pages01
 lib.use_assets("case05"); import pages
 lib.use_assets("case03"); import pages03
+lib.set_theme(None)   # 前后页与经历页不属于任何案例
 import frontback, pages04
 ORDER = (frontback.FRONT + pages01.PAGES + pages.PAGES + pages03.PAGES
          + pages04.PAGES + frontback.BACK)

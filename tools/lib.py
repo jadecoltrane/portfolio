@@ -6,9 +6,10 @@ _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ASSETS = os.path.join(_ROOT, "assets", "case05")
 
 def use_assets(sub):
-    """切换配图目录，例如 use_assets("case01")"""
+    """切换配图目录并切到该案例的主题色，例如 use_assets("case01")"""
     global ASSETS
     ASSETS = os.path.join(_ROOT, "assets", sub)
+    THEME[0] = CASE_THEME.get(sub)
 
 def contact():
     """联系方式从未入库的本地文件读取（见 .gitignore）。
@@ -30,7 +31,16 @@ FF = "PingFang SC, Noto Sans CJK SC, Heiti SC, Microsoft YaHei, sans-serif"
 C = dict(ink="#1f2937", ink2="#374151", mute="#6b7280", faint="#9ca3af",
          line="#e5e7eb", wash="#f9fafb", acc="#2563eb", accw="#dbeafe",
          danger="#dc2626", dangerw="#fee2e2", warn="#b45309", warnw="#fffbeb",
-         indigo="#4338ca", indigow="#eef2ff")
+         indigo="#4338ca", indigow="#eef2ff",
+         teal="#0d9488", violet="#7c3aed")
+
+# 每个案例一个主题色：扉页整条、案例内页左上角一小条，翻着就能分出来。
+# 红色永远只给安全语义，不做主题色。
+THEME = [None]
+CASE_THEME = {"case01": C["acc"], "case05": C["teal"], "case03": C["violet"]}
+
+def set_theme(color):
+    THEME[0] = color
 
 def esc(t):
     return t.replace("&","&amp;").replace("<","&lt;").replace(">","&gt;")
@@ -122,13 +132,15 @@ def img(relpath, x, y, w, h, rx=8, border=True):
             % (ox, oy, dw, dh, mt, b64))
     return out
 
-def page(content):
+def page(content, bg="#ffffff"):
     global _pending_boxes
     mine = _pending_boxes; _pending_boxes = []
     FIGBOXES.append(mine)
+    tab = (R(0, 0, 220, 8, fill=THEME[0])
+           if THEME[0] and bg == "#ffffff" else "")
     svg = (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" '
            f'width="{W}" height="{H}" font-family="{FF}">'
-           f'<rect width="{W}" height="{H}" fill="#ffffff"/>{content}</svg>')
+           f'<rect width="{W}" height="{H}" fill="{bg}"/>{tab}{content}</svg>')
     BOXOF[id(svg)] = mine        # 版面自检用：这一页上所有图的落位
     _keep.append(svg)
     return svg
@@ -136,3 +148,24 @@ def page(content):
 def eyebrow(t): return T(96, 88, t, size=17, fill=C["faint"], weight=600, ls="3")
 def h1(lines, y=170, size=52): return TL(96, y, lines, size=size, lh=1.34, weight=700, fill=C["ink"])
 def body(lines, y, size=23, fill=None): return TL(96, y, lines, size=size, lh=1.68, fill=fill or C["ink2"])
+
+
+# ══ 案例扉页 ══
+# 翻到深色这一页就知道换案例了。全书只有这三页是深底，别处不要再用。
+DARK   = "#1f2937"
+_D_NUM = "#2e3a4b"   # 底纹大数字：比底色亮一档，远看是肌理，近看才认得出
+_D_SUB = "#cbd5e1"
+_D_DIM = "#94a3b8"
+
+def divider(no, big, title, sub, pages_label):
+    """案例扉页：序号 + 案例名 + 一句主张 + 交付口径。顶条用该案例的主题色。"""
+    return page("".join([
+        R(0, 0, W, 8, fill=THEME[0] or C["acc"]),
+        T(W - 120, 700, big, size=300, fill=THEME[0] or _D_NUM, weight=700,
+          anchor="end", op="0.3"),
+        T(120, 170, no, size=20, fill=_D_DIM, weight=600, ls="6"),
+        TL(120, 350, title, size=66, lh=1.28, weight=700, fill="#ffffff"),
+        TL(120, 520, sub, size=25, lh=1.7, fill=_D_SUB),
+        LN(120, 768, W - 120, 768, stroke="#3f4a5a"),
+        T(120, 808, pages_label, size=17, fill=_D_DIM),
+    ]), bg=DARK)
