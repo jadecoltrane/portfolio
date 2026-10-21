@@ -32,11 +32,11 @@ def cat_card(i, num, name, color, lines, eg):
 EXP = page("".join([
  eyebrow("经历 ／ GAS 规范适配　　出海车型 · 已通过认证"),
  TL(M, 206, ["这一轮适配里，删除多于新增。"], size=54, lh=1.34, weight=700, fill=C["ink"]),
- TL(M, 300, ["适配不是照着规范加功能。每个模块先落到四类策略里的一类，",
-             "而最沉的那一类是「替换」：车厂自建的能力要退场，交给平台。"],
+ TL(M, 300, ["适配不是照着规范加功能。项目把每个模块先分到四类里的一类，",
+             "最沉的是「替换」——车厂自建的能力要退场，交给平台接。"],
     size=22, lh=1.7, fill=C["ink2"]),
 
- T(M, 384, "项目把每个模块分到四类里的一类",
+ T(M, 384, "这四类是项目定的，每个模块先分到其中一类",
    size=15, fill=C["mute"], weight=700, ls="2"),
  "".join(cat_card(i, *c) for i, c in enumerate(CATS)),
 
