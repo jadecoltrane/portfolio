@@ -67,11 +67,20 @@
 这种书面语和自造词，再平掉七个对仗标题。案例一的结果页原来整页在说「不是我」，
 改成正写：我当时判断排序缺依据，后来真的有人回过头来补。详见排版规范新增的那一节。
 
+**2026-10-21 修字体。** jade 问「你这个字体用的啥」，一查发现前几版 PDF 里
+中文是 Droid Sans Fallback、英文数字是 Times 衬线体，跟规范里写的 PingFang 没关系——
+MuPDF 转 SVG 时根本不走系统字体。导出改走 Chromium，并装上 Noto Sans SC
+（中英同族，必须是静态 TTF，可变字体和 OTF 都会退成 Type3）。现在整本只有两个字体，
+NotoSansSC-Regular 和 -Bold，都是正常嵌入。自检脚本也改走同一条渲染路径了。
+
 **这一版明确将就掉的**：英文版不做；控制中心不画封面视觉与改版前界面；竞品矩阵不上；
 节日彩蛋的图 1／图 2 不改也能投。
 
-**导出**：`pip3 install --target /tmp/pylibs pymupdf` 后
+**导出**：先装字体 `bash tools/装字体.sh`（macOS 上有 PingFang，可跳过），
+再 `pip3 install --target /tmp/pylibs pymupdf` 后
 `PYTHONPATH=/tmp/pylibs python3 tools/build.py` → 仓库里的 `作品集.pdf`（联系方式是占位）。
+导出走 Chromium 而不是 MuPDF，原因见排版规范 §5；每次导出都会打印嵌进 PDF 的字体，
+看到 `NotoSansSC` 或 `PingFang` 才对，看到 `Droid` 或 `Times` 说明字体没装上，别投。
 要发出去的那份传一个仓库外的路径：`python3 tools/build.py ~/作品集.pdf`，
 联系方式从根目录的 `contact.local.txt` 注入（该文件不入库）。
 

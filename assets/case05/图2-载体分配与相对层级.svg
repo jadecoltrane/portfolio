@@ -69,7 +69,7 @@
 
     <g transform="translate(0,228)">
       <rect width="410" height="52" rx="8" fill="#f9fafb" stroke="#d1d5db" stroke-dasharray="5 3"/>
-      <text x="16" y="24" class="label" fill="#9ca3af">✕　覆盖 Dock 的挂件</text>
+      <text x="16" y="24" class="label" fill="#9ca3af">× 覆盖 Dock 的挂件</text>
       <text x="16" y="42" class="small">与高频按钮争夺同一区域，增加误触风险</text>
     </g>
   </g>

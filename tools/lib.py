@@ -27,7 +27,12 @@ def contact():
             k,v=re.split(r"[:：]", line, 1)
             out.append((k.strip(), v.strip()))
     return out
-FF = "PingFang SC, Noto Sans CJK SC, Heiti SC, Microsoft YaHei, sans-serif"
+# 字体栈：第一位是 jade 的 Mac 上有的 PingFang；导出机器上没有 PingFang 时，
+# 落到思源黑体（Source Han Sans SC，开源，中英同族，和 PingFang 气质最接近）。
+# ⚠️ 这一串里只要一个都装不上，渲染就会落到系统默认——中文变 Droid Sans Fallback、
+# 拉丁字变 Times 衬线体。导出后用 tools/自检.py 确认嵌进 PDF 的到底是哪一个。
+FF = ("PingFang SC, Noto Sans SC, Noto Sans CJK SC, "
+      "Heiti SC, Microsoft YaHei, sans-serif")
 C = dict(ink="#1f2937", ink2="#374151", mute="#6b7280", faint="#9ca3af",
          line="#e5e7eb", wash="#f9fafb", acc="#2563eb", accw="#dbeafe",
          danger="#dc2626", dangerw="#fee2e2", warn="#b45309", warnw="#fffbeb",

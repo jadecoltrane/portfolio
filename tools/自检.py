@@ -24,11 +24,11 @@ import frontback, pages04
 ORDER = (frontback.FRONT + pages01.PAGES + pages.PAGES + pages03.PAGES
          + pages04.PAGES + frontback.BACK)
 
-tmp = tempfile.mkdtemp(); doc = fitz.open()
-for i, svg in enumerate(ORDER):
-    f = os.path.join(tmp, "p%03d.svg" % i)
-    io.open(f, "w", encoding="utf-8").write(svg)
-    doc.insert_pdf(fitz.open("pdf", fitz.open(f).convert_to_pdf()))
+# 用和导出同一条渲染路径，否则量的是另一套字体的宽度，压字结果不作数
+import render
+_tmp = os.path.join(tempfile.mkdtemp(), "check.pdf")
+SCALE = render.to_pdf(ORDER, _tmp)      # 页宽 ÷ 1600
+doc = fitz.open(_tmp)
 
 def spans(pg):
     for b in pg.get_text("dict")["blocks"]:
@@ -36,7 +36,8 @@ def spans(pg):
         for l in b["lines"]:
             for s in l["spans"]:
                 if s["text"].strip():
-                    yield fitz.Rect(s["bbox"]), s["text"].strip(), s["size"]
+                    r = fitz.Rect(s["bbox"]) * (1 / SCALE)
+                    yield r, s["text"].strip(), s["size"] / SCALE
 
 def area(r): return max(0, r.width) * max(0, r.height)
 

@@ -45,15 +45,15 @@ def main():
             print(f"⚠️ 目录页按{nm} {want} 页算，实际 {len(mod.PAGES)} 页 —— "
                   f"改 tools/frontback.py 的页数常量后重导")
 
-    d = tempfile.mkdtemp(); out = fitz.open()
-    for i, svg in enumerate(svgs):
-        f = os.path.join(d, "p%03d.svg" % i)
-        io.open(f, "w", encoding="utf-8").write(svg)
-        out.insert_pdf(fitz.open("pdf", fitz.open(f).convert_to_pdf()))
-    out.subset_fonts()
+    import render
     dst = sys.argv[1] if len(sys.argv) > 1 else os.path.join(ROOT, "作品集.pdf")
-    out.save(dst, garbage=4, deflate=True, clean=True)
-    print("导出 %d 页 → %s" % (out.page_count, dst))
+    render.to_pdf(svgs, dst)
+    print("导出 %d 页 → %s" % (len(svgs), dst))
+    fonts = sorted({f[3].split("+")[-1] for p in fitz.open(dst) for f in p.get_fonts(full=True)})
+    bad = [x for x in fonts if "Droid" in x or x.startswith("Times")]
+    print("· 字体：" + ("、".join(fonts) if fonts else "（已全部子集化，无字体名）"))
+    if bad:
+        print("⚠️ 落到了兜底字体 %s —— 装一套思源黑体再导，别拿这份投。" % "、".join(bad))
     if os.environ.get("PORTFOLIO_NO_CONTACT") == "1":
         print("· 入库副本：联系方式为占位。导投递版请传一个仓库外的路径。")
     elif not os.path.exists(os.path.join(ROOT, "contact.local.txt")):
