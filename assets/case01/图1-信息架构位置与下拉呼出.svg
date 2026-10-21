@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 440" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 460" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif">
   <style>
     .title{font-size:18px;font-weight:700;fill:#1f2937}
     .sub{font-size:12px;fill:#6b7280}
@@ -9,7 +9,7 @@
     .mark{font-size:10.5px;font-weight:700;fill:#b45309}
     .src{font-size:9.5px;fill:#9ca3af}
   </style>
-  <rect width="880" height="440" fill="#ffffff"/>
+  <rect width="880" height="460" fill="#ffffff"/>
   <text x="40" y="36" class="title">控制中心在车机信息架构中的位置</text>
   <text x="40" y="57" class="sub">它不是一个页面，是一层覆盖在所有应用之上、从屏幕顶部下拉呼出的系统层。</text>
 
@@ -73,10 +73,11 @@
     </defs>
 
     <g transform="translate(0,146)">
-      <rect x="0" y="0" width="482" height="80" rx="4" fill="#f9fafb" stroke="#e5e7eb"/>
+      <rect x="0" y="0" width="482" height="100" rx="4" fill="#f9fafb" stroke="#e5e7eb"/>
       <text x="16" y="26" class="nodeb">为什么这个位置决定了后面所有的规则</text>
-      <text x="16" y="48" class="cap">覆盖层意味着它必须随时能被打断与收回；一步可达意味着它是稀缺资源，</text>
-      <text x="16" y="66" class="cap">装不下的东西只能回到设置页——不能靠加一层来解决。</text>
+      <text x="16" y="48" class="cap">覆盖层意味着它必须随时能被打断与收回；</text>
+      <text x="16" y="66" class="cap">一步可达意味着它是稀缺资源，装不下的</text>
+      <text x="16" y="84" class="cap">只能回到设置页，不能靠加一层来解决。</text>
     </g>
   </g>
 

@@ -9,7 +9,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from lib import *
 
 N_FRONT = 3          # 封面 / 简介 / 目录
-N_CASE1 = 9          # 案例一 控制中心（v1 8–9 页，按 9 排）
+N_CASE1 = 10         # 案例一 控制中心
 N_CASE2 = 8          # 案例二 节日彩蛋（已导出）
 N_CASE3 = 12         # 案例三 英语口语练习（自用产品）
 N_EXP   = 1          # GAS 经历页
@@ -20,7 +20,10 @@ P_EXP   = P_CASE3 + N_CASE3
 P_END   = P_EXP + N_EXP
 N_TOTAL = P_END
 
-M = 96
+M = 120          # 与案例页同一版心（案例页 pages*.py 都用 120）
+def eyebrow(t): return T(M, 100, t, size=17, fill=C["faint"], weight=600, ls="3")
+def h1(lines, y=208, size=52): return TL(M, y, lines, size=size, lh=1.36, weight=700, fill=C["ink"])
+def body(lines, y=340, size=22, fill=None): return TL(M, y, lines, size=size, lh=1.7, fill=fill or C["ink2"])
 def rng(a, n): return f"{a}" if n == 1 else f"{a}–{a+n-1}"
 
 # ══════════ 1 封面 ══════════
@@ -47,7 +50,7 @@ def _exp(x, y, org, period, lines):
 
 ABOUT = page("".join([
  eyebrow("关于我"),
- h1(["我的产出通常不是一屏界面，", "是一套别人能照着执行的规则。"], y=200, size=50),
+ h1(["我的产出是一套规则，", "写出来就是给别人照着执行的。"], y=200, size=50),
  body(["专注智能座舱的 UX 设计师，做 HMI 交互、多模态整合与系统级规范。"], 352, size=23),
  LN(M, 404, W-M, 404),
 
@@ -89,11 +92,11 @@ TOC = page("".join([
  body(["一个管同类的东西长得一样，一个管不同的东西共处一屏，",
        "一个管说错的话怎么变成明天的课。"], 272, size=22),
 
- _toc(386, "案例一", "控制中心：控件规范审查", "规则的统一——同类交互被建成不同模型",
+ _toc(386, "案例一", "控制中心：控件规范审查", "规则的统一：同类交互被建成不同模型",
       rng(P_CASE1, N_CASE1)),
- _toc(492, "案例二", "车机节日彩蛋", "规则的仲裁——驾驶安全约束下的事件让位",
+ _toc(492, "案例二", "车机节日彩蛋", "规则的仲裁：驾驶安全约束下的事件让位",
       rng(P_CASE2, N_CASE2)),
- _toc(598, "案例三", "每天十五分钟的英语口语练习", "规则的自证——把判分权交出去之后发生了什么",
+ _toc(598, "案例三", "每天十五分钟的英语口语练习", "规则的自证：把判分权交出去之后发生了什么",
       rng(P_CASE3, N_CASE3)),
  _toc(704, "经历", "GAS 规范适配", "出海车型的平台规范适配与认证",
       rng(P_EXP, N_EXP)),
@@ -108,8 +111,8 @@ def _end_page():
     out = [
       eyebrow("结尾"),
       h1(["我想去定第一版的规则。"], y=236, size=58),
-      body(["这两个案例里的规则，都是补进一套已经在跑的系统里的——",
-            "面板的选型依据、彩蛋的让位边界。难在没有重来的机会。",
+      body(["面板的选型依据、彩蛋的让位边界，都是补进一套已经在跑的系统里的。",
+            "这种活难在没有重来的机会，但规则是别人先定好的。",
             "下一步，我想从第一版就参与。"], 352, size=23),
       LN(M, 520, W-M, 520),
       T(M, 572, "联系", size=15, fill=C["faint"], weight=600, ls="2"),

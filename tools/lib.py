@@ -60,6 +60,10 @@ def LN(x1,y1,x2,y2,stroke=None,sw=1):
     return f'<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" stroke="{stroke or C["line"]}" stroke-width="{sw}"/>'
 
 _fign=[0]
+_pending_boxes=[]      # fig()/img() 落位，page() 取走
+FIGBOXES=[]            # 每页一项：该页所有图的 (x,y,w,h,name)
+BOXOF={}               # id(svg) -> 该页图框；_keep 防止 id 被回收复用
+_keep=[]
 def fig(name,x,y,w,h):
     """把已有配图 SVG 以 <g transform> 方式贴入；类名加前缀避免同页冲突"""
     _fign[0]+=1
@@ -86,6 +90,9 @@ def fig(name,x,y,w,h):
     sc=min(w/vw, h/vh)
     ox=x+(w-vw*sc)/2.0
     oy=y+(h-vh*sc)/2.0
+    _pending_boxes.append((ox, oy, vw*sc, vh*sc, name))
+    if os.environ.get("PORTFOLIO_FIG_STUB") == "1":
+        return R(ox, oy, vw*sc, vh*sc, fill="#eef2ff")
     return ('<g transform="translate(%.2f,%.2f) scale(%.4f)" font-family="%s">%s</g>'
             % (ox,oy,sc,FF,body))
 
@@ -104,6 +111,9 @@ def img(relpath, x, y, w, h, rx=8, border=True):
     sc = min(w / float(iw), h / float(ih))
     dw, dh = iw * sc, ih * sc
     ox, oy = x + (w - dw) / 2.0, y + (h - dh) / 2.0
+    _pending_boxes.append((ox, oy, dw, dh, relpath))
+    if os.environ.get("PORTFOLIO_FIG_STUB") == "1":
+        return R(ox, oy, dw, dh, fill="#eef2ff")
     out = ''
     if border:
         out += R(ox - 1, oy - 1, dw + 2, dh + 2, fill="none", stroke=C["line"], rx=rx + 1)
@@ -113,9 +123,15 @@ def img(relpath, x, y, w, h, rx=8, border=True):
     return out
 
 def page(content):
-    return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" '
-            f'width="{W}" height="{H}" font-family="{FF}">'
-            f'<rect width="{W}" height="{H}" fill="#ffffff"/>{content}</svg>')
+    global _pending_boxes
+    mine = _pending_boxes; _pending_boxes = []
+    FIGBOXES.append(mine)
+    svg = (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" '
+           f'width="{W}" height="{H}" font-family="{FF}">'
+           f'<rect width="{W}" height="{H}" fill="#ffffff"/>{content}</svg>')
+    BOXOF[id(svg)] = mine        # 版面自检用：这一页上所有图的落位
+    _keep.append(svg)
+    return svg
 
 def eyebrow(t): return T(96, 88, t, size=17, fill=C["faint"], weight=600, ls="3")
 def h1(lines, y=170, size=52): return TL(96, y, lines, size=size, lh=1.34, weight=700, fill=C["ink"])

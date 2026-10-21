@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 510" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 530" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif">
   <style>
     .title{font-size:18px;font-weight:700;fill:#1f2937}
     .sub{font-size:12px;fill:#6b7280}
@@ -11,7 +11,7 @@
     .ft{font-size:12px;fill:#374151}
     .fs{font-size:11px;fill:#9ca3af}
   </style>
-<rect width="880" height="510" fill="#ffffff"/>
+<rect width="880" height="530" fill="#ffffff"/>
 <text x="40" y="42" class="title">八天的复习结果</text>
 <text x="40" y="63" class="sub">每天做完的复习卡 · 2026-10-13 至 10-20 · 数字来自练习页自己存下来的每日记录</text>
 <rect x="40" y="79" width="10" height="10" fill="#2563eb" fill-opacity="0.3" stroke="#2563eb" stroke-dasharray="2 2"/>
@@ -83,7 +83,8 @@
 <text x="748" y="392" class="num">45%</text>
 <text x="812" y="392" class="ax">20 / 20</text>
 <text x="40" y="428" class="ft">记得率从 90% 跌到 45%,记得的个数从 9 个到 9 个——中间变的是谁说了算。</text>
-<text x="40" y="448" class="ft">我自己判的 64 张,记得 42 张(66%);机器或 AI 判的 45 张,记得 19 张(42%);同期每天到期量从十张涨到二十张。</text>
-<text x="40" y="468" class="ft">八天、一个人、没有对照组:这组数字证明不了方法有效。它能证明的是——口径一换,同一个人、同一套内容的数字会差一倍。</text>
-<text x="40" y="488" class="fs">口径:记得率 = 记得 ÷ 当天做完的张数;判定方式按卡片有没有留下机器批改记录区分。10/13、10/17 没做完,图里用虚线框标出到期但没做的部分,不补算、不剔除。</text>
+<text x="40" y="448" class="ft">我自己判的 64 张记得 42 张(66%);机器或 AI 判的 45 张记得 19 张(42%);同期每天到期量从十张涨到二十张。</text>
+<text x="40" y="468" class="ft">八天、一个人、没有对照组,证明不了方法有效。能证明的是:口径一换,同一个人、同一套内容的数字会差一倍。</text>
+<text x="40" y="488" class="fs">口径:记得率 = 记得 ÷ 当天做完的张数;判定方式按卡片有没有留下机器批改记录区分。</text>
+<text x="40" y="508" class="fs">10/13、10/17 没做完,图里用虚线框标出到期但没做的部分,不补算、不剔除。</text>
 </svg>
