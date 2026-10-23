@@ -6,7 +6,7 @@ import json, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 DATA = os.path.join(ROOT, "cases", "03-英语口语练习", "图5-数据.json")
-OUT  = os.path.join(ROOT, "assets", "case03", "图5-八天复习结果.svg")
+OUT  = os.path.join(ROOT, "assets", "case03", "图5-十一天复习结果.svg")
 
 W = 880
 X0, BARW = 150, 520          # 横轴:满格 = 20 张

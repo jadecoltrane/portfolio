@@ -1,0 +1,245 @@
+{
+  "说明": "案例③ 图 5 与 P9 的唯一数字来源。练习页每天只保留最近八天,10/13-10/15 已从线上库滚掉,这里是 2026-10-20 拉取的快照。只存计数,不存题面、答案和本人作答。",
+  "口径": "judged:每张卡有没有留下机器批改记录(typed)——有=机器或 AI 判,无=本人自己点「记得/模糊/忘了」。stages:match 从表达库里挑、cue 看首字母打出整句、gap 打出缺的词、use 在新情境自己造一句。",
+  "拉取时间": [
+    "2026-10-20(10/13-10/21)",
+    "2026-10-23(10/22-10/23)"
+  ],
+  "每日": {
+    "2026-10-13": {
+      "due": 10,
+      "done": 2,
+      "got": 2,
+      "fuzzy": 0,
+      "miss": 0,
+      "self_n": 2,
+      "self_got": 2,
+      "mach_n": 0,
+      "mach_got": 0,
+      "stages": {
+        "(none)": {
+          "n": 2,
+          "got": 2
+        }
+      }
+    },
+    "2026-10-14": {
+      "due": 10,
+      "done": 10,
+      "got": 9,
+      "fuzzy": 0,
+      "miss": 1,
+      "self_n": 10,
+      "self_got": 9,
+      "mach_n": 0,
+      "mach_got": 0,
+      "stages": {
+        "match": {
+          "n": 5,
+          "got": 5
+        },
+        "gap": {
+          "n": 5,
+          "got": 4
+        }
+      }
+    },
+    "2026-10-15": {
+      "due": 10,
+      "done": 10,
+      "got": 8,
+      "fuzzy": 0,
+      "miss": 2,
+      "self_n": 10,
+      "self_got": 8,
+      "mach_n": 0,
+      "mach_got": 0,
+      "stages": {
+        "gap": {
+          "n": 3,
+          "got": 3
+        },
+        "use": {
+          "n": 7,
+          "got": 5
+        }
+      }
+    },
+    "2026-10-16": {
+      "due": 16,
+      "done": 16,
+      "got": 14,
+      "fuzzy": 0,
+      "miss": 2,
+      "self_n": 16,
+      "self_got": 14,
+      "mach_n": 0,
+      "mach_got": 0,
+      "stages": {
+        "match": {
+          "n": 2,
+          "got": 2
+        },
+        "gap": {
+          "n": 8,
+          "got": 8
+        },
+        "use": {
+          "n": 6,
+          "got": 4
+        }
+      }
+    },
+    "2026-10-17": {
+      "due": 20,
+      "done": 14,
+      "got": 9,
+      "fuzzy": 2,
+      "miss": 3,
+      "self_n": 14,
+      "self_got": 9,
+      "mach_n": 0,
+      "mach_got": 0,
+      "stages": {
+        "cue": {
+          "n": 4,
+          "got": 2
+        },
+        "gap": {
+          "n": 9,
+          "got": 7
+        },
+        "use": {
+          "n": 1,
+          "got": 0
+        }
+      }
+    },
+    "2026-10-18": {
+      "due": 17,
+      "done": 17,
+      "got": 0,
+      "fuzzy": 3,
+      "miss": 14,
+      "self_n": 12,
+      "self_got": 0,
+      "mach_n": 5,
+      "mach_got": 0,
+      "stages": {
+        "gap": {
+          "n": 10,
+          "got": 0
+        },
+        "use": {
+          "n": 7,
+          "got": 0
+        }
+      }
+    },
+    "2026-10-19": {
+      "due": 20,
+      "done": 20,
+      "got": 10,
+      "fuzzy": 2,
+      "miss": 8,
+      "self_n": 0,
+      "self_got": 0,
+      "mach_n": 20,
+      "mach_got": 10,
+      "stages": {
+        "gap": {
+          "n": 15,
+          "got": 8
+        },
+        "use": {
+          "n": 5,
+          "got": 2
+        }
+      }
+    },
+    "2026-10-20": {
+      "due": 20,
+      "done": 20,
+      "got": 9,
+      "fuzzy": 2,
+      "miss": 9,
+      "self_n": 0,
+      "self_got": 0,
+      "mach_n": 20,
+      "mach_got": 9,
+      "stages": {
+        "gap": {
+          "n": 16,
+          "got": 9
+        },
+        "use": {
+          "n": 4,
+          "got": 0
+        }
+      }
+    },
+    "2026-10-21": {
+      "due": 20,
+      "done": 20,
+      "got": 16,
+      "fuzzy": 1,
+      "miss": 3,
+      "self_n": 0,
+      "self_got": 0,
+      "mach_n": 20,
+      "mach_got": 16,
+      "stages": {
+        "gap": {
+          "n": 17,
+          "got": 14
+        },
+        "use": {
+          "n": 3,
+          "got": 2
+        }
+      }
+    },
+    "2026-10-22": {
+      "due": 18,
+      "done": 18,
+      "got": 9,
+      "fuzzy": 4,
+      "miss": 5,
+      "self_n": 0,
+      "self_got": 0,
+      "mach_n": 18,
+      "mach_got": 9,
+      "stages": {
+        "gap": {
+          "n": 10,
+          "got": 5
+        },
+        "use": {
+          "n": 8,
+          "got": 4
+        }
+      }
+    },
+    "2026-10-23": {
+      "due": 20,
+      "done": 20,
+      "got": 13,
+      "fuzzy": 1,
+      "miss": 6,
+      "self_n": 0,
+      "self_got": 0,
+      "mach_n": 20,
+      "mach_got": 13,
+      "stages": {
+        "gap": {
+          "n": 18,
+          "got": 13
+        },
+        "use": {
+          "n": 2,
+          "got": 0
+        }
+      }
+    }
+  }
+}
