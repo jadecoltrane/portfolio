@@ -11,7 +11,7 @@ from lib import *
 N_FRONT = 3          # 封面 / 简介 / 目录
 N_CASE1 = 11         # 案例一 控制中心（含扉页）
 N_CASE2 = 9          # 案例二 节日彩蛋（含扉页）
-N_CASE3 = 14         # 案例三 英语口语练习（含扉页）
+N_CASE3 = 13         # 案例三 英语口语练习（含扉页）
 N_EXP   = 1          # GAS 经历页
 P_CASE1 = N_FRONT + 1
 P_CASE2 = P_CASE1 + N_CASE1
