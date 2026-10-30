@@ -163,11 +163,13 @@ _D_SUB = "#cbd5e1"
 _D_DIM = "#94a3b8"
 
 def divider(no, big, title, sub, pages_label):
+    from visual_art import divider_art
     """案例扉页：序号 + 案例名 + 一句主张 + 交付口径。顶条用该案例的主题色。"""
     return page("".join([
         R(0, 0, W, 8, fill=THEME[0] or C["acc"]),
         T(W - 120, 700, big, size=300, fill=THEME[0] or _D_NUM, weight=700,
           anchor="end", op="0.3"),
+        divider_art(THEME[0]),
         T(120, 170, no, size=20, fill=_D_DIM, weight=600, ls="6"),
         TL(120, 350, title, size=66, lh=1.28, weight=700, fill="#ffffff"),
         TL(120, 520, sub, size=25, lh=1.7, fill=_D_SUB),
