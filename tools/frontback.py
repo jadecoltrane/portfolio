@@ -7,6 +7,7 @@
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from lib import *
+from visual_art import hmi_art
 
 N_FRONT = 3          # 封面 / 简介 / 目录
 N_CASE1 = 11         # 案例一 控制中心（含扉页）
@@ -28,18 +29,23 @@ def rng(a, n): return f"{a}" if n == 1 else f"{a}–{a+n-1}"
 
 # ══════════ 1 封面 ══════════
 COVER = page("".join([
- R(0, 0, W, 10, fill=C["ink"]),
- T(M, 150, "作品集 ／ PORTFOLIO", size=17, fill=C["faint"], weight=600, ls="3"),
- TL(M, 292, ["我交付的是一整套", "能照着做的规则。"],
-    size=74, lh=1.3, weight=700, fill=C["ink"]),
- LN(M, 520, 420, 520, stroke=C["acc"], sw=3),
- T(M, 580, "黄佩瑶 · UX Designer", size=30, weight=700, fill=C["ink"]),
- T(M, 622, "智能座舱 HMI 交互设计", size=22, fill=C["mute"]),
- LN(M, 742, W-M, 742),
- T(M, 782, "控制中心：控件规范审查　／　车机节日彩蛋：事件仲裁　／　英语口语练习：判分权　／　GAS 规范适配（经历）",
-   size=15, fill=C["faint"]),
- T(W-M, 782, "2026", size=16, fill=C["faint"], anchor="end"),
-]))
+ R(0, 0, W, 9, fill="#4e9fff"),
+ R(M, 126, 58, 6, fill="#60a5fa", rx=3),
+ T(M, 186, "HMI  /  INTERACTION DESIGN  /  2026",
+   size=20, fill="#9cacc3", weight=700, ls="2"),
+ TL(M, 304, ["从复杂约束，", "到清晰的交互。"],
+    size=67, lh=1.32, weight=700, fill="#f8fafc"),
+ T(M, 492, "控制中心  ·  多屏事件  ·  交互规范",
+   size=22, fill="#a9bfd9"),
+ LN(M, 548, 718, 548, stroke="#3b5675", sw=2),
+ T(M, 613, "黄佩瑶", size=38, fill="#ffffff", weight=700),
+ T(M, 658, "UX / HMI Interaction Designer", size=23, fill="#9eafc8"),
+ hmi_art(),
+ LN(M, 750, W-M, 750, stroke="#31415a"),
+ T(M, 798, "SELECTED WORKS  01  CONTROL CENTER    02  EVENT SYSTEM    03  PERSONAL PRODUCT",
+   size=17, fill="#9eaec4", ls="0.8"),
+ T(W-M, 798, "38 PAGES", size=18, fill="#a6bbd7", weight=700, anchor="end")
+]), bg="#101a2a")
 
 # ══════════ 2 个人简介 ══════════
 def _exp(x, y, org, period, lines):
