@@ -85,24 +85,18 @@ def divider_art(theme):
                   R(1261,y,126,43,
                     fill=('#245a98' if i==1 else '#28405b'),rx=8),
                   R(1237,y+17,14,6,fill='#71aaf0',rx=3)]
-        a += [R(1071,524,314,8,fill=col,rx=4),
-              T(1072,553,'CONFIGURATION / RULES',
-                size=12,fill='#7e9ab7',ls=2)]
+        a += [R(1071,524,314,8,fill=col,rx=4)]
     elif theme=='#0d9488':
         a += [R(1072,295,311,55,fill='#28515a',rx=12),
               R(1072,371,194,55,fill='#2b4056',rx=12),
               R(1290,371,93,55,fill='#3b5f64',rx=12),
               LN(1167,447,1167,504,stroke=col,sw=4),
               LN(1167,504,1330,504,stroke=col,sw=4),
-              R(1321,495,18,18,fill='#72d6bd',rx=9),
-              T(1073,545,'EVENT / RESPONSE',
-                size=12,fill='#90aaa8',ls=2)]
+              R(1321,495,18,18,fill='#72d6bd',rx=9)]
     else:
         a += [R(1065,293,283,63,fill='#424078',rx=12),
               R(1134,375,267,62,fill='#2b4056',rx=12),
               R(1065,456,330,74,fill='#284c58',rx=12),
               R(1088,492,8,8,fill='#85dac0',rx=4),
-              R(1105,492,190,7,fill='#759c9b',rx=3),
-              T(1072,553,'TASK / FEEDBACK',
-                size=12,fill='#a69ccc',ls=2)]
+              R(1105,492,190,7,fill='#759c9b',rx=3)]
     return ''.join(a)
