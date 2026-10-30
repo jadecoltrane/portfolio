@@ -5,6 +5,7 @@
 内容：封面／关于我／目录／英语练习 13 页／控制中心 11 页／结尾 = 28 页。
 """
 from lib import *
+from visual_art import product_art
 
 set_theme(None)
 
@@ -38,18 +39,25 @@ def _toc(y, n, title, detail, pages, color):
 
 
 COVER = page("".join([
-    R(0, 0, W, 10, fill=C["ink"]),
-    T(M, 150, "作品集 ／ PRODUCT UX PORTFOLIO", size=17, fill=C["faint"], weight=600, ls="3"),
-    TL(M, 290, ["从真实问题出发，", "把规则做成能用的产品。"],
-       size=68, lh=1.33, weight=700, fill=C["ink"]),
-    LN(M, 522, 520, 522, stroke=C["violet"], sw=4),
-    T(M, 596, "黄佩瑶 · UX / Interaction Designer", size=31, fill=C["ink"], weight=700),
-    T(M, 638, "产品交互 · 体验规则 · 可验证的设计决策", size=22, fill=C["mute"]),
-    _line(742),
-    T(M, 784, "英语口语练习（个人项目）　／　控制中心（量产项目）",
-      size=18, fill=C["faint"]),
-    T(W-M, 784, "2026", size=17, fill=C["faint"], anchor="end"),
-]))
+    R(0, 0, W, 9, fill="#9273ec"),
+    R(M, 126, 58, 6, fill="#a89af7", rx=3),
+    T(M, 186, "PRODUCT UX  /  INTERACTION DESIGN  /  2026",
+      size=19, fill="#aba4d3", weight=700, ls="2"),
+    TL(M, 304, ["从真实问题，", "到可验证的体验。"],
+       size=64, lh=1.35, weight=700, fill="#f8fafc"),
+    T(M, 492, "个人练习产品  ·  系统交互  ·  决策与反馈",
+      size=21, fill="#b6aedb"),
+    LN(M, 548, 718, 548, stroke="#494464", sw=2),
+    T(M, 613, "黄佩瑶", size=38, fill="#ffffff", weight=700),
+    T(M, 658, "UX / Product Interaction Designer",
+      size=22, fill="#b4afd4"),
+    product_art(),
+    LN(M, 750, W-M, 750, stroke="#3a395b"),
+    T(M, 798, "SELECTED WORKS  01  DAILY PRACTICE    02  CONTROL CENTER",
+      size=17, fill="#aaa8cf", ls="0.8"),
+    T(W-M, 798, "28 PAGES", size=18, fill="#b3a7e6",
+      weight=700, anchor="end"),
+]), bg="#101a2a")
 
 ABOUT = page("".join([
     _eyebrow("关于我"),
