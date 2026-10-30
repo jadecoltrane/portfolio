@@ -16,8 +16,18 @@ on:
       - tools/lib.py
       - tools/render.py
       - tools/自检.py
+      - tools/case03_fig2.py
+      - tools/case03_fig5.py
+      - tools/装字体.sh
       - assets/**
   workflow_dispatch:
+
+# A burst of draft edits should result in ONE final PDF check, not a failure
+# notification for every intermediate, temporarily inconsistent revision.
+# Manual verification runs remain independent and are never canceled by a push.
+concurrency:
+  group: portfolio-pdf-${{ github.ref }}-${{ github.event_name == 'push' && 'push' || github.run_id }}
+  cancel-in-progress: ${{ github.event_name == 'push' }}
 
 permissions:
   contents: read
@@ -30,6 +40,12 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:
+      # Debounce repeated pushes before expensive rendering. Concurrency above
+      # cancels superseded pushes during this quiet period without failing QA.
+      - name: Coalesce rapid pushes
+        if: github.event_name == 'push'
+        run: sleep 90
+
       - uses: actions/checkout@v4
 
       - uses: actions/setup-python@v5
