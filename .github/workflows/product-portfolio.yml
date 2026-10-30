@@ -130,6 +130,31 @@ jobs:
           print("Verified HMI preview: 38 pages, contact placeholders, no fallback fonts")
           PY
 
+      - name: Check rendered PDF text does not leave page bounds
+        run: |
+          python - <<'PY'
+          import os, fitz
+          paths = [
+              os.path.join(os.environ['RUNNER_TEMP'], 'portfolio-product-preview.pdf'),
+              os.path.join(os.environ['RUNNER_TEMP'], 'portfolio-hmi-preview.pdf'),
+          ]
+          for path in paths:
+              doc = fitz.open(path)
+              errors = []
+              for number, page in enumerate(doc, 1):
+                  for block in page.get_text('dict')['blocks']:
+                      if block['type'] != 0:
+                          continue
+                      for line in block['lines']:
+                          for span in line['spans']:
+                              if not span['text'].strip():
+                                  continue
+                              x0, y0, x1, y1 = span['bbox']
+                              if x0 < -1 or y0 < -1 or x1 > page.rect.width + 1 or y1 > page.rect.height + 1:
+                                  errors.append((number, span['text'][:40]))
+              print(os.path.basename(path), 'page-bound text errors:', len(errors))
+              assert not errors, errors[:20]
+          PY
       - name: Upload HMI preview PDF
         uses: actions/upload-artifact@v4
         with:
