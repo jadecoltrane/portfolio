@@ -82,3 +82,66 @@ for i, pg in enumerate(doc):
 srt = sorted(cnt)
 print("\n  中位数 %d，最少 %d，最多 %d" % (srt[len(srt)//2], srt[0], srt[-1]))
 print("  纯文字页收在 140–360 之间；低于 140 的应当是配图页或截图页。")
+
+
+print("\n—— 行距与文字碰撞（按实际嵌入字体测量）——")
+# 本项不同于“图压字”：比较 PDF 里的真实文字行。
+# 各列的文字以及卡片的标题/正文分属不同内容块，不可只按 Y 坐标比较。
+from statistics import median
+def textlines(pg):
+    out = []
+    for block in pg.get_text("dict")["blocks"]:
+        if block["type"] != 0:
+            continue
+        for line in block["lines"]:
+            spans = [s for s in line["spans"] if s["text"].strip()]
+            if not spans:
+                continue
+            rect = fitz.Rect(spans[0]["bbox"])
+            for s in spans[1:]:
+                rect |= fitz.Rect(s["bbox"])
+            rect *= 1 / SCALE
+            out.append((rect, "".join(s["text"] for s in spans).strip(),
+                        median(s["size"] / SCALE for s in spans)))
+    return out
+
+# 行距用相邻行的中心距/字号来量，避免某些 PDF 阅读器的行高视觉差异。
+# 1.45 以下标记“偏紧”；1.30 以下标记“拥挤”。
+tight, crowd, collisions = [], [], []
+for p, pg in enumerate(doc, 1):
+    lines = textlines(pg)
+    for i, (a, at, az) in enumerate(lines):
+        for b, bt, bz in lines[i+1:]:
+            if b.y0 < a.y0:
+                a_, at_, az_, b_, bt_, bz_ = b, bt, bz, a, at, az
+            else:
+                a_, at_, az_, b_, bt_, bz_ = a, at, az, b, bt, bz
+            overlap = max(0, min(a_.x1,b_.x1)-max(a_.x0,b_.x0))
+            if overlap < max(25, 0.35*min(a_.width,b_.width)):
+                continue
+            if (max(az_,bz_) / min(az_,bz_) > 1.23 or
+                    abs(a_.x0-b_.x0) > 85):
+                continue
+            step = (b_.y0+b_.y1-a_.y0-a_.y1)/2
+            ratio = step / max(az_,bz_)
+            if ratio < 0.65:
+                # 同一视觉行的标签/文案或行内多 span，不算相邻行。
+                continue
+            if ratio >= 2.1:
+                continue
+            if ratio < 1.45:
+                item = (p, round(ratio,2), at_[:23], bt_[:23])
+                tight.append(item)
+                if ratio < 1.30:
+                    crowd.append(item)
+            # 高度实际交叠超过 25%，不是“间距小”而是碰撞风险。
+            inter = a_ & b_
+            if inter.is_valid and inter.height > 0.25 * min(a_.height, b_.height):
+                collisions.append((p, round(inter.height,1), at_[:23], bt_[:23]))
+
+for group, label in ((crowd, "拥挤"), (collisions, "碰撞")):
+    print("  %s %d 组%s" % (label, len(group),
+          "（仅列前 35 组）" if len(group)>35 else ""))
+    for p, v, a, b in group[:35]:
+        print("    p%02d  %s  「%s」／「%s」" % (p,v,a,b))
+print("  偏紧总计 %d 组（含拥挤；建议逐页检查）" % len(tight))
