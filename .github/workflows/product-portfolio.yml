@@ -1,4 +1,4 @@
-name: Product UX portfolio preview
+name: Portfolio layout QA and PDF previews
 
 on:
   push:
@@ -6,6 +6,10 @@ on:
     paths:
       - .github/workflows/product-portfolio.yml
       - tools/build_product.py
+      - tools/build.py
+      - tools/pages.py
+      - tools/pages04.py
+      - tools/frontback.py
       - tools/frontback_product.py
       - tools/pages01.py
       - tools/pages03.py
@@ -81,6 +85,38 @@ jobs:
           assert "contact.local.txt" in text, "Preview should have contact placeholders"
           print("Verified: 28 pages, Noto Sans SC embedded, contact placeholders only")
           PY
+
+      - name: Validate 38-page HMI layout
+        run: |
+          set -o pipefail
+          python tools/自检.py | tee /tmp/portfolio-hmi-layout.txt
+          if grep -Eq '共 [1-9][0-9]* 处' /tmp/portfolio-hmi-layout.txt; then
+            echo "HMI layout has image-over-text or page-bleed errors" >&2
+            exit 1
+          fi
+
+      - name: Export 38-page HMI preview
+        env:
+          PORTFOLIO_NO_CONTACT: "1"
+        run: |
+          python tools/build.py "${RUNNER_TEMP}/portfolio-hmi-preview.pdf"
+          python - <<'PY'
+          import fitz,os
+          doc=fitz.open(os.path.join(os.environ["RUNNER_TEMP"],"portfolio-hmi-preview.pdf"))
+          assert len(doc)==38, len(doc)
+          assert "contact.local.txt" in "".join(p.get_text() for p in doc)
+          bad={f[3] for p in doc for f in p.get_fonts(full=True)
+               if "Droid" in f[3] or f[3].startswith("Times") or f[2]=="Type3"}
+          assert not bad, bad
+          print("Verified HMI preview: 38 pages, contact placeholders, no fallback fonts")
+          PY
+
+      - name: Upload HMI preview PDF
+        uses: actions/upload-artifact@v4
+        with:
+          name: portfolio-hmi-preview-38p
+          path: ${{ runner.temp }}/portfolio-hmi-preview.pdf
+          retention-days: 14
 
       - name: Upload preview PDF
         uses: actions/upload-artifact@v4
