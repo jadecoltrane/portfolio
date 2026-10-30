@@ -235,11 +235,11 @@ P8a = page("".join([
  T(M+24, 769, "八类步骤按当天内容出现；这里展示的是同一天的六步。", size=16, fill=C["mute"]),
  R(900, 298, 580, 226, fill="#ffffff", stroke=C["line"], rx=14),
  T(922, 329, "02  /  DIALOGUE", size=17, weight=700, fill=C["violet"]),
- img_crop("screens/desktop-对话上半.jpg", 917, 341, 548, 136, focus_y=0.30),
+ img_crop("screens/desktop-对话上半.jpg", 917, 341, 548, 136, focus_y=0.55),
  T(922, 506, "新表达、复习表达在对话里同时出现", size=16, fill=C["ink2"]),
  R(900, 544, 580, 239, fill="#ffffff", stroke=C["line"], rx=14),
  T(922, 575, "03  /  ADAPTIVE REPLY", size=17, weight=700, fill=C["violet"]),
- img_crop("screens/desktop-剧情随回答变化.jpg", 917, 584, 548, 138, focus_y=0.47),
+ img_crop("screens/desktop-剧情随回答变化.jpg", 917, 584, 548, 138, focus_y=0.25),
  T(922, 766, "用户提到距离远，对话随回答改约出租车", size=16, fill=C["ink2"]),
  foot("本页是个人产品真实截图的局部放大；裁切仅为看清交互细节，不代表完整页面形态。", y=860),
 ]))
