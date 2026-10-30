@@ -1,0 +1,90 @@
+name: Product UX portfolio preview
+
+on:
+  push:
+    branches: [claude/main]
+    paths:
+      - .github/workflows/product-portfolio.yml
+      - tools/build_product.py
+      - tools/frontback_product.py
+      - tools/pages01.py
+      - tools/pages03.py
+      - tools/lib.py
+      - tools/render.py
+      - tools/自检.py
+      - assets/**
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  export-and-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Python packages
+        run: python -m pip install --disable-pip-version-check pymupdf pillow
+
+      - name: Install Chinese font
+        run: bash tools/装字体.sh "$HOME/.local/share/fonts/noto"
+
+      - name: Check browser
+        run: |
+          if command -v google-chrome >/dev/null; then
+            google-chrome --version
+          elif command -v chromium >/dev/null; then
+            chromium --version
+          else
+            echo "Chromium or Google Chrome is required" >&2
+            exit 1
+          fi
+
+      - name: Validate 28-page layout
+        run: |
+          set -o pipefail
+          PYTHONPATH=/tmp/pylibs python tools/自检.py --product | tee /tmp/portfolio-layout.txt
+          if grep -Eq '共 [1-9][0-9]* 处' /tmp/portfolio-layout.txt; then
+            echo "Layout has text-over-image or bleeding errors" >&2
+            exit 1
+          fi
+
+      - name: Export anonymized preview
+        env:
+          PORTFOLIO_NO_CONTACT: "1"
+        run: |
+          set -o pipefail
+          PYTHONPATH=/tmp/pylibs python tools/build_product.py "${RUNNER_TEMP}/portfolio-product-preview.pdf" | tee /tmp/portfolio-build.txt
+          if grep -q '⚠️' /tmp/portfolio-build.txt; then
+            echo "Export warnings must be resolved before delivery" >&2
+            exit 1
+          fi
+
+      - name: Inspect PDF page count and embedded fonts
+        run: |
+          python - <<'PY'
+          import fitz, os
+          path = os.path.join(os.environ["RUNNER_TEMP"], "portfolio-product-preview.pdf")
+          doc = fitz.open(path)
+          assert doc.page_count == 28, f"Expected 28 pages; got {doc.page_count}"
+          fonts = {name.split("+")[-1] for page in doc for _, _, _, name, *_ in page.get_fonts(full=True)}
+          print("Fonts:", ", ".join(sorted(fonts)))
+          assert any("NotoSansSC" in f for f in fonts), "Noto Sans SC is not embedded"
+          assert not any("Droid" in f or f.startswith("Times") for f in fonts), "Fallback font"
+          text = "".join(page.get_text() for page in doc)
+          assert "contact.local.txt" in text, "Preview should have contact placeholders"
+          print("Verified: 28 pages, Noto Sans SC embedded, contact placeholders only")
+          PY
+
+      - name: Upload preview PDF
+        uses: actions/upload-artifact@v4
+        with:
+          name: portfolio-product-preview-28p
+          path: ${{ runner.temp }}/portfolio-product-preview.pdf
+          retention-days: 14
