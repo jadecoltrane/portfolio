@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 680" font-family="PingFang SC, Noto Sans SC, sans-serif">
+<style>
+ .title{font-size:29px;font-weight:700;fill:#1f2937}
+ .subtitle{font-size:16px;fill:#6b7280}
+ .num{font-size:15px;font-weight:700;fill:#0d9488}
+ .head{font-size:25px;font-weight:700;fill:#1f2937}
+ .type{font-size:18px;fill:#374151}
+ .decision{font-size:18px;fill:#475569}
+ .bottom{font-size:21px;font-weight:700;fill:#0f766e}
+</style>
+<rect width="880" height="680" fill="white"/>
+<text x="35" y="53" class="title">六个样本，归纳为三种体验模式</text>
+<text x="35" y="84" class="subtitle">对照触发方式、视觉载体与情感价值 · 仅代表选取样本</text>
+<g transform="translate(35,110)">
+  <rect width="810" height="140" rx="12" fill="#f8fafc" stroke="#e2e8f0"/>
+  <rect width="6" height="140" rx="3" fill="#0d9488"/>
+  <text x="28" y="37" class="num">01</text>
+  <text x="80" y="40" class="head">完整闭环式</text>
+  <text x="28" y="78" class="type">语音、动画及车身反馈构成较完整的节日体验</text>
+  <text x="28" y="113" class="decision">本案要回答：安全事件插入后，体验怎么退出？</text>
+</g>
+<g transform="translate(35,267)">
+  <rect width="810" height="140" rx="12" fill="#f8fafc" stroke="#e2e8f0"/>
+  <rect width="6" height="140" rx="3" fill="#0d9488"/>
+  <text x="28" y="37" class="num">02</text>
+  <text x="80" y="40" class="head">品牌人格式</text>
+  <text x="28" y="78" class="type">固定角色、节日场景与情绪化反馈延续品牌识别</text>
+  <text x="28" y="113" class="decision">本案要回答：可交互元素放在哪，不抢主任务？</text>
+</g>
+<g transform="translate(35,424)">
+  <rect width="810" height="140" rx="12" fill="#f8fafc" stroke="#e2e8f0"/>
+  <rect width="6" height="140" rx="3" fill="#0d9488"/>
+  <text x="28" y="37" class="num">03</text>
+  <text x="80" y="40" class="head">探索游戏式</text>
+  <text x="28" y="78" class="type">解锁、寻找与等级反馈提高参与度</text>
+  <text x="28" y="113" class="decision">本案要回答：驾驶场景是否需要持续注意力？</text>
+</g>
+<rect x="35" y="585" width="810" height="64" rx="10" fill="#ecfdf5"/>
+<text x="55" y="625" class="bottom">设计重点转向：出现位置 · 注意力竞争 · 安全让位 · 生命周期</text>
+</svg>
