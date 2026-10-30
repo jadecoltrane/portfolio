@@ -145,3 +145,22 @@ for group, label in ((crowd, "拥挤"), (collisions, "碰撞")):
     for p, v, a, b in group[:35]:
         print("    p%02d  %s  「%s」／「%s」" % (p,v,a,b))
 print("  偏紧总计 %d 组（含拥挤；建议逐页检查）" % len(tight))
+
+
+print("\n—— 全字级文本交叠（严格，含大标题与正文）——")
+# 旧检查只比较相近字号，漏掉了 p11「两行大标题压到正文」的真实问题。
+# 两个独立文本行的可见字框同时在 X/Y 方向交叠足够大，才视为碰撞。
+hard_collisions=[]
+for p, pg in enumerate(doc, 1):
+    lines = textlines(pg)
+    for i, (r, t, sz) in enumerate(lines):
+        for q, u, sz2 in lines[i+1:]:
+            dx=max(0, min(r.x1,q.x1)-max(r.x0,q.x0))
+            dy=max(0, min(r.y1,q.y1)-max(r.y0,q.y0))
+            if dx > max(18, 0.18*min(r.width,q.width)) and dy > 0.24*min(r.height,q.height):
+                hard_collisions.append((p,round(dx),round(dy),t[:32],u[:32]))
+for p,dx,dy,t,u in hard_collisions:
+    print("  p%02d  overlap=%d×%d 「%s」／「%s」" % (p,dx,dy,t,u))
+print("  共 %d 处（须为 0）" % len(hard_collisions))
+if hard_collisions:
+    raise RuntimeError("检测到 %d 处文字行相撞，禁止导出投递版" % len(hard_collisions))
