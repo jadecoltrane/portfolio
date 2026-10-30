@@ -14,6 +14,7 @@ on:
       - tools/pages01.py
       - tools/pages03.py
       - tools/lib.py
+      - tools/visual_art.py
       - tools/render.py
       - tools/自检.py
       - tools/case03_fig2.py
