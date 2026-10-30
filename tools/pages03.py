@@ -227,21 +227,21 @@ def _tradeoff(x, y, head, line):
 P8a = page("".join([
  eyebrow("08 ／ 设计输出 ①　　一天怎么走"),
  h1(["从任务入口，到对话，再到接住回答。"], y=196, size=48),
- body(["同一天同一集的真实界面：重点放大任务入口，右侧沿着交互顺序阅读。"], 250, size=20),
+ body(["真实界面局部放大：从当天任务，进入对话，再看回答如何改变下一句。"], 250, size=20),
  R(M, 298, 750, 485, fill=C["wash"], stroke=C["line"], rx=14),
  T(M+24, 335, "01  /  TASK ENTRY", size=18, weight=700, fill=C["violet"], ls="1"),
- img("screens/desktop-主界面.jpg", M+23, 353, 702, 352),
+ img_crop("screens/desktop-主界面.jpg", M+23, 353, 702, 352, focus_y=0.13),
  T(M+24, 743, "进入任务：场景、完成标记与当天动态步骤", size=19, weight=700),
  T(M+24, 769, "八类步骤按当天内容出现；这里展示的是同一天的六步。", size=16, fill=C["mute"]),
  R(900, 298, 580, 226, fill="#ffffff", stroke=C["line"], rx=14),
  T(922, 329, "02  /  DIALOGUE", size=17, weight=700, fill=C["violet"]),
- img("screens/desktop-对话上半.jpg", 917, 341, 548, 136),
+ img_crop("screens/desktop-对话上半.jpg", 917, 341, 548, 136, focus_y=0.30),
  T(922, 506, "新表达、复习表达在对话里同时出现", size=16, fill=C["ink2"]),
  R(900, 544, 580, 239, fill="#ffffff", stroke=C["line"], rx=14),
  T(922, 575, "03  /  ADAPTIVE REPLY", size=17, weight=700, fill=C["violet"]),
- img("screens/desktop-剧情随回答变化.jpg", 917, 584, 548, 138),
+ img_crop("screens/desktop-剧情随回答变化.jpg", 917, 584, 548, 138, focus_y=0.47),
  T(922, 766, "用户提到距离远，对话随回答改约出租车", size=16, fill=C["ink2"]),
- foot("本页均为个人产品的真实截图；右侧是流程辅助视图，不是未经验证的用户研究结论。", y=860),
+ foot("本页是个人产品真实截图的局部放大；裁切仅为看清交互细节，不代表完整页面形态。", y=860),
 ]))
 
 # ══════════ P10② 设计输出 · 判分怎么判 ══════════
