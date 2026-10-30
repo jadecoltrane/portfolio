@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 """版面自检。三件事：图有没有盖住字、字有没有出版心、每页内容量差多少。
 
-    PYTHONPATH=/tmp/pylibs python3 tools/自检.py
+    PYTHONPATH=/tmp/pylibs python3 tools/自检.py             # HMI 完整版
+    PYTHONPATH=/tmp/pylibs python3 tools/自检.py --product   # 28 页产品 UX 版
 
 配图是后画的，会把底下的字盖掉，这种事纯文字比对看不出来，所以本脚本把
 每张图的落位记下来（lib.BOXOF），再拿页面文字去和图框求交集。
@@ -16,19 +17,29 @@ os.environ["PORTFOLIO_FIG_STUB"] = "1"
 os.environ["PORTFOLIO_NO_CONTACT"] = "1"
 import fitz, lib
 
-lib.use_assets("case01"); import pages01
-lib.use_assets("case05"); import pages
-lib.use_assets("case03"); import pages03
-lib.set_theme(None)   # 前后页与经历页不属于任何案例
-import frontback, pages04
-ORDER = (frontback.FRONT + pages01.PAGES + pages.PAGES + pages03.PAGES
-         + pages04.PAGES + frontback.BACK)
+if "--product" in sys.argv:
+    import build_product
+    ORDER = build_product.collect()
+    print("· 检查产品 UX 精选版：期望 28 页")
+else:
+    lib.use_assets("case01"); import pages01
+    lib.use_assets("case05"); import pages
+    lib.use_assets("case03"); import pages03
+    lib.set_theme(None)
+    import frontback, pages04
+    ORDER = (frontback.FRONT + pages01.PAGES + pages.PAGES + pages03.PAGES
+             + pages04.PAGES + frontback.BACK)
+    print("· 检查 HMI 完整版：期望 38 页")
 
 # 用和导出同一条渲染路径，否则量的是另一套字体的宽度，压字结果不作数
 import render
 _tmp = os.path.join(tempfile.mkdtemp(), "check.pdf")
 SCALE = render.to_pdf(ORDER, _tmp)      # 页宽 ÷ 1600
 doc = fitz.open(_tmp)
+expected = 28 if "--product" in sys.argv else 38
+if doc.page_count != expected or len(ORDER) != expected:
+    raise RuntimeError("版本页数不符：期望 %d，实际 SVG %d／PDF %d"
+                       % (expected, len(ORDER), doc.page_count))
 
 def spans(pg):
     for b in pg.get_text("dict")["blocks"]:
