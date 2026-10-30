@@ -6,3 +6,6 @@ contact.local.txt
 
 __pycache__/
 *.pyc
+
+# 产品 UX 版本地预览导出，不入库
+作品集-产品交互-预览.pdf
