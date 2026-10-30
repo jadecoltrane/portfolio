@@ -16,6 +16,8 @@ def chromium():
     for c in _CANDIDATES:
         p = shutil.which(c)
         if p: return p
+    mac = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+    if os.path.isfile(mac): return mac
     for pat in ("/opt/pw-browsers/chromium-*/chrome-linux/chrome",
                 "/opt/pw-browsers/chromium_headless_shell-*/chrome-linux/headless_shell"):
         g = sorted(glob.glob(pat))
@@ -28,6 +30,7 @@ html, body {{ margin: 0; padding: 0; background: #fff; }}
 .pg {{ width: {w}px; height: {h}px; overflow: hidden; break-after: page; }}
 .pg:last-child {{ break-after: auto; }}
 svg {{ display: block; }}
+{font_css}
 </style>{body}"""
 
 def to_pdf(svgs, dst):
@@ -37,12 +40,25 @@ def to_pdf(svgs, dst):
         tmp = tempfile.mkdtemp()
         html = os.path.join(tmp, "book.html")
         body = "".join('<div class="pg">%s</div>' % s for s in svgs)
-        io.open(html, "w", encoding="utf-8").write(_HTML.format(w=W, h=H, body=body))
+        font_css = ""
+        font_dir = os.environ.get("PORTFOLIO_FONT_DIR")
+        if font_dir:
+            files = [os.path.join(font_dir, "NotoSansSC-" + name + ".ttf")
+                     for name in ("Regular", "Bold")]
+            if not all(os.path.isfile(f) for f in files):
+                raise FileNotFoundError("PORTFOLIO_FONT_DIR 需要 NotoSansSC-Regular.ttf 和 NotoSansSC-Bold.ttf")
+            font_css = "".join(
+                '@font-face {{ font-family: "Portfolio Noto"; src: url("file://{path}") format("truetype"); font-weight: {weight}; }}'.format(path=path, weight=weight)
+                for path, weight in zip(files, (400, 700)))
+            font_css += '.pg svg, .pg svg text { font-family: "Portfolio Noto" !important; }'
+        io.open(html, "w", encoding="utf-8").write(
+            _HTML.format(w=W, h=H, body=body, font_css=font_css))
         out = os.path.join(tmp, "book.pdf")
         subprocess.run([exe, "--headless", "--disable-gpu", "--no-sandbox",
+                        "--user-data-dir=" + os.path.join(tmp, "chrome-profile"),
                         "--no-pdf-header-footer", "--print-to-pdf=" + out,
                         "file://" + html],
-                       stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True)
+                       stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True, timeout=120)
         import fitz
         d = fitz.open(out)
         if d.page_count != len(svgs):

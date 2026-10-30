@@ -12,26 +12,24 @@
 | 投递方向 | 作品集 | 案例顺序 | 状态 |
 |---|---|---|---|
 | **车企／Tier1／座舱 HMI** | **38 页完整稿** | 控制中心（11）→ 节日彩蛋（9）→ 英语练习（13）→ GAS 经历（1） | ✅ 已有 PDF；联系信息为占位的仓库副本不能直接发 |
-| **非车企／产品 UX／工具类** | **28 页精选稿** | 英语练习（13）→ 控制中心（11），前后页各按产品 UX 改写 | 🟡 **已新增独立导出脚本**；待实际 PDF 渲染与版面复核 |
+| **非车企／产品 UX／工具类** | **28 页精选稿** | 英语练习（13）→ 控制中心（11），前后页各按产品 UX 改写 | ✅ 已实际渲染并复核 28 页；对外联系方式仍为占位 |
 
 **产品 UX 版的取舍**：英语练习先讲，有真实使用界面、明确的本人定义范围和单用户数据；
 控制中心第二个讲，证明能在复杂约束里交付可执行规则。节日彩蛋与 GAS 经历页在该版不占页数，
 但仍保留在车企完整稿中。这不是声称有 AI 商业产品或多人验证经验。
 
-**导出产品 UX 版**（依赖与字体要求同下方 HMI 版）：
+**导出产品 UX 版**：先准备静态的 `NotoSansSC-Regular.ttf` 与 `NotoSansSC-Bold.ttf`，把所在目录设为 `PORTFOLIO_FONT_DIR`。输出路径可在仓库外；精选版始终强制保留联系方式占位。
 
 ```bash
-# 仅预览，联系方式强制占位；生成文件不入库
-PYTHONPATH=/tmp/pylibs python3 tools/build_product.py
-
-# 投递版：输出到仓库外，联系方式由未入库的 contact.local.txt 注入
-PYTHONPATH=/tmp/pylibs python3 tools/build_product.py ~/作品集-产品交互.pdf
+pip3 install --target /tmp/portfolio-libs pymupdf pillow
+PYLIBS=/tmp/portfolio-libs bash tools/装字体.sh /tmp/portfolio-fonts
+PORTFOLIO_FONT_DIR=/tmp/portfolio-fonts PYTHONPATH=/tmp/portfolio-libs \
+  python3 tools/build_product.py ~/作品集-产品UX.pdf
+PORTFOLIO_FONT_DIR=/tmp/portfolio-fonts PYTHONPATH=/tmp/portfolio-libs \
+  python3 tools/自检.py --product
 ```
 
-代码见 [tools/build_product.py](tools/build_product.py) 与
-[tools/frontback_product.py](tools/frontback_product.py)。
-**HMI 版仍用 `tools/build.py`，未改动其正文与顺序。** 产品版尚未在此环境完成
-Chromium＋字体的 PDF 实测，生成后仍需检查页数、图压字、出血、字体和联系方式。
+代码见 [tools/build_product.py](tools/build_product.py) 与 [tools/frontback_product.py](tools/frontback_product.py)。本次 PDF 实测为 28 页（3 页前置、英语练习 4–16、控制中心 17–27、结尾 28），案例扉页编号分别为 01／02；图压字、文字出血均为 0，嵌入字体为 NotoSansSC Regular／Bold（Type0）。**交给招聘方前必须在本地补上真实联系方式并复核，不要把含联系方式的 PDF 提交到公开仓库。** HMI 38 页版保留原有内容与独立导出入口 `tools/build.py`。
 
 ## 定位
 

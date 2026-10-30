@@ -9,7 +9,7 @@
 # 两种都会退成 Type3——一个字一个字体，文件胀到四倍，有的阅读器还显示发虚。
 # 所以先下可变字体，再用 fonttools 切出 Regular / Medium / Bold 三个静态实例。
 set -euo pipefail
-DEST=${1:-/usr/local/share/fonts/noto}
+DEST=${1:-/tmp/portfolio-fonts}
 LIBS=${PYLIBS:-/tmp/pylibs}
 TMP=$(mktemp -d)
 
@@ -31,7 +31,7 @@ PY
 
 mkdir -p "$DEST"
 cp "$TMP"/NotoSansSC-{Regular,Medium,Bold}.ttf "$DEST"/
-fc-cache -f >/dev/null
+if command -v fc-cache >/dev/null 2>&1; then fc-cache -f >/dev/null; fi
 echo "装好了："
-fc-list :lang=zh family | grep -i "noto sans sc" | sort -u
-echo "导出后 tools/build.py 会打印嵌进 PDF 的字体，看到 NotoSansSC 就对了。"
+echo "  PORTFOLIO_FONT_DIR=$DEST"
+echo "导出后检查字体应为 NotoSansSC Regular／Bold，且不能有 Type3。"

@@ -3,8 +3,8 @@
 
     PYTHONPATH=/tmp/pylibs python3 tools/build_product.py [仓库外输出路径]
 
-无输出路径时，生成仓库内预览文件并强制隐藏联系方式。
-真实联系方式只从不入库的 contact.local.txt 读取；不要把带联系方式的 PDF 提交。
+不论输出路径是否在仓库内，精选版均强制隐藏联系方式。
+PDF 仍需在本地补上真实联系方式并复核后才能投递。
 原 HMI 版仍由 tools/build.py 导出，不受影响。
 """
 import os
@@ -45,14 +45,20 @@ def collect():
             + second + pages01.PAGES[1:] + fb.BACK)
     if len(svgs) != fb.N_TOTAL:
         raise ValueError("精选版页码异常：期望 %d，实际 %d" % (fb.N_TOTAL, len(svgs)))
+    # Relabeling creates new strings; keep image geometry attached for QA.
+    lib.BOXOF[id(first[0])] = lib.BOXOF.get(id(pages03.PAGES[0]), [])
+    lib.BOXOF[id(second[0])] = lib.BOXOF.get(id(pages01.PAGES[0]), [])
+    lib._keep.extend(first + second)
     return svgs
 
 
 def main():
     if len(sys.argv) > 2:
         raise SystemExit("用法：python3 tools/build_product.py [输出路径]")
-    if len(sys.argv) == 1:
-        os.environ["PORTFOLIO_NO_CONTACT"] = "1"
+    if not os.environ.get("PORTFOLIO_FONT_DIR"):
+        raise SystemExit("请先设置 PORTFOLIO_FONT_DIR，指向含静态 Noto Sans SC 字体的目录。")
+    # Public-safe export, including explicit output paths.
+    os.environ["PORTFOLIO_NO_CONTACT"] = "1"
 
     import fitz
     import render
@@ -65,17 +71,16 @@ def main():
     doc = fitz.open(dst)
     if doc.page_count != len(svgs):
         raise RuntimeError("导出页数不符")
-    fonts = sorted({f[3].split("+")[-1] for page in doc for f in page.get_fonts(full=True)})
+    font_records = [f for page in doc for f in page.get_fonts(full=True)]
+    fonts = sorted({f[3].split("+")[-1] for f in font_records if f[3]})
+    bad = sorted({f[2] + ":" + (f[3] or "unnamed") for f in font_records
+                  if f[2] == "Type3" or "Droid" in f[3] or f[3].startswith("Times")})
     doc.close()
-    bad = [f for f in fonts if "Droid" in f or f.startswith("Times")]
     print("导出 %d 页 → %s" % (len(svgs), dst))
     print("· 字体：" + ("、".join(fonts) if fonts else "（无字体名）"))
     if bad:
-        print("⚠️ 字体回退为 %s，不可直接投递；请装 Noto Sans SC 再导。" % "、".join(bad))
-    if os.environ.get("PORTFOLIO_NO_CONTACT") == "1":
-        print("· 预览版：联系方式已强制隐藏。")
-    elif not os.path.isfile(os.path.join(ROOT, "contact.local.txt")):
-        print("⚠️ 未找到 contact.local.txt，联系方式仍为占位，别直接投递。")
+        raise RuntimeError("字体不适合投递：%s。请设置 PORTFOLIO_FONT_DIR 指向静态 Noto Sans SC 字体目录后重导。" % "、".join(bad[:3]))
+    print("· 对外版：联系方式为占位；投递前请在本地补上真实联系信息。")
 
 
 if __name__ == "__main__":
