@@ -30,25 +30,27 @@ def cat_card(i, num, name, color, lines, eg):
     return "".join(out)
 
 EXP = page("".join([
- eyebrow("经历 ／ GAS 规范适配　　出海车型 · 已通过认证"),
+ eyebrow("经历 ／ GAS 规范适配　　出海车型 · 项目已通过认证"),
  TL(M, 206, ["这一轮适配里，删除多于新增。"], size=54, lh=1.34, weight=700, fill=C["ink"]),
  TL(M, 300, ["适配不是照着规范加功能。项目把每个模块先分到四类里的一类，",
              "最沉的是「替换」——车厂自建的能力要退场，交给平台接。"],
     size=22, lh=1.7, fill=C["ink2"]),
 
- T(M, 384, "这四类是项目定的，每个模块先分到其中一类",
+ T(M, 384, "项目既有的四类适配方式（非我本人定义）",
    size=15, fill=C["mute"], weight=700, ls="2"),
  "".join(cat_card(i, *c) for i, c in enumerate(CATS)),
 
- R(M, 670, 1360, 78, fill="#ffffff", stroke=C["line"], rx=10),
- T(M+24, 716, "我在里面做了什么", size=15, fill=C["mute"], weight=700, ls="2.4"),
- T(M+218, 716, "参与前期合规决策与逐条复核；主框架与开机引导两个模块的适配由我落地。",
-   size=19, fill=C["ink"]),
+ R(M, 654, 1360, 118, fill="#ffffff", stroke=C["line"], rx=10),
+ R(M, 654, 5, 118, fill=C["acc"]),
+ T(M+28, 692, "我实际负责", size=19, fill=C["ink"], weight=700),
+ TL(M+245, 692, ["参与前期合规判断与逐条复核；",
+                  "主框架和开机引导两个模块的交互适配由我落地。"],
+    size=19, lh=1.60, fill=C["ink2"]),
 
  LN(M, 790, 1480, 790),
  T(M, 822, "以外部设计服务方身份承接", size=19, weight=700),
  T(M, 850, "交付关系", size=14, fill=C["faint"], ls="2"),
- T(760, 822, "AAOS · GAS · 出海合规 · 已通过认证", size=19, weight=700, fill=C["acc"]),
+ T(760, 822, "AAOS · GAS · 出海合规 · 项目通过认证", size=19, weight=700, fill=C["acc"]),
  T(760, 850, "关键词", size=14, fill=C["faint"], ls="2"),
 
  T(M, 870, "合作规范对厂商保密：全文不引条款原文、不出现条款编号，不出现品牌与车型。",
