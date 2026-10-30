@@ -230,7 +230,7 @@ P8a = page("".join([
  body(["真实界面局部放大：从当天任务，进入对话，再看回答如何改变下一句。"], 250, size=20),
  R(M, 298, 750, 485, fill=C["wash"], stroke=C["line"], rx=14),
  T(M+24, 335, "01  /  TASK ENTRY", size=18, weight=700, fill=C["violet"], ls="1"),
- img_crop("screens/desktop-主界面.jpg", M+23, 353, 702, 352, focus_y=0.13),
+ img_crop("screens/desktop-主界面.jpg", M+23, 353, 702, 352, focus_y=0.0),
  T(M+24, 743, "进入任务：场景、完成标记与当天动态步骤", size=19, weight=700),
  T(M+24, 769, "八类步骤按当天内容出现；这里展示的是同一天的六步。", size=16, fill=C["mute"]),
  R(900, 298, 580, 226, fill="#ffffff", stroke=C["line"], rx=14),
