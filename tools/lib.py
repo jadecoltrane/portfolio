@@ -137,6 +137,33 @@ def img(relpath, x, y, w, h, rx=8, border=True):
             % (ox, oy, dw, dh, mt, b64))
     return out
 
+def img_crop(relpath, x, y, w, h, focus_y=0.35):
+    """Show an explicitly cropped portion of an existing user-owned screenshot.
+
+    Use only where page text describes it as an enlarged crop, not as a full view.
+    focus_y=0 aligns the screenshot top; 1 aligns bottom.
+    """
+    import base64, mimetypes
+    from PIL import Image
+    f = os.path.join(ASSETS, relpath)
+    mt = mimetypes.guess_type(f)[0] or "image/jpeg"
+    iw, ih = Image.open(f).size
+    scale = max(w / float(iw), h / float(ih))
+    dw, dh = iw * scale, ih * scale
+    ox, oy = x + (w-dw)/2.0, y + (h-dh)*max(0,min(1,focus_y))
+    _fign[0] += 1
+    cid = "screenshot_crop_%d" % _fign[0]
+    _pending_boxes.append((x, y, w, h, relpath + " (cropped)"))
+    if os.environ.get("PORTFOLIO_FIG_STUB") == "1":
+        return R(x, y, w, h, fill="#eef2ff")
+    b64 = base64.b64encode(io.open(f,"rb").read()).decode()
+    return (
+      '<defs><clipPath id="%s"><rect x="%.2f" y="%.2f" width="%.2f" height="%.2f"/></clipPath></defs>'
+      '<image x="%.2f" y="%.2f" width="%.2f" height="%.2f" '
+      'preserveAspectRatio="xMidYMid meet" clip-path="url(#%s)" href="data:%s;base64,%s"/>'
+    ) % (cid,x,y,w,h,ox,oy,dw,dh,cid,mt,b64)
+
+
 def page(content, bg="#ffffff"):
     global _pending_boxes
     mine = _pending_boxes; _pending_boxes = []
