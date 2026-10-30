@@ -22,6 +22,9 @@ on:
 permissions:
   contents: read
 
+env:
+  PORTFOLIO_FONT_DIR: /home/runner/.local/share/fonts/noto
+
 jobs:
   export-and-check:
     runs-on: ubuntu-latest
