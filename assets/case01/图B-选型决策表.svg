@@ -14,10 +14,10 @@
   </style>
   <rect width="880" height="620" fill="#ffffff"/>
   <text x="40" y="38" class="title">产出一：功能 → 控件类型 选型决策表</text>
-  <text x="40" y="59" class="sub">把选型从「讨论」变成「查询」：先回答第二列的判定问题，即可唯一确定控件类型。</text>
+  <text x="40" y="59" class="sub">把隐性的选择依据变成可核对的条件：先按功能行为判断候选控件，再处理例外。</text>
 
   <g transform="translate(40,84)">
-    <rect x="0" y="0" width="250" height="32" fill="#1f2937"/><text x="14" y="21" class="head">判定问题（问一句就够）</text>
+    <rect x="0" y="0" width="250" height="32" fill="#1f2937"/><text x="14" y="21" class="head">判定问题（优先判断）</text>
     <rect x="250" y="0" width="140" height="32" fill="#1f2937"/><text x="320" y="21" text-anchor="middle" class="head">控件类型</text>
     <rect x="390" y="0" width="86" height="32" fill="#1f2937"/><text x="433" y="21" text-anchor="middle" class="head">状态数</text>
     <rect x="476" y="0" width="96" height="32" fill="#1f2937"/><text x="524" y="21" text-anchor="middle" class="head">图标随状态变</text>
@@ -75,8 +75,8 @@
   <g transform="translate(40,462)">
     <rect x="0" y="0" width="800" height="106" rx="8" fill="#f9fafb" stroke="#e5e7eb"/>
     <text x="20" y="30" class="kicker">这张表的意义</text>
-    <text x="20" y="56" class="note">不在表本身，在于它把选型从「每次重新讨论」变成「查一次表」。新功能进来时，不再需要有人凭经验拍板，</text>
-    <text x="20" y="76" class="note">也不再产生新的分叉。<tspan font-weight="700" fill="#1f2937">同一性质的功能必须使用同一控件类型，不允许个案发挥。</tspan></text>
+    <text x="20" y="56" class="note">把常见选择条件放在一张表中，减少重复讨论，也让例外情况可以被明确记录。</text>
+    <text x="20" y="76" class="note"><tspan font-weight="700" fill="#1f2937">这是审查改进建议，不代表已经正式成为项目规范。</tspan></text>
     <text x="20" y="96" class="src">针对审查发现 P-01（同类功能被建成不同模型）与 P-03（分段选择与多模切换职责重叠）</text>
   </g>
 
