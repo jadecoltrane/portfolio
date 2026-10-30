@@ -126,10 +126,10 @@ P5 = page("".join([
 crows=[("拖地图 → 不打断","导航桌面页：挂件半透明不可操作"),
        ("节日结束 → 隐含终止","壁纸桌面页：先出提醒通知，再渐隐"),
        ("语音唤醒 → 不打断","语音 GUI 会遮挡挂件区域")]
-cb=[];cy=800
+cb=[];cy=790
 for a,b in crows:
     cb+=[T(M,cy,a,size=17,fill=C["ink2"]), T(560,cy,b,size=17,fill=C["warn"],weight=600)]
-    cy+=36
+    cy+=32
 P6 = page("".join([
  eyebrow("06 ／ 复盘"),
  h1(["把「打断／不打断」两类，拆成四类响应。"], y=186, size=48),
@@ -141,9 +141,9 @@ P6 = page("".join([
  T(1080, 690, "图 4 ／ 四级仲裁", size=15, fill=C["faint"], weight=600, anchor="middle"),
  R(1190, 674, 190, 26, fill=C["warnw"], stroke="#d97706", rx=13),
  T(1285, 692, "复盘重建，非当年版本", size=14, weight=700, fill=C["warn"], anchor="middle"),
- LN(M, 740, 1480, 740),
- T(M, 776, "原始规范怎么归类", size=14, weight=700, fill=C["faint"], ls="1.6"),
- T(560, 776, "同一份文档里的实际行为", size=14, weight=700, fill=C["faint"], ls="1.6"),
+ LN(M, 722, 1480, 722),
+ T(M, 755, "原始规范怎么归类", size=14, weight=700, fill=C["faint"], ls="1.6"),
+ T(560, 755, "同一份文档里的实际行为", size=14, weight=700, fill=C["faint"], ls="1.6"),
  "".join(cb),
 ]))
 
