@@ -38,11 +38,14 @@ def collect():
     if len(pages03.PAGES) != fb.N_CASE_A or len(pages01.PAGES) != fb.N_CASE_B:
         raise ValueError("案例页数已变化，请同步检查 tools/frontback_product.py 的页码")
 
-    first = [_relabel_divider(pages03.PAGES[0], "案例三", "案例一", "03", "01")]
-    second = [_relabel_divider(pages01.PAGES[0], "案例一", "案例二", "01", "02")]
+    import story_structure
+    english = story_structure.english_pages(pages03.PAGES)
+    control = story_structure.control_pages(pages01.PAGES)
+    first = [_relabel_divider(english[0], "案例三", "案例一", "03", "01")]
+    second = [_relabel_divider(control[0], "案例一", "案例二", "01", "02")]
 
-    svgs = (fb.FRONT + first + pages03.PAGES[1:]
-            + second + pages01.PAGES[1:] + fb.BACK)
+    svgs = (fb.FRONT + first + english[1:]
+            + second + control[1:] + fb.BACK)
     if len(svgs) != fb.N_TOTAL:
         raise ValueError("精选版页码异常：期望 %d，实际 %d" % (fb.N_TOTAL, len(svgs)))
     # Relabeling creates new strings; keep image geometry attached for QA.
