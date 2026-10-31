@@ -1,0 +1,69 @@
+{
+  "schema": 1,
+  "note": "These hashes refer to local final files from 2026-10-31, not to files already committed to GitHub.",
+  "generated_at": "2026-10-31",
+  "files": [
+    {
+      "path": "dist/car-ux-illustrated.pdf",
+      "page_count": 46,
+      "size": 3426802,
+      "sha256": "68b4dec90f119a50bc6be514c2a8a5174a245f8ca72e140fadc7ac24a3259867",
+      "uploaded": false
+    },
+    {
+      "path": "dist/product-ux-illustrated.pdf",
+      "page_count": 34,
+      "size": 2733299,
+      "sha256": "bcac8d91b10e387ad3496dfe3e947c8d82783c5f388c44ba13f1d09a727ede5f",
+      "uploaded": false
+    },
+    {
+      "path": "assets/portfolio_illustrations/composite/h1.jpg",
+      "size": 235836,
+      "sha256": "595cf7932bf1202e71e46a13df6fdcd3b2a8b98be1fdd95e930be2ff6eb26aec",
+      "uploaded": false
+    },
+    {
+      "path": "assets/portfolio_illustrations/composite/h2.jpg",
+      "size": 305031,
+      "sha256": "58057c046ac91d67d0641b54856b2bc3f6a89942e13e97e2cfc62ae069b90286",
+      "uploaded": false
+    },
+    {
+      "path": "assets/portfolio_illustrations/composite/h3.jpg",
+      "size": 202974,
+      "sha256": "c4b4eec60262b22943f05c7b1926b82a8dad1673f0865b2823aab4478eba0d1e",
+      "uploaded": false
+    },
+    {
+      "path": "assets/portfolio_illustrations/composite/h4.jpg",
+      "size": 275384,
+      "sha256": "bb130ee5d7480d8089eb932b8cdbc23d41b11405ed373c807c373f697bb92e25",
+      "uploaded": false
+    },
+    {
+      "path": "assets/portfolio_illustrations/composite/h5.jpg",
+      "size": 298879,
+      "sha256": "727b018747337737561e584da2d68c0eae5b24af5346e5a8193e6c2c798d1303",
+      "uploaded": false
+    },
+    {
+      "path": "assets/portfolio_illustrations/composite/u6.jpg",
+      "size": 240782,
+      "sha256": "092470c60eeddc8a7f11fcb17a3d55b271e30ead93716de00f0080a392bd298f",
+      "uploaded": false
+    },
+    {
+      "path": "assets/portfolio_illustrations/composite/u7.jpg",
+      "size": 291206,
+      "sha256": "dc866eae84b3756f46c05cada6dbd6cd87da864ecc7f858b912de24c413c5562",
+      "uploaded": false
+    },
+    {
+      "path": "assets/portfolio_illustrations/composite/u8.jpg",
+      "size": 284000,
+      "sha256": "a86866b526e080f729e51a8323190f13ec8d45a471ac690b4996e830c92be013",
+      "uploaded": false
+    }
+  ]
+}
