@@ -129,7 +129,7 @@ def _end_page():
         out.append(T(M+96, y, v, size=18, fill=C["ink"], weight=600))
         y += 40
     out.append(T(M, 838,
-      "作品集中的界面均为脱敏重绘；不含甲方品牌、车型、内部文档与规范条款原文。",
+      "车机项目画面为脱敏抽象示意；个人产品为真实截图。均不含甲方内部文件与条款原文。",
       size=14, fill=C["faint"]))
     return page("".join(out))
 
