@@ -27,9 +27,10 @@ else:
     lib.use_assets("case03"); import pages03
     lib.set_theme(None)
     import frontback, pages04
-    import hmi_refine
-    ORDER = (frontback.FRONT + hmi_refine.refined_control(pages01.PAGES)
-             + hmi_refine.refined_festival(pages.PAGES) + pages03.PAGES
+    import story_structure
+    ORDER = (frontback.FRONT + story_structure.control_pages(pages01.PAGES)
+             + story_structure.festival_pages(pages.PAGES)
+             + story_structure.english_pages(pages03.PAGES)
              + pages04.PAGES + frontback.BACK)
     print("· 检查 HMI 完整版：期望 38 页")
 
