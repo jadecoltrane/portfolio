@@ -1,20 +1,20 @@
 {
   "schema": 1,
-  "note": "These hashes refer to local final files from 2026-10-31, not to files already committed to GitHub.",
+  "note": "SHA256 for corrected 46/34-page local PDFs (including correct cover page counts) and eight complete annotated composite JPGs; 'uploaded:false' indicates no GitHub binary upload yet.",
   "generated_at": "2026-10-31",
   "files": [
     {
       "path": "dist/car-ux-illustrated.pdf",
       "page_count": 46,
-      "size": 3426802,
-      "sha256": "68b4dec90f119a50bc6be514c2a8a5174a245f8ca72e140fadc7ac24a3259867",
+      "size": 3424811,
+      "sha256": "cf6b91b9bbc47eabc93125daf971ead19d5b2b101bbb025c26e543ceb9b1536c",
       "uploaded": false
     },
     {
       "path": "dist/product-ux-illustrated.pdf",
       "page_count": 34,
-      "size": 2733299,
-      "sha256": "bcac8d91b10e387ad3496dfe3e947c8d82783c5f388c44ba13f1d09a727ede5f",
+      "size": 2731322,
+      "sha256": "fa41d83bd0d57479a520b5125eee1b88573daff0a0a0492722c365de76314418",
       "uploaded": false
     },
     {
