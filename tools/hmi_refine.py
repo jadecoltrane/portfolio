@@ -30,7 +30,7 @@ def _slot(x,y,letter,kind="plain",width=148):
 
 def control_queue():
     set_theme(C["acc"])
-    o = _head("03 ／ 当年交付　/　配置适配",
+    o = _head("05 ／ 项目交付　/　配置适配",
        "同一条功能队列适配不同车型。",
        "产品侧规定功能优先级；我定义缺项跳过与槽位填充的交互机制。", size=51)
     o += [
@@ -82,7 +82,7 @@ def _scenario(x,y,n,heading,before,after,highlight=False):
 
 def control_proposals():
     set_theme(C["acc"])
-    o=_head("09 ／ 2026 主动审查　/　提案示意",
+    o=_head("09 ／ 后续审查　/　提案示意",
        "四类控件问题的改进方案示意。",
        "依据 2026 年一致性审查整理的示例；尚未确认正式采纳或上线。", size=46)
     o += [
@@ -90,7 +90,7 @@ def control_proposals():
       _scenario(820,321,"02","多状态选型","控件类型混用","按状态数判断"),
       _scenario(120,566,"03","执行链路","只显示加载中","失败 · 超时 · 重试"),
       _scenario(820,566,"04","功能不可用","仅灰化禁用","显示原因与恢复条件"),
-      _foot("本页属于 2026 年控件一致性审查的建议演示；当年的量产交付另见第 7 页。"),
+      _foot("2026 年个人审查提案，未确认正式采纳；原项目交付见本案例前半部分。"),
     ]
     return page("".join(o))
 
@@ -138,7 +138,7 @@ def _decision(y,name,desc,bg,border,ink):
 
 def festival_arbitration():
     set_theme(C["teal"])
-    o=_head("06 ／ 原项目交付 × 后续复盘",
+    o=_head("08 ／ 原项目交付 × 后续复盘",
        "原项目二元分类与后续四级复盘对照。",
        "左侧为原项目交付分类，右侧为 2026 年个人复盘提出的细分模型。",size=47)
     o += [
