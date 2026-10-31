@@ -17,10 +17,11 @@ import fitz
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 def collect():
-    import frontback, pages01, pages, pages03, pages04, hmi_refine
-    return (frontback.FRONT + hmi_refine.refined_control(pages01.PAGES)
-            + hmi_refine.refined_festival(pages.PAGES)
-            + pages03.PAGES + pages04.PAGES + frontback.BACK)
+    import frontback, pages01, pages, pages03, pages04, story_structure
+    return (frontback.FRONT + story_structure.control_pages(pages01.PAGES)
+            + story_structure.festival_pages(pages.PAGES)
+            + story_structure.english_pages(pages03.PAGES)
+            + pages04.PAGES + frontback.BACK)
 
 def main():
     # 不传路径 = 导出入库副本：强制联系方式占位，真实值只进仓库外的那份
@@ -33,9 +34,10 @@ def main():
     lib.use_assets("case03"); import pages03
     lib.set_theme(None)   # 前后页与经历页不属于任何案例
     import frontback, pages04
-    import hmi_refine
-    svgs = (frontback.FRONT + hmi_refine.refined_control(pages01.PAGES)
-            + hmi_refine.refined_festival(pages.PAGES) + pages03.PAGES
+    import story_structure
+    svgs = (frontback.FRONT + story_structure.control_pages(pages01.PAGES)
+            + story_structure.festival_pages(pages.PAGES)
+            + story_structure.english_pages(pages03.PAGES)
             + pages04.PAGES + frontback.BACK)
 
     for nm, mod, want in (("案例一", pages01, frontback.N_CASE1),
