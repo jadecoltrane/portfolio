@@ -11,7 +11,7 @@
   </style>
 <rect width="1240" height="520" fill="#ffffff"/>
 <text x="40" y="42" class="title">三十四天的改版路径</text>
-<text x="40" y="64" class="sub">每个节点都是先发现自己学不会,才动手改的</text>
+<text x="40" y="64" class="sub">根据实际使用问题调整功能与规则</text>
 <rect x="40.0" y="96" width="77.3" height="22" fill="#f9fafb" stroke="#e5e7eb"/>
 <text x="78.7" y="112" class="band" text-anchor="middle">阅读简报</text>
 <rect x="117.3" y="96" width="232.0" height="22" fill="#f9fafb" stroke="#e5e7eb"/>
@@ -33,7 +33,7 @@
 <line x1="233.3" y1="278" x2="233.3" y2="234" stroke="#e5e7eb"/>
 <text x="221.3" y="222" class="dt">10/8</text>
 <text x="221.3" y="204" class="nt">砍掉纯输入模块</text>
-<text x="221.3" y="186" class="nd">篇幅最长的那一块</text>
+<text x="221.3" y="186" class="nd">移除长文精读</text>
 <circle cx="310.7" cy="282" r="4" fill="#9ca3af"/>
 <line x1="310.7" y1="286" x2="310.7" y2="324" stroke="#e5e7eb"/>
 <text x="298.7" y="342" class="dt">10/11</text>
@@ -53,7 +53,7 @@
 <line x1="542.7" y1="278" x2="542.7" y2="234" stroke="#e5e7eb"/>
 <text x="530.7" y="222" class="dt">10/15</text>
 <text x="530.7" y="204" class="nt">批改模块上线</text>
-<text x="530.7" y="186" class="nd">产品真正开始工作</text>
+<text x="530.7" y="186" class="nd">增加批改反馈</text>
 <circle cx="620.0" cy="282" r="4" fill="#9ca3af"/>
 <line x1="620.0" y1="286" x2="620.0" y2="324" stroke="#e5e7eb"/>
 <text x="608.0" y="342" class="dt">10/16</text>
@@ -62,8 +62,8 @@
 <circle cx="697.3" cy="282" r="5" fill="#dc2626"/>
 <line x1="697.3" y1="277" x2="697.3" y2="234" stroke="#e5e7eb"/>
 <text x="685.3" y="222" class="dt">10/18</text>
-<text x="685.3" y="204" class="nt">最差的一天</text>
-<text x="685.3" y="186" class="nd">判分权当晚交出去</text>
+<text x="685.3" y="204" class="nt">17 题零分</text>
+<text x="685.3" y="186" class="nd">开始使用外部判分</text>
 <circle cx="774.7" cy="282" r="4" fill="#9ca3af"/>
 <line x1="774.7" y1="286" x2="774.7" y2="324" stroke="#e5e7eb"/>
 <text x="762.7" y="342" class="dt">10/19</text>
@@ -95,7 +95,7 @@
 <text x="1200.0" y="204" class="nt" text-anchor="end">失败分成三种</text>
 <text x="1200.0" y="186" class="nd" text-anchor="end">换了说法单独一档</text>
 <line x1="40" y1="414" x2="1200" y2="414" stroke="#e5e7eb"/>
-<text x="40" y="442" class="key">形态变了两次,规则只加不减:9/28 定下的五条,一条没被推翻。</text>
-<text x="40" y="468" class="fs">节点取自 9/24–10/27 的改版记录。蓝点为形态或判定口径的变化,红点为数据最差的一天。</text>
+<text x="40" y="442" class="key">34 天内调整页面与评分方式，9/28 定下的五条初始原则保持不变。</text>
+<text x="40" y="468" class="fs">节点取自 9/24–10/27 的记录。蓝点标记功能或判定变化,红点标记 10/18 的零分记录。</text>
 <text x="40" y="490" class="fs">轴为事件顺序,非等比时间轴。</text>
 </svg>
