@@ -16,7 +16,7 @@
   </defs>
   <rect width="880" height="520" fill="#ffffff"/>
 
-  <text x="40" y="42" class="title">三类做法,缺的是同一样东西</text>
+  <text x="40" y="42" class="title">三类口语练习方式对照</text>
   <text x="40" y="63" class="sub">对照维度:练什么 / 说完之后这句话去了哪里</text>
 
   <line x1="40" y1="96" x2="840" y2="96" stroke="#9ca3af" stroke-width="1.4"/>
@@ -33,16 +33,16 @@
   </g>
   <g>
     <text x="40"  y="198" class="name">AI 口语陪练</text>
-    <text x="250" y="198" class="cell">说得爽</text>
-    <text x="400" y="198" class="cell">说完就没了</text>
-    <text x="400" y="218" class="cell">不沉淀、不复习、不针对我的毛病</text>
+    <text x="250" y="198" class="cell">自由对话</text>
+    <text x="400" y="198" class="cell">缺少复习</text>
+    <text x="400" y="218" class="cell">缺少错误记录与针对性复习</text>
     <line x1="40" y1="236" x2="840" y2="236" stroke="#e5e7eb"/>
   </g>
   <g>
     <text x="40"  y="268" class="name">外教课</text>
     <text x="250" y="268" class="cell">说得对</text>
     <text x="400" y="268" class="cell">贵、低频</text>
-    <text x="400" y="288" class="cell">纠错当场发生,越纠越不敢说</text>
+    <text x="400" y="288" class="cell">即时纠错可能打断表达</text>
     <line x1="40" y1="306" x2="840" y2="306" stroke="#e5e7eb"/>
   </g>
 
@@ -52,10 +52,10 @@
   <path d="M730 316 L440 360" fill="none" stroke="#9ca3af" stroke-width="1.2"/>
   <line x1="440" y1="360" x2="440" y2="392" stroke="#9ca3af" stroke-width="1.4" marker-end="url(#a1)"/>
 
-  <text x="440" y="344" class="gap" text-anchor="middle">三家都没回答:说完之后,这句话去了哪里</text>
+  <text x="440" y="344" class="gap" text-anchor="middle">共同缺口:回答未进入后续复习</text>
 
   <rect x="110" y="404" width="660" height="60" fill="#eff6ff" stroke="#2563eb"/>
-  <text x="440" y="441" class="claim" text-anchor="middle">练的是说出口,不是答对</text>
+  <text x="440" y="441" class="claim" text-anchor="middle">设计重点:开口练习与复习衔接</text>
 
   <text x="40" y="496" class="fs">结论只适用于当时对照的这三类做法,不外推为全行业判断。未做用户测试,属个人使用后的归纳。</text>
 </svg>
