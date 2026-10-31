@@ -12,8 +12,8 @@
     .src{font-size:9.5px;fill:#9ca3af}
   </style>
   <rect width="880" height="520" fill="#ffffff"/>
-  <text x="40" y="36" class="title">当年那一版顺序是怎么排出来的，以及它缺的是哪一步</text>
-  <text x="40" y="57" class="sub">左边是实况六步，右边是复盘提出的三条依据。<tspan font-weight="700" fill="#1f2937">左右不是前后版本，是「做过的」与「现在会怎么做」。</tspan></text>
+  <text x="40" y="36" class="title">原版本默认排序流程及缺失的判断依据</text>
+  <text x="40" y="57" class="sub">左侧为原项目流程，右侧为 2026 年复盘提案。<tspan font-weight="700" fill="#1f2937">两者不是已上线前后版本。</tspan></text>
 
   <!-- 左：六步实况 -->
   <g transform="translate(40,88)">
@@ -49,7 +49,7 @@
 
   <!-- 箭头 -->
   <path d="M386 250 L436 250" stroke="#1f2937" stroke-width="2" marker-end="url(#f5a)"/>
-  <text x="411" y="238" text-anchor="middle" class="cap">关掉第 4 步</text>
+  <text x="411" y="238" text-anchor="middle" class="cap">处理第 4 步</text>
   <defs>
     <marker id="f5a" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
       <path d="M0 0 L9 4.5 L0 9 z" fill="#1f2937"/>
@@ -81,7 +81,7 @@
 
   <g transform="translate(40,440)">
     <rect x="0" y="0" width="800" height="48" rx="4" fill="#1f2937"/>
-    <text x="20" y="30" font-size="12.5" font-weight="700" fill="#ffffff">第 4 步的去向：负责人的主张不再是独立入口，必须落到上面三条上论证——把「主张」转成「可以有结论的问题」。</text>
+    <text x="20" y="30" font-size="12.5" font-weight="700" fill="#ffffff">第 4 步应按前三项依据判断；功能诉求不能单独构成排序依据。</text>
   </g>
 
   <text x="40" y="508" class="src">抽象示意，不含真实功能清单与完整优先级表。右侧框架为 2026 复盘产物，当年未采用。</text>
