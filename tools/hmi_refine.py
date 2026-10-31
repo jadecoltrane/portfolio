@@ -31,7 +31,7 @@ def _slot(x,y,letter,kind="plain",width=148):
 def control_queue():
     set_theme(C["acc"])
     o = _head("03 ／ 当年交付　/　配置适配",
-       "同一条队列，自动适配不同车型。",
+       "同一条功能队列适配不同车型。",
        "产品侧规定功能优先级；我定义缺项跳过与槽位填充的交互机制。", size=51)
     o += [
       R(M,309,1360,145,fill="#f4f7fc",stroke="#d7e3f2",rx=16),
@@ -83,8 +83,8 @@ def _scenario(x,y,n,heading,before,after,highlight=False):
 def control_proposals():
     set_theme(C["acc"])
     o=_head("09 ／ 2026 主动审查　/　提案示意",
-       "把控件分歧，翻译成可检查的交互状态。",
-       "以下四种是提案如何应用的概念图，并非已上线或确认采纳的界面。", size=46)
+       "四类控件问题的改进方案示意。",
+       "依据 2026 年一致性审查整理的示例；尚未确认正式采纳或上线。", size=46)
     o += [
       _scenario(120,321,"01","持续状态","按下即复位","常显 · 已开启"),
       _scenario(820,321,"02","多状态选型","控件类型混用","按状态数判断"),
@@ -117,8 +117,8 @@ def _eventline(y,num,scene,trigger,behavior,attention=False):
 def festival_constraints():
     set_theme(C["teal"])
     o=_head("02 ／ 驾驶场景　/　交互边界",
-       "彩蛋不能抢走驾驶任务的注意力。",
-       "我把不同屏幕情境转成明确的响应条件，而不只是设计挂件的外观。", size=48)
+       "驾驶场景中，彩蛋需要响应高优先级事件。",
+       "按地图拖动、语音唤醒及紧急警告三个情境，说明桌面级响应规则。", size=48)
     o += [
        T(120,314,"三个典型情境  /  基于已交付的桌面级规则抽象绘制",size=17,
          fill="#098679",weight=700),
@@ -139,8 +139,8 @@ def _decision(y,name,desc,bg,border,ink):
 def festival_arbitration():
     set_theme(C["teal"])
     o=_head("06 ／ 原项目交付 × 后续复盘",
-       "原交付按两类处理，复盘时我细分成四类。",
-       "实际交付依赖各桌面写明的响应规则；右边的四级模型是 2026 年复盘提案。",size=47)
+       "原项目二元分类与后续四级复盘对照。",
+       "左侧为原项目交付分类，右侧为 2026 年个人复盘提出的细分模型。",size=47)
     o += [
       R(120,329,640,449,fill="#f4f8f8",stroke="#d6e6e3",rx=17),
       T(149,373,"原项目交付",size=25,fill="#08796d",weight=700),
