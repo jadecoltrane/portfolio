@@ -16,15 +16,15 @@
   </defs>
   <rect width="880" height="430" fill="#ffffff"/>
 
-  <text x="40" y="42" class="title">一句话的一生</text>
-  <text x="40" y="63" class="sub">今天说错的话,怎么变成明天的课本、后天的复习题</text>
+  <text x="40" y="42" class="title">回答的复习路径</text>
+  <text x="40" y="63" class="sub">今天的回答如何进入次日反馈和后续复习</text>
 
   <!-- 节点 -->
   <g>
     <rect x="40" y="110" width="150" height="104" fill="#f9fafb" stroke="#e5e7eb"/>
     <text x="56" y="134" class="day">第 1 天</text>
-    <text x="56" y="158" class="nt">我限时回一句</text>
-    <text x="56" y="180" class="nd">六十秒,想到什么说什么</text>
+    <text x="56" y="158" class="nt">限时回答</text>
+    <text x="56" y="180" class="nd">60 秒内完成回答</text>
     <text x="56" y="198" class="nd">当场不纠错</text>
   </g>
   <line x1="196" y1="162" x2="222" y2="162" stroke="#9ca3af" stroke-width="1.4" marker-end="url(#a3)"/>
@@ -32,9 +32,9 @@
   <g>
     <rect x="228" y="110" width="162" height="104" fill="#eff6ff" stroke="#2563eb"/>
     <text x="244" y="134" class="day">第 2 天</text>
-    <text x="244" y="158" class="nt">被改成地道说法</text>
+    <text x="244" y="158" class="nt">生成改写建议</text>
     <text x="244" y="180" class="nd">改成地道的说法</text>
-    <text x="244" y="198" class="nd">并注明踩了第几条规律</text>
+    <text x="244" y="198" class="nd">说明对应的表达规则</text>
   </g>
   <line x1="396" y1="162" x2="422" y2="162" stroke="#9ca3af" stroke-width="1.4" marker-end="url(#a3)"/>
 
@@ -59,7 +59,7 @@
   <path d="M734 220 L734 266 L115 266 L115 220" fill="none" stroke="#2563eb" stroke-width="1.4"
         stroke-dasharray="4 4" marker-end="url(#a3)"/>
   <rect x="352" y="252" width="176" height="28" fill="#ffffff"/>
-  <text x="440" y="271" class="acc" text-anchor="middle">说出来的,又回到练习里</text>
+  <text x="440" y="271" class="acc" text-anchor="middle">回答继续用于后续练习</text>
 
   <line x1="40" y1="320" x2="840" y2="320" stroke="#e5e7eb"/>
   <text x="40" y="348" class="foot">八天里十六个新表达,七个走的这条路。</text>
