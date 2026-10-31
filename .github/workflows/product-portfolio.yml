@@ -17,6 +17,8 @@ on:
       - tools/visual_art.py
       - tools/hmi_refine.py
       - tools/story_structure.py
+      - tools/build_illustrated.py
+      - assets/portfolio_illustrations/**
       - tools/render.py
       - tools/自检.py
       - tools/case03_fig2.py
@@ -57,6 +59,9 @@ jobs:
 
       - name: Install Python packages
         run: python -m pip install --disable-pip-version-check pymupdf pillow
+
+      - name: Check illustrated builder syntax
+        run: python -m py_compile tools/build_illustrated.py
 
       - name: Install Chinese font
         run: bash tools/装字体.sh "$HOME/.local/share/fonts/noto"
